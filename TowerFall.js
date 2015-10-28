@@ -86,7 +86,7 @@ function updateSimulation(du) {
     entityManager.update(du);
 
     // Prevent perpetual firing!
-    eatKey(Ship.prototype.KEY_FIRE);
+    //eatKey(Ship.prototype.KEY_FIRE);
 }
 
 // GAME-SPECIFIC DIAGNOSTICS
@@ -113,7 +113,7 @@ var KEY_K = keyCode('K');
 
 function processDiagnostics() {
 
-    if (eatKey(KEY_MIXED))
+    /*if (eatKey(KEY_MIXED))
         g_allowMixedActions = !g_allowMixedActions;
 
     if (eatKey(KEY_GRAVITY)) g_useGravity = !g_useGravity;
@@ -142,7 +142,7 @@ function processDiagnostics() {
         });
 
     if (eatKey(KEY_K)) entityManager.killNearestShip(
-        g_mouseX, g_mouseY);
+        g_mouseX, g_mouseY);*/
 }
 
 
@@ -177,9 +177,9 @@ var g_images = {};
 function requestPreloads() {
 
     var requiredImages = {
-        ship   : "https://notendur.hi.is/~pk/308G/images/ship.png",
+        /*ship   : "https://notendur.hi.is/~pk/308G/images/ship.png",
         ship2  : "https://notendur.hi.is/~pk/308G/images/ship_2.png",
-        rock   : "https://notendur.hi.is/~pk/308G/images/rock.png"
+        rock   : "https://notendur.hi.is/~pk/308G/images/rock.png"*/
     };
 
     imagesPreload(requiredImages, g_images, preloadDone);
@@ -189,7 +189,7 @@ var g_sprites = {};
 
 function preloadDone() {
 
-    g_sprites.ship  = new Sprite(g_images.ship);
+    /*g_sprites.ship  = new Sprite(g_images.ship);
     g_sprites.ship2 = new Sprite(g_images.ship2);
     g_sprites.rock  = new Sprite(g_images.rock);
 
@@ -197,7 +197,7 @@ function preloadDone() {
     g_sprites.bullet.scale = 0.25;
 
     entityManager.init();
-    createInitialShips();
+    createInitialShips();*/
 
     main.init();
 }
