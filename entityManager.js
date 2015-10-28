@@ -27,15 +27,15 @@ var entityManager = {
 
 // "PRIVATE" DATA
 
-_rocks   : [],
+/*_rocks   : [],
 _bullets : [],
 _ships   : [],
 
-_bShowRocks : true,
+_bShowRocks : true,*/
 
 // "PRIVATE" METHODS
 
-_generateRocks : function() {
+/*_generateRocks : function() {
     var i,
         NUM_ROCKS = 4;
 
@@ -68,7 +68,7 @@ _findNearestShip : function(posX, posY) {
         theShip : closestShip,
         theIndex: closestIndex
     };
-},
+},*/
 
 _forEachOf: function(aCategory, fn) {
     for (var i = 0; i < aCategory.length; ++i) {
@@ -87,15 +87,16 @@ KILL_ME_NOW : -1,
 // i.e. thing which need `this` to be defined.
 //
 deferredSetup : function () {
-    this._categories = [this._rocks, this._bullets, this._ships];
+    //this._categories = [this._rocks, this._bullets, this._ships];
+    this._categories = [];
 },
 
 init: function() {
-    this._generateRocks();
+    //this._generateRocks();
     //this._generateShip();
 },
 
-fireBullet: function(cx, cy, velX, velY, rotation) {
+/*fireBullet: function(cx, cy, velX, velY, rotation) {
     this._bullets.push(new Bullet({
         cx   : cx,
         cy   : cy,
@@ -138,7 +139,7 @@ haltShips: function() {
 
 toggleRocks: function() {
     this._bShowRocks = !this._bShowRocks;
-},
+},*/
 
 update: function(du) {
 
@@ -162,7 +163,7 @@ update: function(du) {
         }
     }
     
-    if (this._rocks.length === 0) this._generateRocks();
+    //if (this._rocks.length === 0) this._generateRocks();
 
 },
 
