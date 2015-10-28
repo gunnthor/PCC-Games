@@ -11,81 +11,110 @@
 12345678901234567890123456789012345678901234567890123456789012345678901234567890
 */
 
-function Rock() {
 
-    // TODO: Implement this
+// A generic contructor which accepts an arbitrary descriptor object
+function Rock(descr) {
 
-    // NB: Set our `cx` and `cy` values to random positions on the canvas
-    //     `g_canvas`, and its properties, are available to you here.
+    // Common inherited setup logic from Entity
+    this.setup(descr);
 
-    // Rock randomisation
-    this.cx = util.randRange(0,g_canvas.width); // CHANGE THIS
-    this.cy = util.randRange(0,g_canvas.height);// CHANGE THIS
-    this.rotation = 0;
+    this.randomisePosition();
+    this.randomiseVelocity();
+      
+    // Default sprite and scale, if not otherwise specified
+    this.sprite = this.sprite || g_sprites.rock;
+    this.scale  = this.scale  || 1;
 
+/*
+    // Diagnostics to check inheritance stuff
+    this._rockProperty = true;
+    console.dir(this);
+*/
 
+};
+
+Rock.prototype = new Entity();
+
+Rock.prototype.randomisePosition = function () {
+    // Rock randomisation defaults (if nothing otherwise specified)
+    this.cx = this.cx || Math.random() * g_canvas.width;
+    this.cy = this.cy || Math.random() * g_canvas.height;
+    this.rotation = this.rotation || 0;
+};
+
+Rock.prototype.randomiseVelocity = function () {
     var MIN_SPEED = 20,
         MAX_SPEED = 70;
 
-    // Set the velocity so that the rock has a random direction,
-    // and a speed between the MIN and MAX as defined above.
-    //
-    // The SPEED vals are expressed in pixels per SECOND.
-    // ...but `du` will be in "nominals", of course...
-    // ...use SECS_TO_NOMINALS (from "globals.js") to convert.
-    //
-    // Yes, this needs a bit of Math.
-    // Also, the `util` module can help you.
-    //
-    // Some helper vars (e.g. `speed` and `dirn` might be good to have)
-    //
-    var speed = (util.randRange(MIN_SPEED,MAX_SPEED))/SECS_TO_NOMINALS;
-    var dirn = util.randRange(0,Math.PI*2);
-    this.velX = Math.sin(dirn) * speed; // CHANGE THIS
-    this.velY = Math.cos(dirn) * speed; // CHANGE THIS
+    var speed = util.randRange(MIN_SPEED, MAX_SPEED) / SECS_TO_NOMINALS;
+    var dirn = Math.random() * consts.FULL_CIRCLE;
 
+    this.velX = this.velX || speed * Math.cos(dirn);
+    this.velY = this.velY || speed * Math.sin(dirn);
 
     var MIN_ROT_SPEED = 0.5,
         MAX_ROT_SPEED = 2.5;
 
-    // Set the rotational velocity between the MIN and MAX above.
-    // (Again, these are expressed in pixels per second).
-
-    this.velRot = (util.randRange(MIN_ROT_SPEED,MAX_ROT_SPEED))/ SECS_TO_NOMINALS; // CHANGE THIS
-
-}
+    this.velRot = this.velRot ||
+        util.randRange(MIN_ROT_SPEED, MAX_ROT_SPEED) / SECS_TO_NOMINALS;
+};
 
 Rock.prototype.update = function (du) {
-    
-    // I DID THIS BIT FOR YOU. NICE, AREN'T I?
+
+    // TODO: YOUR STUFF HERE! --- Unregister and check for death
+    spatialManager.unregister(this);
+    if(this._isDeadNow) return entityManager.KILL_ME_NOW;
 
     this.cx += this.velX * du;
     this.cy += this.velY * du;
 
-    this.rotation += this.velRot * du;
+    this.rotation += 1 * this.velRot;
     this.rotation = util.wrapRange(this.rotation,
-				   0, consts.FULL_CIRCLE);
+                                   0, consts.FULL_CIRCLE);
 
     this.wrapPosition();
+    
+    // TODO: YOUR STUFF HERE! --- (Re-)Register
+    spatialManager.register(this);
+
 };
 
-Rock.prototype.setPos = function (cx, cy) {
-    this.cx = cx;
-    this.cy = cy;
-}
+Rock.prototype.getRadius = function () {
+    return this.scale * (this.sprite.width / 2) * 0.9;
+};
 
-Rock.prototype.getPos = function () {
-    return {posX : this.cx, posY : this.cy};
-}
+// HACKED-IN AUDIO (no preloading)
+Rock.prototype.splitSound = new Audio(
+  "https://notendur.hi.is/~pk/308G/Asteroids_Exercise/sounds/rockSplit.ogg");
+Rock.prototype.evaporateSound = new Audio(
+  "https://notendur.hi.is/~pk/308G/Asteroids_Exercise/sounds/rockEvaporate.ogg");
 
-Rock.prototype.wrapPosition = function () {
-    this.cx = util.wrapRange(this.cx, 0, g_canvas.width);
-    this.cy = util.wrapRange(this.cy, 0, g_canvas.height);
+Rock.prototype.takeBulletHit = function () {
+    this.kill();
+    
+    if (this.scale > 0.25) {
+        this._spawnFragment();
+        this._spawnFragment();
+        
+        this.splitSound.play();
+    } else {
+        this.evaporateSound.play();
+    }
+};
+
+Rock.prototype._spawnFragment = function () {
+    entityManager.generateRock({
+        cx : this.cx,
+        cy : this.cy,
+        scale : this.scale /2
+    });
 };
 
 Rock.prototype.render = function (ctx) {
-    g_sprites.rock.drawWrappedCentredAt(
-	ctx, this.cx, this.cy, this.rotation
+    var origScale = this.sprite.scale;
+    // pass my scale into the sprite, for drawing
+    this.sprite.scale = this.scale;
+    this.sprite.drawWrappedCentredAt(
+        ctx, this.cx, this.cy, this.rotation
     );
-
 };
