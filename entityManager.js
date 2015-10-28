@@ -31,48 +31,48 @@ _rocks   : [],
 _bullets : [],
 _ships   : [],
 
-_bShowRocks : false,
+_bShowRocks : true,
 
 // "PRIVATE" METHODS
 
 _generateRocks : function() {
-    var i = this._rocks.length,
-	NUM_ROCKS = 4;
-    for( var z = 0;z < NUM_ROCKS; z++){
-        this._rocks[i+z] = new Rock();
+    var i,
+        NUM_ROCKS = 4;
+
+    for (i = 0; i < NUM_ROCKS; ++i) {
+        this.generateRock();
     }
-
-
-    // TODO: Make `NUM_ROCKS` Rocks!
 },
 
 _findNearestShip : function(posX, posY) {
+    var closestShip = null,
+        closestIndex = -1,
+        closestSq = 1000 * 1000;
 
-    // TODO: Implement this
-    var min;
-    var closestShip;
-    var closestIndex;
-    for(var z = 0; z < this._ships.length; z++){
-        var shortestdisplacement = util.wrappedDistSq(this._ships[z].cx,this._ships[z].cy,posX,posY,g_canvas.width,g_canvas.height);
-        if(min === undefined) min = shortestdisplacement;
-        if (shortestdisplacement <= min){
-            closestIndex = z;
-            closestShip = this._ships[z];
-            min = shortestdisplacement;
+    for (var i = 0; i < this._ships.length; ++i) {
+
+        var thisShip = this._ships[i];
+        var shipPos = thisShip.getPos();
+        var distSq = util.wrappedDistSq(
+            shipPos.posX, shipPos.posY, 
+            posX, posY,
+            g_canvas.width, g_canvas.height);
+
+        if (distSq < closestSq) {
+            closestShip = thisShip;
+            closestIndex = i;
+            closestSq = distSq;
         }
     }
-    // NB: Use this technique to let you return "multiple values"
-    //     from a function. It's pretty useful!
-    //
     return {
-	theShip : closestShip,   // the object itself
-	theIndex: closestIndex   // the array index where it lives
+        theShip : closestShip,
+        theIndex: closestIndex
     };
 },
 
 _forEachOf: function(aCategory, fn) {
     for (var i = 0; i < aCategory.length; ++i) {
-	fn.call(aCategory[i]);
+        fn.call(aCategory[i]);
     }
 },
 
@@ -92,36 +92,40 @@ deferredSetup : function () {
 
 init: function() {
     this._generateRocks();
-
-    // I could have made some ships here too, but decided not to.
     //this._generateShip();
 },
 
 fireBullet: function(cx, cy, velX, velY, rotation) {
+    this._bullets.push(new Bullet({
+        cx   : cx,
+        cy   : cy,
+        velX : velX,
+        velY : velY,
 
-    // TODO: Implement this
-    this._bullets.push(new Bullet({cx: cx ,cy: cy,velX: velX,velY: velY ,rotation: rotation }));
+        rotation : rotation
+    }));
+},
+
+generateRock : function(descr) {
+    this._rocks.push(new Rock(descr));
 },
 
 generateShip : function(descr) {
-    // TODO: Implement this
-    this._ships[this._ships.length] = new Ship(descr);
+    this._ships.push(new Ship(descr));
 },
 
 killNearestShip : function(xPos, yPos) {
-    // TODO: Implement this
-    var nearest = this._findNearestShip(xPos,yPos);
-    this._ships.splice(nearest.theIndex,1);
-    // NB: Don't forget the "edge cases"
+    var theShip = this._findNearestShip(xPos, yPos).theShip;
+    if (theShip) {
+        theShip.kill();
+    }
 },
 
 yoinkNearestShip : function(xPos, yPos) {
-    // TODO: Implement this
-    var nearest = this._findNearestShip(xPos,yPos);
-    nearest.theShip.cx = xPos;
-    nearest.theShip.cy = yPos;
-    nearest.theShip.halt();
-    // NB: Don't forget the "edge cases"
+    var theShip = this._findNearestShip(xPos, yPos).theShip;
+    if (theShip) {
+        theShip.setPos(xPos, yPos);
+    }
 },
 
 resetShips: function() {
@@ -138,39 +142,50 @@ toggleRocks: function() {
 
 update: function(du) {
 
-    // TODO: Implement this
-    for(var g = 0; g < this._bullets.length; g++){
-        if(this._bullets[g].update(du)){
-            this._bullets.splice(g,1);
+    for (var c = 0; c < this._categories.length; ++c) {
+
+        var aCategory = this._categories[c];
+        var i = 0;
+
+        while (i < aCategory.length) {
+
+            var status = aCategory[i].update(du);
+
+            if (status === this.KILL_ME_NOW) {
+                // remove the dead guy, and shuffle the others down to
+                // prevent a confusing gap from appearing in the array
+                aCategory.splice(i,1);
+            }
+            else {
+                ++i;
+            }
         }
     }
-    for(var s = 0; s < this._ships.length; s++){
-        this._ships[s].update(du);
-    }
-    for(var x = 0; x < this._rocks.length; x++){
-        this._rocks[x].update(du);
-    }
-    // NB: Remember to handle the "KILL_ME_NOW" return value!
-    //     and to properly update the array in that case.
+    
+    if (this._rocks.length === 0) this._generateRocks();
+
 },
 
 render: function(ctx) {
 
-    // TODO: Implement this
-    for(var g = 0; g < this._bullets.length; g++){
-        this._bullets[g].render(ctx);
-    }
-    for(var s = 0; s < this._ships.length; s++){
-        this._ships[s].render(ctx);
-    }
-    // NB: Remember to implement the ._bShowRocks toggle!
-    // (Either here, or if you prefer, in the Rock objects)
-    if (this._bShowRocks){
-        for(var x = 0; x < this._rocks.length; x++){
-            this._rocks[x].render(ctx);
-        }
-    }
+    var debugX = 10, debugY = 100;
 
+    for (var c = 0; c < this._categories.length; ++c) {
+
+        var aCategory = this._categories[c];
+
+        if (!this._bShowRocks && 
+            aCategory == this._rocks)
+            continue;
+
+        for (var i = 0; i < aCategory.length; ++i) {
+
+            aCategory[i].render(ctx);
+            //debug.text(".", debugX + i * 10, debugY);
+
+        }
+        debugY += 10;
+    }
 }
 
 }
@@ -178,4 +193,3 @@ render: function(ctx) {
 // Some deferred setup which needs the object to have been created first
 entityManager.deferredSetup();
 
-entityManager.init();
