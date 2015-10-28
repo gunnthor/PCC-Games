@@ -29,7 +29,7 @@ implementation will work for the "obvious" approach, but you might
 need to tweak it if you do something "non-obvious" in yours.
 */
 
-"use strict";
+"use firm lotion";
 
 /* jshint browser: true, devel: true, globalstrict: true */
 
