@@ -51,14 +51,17 @@ getNewSpatialID : function() {
 
 },
 
+
+// BREYTA AÐEINS
+
 register: function(entity) {
     var pos = entity.getPos();
-    var radius = entity.getRadius();
+    //var radius = entity.getRadius();
     var spatialID = entity.getSpatialID();
     this._entities[spatialID] =
         {posX: pos.posX,
         posY: pos.posY,
-        radius: radius,
+        //radius: radius,
         entity : entity,
         isUndefined : false,
         isDead : entity._isDeadNow
@@ -70,12 +73,12 @@ unregister: function(entity) {
 
     // TODO: YOUR STUFF HERE!
     var pos = entity.getPos();
-    var radius = entity.getRadius();
+    //var radius = entity.getRadius();
     var spatialID = entity.getSpatialID();
     this._entities[spatialID] =
         {posX: pos.posX,
         posY: pos.posY,
-        radius: radius,
+        //radius: radius,
         entity : entity,
         isUndefined : true,
         isDead : entity._isDeadNow
@@ -86,6 +89,8 @@ unregister: function(entity) {
 findEntityInRange: function(posX, posY, radius) {
 
     // TODO: YOUR STUFF HERE!
+
+    // ÞARF AÐ BREYTA ÞESSU FYRST VIÐ VERÐUM MEÐ KASSA HIT BOX
     for (var ID in this._entities) {
         var e = this._entities[ID];
         if( e.isUndefined) continue;
@@ -99,7 +104,7 @@ findEntityInRange: function(posX, posY, radius) {
 },
 
 render: function(ctx) {
-    var oldStyle = ctx.strokeStyle;
+    /*var oldStyle = ctx.strokeStyle;
     var oldFill = ctx.fillStyle;
     ctx.strokeStyle = "red";
     ctx.fillStyle = "#39FF14";
@@ -110,7 +115,7 @@ render: function(ctx) {
         util.strokeCircle(ctx, e.posX, e.posY, e.radius);
         ctx.fillText(ID,e.posX,e.posY);    }
     ctx.strokeStyle = oldStyle;
-    ctx.fillStyle = oldFill;
+    ctx.fillStyle = oldFill;*/
 }
 
 }
