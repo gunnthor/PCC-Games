@@ -96,7 +96,7 @@ deferredSetup : function () {
 init: function() {
     //this._generateRocks();
     //this._generateShip();
-    this._generateKall({
+    this.generateKall({
         cx      :   300,
         cy      :   300,
         color   :   "red",
@@ -177,7 +177,6 @@ update: function(du) {
             }
         }
     }
-    console.log("fafa");
     
     //if (this._rocks.length === 0) this._generateRocks();
 
@@ -190,10 +189,6 @@ render: function(ctx) {
     for (var c = 0; c < this._categories.length; ++c) {
 
         var aCategory = this._categories[c];
-
-        if (!this._bShowRocks && 
-            aCategory == this._rocks)
-            continue;
 
         for (var i = 0; i < aCategory.length; ++i) {
 

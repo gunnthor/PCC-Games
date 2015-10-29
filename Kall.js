@@ -4,7 +4,7 @@ function Kall(descr) {
     // Common inherited setup logic from Entity
     this.setup(descr);
 
-    this.rememberResets();
+    //this.rememberResets();
 };
 
 // Kall erfir frá Entity.
@@ -102,9 +102,9 @@ Kall.prototype.update = function(du) {
 
 Kall.prototype.render = function(ctx) {
 	
-    ctx.save();
     ctx.fillStyle = this.color;
     ctx.fillRect(this.cx, this.cy, this.width, this.height);
-    ctx.restore();
+    ctx.strokeRect(this.cx, this.cy, this.width, this.height);
+    console.log(this);
 
 };
