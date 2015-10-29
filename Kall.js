@@ -15,9 +15,17 @@ Kall.prototype.cx;
 Kall.prototype.cy;
 Kall.prototype.color;
 
+Kall.prototype.KEY_LEFT;
+Kall.prototype.KEY_RIGHT;
+Kall.prototype.KEY_JUMP;
+Kall.prototype.KEY_FIRE;
+
 Kall.prototype.velX = 0;
 Kall.prototype.velY = 0;
 Kall.prototype.velXLimit = 5;
+Kall.prototype.accRate = 1;
+
+Kall.prototype.numSubSteps = 1;
 
 
 
@@ -56,14 +64,47 @@ Kall.prototype.applyAccel = function (accelX, accelY, du) {
     this.cy += du * intervalVelY;
 };
 
-Kall.prototype.update(du) {
-	
+Kall.prototype.computeSubStep = function (du) {
+    
+    // Apply acceleration
+    var accelX = 0;
+    var accelY = 0;
 
+    if(keys[this.KEY_LEFT]) accelX -= this.accRate;
+    if(keys[this.KEY_RIGHT]) accelX += this.accRate;
+    
+    accelY += this.computeGravity();
 
+    this.applyAccel(accelX, accelY, du);
+    
+    this.wrapPosition();
 };
 
-Kall.prototype.render(ctx) {
-	
+Kall.prototype.computeGravity = function () {
+    return NOMINAL_GRAVITY;
+};
 
+Kall.prototype.update = function(du) {
+	
+    // Unregister
+    spatialManager.unregister(this);
+
+    // Perform movement substeps
+    var steps = this.numSubSteps;
+    var dStep = du / steps;
+    for (var i = 0; i < steps; ++i) {
+        this.computeSubStep(dStep);
+    }
+
+    // Register
+    spatialManager.register(this);
+};
+
+Kall.prototype.render = function(ctx) {
+	
+    ctx.save();
+    ctx.fillStyle = this.color;
+    ctx.fillRect(this.cx, this.cy, this.width, this.height);
+    ctx.restore();
 
 };

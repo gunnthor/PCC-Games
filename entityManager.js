@@ -69,6 +69,8 @@ _findNearestShip : function(posX, posY) {
         theIndex: closestIndex
     };
 },*/
+_kallar : [],
+
 
 _forEachOf: function(aCategory, fn) {
     for (var i = 0; i < aCategory.length; ++i) {
@@ -88,12 +90,25 @@ KILL_ME_NOW : -1,
 //
 deferredSetup : function () {
     //this._categories = [this._rocks, this._bullets, this._ships];
-    this._categories = [];
+    this._categories = [this._kallar];
 },
 
 init: function() {
     //this._generateRocks();
     //this._generateShip();
+    this._generateKall({
+        cx      :   300,
+        cy      :   300,
+        color   :   "red",
+        KEY_LEFT:   'A'.charCodeAt(0),
+        KEY_RIGHT:  'D'.charCodeAt(0),
+        KEY_JUMP:   'W'.charCodeAt(0),
+        KEY_FIRE:   'S'.charCodeAt(0)
+    });
+},
+
+generateKall : function(descr) {
+    this._kallar.push(new Kall(descr));
 },
 
 /*fireBullet: function(cx, cy, velX, velY, rotation) {
@@ -162,6 +177,7 @@ update: function(du) {
             }
         }
     }
+    console.log("fafa");
     
     //if (this._rocks.length === 0) this._generateRocks();
 
