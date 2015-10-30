@@ -27,6 +27,9 @@ Kall.prototype.accRate = 1;
 
 Kall.prototype.numSubSteps = 1;
 
+Kall.prototype.width = 10;
+Kall.prototype.height = 10;
+
 
 
 Kall.prototype.velXLimit = function() {
@@ -105,6 +108,10 @@ Kall.prototype.render = function(ctx) {
     ctx.fillStyle = this.color;
     ctx.fillRect(this.cx, this.cy, this.width, this.height);
     ctx.strokeRect(this.cx, this.cy, this.width, this.height);
-    console.log(this);
+    console.log(this.color);
+    console.log(this.cx);
+    console.log(this.cy);
+    console.log(this.width);
+    console.log(this.height);
 
 };
