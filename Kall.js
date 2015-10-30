@@ -108,10 +108,5 @@ Kall.prototype.render = function(ctx) {
     ctx.fillStyle = this.color;
     ctx.fillRect(this.cx, this.cy, this.width, this.height);
     ctx.strokeRect(this.cx, this.cy, this.width, this.height);
-    console.log(this.color);
-    console.log(this.cx);
-    console.log(this.cy);
-    console.log(this.width);
-    console.log(this.height);
 
 };
