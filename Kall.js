@@ -107,6 +107,12 @@ Kall.prototype.update = function(du) {
 
     this.velLimit();
 
+    // Ef kallinn snertir eitthvað, þá verður hitEntity objecið sem að kallinn snerti
+    var hitEntity = this.findHitEntity();
+    // Ef að hann snerti eitthvað, framkvæmum þá rétta aðgerð miðað við hvaða hlut hann snerti
+    //if(hitEntity) 
+
+
     // Register
     spatialManager.register(this);
 };
