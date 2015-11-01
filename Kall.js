@@ -22,21 +22,27 @@ Kall.prototype.KEY_FIRE;
 
 Kall.prototype.velX = 0;
 Kall.prototype.velY = 0;
-Kall.prototype.velXLimit = 5;
+Kall.prototype.velXLimit = 10;
+Kall.prototype.velYLimit = 25;
 Kall.prototype.accRate = 1;
 
 Kall.prototype.numSubSteps = 1;
 
-Kall.prototype.width = 10;
-Kall.prototype.height = 10;
+Kall.prototype.width = 30;
+Kall.prototype.height = 30;
 
 
 
-Kall.prototype.velXLimit = function() {
+Kall.prototype.velLimit = function() {
     
-    if(Math.abs(this.velX) > this.maxVel) {
+    if(Math.abs(this.velX) > this.velXLimit) {
         
-        this.velX /= Math.abs(this.velX)/this.maxVel;
+        this.velX /= Math.abs(this.velX)/this.velXLimit;
+    }
+
+    if(Math.abs(this.velY) > this.velYLimit) {
+        
+        this.velY /= Math.abs(this.velY)/this.velYLimit;
     }
 
 };
@@ -98,6 +104,8 @@ Kall.prototype.update = function(du) {
     for (var i = 0; i < steps; ++i) {
         this.computeSubStep(dStep);
     }
+
+    this.velLimit();
 
     // Register
     spatialManager.register(this);
