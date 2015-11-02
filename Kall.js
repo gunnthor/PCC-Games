@@ -38,22 +38,13 @@ Kall.prototype.maybeFireBullet = function () {
 
     if (keys[this.KEY_FIRE]) {
     
-        /*var dX = +Math.sin(this.rotation);
-        var dY = -Math.cos(this.rotation);
-        var launchDist = this.getRadius() * 1.2;
-        
-        var relVel = this.launchVel;
-        var relVelX = dX * relVel;
-        var relVelY = dY * relVel;*/
-
-        var launchVelX = this.launchVel * this.velX;
-        //var launchVelY = this.launchVel * this.velY;
         var bulletX = this.cx + this.width;
-        var bulletY = this.cy + this.height;
+        var bulletY = this.cy;
+        console.log(bulletY);
+        console.log(bulletX);
 
         entityManager.fireBullet(
-           bulletX, bulletY,
-           launchVelX, 0);
+           bulletX, bulletY);
            
     }
     

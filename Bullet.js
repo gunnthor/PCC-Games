@@ -9,8 +9,8 @@ Bullet.prototype = new Entity();
     
 // Initial, inheritable, default values
 //Bullet.prototype.rotation = 0;
-Bullet.prototype.cx = 200;
-Bullet.prototype.cy = 200;
+Bullet.prototype.cx;
+Bullet.prototype.cy;
 Bullet.prototype.velX = 4;
 //Bullet.prototype.velY = 1;
 Bullet.prototype.width = 1;
@@ -22,7 +22,7 @@ Bullet.prototype.update = function (du) {
     spatialManager.unregister(this);
 
     this.cx += this.velX * du;
-    this.cy += this.velY * du;
+    //this.cy += this.velY * du;
 
     /*this.rotation += 1 * du;
     this.rotation = util.wrapRange(this.rotation,
@@ -62,10 +62,14 @@ Bullet.prototype.render = function (ctx) {
     /*if (this.lifeSpan < fadeThresh) {
         ctx.globalAlpha = this.lifeSpan / fadeThresh;
     }*/
+    oldStyle = ctx.fillStyle;
+    ctx.fillStyle = "black";
+    ctx.fillRect(this.cx,this.cy,this.width,this.height);
+    ctx.fillStyle = oldStyle;/*
 
     g_sprites.bullet.drawWrappedCentredAt(
         ctx, this.cx, this.cy, this.rotation
-    );
+    );*/
 
     //ctx.globalAlpha = 1;
 };

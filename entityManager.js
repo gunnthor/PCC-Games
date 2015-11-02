@@ -170,12 +170,10 @@ generateBlock : function(descr) {
     this._blocks.push(new Block(descr));
 },
 
-fireBullet: function(cx, cy, velX, velY) {
+fireBullet: function(cx, cy) {
     this._bullets.push(new Bullet({
         cx   : cx,
-        cy   : cy,
-        velX : velX,
-        velY : velY
+        cy   : cy
     }));
 },
 /*
