@@ -118,9 +118,10 @@ Kall.prototype.update = function(du) {
 };
 
 Kall.prototype.render = function(ctx) {
-	
+	oldStyle = ctx.fillStyle;
     ctx.fillStyle = this.color;
-    ctx.fillRect(this.cx, this.cy, this.width, this.height);
-    ctx.strokeRect(this.cx, this.cy, this.width, this.height);
+    ctx.fillRect(this.cx-this.width/2, this.cy-this.height/2, this.width, this.height);
+    ctx.strokeRect(this.cx-this.width/2, this.cy-this.height/2, this.width, this.height);
+    ctx.fillStyle = oldStyle;
 
 };

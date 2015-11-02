@@ -56,11 +56,14 @@ getNewSpatialID : function() {
 
 register: function(entity) {
     var pos = entity.getPos();
+    var dimensions = entity.getDimensions();
     //var radius = entity.getRadius();
     var spatialID = entity.getSpatialID();
     this._entities[spatialID] =
         {posX: pos.posX,
         posY: pos.posY,
+        width: dimensions.width,
+        height: dimensions.height,
         //radius: radius,
         entity : entity,
         isUndefined : false,
@@ -69,15 +72,18 @@ register: function(entity) {
     // TODO: YOUR STUFF HERE!
 },
 
-unregister: function(entity) {
-
+unregister: function(entity) 
+{
     // TODO: YOUR STUFF HERE!
     var pos = entity.getPos();
+    var dimensions = entity.getDimensions();
     //var radius = entity.getRadius();
     var spatialID = entity.getSpatialID();
     this._entities[spatialID] =
         {posX: pos.posX,
         posY: pos.posY,
+        width: dimensions.width,
+        height: dimensions.height,
         //radius: radius,
         entity : entity,
         isUndefined : true,
@@ -86,12 +92,21 @@ unregister: function(entity) {
     
 },
 
-findEntityInRange: function(posX, posY, radius) {
+findEntityInRange: function(posX, posY, width, height) {
 
     // TODO: YOUR STUFF HERE!
+    for (var ID in this._entities){
+        var e = this._entities[ID];
+        if(e.isUndefined) continue;
+
+        if(posX - width/2 < e.posX - e.width/2 + e.width &&
+            posX - width/2 + width > e.posX - e.width/2 &&
+            posY  - height/2 < e.posY - e.height/2 + e.height &&
+            posY  - height/2 + height > e.posY - e.height/2) return e.entity;
+    }
 
     // ÞARF AÐ BREYTA ÞESSU FYRST VIÐ VERÐUM MEÐ KASSA HIT BOX
-    for (var ID in this._entities) {
+    /*for (var ID in this._entities) {
         var e = this._entities[ID];
         if( e.isUndefined) continue;
         var distsq = util.wrappedDistSq(posX,posY,e.posX,e.posY,g_canvas.width,g_canvas.height);
@@ -99,7 +114,7 @@ findEntityInRange: function(posX, posY, radius) {
         if ( distsq < radiussq){
             return e.entity;
         }
-    }
+    }*/
 
 },
 
@@ -108,11 +123,12 @@ render: function(ctx) {
     var oldFill = ctx.fillStyle;
     ctx.strokeStyle = "red";
     ctx.fillStyle = "#39FF14";
-    
-    for (var ID in this._entities) {
+   
+     for (var ID in this._entities) {
         var e = this._entities[ID];
         if(e.isUndefined) continue;
-        util.strokeCircle(ctx, e.posX, e.posY, e.radius);
+        ctx.strokeRect(e.posX - e.width/2, e.posY - e.height/2, e.width, e.height );
+        //util.strokeCircle(ctx, e.posX, e.posY, e.radius);
         ctx.fillText(ID,e.posX,e.posY);    }
     ctx.strokeStyle = oldStyle;
     ctx.fillStyle = oldFill;
