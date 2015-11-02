@@ -131,6 +131,7 @@ findEntityInRange: function(posX, posY, width, height, colEntity) {
                     colEntity.cy = entity.cy - entity.height/2 - colEntity.height/2;
                     colEntity.velY = 0;
                     colEntity.IN_AIR = false;
+                    //colEntity.SLOWING_DOWN = true;
                 }
             }
 

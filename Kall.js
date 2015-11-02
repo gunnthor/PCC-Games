@@ -24,7 +24,7 @@ Kall.prototype.IS_SLOWING_DOWN = false;
 Kall.prototype.IN_AIR = true;
 Kall.prototype.velX = 0;
 Kall.prototype.velY = 0;
-Kall.prototype.velXLimit = 10;
+Kall.prototype.velXLimit = 7;
 Kall.prototype.velYLimit = 25;
 Kall.prototype.accRate = 1;
 
@@ -40,8 +40,6 @@ Kall.prototype.maybeFireBullet = function () {
     
         var bulletX = this.cx + this.width;
         var bulletY = this.cy;
-        console.log(bulletY);
-        console.log(bulletX);
 
         entityManager.fireBullet(
            bulletX, bulletY);
@@ -142,12 +140,16 @@ Kall.prototype.update = function(du) {
     //if(hitEntity) 
     if(keys[this.KEY_JUMP])
     {
-        console.log(this.IN_AIR);
         if(!this.IN_AIR) this.jump();
-        console.log("After jump: " + this.IN_AIR);
 
-    } 
+    }
 
+    if(!this.IN_AIR) {
+
+        if(!keys[this.KEY_LEFT] && !keys[this.KEY_RIGHT]) this.velX *= 0.7;
+    }
+
+    this.IN_AIR = true;
 
     // Register
     spatialManager.register(this);

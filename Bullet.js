@@ -13,8 +13,8 @@ Bullet.prototype.cx;
 Bullet.prototype.cy;
 Bullet.prototype.velX = 4;
 //Bullet.prototype.velY = 1;
-Bullet.prototype.width = 1;
-Bullet.prototype.height = 1;
+Bullet.prototype.width = 3;
+Bullet.prototype.height = 3;
 
 
 Bullet.prototype.update = function (du) {
