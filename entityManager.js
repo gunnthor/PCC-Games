@@ -103,6 +103,7 @@ init: function() {
         cx      :   300,
         cy      :   300,
         color   :   "blue",
+        direction:  "right",
         KEY_LEFT:   'A'.charCodeAt(0),
         KEY_RIGHT:  'D'.charCodeAt(0),
         KEY_JUMP:   'W'.charCodeAt(0),
@@ -170,10 +171,11 @@ generateBlock : function(descr) {
     this._blocks.push(new Block(descr));
 },
 
-fireBullet: function(cx, cy) {
+fireBullet: function(cx, cy, velX) {
     this._bullets.push(new Bullet({
         cx   : cx,
-        cy   : cy
+        cy   : cy,
+        velX : velX
     }));
 },
 /*
