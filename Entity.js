@@ -49,6 +49,7 @@ Entity.prototype.setup = function (descr) {
 Entity.prototype.prevCx;
 Entity.prototype.prevCy;
 Entity.prototype.lastCollision;
+Entity.prototype.friction;
 
 Entity.prototype.setPos = function (cx, cy) {
     this.cx = cx;

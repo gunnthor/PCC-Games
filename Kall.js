@@ -20,6 +20,8 @@ Kall.prototype.KEY_RIGHT;
 Kall.prototype.KEY_JUMP;
 Kall.prototype.KEY_FIRE;
 
+Kall.prototype.IS_SLOWING_DOWN = false;
+Kall.prototype.IN_AIR = true;
 Kall.prototype.velX = 0;
 Kall.prototype.velY = 0;
 Kall.prototype.velXLimit = 10;
@@ -79,6 +81,7 @@ Kall.prototype.applyAccel = function (accelX, accelY, du) {
     this.prevCy = this.cy;
     var oldVelX = this.velX;
     var oldVelY = this.velY;
+    if(this.IN_AIR) accelX /= 2;
     
     // v = u + at
     this.velX += accelX * du;
@@ -120,6 +123,12 @@ Kall.prototype.computeGravity = function () {
     return NOMINAL_GRAVITY;
 };
 
+Kall.prototype.jump = function () {
+    this.velY -= 8;
+    this.IN_AIR = true;
+    //console.log("píkulúður");
+};
+
 Kall.prototype.update = function(du) {
 	
     // Unregister
@@ -140,6 +149,13 @@ Kall.prototype.update = function(du) {
     var hitEntity = this.findHitEntity();
     // Ef að hann snerti eitthvað, framkvæmum þá rétta aðgerð miðað við hvaða hlut hann snerti
     //if(hitEntity) 
+    if(keys[this.KEY_JUMP])
+    {
+        console.log(this.IN_AIR);
+        if(!this.IN_AIR) this.jump();
+        console.log("After jump: " + this.IN_AIR);
+
+    } 
 
 
     // Register

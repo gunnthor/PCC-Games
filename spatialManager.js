@@ -130,6 +130,7 @@ findEntityInRange: function(posX, posY, width, height, colEntity) {
                 if(Math.abs(colEntity.cy - colEntity.prevCy) <= colEntity.velYLimit*2) {
                     colEntity.cy = entity.cy - entity.height/2 - colEntity.height/2;
                     colEntity.velY = 0;
+                    colEntity.IN_AIR = false;
                 }
             }
 
@@ -141,6 +142,7 @@ findEntityInRange: function(posX, posY, width, height, colEntity) {
                 if(Math.abs(colEntity.cy - colEntity.prevCy) <= colEntity.velYLimit*2) {
                     colEntity.cy = entity.cy + entity.height/2 + colEntity.height/2;
                     colEntity.velY = 0;
+
                 }
             }
         }
