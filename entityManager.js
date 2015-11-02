@@ -117,34 +117,45 @@ init: function() {
 
     //vinstri veggur
     this.generateBlock({
-        cx : 0,
-        cy : 350,
+        cx : 7.5,
+        cy : 450,
         width : 15,
         height : 227
     });
 
     //hægri veggur
     this.generateBlock({
-        cx : 1010,
-        cy : 350,
+        cx : g_canvas.width-7.5,
+        cy : 450,
         width : 15,
         height : 227
     });
 
     //vinstra gólf
     this.generateBlock({
-        cx : 15,
-        cy : g_canvas.height-20,
+        cx : 210,
+        cy : g_canvas.height-23,
         width : 400,
         height : 20
     });
 
+    //hægra gólf
      this.generateBlock({
-        cx : 510,
-        cy : g_canvas.height-20,
+        cx : 780,
+        cy : g_canvas.height-10,
         width : 500,
         height : 20
     });
+
+     //hægri pallur
+
+     this.generateBlock({
+        cx : 950,
+        cy : g_canvas.height-100,
+        width : 120,
+        height : 20
+
+     });
 
 
 },

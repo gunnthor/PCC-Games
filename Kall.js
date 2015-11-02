@@ -28,8 +28,8 @@ Kall.prototype.accRate = 1;
 
 Kall.prototype.numSubSteps = 1;
 
-Kall.prototype.width = 50;
-Kall.prototype.height = 50;
+Kall.prototype.width = 25;
+Kall.prototype.height = 25;
 
 
 

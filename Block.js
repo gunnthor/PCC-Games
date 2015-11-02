@@ -29,29 +29,5 @@ Block.prototype.render = function(ctx) {
 	ctx.fillRect(this.cx-this.width/2, this.cy-this.height/2, this.width, this.height);
 	ctx.restore();
 
-	/*
-	//vinstri veggur
-	ctx.save();
-	ctx.fillStyle = "black";
-	ctx.fillRect(0, 350, 15, 227);
-	ctx.restore();
-
-	//hægri veggur
-	ctx.save();
-	ctx.fillStyle = "black";
-	ctx.fillRect(1010, 350, 15, 227);
-	ctx.restore();
-
-	//gólf 1 
-	ctx.save();
-	ctx.fillStyle = "red";
-	ctx.fillRect(15, g_canvas.height-20, 400, 20);
-	ctx.restore();
-
-	//gólf 2
-	ctx.save();
-	ctx.fillStyle = "green";
-	ctx.fillRect(510, g_canvas.height-20, 500, 20);
-	*/
 
 };
