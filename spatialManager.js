@@ -98,10 +98,11 @@ findEntityInRange: function(posX, posY, width, height) {
     for (var ID in this._entities){
         var e = this._entities[ID];
         if(e.isUndefined) continue;
-        if(posX < e.posX + e.width &&
-            posX + width > e.posX &&
-            posY < e.posY + e.height &&
-            posY + height > e.posY) return e.entity;
+
+        if(posX - width/2 < e.posX - e.width/2 + e.width &&
+            posX - width/2 + width > e.posX - e.width/2 &&
+            posY  - height/2 < e.posY - e.height/2 + e.height &&
+            posY  - height/2 + height > e.posY - e.height/2) return e.entity;
     }
 
     // ÞARF AÐ BREYTA ÞESSU FYRST VIÐ VERÐUM MEÐ KASSA HIT BOX
@@ -120,13 +121,13 @@ findEntityInRange: function(posX, posY, width, height) {
 render: function(ctx) {
     var oldStyle = ctx.strokeStyle;
     var oldFill = ctx.fillStyle;
-    ctx.strokeStyle = "green";
+    ctx.strokeStyle = "red";
     ctx.fillStyle = "#39FF14";
    
      for (var ID in this._entities) {
         var e = this._entities[ID];
         if(e.isUndefined) continue;
-        ctx.strokeRect(e.posX, e.posY, e.width, e.height );
+        ctx.strokeRect(e.posX - e.width/2, e.posY - e.height/2, e.width, e.height );
         //util.strokeCircle(ctx, e.posX, e.posY, e.radius);
         ctx.fillText(ID,e.posX,e.posY);    }
     ctx.strokeStyle = oldStyle;
