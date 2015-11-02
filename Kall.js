@@ -117,7 +117,7 @@ Kall.prototype.computeGravity = function () {
 Kall.prototype.jump = function () {
     this.velY -= 8;
     this.IN_AIR = true;
-    //console.log("píkulúður");
+    
 };
 
 Kall.prototype.update = function(du) {
@@ -141,11 +141,8 @@ Kall.prototype.update = function(du) {
     // Ef að hann snerti eitthvað, framkvæmum þá rétta aðgerð miðað við hvaða hlut hann snerti
     //if(hitEntity) 
     if(keys[this.KEY_JUMP])
-    {
-        console.log(this.IN_AIR);
+    {        
         if(!this.IN_AIR) this.jump();
-        console.log("After jump: " + this.IN_AIR);
-
     } 
 
 

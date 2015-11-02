@@ -108,15 +108,7 @@ init: function() {
         KEY_JUMP:   'W'.charCodeAt(0),
         KEY_FIRE:   'S'.charCodeAt(0)
     });
-
-    /*
-    this.generateBlock({
-        cx      :   200,
-        cy      :   200,
-        width   :   200,
-        height  :   50
-    });*/
-
+    
     //vinstri veggur
     this.generateBlock({
         cx : 7.5,
