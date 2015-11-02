@@ -69,6 +69,9 @@ _findNearestShip : function(posX, posY) {
         theIndex: closestIndex
     };
 },*/
+_kallar : [],
+_blocks : [],
+
 
 _forEachOf: function(aCategory, fn) {
     for (var i = 0; i < aCategory.length; ++i) {
@@ -88,12 +91,36 @@ KILL_ME_NOW : -1,
 //
 deferredSetup : function () {
     //this._categories = [this._rocks, this._bullets, this._ships];
-    this._categories = [];
+    this._categories = [this._kallar, this._blocks];
 },
 
 init: function() {
     //this._generateRocks();
     //this._generateShip();
+    this.generateKall({
+        cx      :   300,
+        cy      :   300,
+        color   :   "blue",
+        KEY_LEFT:   'A'.charCodeAt(0),
+        KEY_RIGHT:  'D'.charCodeAt(0),
+        KEY_JUMP:   'W'.charCodeAt(0),
+        KEY_FIRE:   'S'.charCodeAt(0)
+    });
+
+    this.generateBlock({
+        cx      :   200,
+        cy      :   200,
+        width   :   200,
+        height  :   50
+    });
+},
+
+generateKall : function(descr) {
+    this._kallar.push(new Kall(descr));
+},
+
+generateBlock : function(descr) {
+    this._blocks.push(new Block(descr));
 },
 
 /*fireBullet: function(cx, cy, velX, velY, rotation) {
@@ -174,10 +201,6 @@ render: function(ctx) {
     for (var c = 0; c < this._categories.length; ++c) {
 
         var aCategory = this._categories[c];
-
-        if (!this._bShowRocks && 
-            aCategory == this._rocks)
-            continue;
 
         for (var i = 0; i < aCategory.length; ++i) {
 

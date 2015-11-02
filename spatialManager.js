@@ -104,7 +104,7 @@ findEntityInRange: function(posX, posY, radius) {
 },
 
 render: function(ctx) {
-    /*var oldStyle = ctx.strokeStyle;
+    var oldStyle = ctx.strokeStyle;
     var oldFill = ctx.fillStyle;
     ctx.strokeStyle = "red";
     ctx.fillStyle = "#39FF14";
@@ -115,7 +115,7 @@ render: function(ctx) {
         util.strokeCircle(ctx, e.posX, e.posY, e.radius);
         ctx.fillText(ID,e.posX,e.posY);    }
     ctx.strokeStyle = oldStyle;
-    ctx.fillStyle = oldFill;*/
+    ctx.fillStyle = oldFill;
 }
 
 }
