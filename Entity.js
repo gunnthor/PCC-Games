@@ -46,6 +46,9 @@ Entity.prototype.setup = function (descr) {
     // I am not dead yet!
     this._isDeadNow = false;
 };
+Entity.prototype.prevX;
+Entity.prototype.prevY;
+Entity.prototype.lastCollision;
 
 Entity.prototype.setPos = function (cx, cy) {
     this.cx = cx;

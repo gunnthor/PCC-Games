@@ -89,6 +89,7 @@ unregister: function(entity)
         isUndefined : true,
         isDead : entity._isDeadNow
     };
+    entity.lastCollision = undefined;
     
 },
 

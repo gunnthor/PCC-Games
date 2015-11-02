@@ -50,6 +50,8 @@ Kall.prototype.velLimit = function() {
 Kall.prototype.applyAccel = function (accelX, accelY, du) {
     
     // u = original velocity
+    this.prevX = this.cx;
+    this.prevY = this.cy;
     var oldVelX = this.velX;
     var oldVelY = this.velY;
     
