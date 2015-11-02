@@ -22,11 +22,12 @@ Block.prototype.update = function(du) {
 	// Ekkert að gera hér
 };
 
-Block.prototype.render = function(ctx) {
-	
+Block.prototype.render = function(ctx) {	
 
 	ctx.save();
 	ctx.fillStyle = "blue";
 	ctx.fillRect(this.cx-this.width/2, this.cy-this.height/2, this.width, this.height);
 	ctx.restore();
+
+
 };

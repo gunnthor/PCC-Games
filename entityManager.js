@@ -109,12 +109,57 @@ init: function() {
         KEY_FIRE:   'S'.charCodeAt(0)
     });
 
+    /*
     this.generateBlock({
         cx      :   200,
         cy      :   200,
         width   :   200,
         height  :   50
+    });*/
+
+    //vinstri veggur
+    this.generateBlock({
+        cx : 7.5,
+        cy : 450,
+        width : 15,
+        height : 227
     });
+
+    //hægri veggur
+    this.generateBlock({
+        cx : g_canvas.width-7.5,
+        cy : 450,
+        width : 15,
+        height : 227
+    });
+
+    //vinstra gólf
+    this.generateBlock({
+        cx : 210,
+        cy : g_canvas.height-23,
+        width : 400,
+        height : 20
+    });
+
+    //hægra gólf
+     this.generateBlock({
+        cx : 780,
+        cy : g_canvas.height-10,
+        width : 500,
+        height : 20
+    });
+
+     //hægri pallur
+
+     this.generateBlock({
+        cx : 950,
+        cy : g_canvas.height-100,
+        width : 120,
+        height : 20
+
+     });
+
+
 },
 
 generateKall : function(descr) {

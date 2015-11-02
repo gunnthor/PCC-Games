@@ -56,12 +56,12 @@ getNewSpatialID : function() {
 
 register: function(entity) {
     var pos = entity.getPos();
-    var dimensions = entity.getDimensions();
+    var dimensions = entity.getInfo();
     //var radius = entity.getRadius();
     var spatialID = entity.getSpatialID();
     this._entities[spatialID] =
-        {posX: pos.posX,
-        posY: pos.posY,
+        {cx: pos.cx,
+        cy: pos.cy,
         width: dimensions.width,
         height: dimensions.height,
         //radius: radius,
@@ -76,12 +76,12 @@ unregister: function(entity)
 {
     // TODO: YOUR STUFF HERE!
     var pos = entity.getPos();
-    var dimensions = entity.getDimensions();
+    var dimensions = entity.getInfo();
     //var radius = entity.getRadius();
     var spatialID = entity.getSpatialID();
     this._entities[spatialID] =
-        {posX: pos.posX,
-        posY: pos.posY,
+        {cx: pos.cx,
+        cy: pos.cy,
         width: dimensions.width,
         height: dimensions.height,
         //radius: radius,
@@ -93,10 +93,10 @@ unregister: function(entity)
     
 },
 
-findEntityInRange: function(posX, posY, width, height) {
+findEntityInRange: function(posX, posY, width, height, colEntity) {
 
     // TODO: YOUR STUFF HERE!
-    for (var ID in this._entities){
+    /*for (var ID in this._entities){
         var e = this._entities[ID];
         if(e.isUndefined) continue;
 
@@ -104,6 +104,78 @@ findEntityInRange: function(posX, posY, width, height) {
             posX - width/2 + width > e.posX - e.width/2 &&
             posY  - height/2 < e.posY - e.height/2 + e.height &&
             posY  - height/2 + height > e.posY - e.height/2) return e.entity;
+    }*/
+
+    // Check against all entitys
+    for(var i = 1; i < this._entities.length; i++) {
+        
+        if(colEntity.getSpatialID() === i) continue;
+
+        // Get an object with the entity coords and size
+        var entity = this._entities[i];
+
+
+        // Collision with the Top and Bottom of a entity
+
+        // Check for x coords
+
+        if(colEntity.cx + colEntity.width/2 > entity.cx - entity.width/2 &&
+            colEntity.cx - colEntity.width/2 < entity.cx + entity.width/2) {
+            
+            // Check for y coords on top collision
+            if(colEntity.prevCy + colEntity.height/2 <= entity.cy - entity.height/2 &&
+                colEntity.cy + colEntity.height/2 >= entity.cy -  entity.height/2) {
+                    
+                // Do this
+                if(Math.abs(colEntity.cy - colEntity.prevCy) <= colEntity.velYLimit*2) {
+                    colEntity.cy = entity.cy - entity.height/2 - colEntity.height/2;
+                    colEntity.velY = 0;
+                }
+            }
+
+            // Check for y coords on bottom collision
+            else if(colEntity.prevCy - colEntity.height/2 >= entity.cy + entity.height/2 &&
+                    colEntity.cy - colEntity.height/2 <= entity.cy + entity.height/2) {
+                        
+                // Do this
+                if(Math.abs(colEntity.cy - colEntity.prevCy) <= colEntity.velYLimit*2) {
+                    colEntity.cy = entity.cy + entity.height/2 + colEntity.height/2;
+                    colEntity.velY = 0;
+                }
+            }
+        }
+
+
+
+        // Collision with the Sides of a entity
+
+        // Check for y coords
+        if(colEntity.cy + colEntity.height/2 > entity.cy - entity.height/2 &&
+            colEntity.cy - colEntity.height/2 < entity.cy + entity.height/2) {
+            
+            // Check for x coords on left collision
+            if(colEntity.prevCx + colEntity.width/2 <= entity.cx - entity.width/2 &&
+                colEntity.cx + colEntity.width/2 >= entity.cx -  entity.width/2) {
+                
+                // Do this
+                if(Math.abs(colEntity.cx - colEntity.prevCx) <= colEntity.velXLimit*2) {
+                    colEntity.cx = entity.cx - entity.width/2 - colEntity.width/2;
+                    colEntity.velX = 0;
+                }
+            }
+
+            // Check for x coords on right collision
+            else if(colEntity.prevCx - colEntity.width/2 >= entity.cx + entity.width/2 &&
+                    colEntity.cx - colEntity.width/2 <= entity.cx + entity.width/2) {
+                     
+                // Do this
+                if(Math.abs(colEntity.cx - colEntity.prevCx) <= colEntity.velXLimit*2) {
+                    colEntity.cx = entity.cx + entity.width/2 + colEntity.width/2;
+                    colEntity.velX = 0;
+                }
+            }
+        }
+        
     }
 
     // ÞARF AÐ BREYTA ÞESSU FYRST VIÐ VERÐUM MEÐ KASSA HIT BOX
@@ -128,9 +200,9 @@ render: function(ctx) {
      for (var ID in this._entities) {
         var e = this._entities[ID];
         if(e.isUndefined) continue;
-        ctx.strokeRect(e.posX - e.width/2, e.posY - e.height/2, e.width, e.height );
+        ctx.strokeRect(e.cx - e.width/2, e.cy - e.height/2, e.width, e.height );
         //util.strokeCircle(ctx, e.posX, e.posY, e.radius);
-        ctx.fillText(ID,e.posX,e.posY);    }
+        ctx.fillText(ID,e.cx,e.cy);    }
     ctx.strokeStyle = oldStyle;
     ctx.fillStyle = oldFill;
 }

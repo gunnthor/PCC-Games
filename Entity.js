@@ -46,8 +46,8 @@ Entity.prototype.setup = function (descr) {
     // I am not dead yet!
     this._isDeadNow = false;
 };
-Entity.prototype.prevX;
-Entity.prototype.prevY;
+Entity.prototype.prevCx;
+Entity.prototype.prevCy;
 Entity.prototype.lastCollision;
 
 Entity.prototype.setPos = function (cx, cy) {
@@ -56,14 +56,14 @@ Entity.prototype.setPos = function (cx, cy) {
 };
 
 Entity.prototype.getPos = function () {
-    return {posX : this.cx, posY : this.cy};
+    return {cx : this.cx, cy : this.cy};
 };
 
 /*Entity.prototype.getRadius = function () {
     return 0;
 };*/
-Entity.prototype.getDimensions = function (){
-    return {width : this.width, height : this.height}
+Entity.prototype.getInfo = function (){
+    return {cx : this.cx, cy : this.cy, width : this.width, height : this.height}
 }
 
 Entity.prototype.getSpatialID = function () {
@@ -76,9 +76,9 @@ Entity.prototype.kill = function () {
 
 Entity.prototype.findHitEntity = function () {
     var pos = this.getPos();
-    var dimensions = this.getDimensions();
+    var dimensions = this.getInfo();
     return spatialManager.findEntityInRange(
-        pos.posX, pos.posY, dimensions.width, dimensions.height
+        pos.posX, pos.posY, dimensions.width, dimensions.height, this
     );
 };
 
