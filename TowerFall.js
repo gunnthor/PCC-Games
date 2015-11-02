@@ -179,6 +179,7 @@ var g_images = {};
 function requestPreloads() {
 
     var requiredImages = {
+        backgroundLVL1 : "https://notendur.hi.is/~gkr6/Tolvuleikjaforritun/gisk/towerfall/Background.png",  
         ship   : "https://notendur.hi.is/~pk/308G/images/ship.png",
         ship2  : "https://notendur.hi.is/~pk/308G/images/ship_2.png",
         rock   : "https://notendur.hi.is/~pk/308G/images/rock.png"
@@ -190,6 +191,7 @@ function requestPreloads() {
 var g_sprites = {};
 
 function preloadDone() {
+    g_sprites.backgroundLVL1 = new Sprite(g_images.backgroundLVL1);
 
     g_sprites.ship  = new Sprite(g_images.ship);
     g_sprites.ship2 = new Sprite(g_images.ship2);
