@@ -28,8 +28,8 @@ Kall.prototype.accRate = 1;
 
 Kall.prototype.numSubSteps = 1;
 
-Kall.prototype.width = 30;
-Kall.prototype.height = 30;
+Kall.prototype.width = 50;
+Kall.prototype.height = 50;
 
 
 
@@ -50,8 +50,8 @@ Kall.prototype.velLimit = function() {
 Kall.prototype.applyAccel = function (accelX, accelY, du) {
     
     // u = original velocity
-    this.prevX = this.cx;
-    this.prevY = this.cy;
+    this.prevCx = this.cx;
+    this.prevCy = this.cy;
     var oldVelX = this.velX;
     var oldVelY = this.velY;
     
