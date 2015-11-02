@@ -119,17 +119,18 @@ findEntityInRange: function(posX, posY, width, height, colEntity) {
 
         // Check for x coords
 
-        if(colEntity.cx + colEntity.width/2 >= entity.cx - entity.width/2 &&
-            colEntity.cx - colEntity.width/2 <= entity.cx + entity.width/2) {
+        if(colEntity.cx + colEntity.width/2 > entity.cx - entity.width/2 &&
+            colEntity.cx - colEntity.width/2 < entity.cx + entity.width/2) {
             
             // Check for y coords on top collision
             if(colEntity.prevCy + colEntity.height/2 <= entity.cy - entity.height/2 &&
                 colEntity.cy + colEntity.height/2 >= entity.cy -  entity.height/2) {
                     
                 // Do this
-                colEntity.cy = entity.cy - entity.height/2 - colEntity.height/2;
-                colEntity.velY = 0;
-                console.log("top");
+                if(Math.abs(colEntity.cy - colEntity.prevCy) <= colEntity.velYLimit*2) {
+                    colEntity.cy = entity.cy - entity.height/2 - colEntity.height/2;
+                    colEntity.velY = 0;
+                }
             }
 
             // Check for y coords on bottom collision
@@ -137,9 +138,10 @@ findEntityInRange: function(posX, posY, width, height, colEntity) {
                     colEntity.cy - colEntity.height/2 <= entity.cy + entity.height/2) {
                         
                 // Do this
-                colEntity.cy = entity.cy + entity.height/2 + colEntity.height/2;
-                colEntity.velY = 0;
-                console.log("bottom");
+                if(Math.abs(colEntity.cy - colEntity.prevCy) <= colEntity.velYLimit*2) {
+                    colEntity.cy = entity.cy + entity.height/2 + colEntity.height/2;
+                    colEntity.velY = 0;
+                }
             }
         }
 
@@ -156,9 +158,10 @@ findEntityInRange: function(posX, posY, width, height, colEntity) {
                 colEntity.cx + colEntity.width/2 >= entity.cx -  entity.width/2) {
                 
                 // Do this
-                colEntity.cx = entity.cx - entity.width/2 - colEntity.width/2;
-                colEntity.velX = 0;
-                console.log("left");
+                if(Math.abs(colEntity.cx - colEntity.prevCx) <= colEntity.velXLimit*2) {
+                    colEntity.cx = entity.cx - entity.width/2 - colEntity.width/2;
+                    colEntity.velX = 0;
+                }
             }
 
             // Check for x coords on right collision
@@ -166,9 +169,10 @@ findEntityInRange: function(posX, posY, width, height, colEntity) {
                     colEntity.cx - colEntity.width/2 <= entity.cx + entity.width/2) {
                      
                 // Do this
-                colEntity.cx = entity.cx + entity.width/2 + colEntity.width/2;
-                colEntity.velX = 0;
-                console.log("right");
+                if(Math.abs(colEntity.cx - colEntity.prevCx) <= colEntity.velXLimit*2) {
+                    colEntity.cx = entity.cx + entity.width/2 + colEntity.width/2;
+                    colEntity.velX = 0;
+                }
             }
         }
         
@@ -196,9 +200,9 @@ render: function(ctx) {
      for (var ID in this._entities) {
         var e = this._entities[ID];
         if(e.isUndefined) continue;
-        ctx.strokeRect(e.posX - e.width/2, e.posY - e.height/2, e.width, e.height );
+        ctx.strokeRect(e.cx - e.width/2, e.cy - e.height/2, e.width, e.height );
         //util.strokeCircle(ctx, e.posX, e.posY, e.radius);
-        ctx.fillText(ID,e.posX,e.posY);    }
+        ctx.fillText(ID,e.cx,e.cy);    }
     ctx.strokeStyle = oldStyle;
     ctx.fillStyle = oldFill;
 }
