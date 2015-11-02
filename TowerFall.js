@@ -120,7 +120,9 @@ function processDiagnostics() {
 
     if (eatKey(KEY_AVE_VEL)) g_useAveVel = !g_useAveVel;
 
-    */if (eatKey(KEY_SPATIAL)) g_renderSpatialDebug = !g_renderSpatialDebug;
+    */
+
+    if (eatKey(KEY_SPATIAL)) g_renderSpatialDebug = !g_renderSpatialDebug;
 
     /*if (eatKey(KEY_HALT)) entityManager.haltShips();
 
