@@ -30,7 +30,32 @@ Kall.prototype.numSubSteps = 1;
 
 Kall.prototype.width = 30;
 Kall.prototype.height = 30;
+Kall.prototype.launchVel = 2;
 
+Kall.prototype.maybeFireBullet = function () {
+
+    if (keys[this.KEY_FIRE]) {
+    
+        /*var dX = +Math.sin(this.rotation);
+        var dY = -Math.cos(this.rotation);
+        var launchDist = this.getRadius() * 1.2;
+        
+        var relVel = this.launchVel;
+        var relVelX = dX * relVel;
+        var relVelY = dY * relVel;*/
+
+        var launchVelX = this.launchVel * this.velX;
+        //var launchVelY = this.launchVel * this.velY;
+        var bulletX = this.cx + this.width;
+        var bulletY = this.cy + this.height;
+
+        entityManager.fireBullet(
+           bulletX, bulletY,
+           launchVelX, 0);
+           
+    }
+    
+};
 
 
 Kall.prototype.velLimit = function() {
@@ -106,6 +131,8 @@ Kall.prototype.update = function(du) {
     for (var i = 0; i < steps; ++i) {
         this.computeSubStep(dStep);
     }
+
+    this.maybeFireBullet();
 
     this.velLimit();
 

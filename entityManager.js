@@ -71,6 +71,7 @@ _findNearestShip : function(posX, posY) {
 },*/
 _kallar : [],
 _blocks : [],
+_bullets : [],
 
 
 _forEachOf: function(aCategory, fn) {
@@ -78,6 +79,7 @@ _forEachOf: function(aCategory, fn) {
         fn.call(aCategory[i]);
     }
 },
+
 
 // PUBLIC METHODS
 
@@ -91,7 +93,7 @@ KILL_ME_NOW : -1,
 //
 deferredSetup : function () {
     //this._categories = [this._rocks, this._bullets, this._ships];
-    this._categories = [this._kallar, this._blocks];
+    this._categories = [this._kallar, this._blocks,this._bullets];
 },
 
 init: function() {
@@ -123,17 +125,15 @@ generateBlock : function(descr) {
     this._blocks.push(new Block(descr));
 },
 
-/*fireBullet: function(cx, cy, velX, velY, rotation) {
+fireBullet: function(cx, cy, velX, velY) {
     this._bullets.push(new Bullet({
         cx   : cx,
         cy   : cy,
         velX : velX,
-        velY : velY,
-
-        rotation : rotation
+        velY : velY
     }));
 },
-
+/*
 generateRock : function(descr) {
     this._rocks.push(new Rock(descr));
 },
