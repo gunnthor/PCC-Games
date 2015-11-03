@@ -106,25 +106,52 @@ findEntityInRange: function(posX, posY, width, height, colEntity) {
             posY  - height/2 + height > e.posY - e.height/2) return e.entity;
     }*/
 
+    // variables for all the sides of the object 
+    var right = colEntity.cx + colEntity.width/2 ;
+    var prevRight = colEntity.prevCx + colEntity.width/2;
+
+    var left = colEntity.cx - colEntity.width/2;
+    var prevLeft = colEntity.prevCx - colEntity.width/2;
+
+    var bottom = colEntity.cy + colEntity.height/2;
+    var prevBottom = colEntity.prevCy + colEntity.height/2;
+
+    var top = colEntity.cy - colEntity.height/2;
+    var prevTop = colEntity.prevCy - colEntity.height/2;
+    
     // Check against all entitys
+
     for(var i = 1; i < this._entities.length; i++) {
         
-        if(colEntity.getSpatialID() === i) continue;
+        //if(colEntity.getSpatialID() === i) continue;
 
         // Get an object with the entity coords and size
         var entity = this._entities[i];
+
+        if (entity.isUndefined) continue;
+
+
+        //variables for all the sides of the entities beign checked
+
+        var entRight = entity.cx + entity.width/2;
+
+        var entLeft = entity.cx - entity.width/2;
+
+        var entTop =  entity.cy - entity.height/2;
+
+        var entBottom = entity.cy + entity.height/2;
 
 
         // Collision with the Top and Bottom of a entity
 
         // Check for x coords
 
-        if(colEntity.cx + colEntity.width/2 > entity.cx - entity.width/2 &&
-            colEntity.cx - colEntity.width/2 < entity.cx + entity.width/2) {
+        if(right > entLeft &&
+            left < entRight) {
             
             // Check for y coords on top collision
-            if(colEntity.prevCy + colEntity.height/2 <= entity.cy - entity.height/2 &&
-                colEntity.cy + colEntity.height/2 >= entity.cy -  entity.height/2) {
+            if(prevBottom <= entTop &&
+                bottom >= entTop) {
                     
                 // Do this
                 if(Math.abs(colEntity.cy - colEntity.prevCy) <= colEntity.velYLimit*2) {
@@ -136,8 +163,8 @@ findEntityInRange: function(posX, posY, width, height, colEntity) {
             }
 
             // Check for y coords on bottom collision
-            else if(colEntity.prevCy - colEntity.height/2 >= entity.cy + entity.height/2 &&
-                    colEntity.cy - colEntity.height/2 <= entity.cy + entity.height/2) {
+            else if(prevTop >= entBottom &&
+                    top <= entBottom) {
                         
                 // Do this
                 if(Math.abs(colEntity.cy - colEntity.prevCy) <= colEntity.velYLimit*2) {
@@ -153,12 +180,12 @@ findEntityInRange: function(posX, posY, width, height, colEntity) {
         // Collision with the Sides of a entity
 
         // Check for y coords
-        if(colEntity.cy + colEntity.height/2 > entity.cy - entity.height/2 &&
-            colEntity.cy - colEntity.height/2 < entity.cy + entity.height/2) {
+        if(bottom > entTop &&
+            top < entBottom) {
             
             // Check for x coords on left collision
-            if(colEntity.prevCx + colEntity.width/2 <= entity.cx - entity.width/2 &&
-                colEntity.cx + colEntity.width/2 >= entity.cx -  entity.width/2) {
+            if(prevRight <= entLeft &&
+                right >= entLeft) {
                 
                 // Do this
                 if(Math.abs(colEntity.cx - colEntity.prevCx) <= colEntity.velXLimit*2) {
@@ -168,8 +195,8 @@ findEntityInRange: function(posX, posY, width, height, colEntity) {
             }
 
             // Check for x coords on right collision
-            else if(colEntity.prevCx - colEntity.width/2 >= entity.cx + entity.width/2 &&
-                    colEntity.cx - colEntity.width/2 <= entity.cx + entity.width/2) {
+            else if(prevLeft >= entRight &&
+                    left <= entRight) {
                      
                 // Do this
                 if(Math.abs(colEntity.cx - colEntity.prevCx) <= colEntity.velXLimit*2) {

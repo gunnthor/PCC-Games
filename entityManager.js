@@ -160,6 +160,31 @@ init: function() {
 
      });
 
+     this.generateBlock({
+        cx : g_canvas.width/2,
+        cy : g_canvas.height/2,
+        width : 100,
+        height : 20
+     });
+     this.generateBlock({
+        cx : g_canvas.width/2 + 200,
+        cy : g_canvas.height/2 +100,
+        width : 100,
+        height : 20
+     });
+     this.generateBlock({
+        cx : g_canvas.width/2 + 200,
+        cy : g_canvas.height/2 - 100,
+        width : 100,
+        height : 20
+     });
+     this.generateBlock({
+        cx : g_canvas.width/2 + 400,
+        cy : g_canvas.height/2 -150,
+        width : 100,
+        height : 20
+     });
+
 
 },
 
