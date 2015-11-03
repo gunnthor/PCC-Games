@@ -110,71 +110,192 @@ init: function() {
         KEY_FIRE:   'S'.charCodeAt(0)
     });
     
-    //vinstri veggur
+    //vinstri veggur1
     this.generateBlock({
-        cx : 7.5,
-        cy : 450,
-        width : 15,
-        height : 227
+        cx : 11,
+        cy : 447,
+        width : 17,
+        height : 65
     });
 
-    //hægri veggur
+    //vinstri veggur2
     this.generateBlock({
-        cx : g_canvas.width-7.5,
-        cy : 450,
-        width : 15,
-        height : 227
+        cx : 12,
+        cy : 133,
+        width : 17,
+        height : 133*2
+    })
+
+    // vinstri veggs neðri rampur 1/4
+    this.generateBlock({
+        cx : g_canvas.width/2 - 452,
+        cy : g_canvas.height - 155,
+        width : 100,
+        height : 14
     });
+    // vinstri veggs neðri rampur 2/4
+    this.generateBlock({
+        cx : g_canvas.width/2 - 373,
+        cy : g_canvas.height - 177,
+        width : 40,
+        height : 14
+    });
+    // vinstri veggs neðri rampur 3/4
+    this.generateBlock({
+        cx : g_canvas.width/2 - 325,
+        cy : g_canvas.height - 197,
+        width : 40,
+        height : 14
+    });
+    // vinstri veggs neðri rampur 4/4
+    this.generateBlock({
+        cx : g_canvas.width/2 - 274,
+        cy : g_canvas.height - 219,
+        width : 40,
+        height : 14
+    });
+
+    //hægri veggur1
+    this.generateBlock({
+        cx : g_canvas.width-11,
+        cy : 447,
+        width : 17,
+        height : 65
+    });
+
+    //hægri veggur2
+    this.generateBlock({
+        cx : g_canvas.width-12,
+        cy : 133,
+        width : 17,
+        height : 133*2
+    })
+
+    // hægri veggs neðri rampur 1/4
+    this.generateBlock({
+        cx : g_canvas.width/2 + 450,
+        cy : g_canvas.height - 155,
+        width : 100,
+        height : 14
+    });
+    // vinstri veggs neðri rampur 2/4
+    this.generateBlock({
+        cx : g_canvas.width/2 + 373,
+        cy : g_canvas.height - 174,
+        width : 40,
+        height : 14
+    });
+    // vinstri veggs neðri rampur 3/4
+    this.generateBlock({
+        cx : g_canvas.width/2 + 327,
+        cy : g_canvas.height - 193,
+        width : 40,
+        height : 14
+    });
+    // vinstri veggs neðri rampur 4/4
+    this.generateBlock({
+        cx : g_canvas.width/2 + 283,
+        cy : g_canvas.height - 214,
+        width : 40,
+        height : 14
+    });
+
 
     //vinstra gólf
     this.generateBlock({
         cx : 210,
-        cy : g_canvas.height-23,
-        width : 400,
-        height : 20
+        cy : g_canvas.height-15,
+        width : 430,
+        height : 15
     });
 
     //hægra gólf
      this.generateBlock({
-        cx : 780,
-        cy : g_canvas.height-10,
-        width : 500,
-        height : 20
+        cx : g_canvas.width - 210,
+        cy : g_canvas.height-15,
+        width : 430,
+        height : 15
     });
 
-     //hægri pallur
-
+     // vinstri gólf rampur 1/5
      this.generateBlock({
-        cx : 950,
-        cy : g_canvas.height-100,
-        width : 120,
+        cx : g_canvas.width/2 - 115,
+        cy : g_canvas.height-74,
+        width : 87,
+        height : 100
+     });
+     // 2/5
+     this.generateBlock({
+        cx : g_canvas.width/2 -170 ,
+        cy : g_canvas.height-65,
+        width : 24,
+        height : 80
+     });
+     // 3/5
+     this.generateBlock({
+        cx : g_canvas.width/2 -193 ,
+        cy : g_canvas.height-53,
+        width : 24,
+        height : 60
+     });
+     // 4/5
+     this.generateBlock({
+        cx : g_canvas.width/2 -216 ,
+        cy : g_canvas.height-42,
+        width : 24,
+        height : 43
+     });
+     //5/5
+     this.generateBlock({
+        cx : g_canvas.width/2 -239 ,
+        cy : g_canvas.height-32,
+        width : 24,
         height : 20
-
      });
 
+
+     // hægri gólf rampur 1/5
      this.generateBlock({
-        cx : g_canvas.width/2,
-        cy : g_canvas.height/2,
-        width : 100,
+        cx : g_canvas.width/2 + 118,
+        cy : g_canvas.height-74,
+        width : 87,
+        height : 100
+     });
+     // 2/5
+     this.generateBlock({
+        cx : g_canvas.width/2 +174 ,
+        cy : g_canvas.height-65,
+        width : 24,
+        height : 80
+     });
+     // 3/5
+     this.generateBlock({
+        cx : g_canvas.width/2 +196 ,
+        cy : g_canvas.height-53,
+        width : 24,
+        height : 60
+     });
+     // 4/5
+     this.generateBlock({
+        cx : g_canvas.width/2 +219 ,
+        cy : g_canvas.height-42,
+        width : 24,
+        height : 43
+     });
+     //5/5
+     this.generateBlock({
+        cx : g_canvas.width/2 +242 ,
+        cy : g_canvas.height-32,
+        width : 24,
         height : 20
      });
+
+     //miðju pallur
      this.generateBlock({
-        cx : g_canvas.width/2 + 200,
-        cy : g_canvas.height/2 +100,
-        width : 100,
-        height : 20
-     });
-     this.generateBlock({
-        cx : g_canvas.width/2 + 200,
-        cy : g_canvas.height/2 - 100,
-        width : 100,
-        height : 20
-     });
-     this.generateBlock({
-        cx : g_canvas.width/2 + 400,
-        cy : g_canvas.height/2 -150,
-        width : 100,
-        height : 20
+        cx : g_canvas.width/2 + 7,
+        cy : g_canvas.height/2 + 16 ,
+        width : 223,
+        height : 16
      });
 
 
