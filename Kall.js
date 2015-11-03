@@ -14,6 +14,7 @@ Kall.prototype = new Entity();
 Kall.prototype.cx;
 Kall.prototype.cy;
 Kall.prototype.color;
+Kall.prototype.direction;
 
 Kall.prototype.KEY_LEFT;
 Kall.prototype.KEY_RIGHT;
@@ -24,27 +25,34 @@ Kall.prototype.IS_SLOWING_DOWN = false;
 Kall.prototype.IN_AIR = true;
 Kall.prototype.velX = 0;
 Kall.prototype.velY = 0;
-Kall.prototype.velXLimit = 10;
+Kall.prototype.velXLimit = 4;
 Kall.prototype.velYLimit = 25;
 Kall.prototype.accRate = 1;
 
 Kall.prototype.numSubSteps = 1;
 
 
-Kall.prototype.width = 25;
-Kall.prototype.height = 25;
+Kall.prototype.width = 50;
+Kall.prototype.height = 50;
 
 Kall.prototype.maybeFireBullet = function () {
 
     if (keys[this.KEY_FIRE]) {
     
-        var bulletX = this.cx + this.width;
-        var bulletY = this.cy;
-        console.log(bulletY);
-        console.log(bulletX);
+        if(this.direction === "right") {
+            var bulletX = this.cx + this.width;
+            var bulletY = this.cy;
+            var bulletXVel = 5;
+        }
+
+        else {
+            var bulletX = this.cx - this.width;
+            var bulletY = this.cy;
+            var bulletXVel = -5;
+        }
 
         entityManager.fireBullet(
-           bulletX, bulletY);
+           bulletX, bulletY, bulletXVel);
            
     }
     
@@ -100,8 +108,14 @@ Kall.prototype.computeSubStep = function (du) {
     var accelX = 0;
     var accelY = 0;
 
-    if(keys[this.KEY_LEFT]) accelX -= this.accRate;
-    if(keys[this.KEY_RIGHT]) accelX += this.accRate;
+    if(keys[this.KEY_LEFT]) {
+        accelX -= this.accRate;
+        this.direction = "left";
+    }
+    if(keys[this.KEY_RIGHT]) {
+        accelX += this.accRate;
+        this.direction = "right";
+    }
     
     accelY += this.computeGravity();
 
@@ -117,7 +131,7 @@ Kall.prototype.computeGravity = function () {
 Kall.prototype.jump = function () {
     this.velY -= 8;
     this.IN_AIR = true;
-    
+
 };
 
 Kall.prototype.update = function(du) {
@@ -141,10 +155,19 @@ Kall.prototype.update = function(du) {
     // Ef að hann snerti eitthvað, framkvæmum þá rétta aðgerð miðað við hvaða hlut hann snerti
     //if(hitEntity) 
     if(keys[this.KEY_JUMP])
-    {        
-        if(!this.IN_AIR) this.jump();
-    } 
 
+    {
+        if(!this.IN_AIR) this.jump();
+
+    }
+
+    if(!this.IN_AIR) {
+
+        if(!keys[this.KEY_LEFT] && !keys[this.KEY_RIGHT]) this.velX *= 0.7; //0.7 á að vera block.friction
+    }
+
+
+    this.IN_AIR = true;
 
     // Register
     spatialManager.register(this);

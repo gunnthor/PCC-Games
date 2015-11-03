@@ -103,6 +103,7 @@ init: function() {
         cx      :   300,
         cy      :   300,
         color   :   "blue",
+        direction:  "right",
         KEY_LEFT:   'A'.charCodeAt(0),
         KEY_RIGHT:  'D'.charCodeAt(0),
         KEY_JUMP:   'W'.charCodeAt(0),
@@ -151,6 +152,31 @@ init: function() {
 
      });
 
+     this.generateBlock({
+        cx : g_canvas.width/2,
+        cy : g_canvas.height/2,
+        width : 100,
+        height : 20
+     });
+     this.generateBlock({
+        cx : g_canvas.width/2 + 200,
+        cy : g_canvas.height/2 +100,
+        width : 100,
+        height : 20
+     });
+     this.generateBlock({
+        cx : g_canvas.width/2 + 200,
+        cy : g_canvas.height/2 - 100,
+        width : 100,
+        height : 20
+     });
+     this.generateBlock({
+        cx : g_canvas.width/2 + 400,
+        cy : g_canvas.height/2 -150,
+        width : 100,
+        height : 20
+     });
+
 
 },
 
@@ -162,10 +188,11 @@ generateBlock : function(descr) {
     this._blocks.push(new Block(descr));
 },
 
-fireBullet: function(cx, cy) {
+fireBullet: function(cx, cy, velX) {
     this._bullets.push(new Bullet({
         cx   : cx,
-        cy   : cy
+        cy   : cy,
+        velX : velX
     }));
 },
 /*

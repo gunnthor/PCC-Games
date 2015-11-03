@@ -31,6 +31,13 @@ wrapRange: function(value, lowBound, highBound) {
     return value;
 },
 
+wrapX: function (value){
+    return this.wrapRange(value, 0, g_canvas.width);
+},
+wrapY: function (value){
+    return this.wrapRange(value,0, g_canvas.height);
+},
+
 isBetween: function(value, lowBound, highBound) {
     if (value < lowBound) { return false; }
     if (value > highBound) { return false; }
