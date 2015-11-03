@@ -46,7 +46,7 @@ Bullet.prototype.takeBulletHit = function () {
 
 Bullet.prototype.render = function (ctx) {
     oldStyle = ctx.fillStyle;
-    ctx.fillStyle = "black";
+    ctx.fillStyle = "white";
     ctx.fillRect(this.cx,this.cy,this.width,this.height);
     ctx.fillStyle = oldStyle;
 };

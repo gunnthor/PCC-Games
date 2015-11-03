@@ -42,13 +42,13 @@ Kall.prototype.maybeFireBullet = function () {
     if (eatKey(this.KEY_FIRE)) {
     
         if(this.direction === "right") {
-            var bulletX = this.cx + this.width;
+            var bulletX = this.cx + this.width/3*2;
             var bulletY = this.cy;
             var bulletXVel = 7;
         }
 
         else {
-            var bulletX = this.cx - this.width;
+            var bulletX = this.cx - this.width/3*2;
             var bulletY = this.cy;
             var bulletXVel = -7;
         }
