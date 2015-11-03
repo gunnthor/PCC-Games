@@ -11,6 +11,7 @@ Bullet.prototype = new Entity();
 Bullet.prototype.cx;
 Bullet.prototype.cy;
 Bullet.prototype.velX;
+Bullet.prototype.velY;
 Bullet.prototype.width = 3;
 Bullet.prototype.height = 3;
 
@@ -20,6 +21,7 @@ Bullet.prototype.update = function (du) {
     spatialManager.unregister(this);
 
     this.cx += this.velX * du;
+    this.cy += this.velY * du;
 
     this.wrapPosition();
     

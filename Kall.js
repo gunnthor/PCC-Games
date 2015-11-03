@@ -35,27 +35,37 @@ Kall.prototype.numSubSteps = 1;
 Kall.prototype.width = 50;
 Kall.prototype.height = 50;
 
+Kall.prototype.gunType = "normal";
+
 Kall.prototype.maybeFireBullet = function () {
 
-    if (keys[this.KEY_FIRE]) {
+    if (eatKey(this.KEY_FIRE)) {
     
         if(this.direction === "right") {
             var bulletX = this.cx + this.width;
             var bulletY = this.cy;
-            var bulletXVel = 5;
+            var bulletXVel = 7;
         }
 
         else {
             var bulletX = this.cx - this.width;
             var bulletY = this.cy;
-            var bulletXVel = -5;
+            var bulletXVel = -7;
         }
 
         entityManager.fireBullet(
-           bulletX, bulletY, bulletXVel);
+           bulletX, bulletY, bulletXVel, this.gunType);
+
+        if(this.gunType === "shotgun") this.recoil();
            
     }
     
+};
+
+Kall.prototype.recoil = function() {
+    
+    if(this.direction === "right") this.velX -= 10;
+    else this.velX += 10;
 };
 
 

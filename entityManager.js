@@ -107,7 +107,8 @@ init: function() {
         KEY_LEFT:   'A'.charCodeAt(0),
         KEY_RIGHT:  'D'.charCodeAt(0),
         KEY_JUMP:   'W'.charCodeAt(0),
-        KEY_FIRE:   'S'.charCodeAt(0)
+        KEY_FIRE:   'S'.charCodeAt(0),
+        gunType:    "shotgun"
     });
     
     //vinstri veggur1
@@ -309,12 +310,39 @@ generateBlock : function(descr) {
     this._blocks.push(new Block(descr));
 },
 
-fireBullet: function(cx, cy, velX) {
-    this._bullets.push(new Bullet({
-        cx   : cx,
-        cy   : cy,
-        velX : velX
-    }));
+fireBullet: function(cx, cy, velX, gunType) {
+
+    if(gunType === "normal") {
+        this._bullets.push(new Bullet({
+            cx   : cx,
+            cy   : cy,
+            velX : velX,
+            velY : 0
+        }));
+    }
+
+    if(gunType === "shotgun") {
+        this._bullets.push(new Bullet({
+            cx   : cx,
+            cy   : cy,
+            velX : velX,
+            velY : 0
+        }));
+
+        this._bullets.push(new Bullet({
+            cx   : cx,
+            cy   : cy,
+            velX : velX,
+            velY : -2
+        }));
+
+        this._bullets.push(new Bullet({
+            cx   : cx,
+            cy   : cy,
+            velX : velX,
+            velY : 2
+        }));
+    }
 },
 /*
 generateRock : function(descr) {
