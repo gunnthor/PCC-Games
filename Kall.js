@@ -39,7 +39,7 @@ Kall.prototype.maybeFireBullet = function () {
 
     if (keys[this.KEY_FIRE]) {
     
-        if(this.direction = "right") {
+        if(this.direction === "right") {
             var bulletX = this.cx + this.width;
             var bulletY = this.cy;
             var bulletXVel = 5;
