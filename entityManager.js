@@ -88,6 +88,7 @@ _forEachOf: function(aCategory, fn) {
 //
 KILL_ME_NOW : -1,
 
+
 // Some things must be deferred until after initial construction
 // i.e. thing which need `this` to be defined.
 //
@@ -110,6 +111,7 @@ init: function() {
         KEY_FIRE:   'S'.charCodeAt(0)
     });
     
+    /*
     //vinstri veggur
     this.generateBlock({
         cx : 7.5,
@@ -150,7 +152,9 @@ init: function() {
         width : 120,
         height : 20
 
-     });
+     });*/
+
+    this.generateHitBoxes(1);
 
      this.generateBlock({
         cx : g_canvas.width/2,
@@ -158,18 +162,21 @@ init: function() {
         width : 100,
         height : 20
      });
+
      this.generateBlock({
         cx : g_canvas.width/2 + 200,
         cy : g_canvas.height/2 +100,
         width : 100,
         height : 20
      });
+
      this.generateBlock({
         cx : g_canvas.width/2 + 200,
         cy : g_canvas.height/2 - 100,
         width : 100,
         height : 20
      });
+
      this.generateBlock({
         cx : g_canvas.width/2 + 400,
         cy : g_canvas.height/2 -150,
@@ -188,13 +195,42 @@ generateBlock : function(descr) {
     this._blocks.push(new Block(descr));
 },
 
-fireBullet: function(cx, cy, velX) {
+fireBullet : function(cx, cy, velX) {
     this._bullets.push(new Bullet({
         cx   : cx,
         cy   : cy,
         velX : velX
     }));
 },
+
+//fall sem setur upplýsingar um hitBoxes í fylki og generatear blocks - breyta seinna
+generateHitBoxes : function(level) {
+    //kalla á þetta í init functioninu hérna uppi í bili, tek inn level = 1
+    //levels er 2d array þar sem fyrir hvert level er array af þeim hitboxum sem á að gera fyrir levelið, þ.e.a.s. levels[level][block]
+    var levels = [];
+    levels[1] = [];
+    levels[1][0] = {cx : 7.5, cy : 450, width : 15, height : 227};//vinstri veggur
+    levels[1][1] = {cx : g_canvas.width-7.5, cy : 450, width : 15, height : 227};//hægri veggur
+    levels[1][2] = {cx : 210, cy : g_canvas.height-23, width : 400, height : 20};//vinstra gólf
+    levels[1][3] = {cx : 780, cy : g_canvas.height-10, width : 500, height : 20};//hægra gólf
+    levels[1][4] = {cx : 950, cy : g_canvas.height-100, width : 120, height : 20};//hægri pallur
+    //temporary "hitboxes" - á eftir að setja inn alvöru hitboxana
+    
+
+    var i = 0;
+    while(i < levels[level].length)
+    {
+        this.generateBlock({
+            cx : levels[level][i].cx,
+            cy : levels[level][i].cy,
+            width : levels[level][i].width,
+            height : levels[level][i].height
+        });
+        i++;
+    }
+
+},
+
 /*
 generateRock : function(descr) {
     this._rocks.push(new Rock(descr));
