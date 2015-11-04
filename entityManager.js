@@ -101,7 +101,7 @@ init: function() {
     //this._generateRocks();
     //this._generateShip();
     this.generateKall({
-        cx      :   300,
+        cx      :   g_canvas.width/2 -450,
         cy      :   300,
         color   :   "blue",
         direction:  "right",
@@ -109,7 +109,19 @@ init: function() {
         KEY_RIGHT:  'D'.charCodeAt(0),
         KEY_JUMP:   'W'.charCodeAt(0),
         KEY_FIRE:   'S'.charCodeAt(0),
-        gunType:    "shotgun" 
+        gunType:    "shotgun"
+    });
+
+    this.generateKall({
+        cx      :   g_canvas.width/2 +450,
+        cy      :   300,
+        color   :   "red",
+        direction:  "left",
+        KEY_LEFT:   'J'.charCodeAt(0),
+        KEY_RIGHT:  'L'.charCodeAt(0),
+        KEY_JUMP:   'I'.charCodeAt(0),
+        KEY_FIRE:   'K'.charCodeAt(0),
+        gunType:    "normal" 
     });
     
     /*
