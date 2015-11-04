@@ -43,6 +43,9 @@ isBetween: function(value, lowBound, highBound) {
     if (value > highBound) { return false; }
     return true;
 },
+isOutOfBounds : function(value, lowBound, highBound){
+    return !this.isBetween(value, lowBound,highBound);
+},
 
 
 // RANDOMNESS

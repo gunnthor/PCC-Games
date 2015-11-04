@@ -120,28 +120,45 @@ findEntityInRange: function(posX, posY, width, height, colEntity) {
     var bottomWrapped = util.wrapY(bottom);
 
     //Tékka hveru margir kassar verða til útfrá wrap 1 til 3 auka collision check eftir því hve margir wrap kassar verða til  annars bara þetta eina 
-    if (util.isBetween(top,0,g_canvas.height) || util.isBetween(bottomm,0,g_canvas.height)){
-        if(util.isBetween(right,0,g_canvas.width) || util.isBetween(left,0,g_canvas.width)){
-            // Það þarf að collision checka á fjórum kössum 
-            this.findEntityInRangeCollision();
+    if (util.isOutOfBounds(top,0,g_canvas.height) || util.isOutOfBounds(bottom,0,g_canvas.height)){
+        if(util.isOutOfBounds(right,0,g_canvas.width) || util.isOutOfBounds(left,0,g_canvas.width)){
+            // Það þarf að gera collision check á fjórum kössum 
+            console.log("wrapstar");
+            this.findEntityInRangeCollision(rightWrapped,rightWrapped + width,topWrapped,topWrapped+height,colEntity);
+            this.findEntityInRangeCollision(leftWrapped -width,leftWrapped,bottomWrapped-height,bottomWrapped,colEntity);
+            this.findEntityInRangeCollision(leftWrapped-width,leftWrapped,topWrapped,topWrapped+height,colEntity);
+            this.findEntityInRangeCollision(rightWrapped,rightWrapped + width,bottomWrapped-height,bottomWrapped,colEntity);
 
         }
         else{
             // það þarf bara að checka á tveimur top og bottom kössum 
+            console.log("t,b wrap");
+            this.findEntityInRangeCollision(right,left,topWrapped,topWrapped+height,colEntity);
+            this.findEntityInRangeCollision(right,left,bottomWrapped-height,bottomWrapped,colEntity);
 
         }
     }
-    else if(util.isBetween(right,0,g_canvas.width) || util.isBetween(left,0,g_canvas.width)){
+    else if(util.isOutOfBounds(right,0,g_canvas.width) || util.isOutOfBounds(left,0,g_canvas.width)){
         // það þarf að cehcka á tveimur left og right kössum
+        console.log("l,r wrap");
+        this.findEntityInRangeCollision(rightWrapped,rightWrapped+width,top,bottom,colEntity);
+        this.findEntityInRangeCollision(leftWrapped-width,leftWrapped,top,bottom,colEntity);
 
     }
     else{
         //það þarf bara að checka á kassanum eins og hann er 
+        console.log("no warp");
         this.findEntityInRangeCollision(right,left,top,bottom,colEntity);
     }
 
 },
 findEntityInRangeCollision: function(right,left,top,bottom,colEntity){
+    var dispX = colEntity.velX;
+    var dispY = colEntity.velY;
+    var prevRight = right - dispX;
+    var prevLeft = left - dispX;
+    var prevTop = top - dispY;
+    var prevBottom = bottom - dispY;
      for(var i = 1; i < this._entities.length; i++) {
         
         //if(colEntity.getSpatialID() === i) continue;
@@ -152,7 +169,7 @@ findEntityInRangeCollision: function(right,left,top,bottom,colEntity){
         if (entity.isUndefined) continue;
 
 
-        //variables for all the sides of the entities beign checked
+        //variables for all the sides of the entities being checked
 
         var entRight = entity.cx + entity.width/2;
 
