@@ -67,6 +67,7 @@ square: function(x) {
 // DISTANCES
 // =========
 
+
 distSq: function(x1, y1, x2, y2) {
     return this.square(x2-x1) + this.square(y2-y1);
 },
