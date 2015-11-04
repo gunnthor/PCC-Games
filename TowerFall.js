@@ -164,6 +164,7 @@ function processDiagnostics() {
 
 function renderSimulation(ctx) {
 
+    levelManager.render(ctx);
     entityManager.render(ctx);
 
     if (g_renderSpatialDebug) spatialManager.render(ctx);
@@ -179,7 +180,7 @@ var g_images = {};
 function requestPreloads() {
 
     var requiredImages = {
-        backgroundLVL1 : "https://notendur.hi.is/~gkr6/Tolvuleikjaforritun/gisk/towerfall/Background.png",  
+        backgroundLVL1 : "backgrounds/backgroundLVL1.png",  
         ship   : "https://notendur.hi.is/~pk/308G/images/ship.png",
         ship2  : "https://notendur.hi.is/~pk/308G/images/ship_2.png",
         rock   : "https://notendur.hi.is/~pk/308G/images/rock.png"
