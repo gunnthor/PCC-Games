@@ -1,4 +1,5 @@
 // constructor for the brick field
+
 function Bricks(descr){
 	for (var property in descr) {
         this[property] = descr[property];
@@ -6,9 +7,9 @@ function Bricks(descr){
 	this.brickwidth = (this.width / this.rows) - this.padding;
 	this.brickheight = (this.height / this.collumns) - this.padding; 
 	this.BuildBricks();
-	this.Particles = new BrickParticles();
-	this.Drops = new Drops();//#FF033E
-	this.color = ["#FF033E","#FF686B", "#FFA69E", "#A5FFD6" ,"#84DCC6" ,"#FFFFFF" ,"#DBE4EE" ,"#DBE4EE"];
+	//this.Particles = new BrickParticles();
+	//this.Drops = new Drops();//#FF033E
+	//this.color = ["#FF033E","#FF686B", "#FFA69E", "#A5FFD6" ,"#84DCC6" ,"#FFFFFF" ,"#DBE4EE" ,"#DBE4EE"];
 }
 
 // builds the brick field using 2d arrays
@@ -25,7 +26,7 @@ Bricks.prototype.BuildBricks = function(){
 		}
 	}
 };
-
+/*
 // removes a brick from the brick field
 Bricks.prototype.remove = function(c,r){
 	this.brick[c][r].life -= 1;
@@ -41,31 +42,31 @@ Bricks.prototype.remove = function(c,r){
 		g_main.gameOver();
 	}
 };
-
+*/
+/*
 // updates the brirckparticles and drops
 Bricks.prototype.update = function(du){
 	this.Particles.brickUpdate(du);
 	this.Drops.update(du);
 }
-
+*/
 // renders the brickfield and the drops and particles
 Bricks.prototype.render = function(ctx){
 	for(c = 0; c < this.brick.length; c++){
 		for(r = 0; r < this.brick[c].length; r++){
 			ctx.save();
 			ctx.beginPath();
-			ctx.fillStyle = this.color[this.brick[c][r].life -1];
-			ctx.fillRect(this.brick[c][r].x,this.brick[c][r].y,this.brickwidth,this.brickheight);
+			ctx.strokeStyle = "red";
+			//ctx.fillStyle = this.color[this.brick[c][r].life -1];
+			ctx.strokeRect(this.brick[c][r].x,this.brick[c][r].y,this.brickwidth,this.brickheight);
 			ctx.closePath();
 			ctx.restore();
 		}
 	}
-	this.Particles.brickRender(ctx);
-	this.Drops.render(ctx);
 };
 
 // detects if the brick field has been hit
-Bricks.prototype.collision = function (prevX,prevY,nextX,nextY,radius){
+/*Bricks.prototype.collision = function (prevX,prevY,nextX,nextY,radius){
 	if(
 		(nextX + radius > this.startingX && nextX - radius < this.width + this.startingX) 
 		&& 
@@ -75,8 +76,8 @@ Bricks.prototype.collision = function (prevX,prevY,nextX,nextY,radius){
 		return this.collisionWithBricks(prevX,prevY,nextX,nextY,radius);
 	}
 	return false;
-};
-
+};*/
+/*
 // if the brick field has been hit this function determines what brick was hit
 Bricks.prototype.collisionWithBricks = function (prevX,prevY,nextX,nextY,radius){
 	for(c = 0; c < this.brick.length; c++ ){
@@ -99,4 +100,4 @@ Bricks.prototype.collisionWithBricks = function (prevX,prevY,nextX,nextY,radius)
 			}
 		}
 	}
-};
+};*/

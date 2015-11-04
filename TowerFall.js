@@ -35,7 +35,16 @@ need to tweak it if you do something "non-obvious" in yours.
 
 var g_canvas = document.getElementById("myCanvas");
 var g_ctx = g_canvas.getContext("2d");
+var g_bricks = new Bricks({
+    width : g_canvas.width,
+    height : g_canvas.height,
+    padding : 0,
+    rows: 20,
+    collumns : 20,
+    startingX : 0,
+    startingY : 0
 
+});
 /*
 0        1         2         3         4         5         6         7         8
 12345678901234567890123456789012345678901234567890123456789012345678901234567890
@@ -166,6 +175,7 @@ function renderSimulation(ctx) {
 
     levelManager.render(ctx);
     entityManager.render(ctx);
+    g_bricks.render(ctx);
 
     if (g_renderSpatialDebug) spatialManager.render(ctx);
 }
