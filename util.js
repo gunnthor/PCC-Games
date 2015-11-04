@@ -67,6 +67,13 @@ square: function(x) {
 // DISTANCES
 // =========
 
+dist: function (x1,x2,xWrap){
+    var dx = Math.abs(x1 - x2);
+    if (dx > xWrap/2){
+        dx = xWrap - dx;
+    }
+    return dx;
+},
 
 distSq: function(x1, y1, x2, y2) {
     return this.square(x2-x1) + this.square(y2-y1);

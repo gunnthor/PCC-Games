@@ -110,10 +110,10 @@ findEntityInRange: function(posX, posY, width, height, colEntity) {
 
     var dispX = colEntity.cx - colEntity.prevCx;
     var dispY = colEntity.cy - colEntity.prevCy;
-    var right = colEntity.cx + width;
-    var left = colEntity.cx - width;
-    var top = colEntity.cy - height;
-    var bottom = colEntity.cy + height;
+    var right = colEntity.cx + width/2;
+    var left = colEntity.cx - width/2;
+    var top = colEntity.cy - height/2;
+    var bottom = colEntity.cy + height/2;
     var rightWrapped = util.wrapX(right);
     var leftWrapped = util.wrapX(left);
     var topWrapped = util.wrapY(top);
