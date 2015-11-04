@@ -111,7 +111,7 @@ init: function() {
         gunType:    "shotgun"
     });
     
-    //vinstri veggur1
+    /*//vinstri veggur1
     this.generateBlock({
         cx : 11,
         cy : 447,
@@ -119,6 +119,64 @@ init: function() {
         height : 65
     });
 
+this.generateBlock({
+        cx : 7.5,
+        cy : 450,
+        width : 15,
+        height : 227
+    });*/
+
+    //hægri veggur
+    this.generateBlock({
+        cx : g_canvas.width-7.5,
+        cy : 450,
+        width : 15,
+        height : 227
+    });
+
+    //vinstra gólf
+    this.generateBlock({
+        cx : 210,
+        cy : g_canvas.height-23,
+        width : 400,
+        height : 20
+    });
+
+    //hægra gólf
+     this.generateBlock({
+        cx : 780,
+        cy : g_canvas.height-10,
+        width : 500,
+        height : 20
+    });
+
+     //hægri pallur
+
+     this.generateBlock({
+        cx : 950,
+        cy : g_canvas.height-100,
+        width : 120,
+        height : 20
+
+     });
+
+     this.generateBlock({
+        cx : g_canvas.width/2,
+        cy : 100,
+        width : 120,
+        height : 20
+
+     });
+     this.generateBlock({
+        cx : g_canvas.width/2 -100,
+        cy : 100,
+        width : 120,
+        height : 20
+
+     });
+
+
+    /*
     //vinstri veggur2
     this.generateBlock({
         cx : 12,
@@ -298,6 +356,7 @@ init: function() {
         width : 223,
         height : 16
      });
+*/
 
 
 },
