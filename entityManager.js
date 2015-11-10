@@ -365,7 +365,7 @@ generateHitBoxes : function(level) {
     //kalla á þetta í init functioninu hérna uppi í bili, tek inn level = 1
     //levels er 2d array þar sem fyrir hvert level er array af þeim hitboxum sem á að gera fyrir levelið, þ.e.a.s. levels[level][block]
     
-
+    
     
     var levels = [];
     levels[1] = [];
@@ -458,20 +458,33 @@ generateHitBoxes : function(level) {
         cy : g_canvas.height-42,
         width : 24,
         height : 43};
-
-        levels[1][22] = {cx : g_canvas.width/2 +242 ,
+        levels[1][23] = {cx : g_canvas.width/2 +242 ,
         cy : g_canvas.height-32,
         width : 24,
         height : 20};
 
-        levels[1][22] = {cx : g_canvas.width/2 + 7,
+        /*
+        levels[1][24] = {cx : g_canvas.width/2 + 7,
         cy : g_canvas.height/2 + 16 ,
         width : 223,
-        height : 16};
+        height : 16};//miðjupallur*/
 
-    //mjög plássfrekur kóði - hugsanlega hlaða upplýsingum or database/JSON/xml
-    
+        
 
+        //þessi lykkja mun virka nákvæmlega eins þegar við erum búnir að útfæra grid
+        //json gögnin eru global eins og er
+        /*for(var i = 0; i < MapHitBoxes.L1.blocks.length)//hleð inn öllum upplýsingum um hitboxa úr JSON skrá(24 hitboxar í þessu tilfelli)
+        {
+            levels[1][i] = {cx : MapHitBoxes.L1.blocks[i].cx, cy : MapHitBoxes.L1.blocks[i].cy,
+         width : MapHitBoxes.L1.blocks[i].width, height : MapHitBoxes.L1.blocks[i].height };
+        }*/
+
+
+        levels[1][24] = {cx : MapHitBoxes.L1.blocks[0].cx, cy : MapHitBoxes.L1.blocks[0].cy,
+         width : MapHitBoxes.L1.blocks[0].width, height : MapHitBoxes.L1.blocks[0].height };
+
+        //set inn hitbox fyrir miðjupallinn til að testa json virkni
+        
     var i = 0;
     while(i < levels[level].length)
     {
