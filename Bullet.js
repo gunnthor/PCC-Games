@@ -3,6 +3,7 @@ function Bullet(descr) {
     // Common inherited setup logic from Entity
     this.setup(descr);
 
+    this.pistolSound.play();
 }
 
 Bullet.prototype = new Entity();
@@ -14,6 +15,7 @@ Bullet.prototype.velX;
 Bullet.prototype.velY;
 Bullet.prototype.width = 3;
 Bullet.prototype.height = 3;
+Bullet.prototype.pistolSound = new Audio("sounds/pistol.ogv");
 
 
 Bullet.prototype.update = function (du) {
@@ -41,7 +43,6 @@ Bullet.prototype.update = function (du) {
 
 Bullet.prototype.takeBulletHit = function () {
     this.kill();
-    
 };
 
 Bullet.prototype.render = function (ctx) {
