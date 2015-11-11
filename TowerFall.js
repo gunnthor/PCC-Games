@@ -190,6 +190,7 @@ var g_images = {};
 function requestPreloads() {
 
     var requiredImages = {
+        player  : "Player1.png",
         backgroundLVL1 : "backgrounds/backgroundLVL1.png",  
         ship   : "https://notendur.hi.is/~pk/308G/images/ship.png",
         ship2  : "https://notendur.hi.is/~pk/308G/images/ship_2.png",
@@ -202,7 +203,24 @@ function requestPreloads() {
 var g_sprites = {};
 
 function preloadDone() {
-    g_sprites.backgroundLVL1 = new Sprite(g_images.backgroundLVL1);
+    g_sprites.backgroundLVL1 = new Sprite({image :g_images.backgroundLVL1});
+    g_sprites.player  = new Sprite({
+        image : g_images.player,
+        idleEndX : 49*2,
+        idleEndY : 0,
+        idleStartX : 0,
+        idleStartY : 0,
+        idleFrameWidth : 49,
+        idleFrameHeight : 49,
+        idleFrames: 3,
+        runningEndX : 444.5-100,
+        runningEndY : 49,
+        runningStartX : -5.5,
+        runningStartY : 49,
+        runningFrameWidth : 50,
+        runningFrameHeight : 49,
+        runningFrames : 8
+    });
 
     g_sprites.ship  = new Sprite(g_images.ship);
     g_sprites.ship2 = new Sprite(g_images.ship2);
