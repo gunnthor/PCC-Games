@@ -110,7 +110,7 @@ init: function() {
         KEY_JUMP:   'W'.charCodeAt(0),
         KEY_FIRE:   'S'.charCodeAt(0),
         KEY_WEPS:   'E'.charCodeAt(0),
-        gunType:    "shotgun"
+        gunType:    "normal"
     });
 
     this.generateKall({
