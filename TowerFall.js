@@ -39,8 +39,8 @@ var g_bricks = new Bricks({
     width : g_canvas.width,
     height : g_canvas.height,
     padding : 0,
-    rows: 20,
-    collumns : 20,
+    rows: 1,
+    collumns : 1,
     startingX : 0,
     startingY : 0
 
@@ -190,11 +190,8 @@ var g_images = {};
 function requestPreloads() {
 
     var requiredImages = {
-        player  : "Player1.png",
-        backgroundLVL1 : "backgrounds/backgroundLVL1.png",  
-        ship   : "https://notendur.hi.is/~pk/308G/images/ship.png",
-        ship2  : "https://notendur.hi.is/~pk/308G/images/ship_2.png",
-        rock   : "https://notendur.hi.is/~pk/308G/images/rock.png"
+        player1  : "Player1.png",
+        backgroundLVL1 : "backgrounds/backgroundLVL1.png"
     };
 
     imagesPreload(requiredImages, g_images, preloadDone);
@@ -204,8 +201,8 @@ var g_sprites = {};
 
 function preloadDone() {
     g_sprites.backgroundLVL1 = new Sprite({image :g_images.backgroundLVL1});
-    g_sprites.player  = new Sprite({
-        image : g_images.player,
+    g_sprites.player1  = new Sprite({
+        image : g_images.player1,
         idleEndX : 49*2,
         idleEndY : 0,
         idleStartX : 0,
@@ -221,14 +218,24 @@ function preloadDone() {
         runningFrameHeight : 49,
         runningFrames : 8
     });
-
-    g_sprites.ship  = new Sprite(g_images.ship);
-    g_sprites.ship2 = new Sprite(g_images.ship2);
-    g_sprites.rock  = new Sprite(g_images.rock);
-
-    g_sprites.bullet = new Sprite(g_images.ship);
-    g_sprites.bullet.scale = 0.25;
-
+    g_sprites.player2  = new Sprite({
+        image : g_images.player1,
+        idleEndX : 49*2,
+        idleEndY : 0,
+        idleStartX : 0,
+        idleStartY : 0,
+        idleFrameWidth : 49,
+        idleFrameHeight : 49,
+        idleFrames: 3,
+        runningEndX : 444.5-100,
+        runningEndY : 49,
+        runningStartX : -5.5,
+        runningStartY : 49,
+        runningFrameWidth : 50,
+        runningFrameHeight : 49,
+        runningFrames : 8
+    });
+    console.log(SECS_TO_NOMINALS);
     entityManager.init();
     //createInitialShips();
 

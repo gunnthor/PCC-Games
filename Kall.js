@@ -3,7 +3,7 @@ function Kall(descr) {
 
     // Common inherited setup logic from Entity
     this.setup(descr);
-        this.sprite = g_sprites.player;
+        //this.sprite = g_sprites.player;
 
     //this.rememberResets();
 };
@@ -160,6 +160,7 @@ Kall.prototype.update = function(du) {
     this.maybeFireBullet();
 
     this.velLimit();
+    this.sprite.update(du,this.velX,this.velY);
 
     // Ef kallinn snertir eitthvað, þá verður hitEntity objecið sem að kallinn snerti
     var hitEntity = this.findHitEntity();
