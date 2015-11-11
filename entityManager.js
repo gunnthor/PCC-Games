@@ -109,6 +109,7 @@ init: function() {
         KEY_RIGHT:  'D'.charCodeAt(0),
         KEY_JUMP:   'W'.charCodeAt(0),
         KEY_FIRE:   'S'.charCodeAt(0),
+        KEY_WEPS:   'E'.charCodeAt(0),
         gunType:    "shotgun"
     });
 
@@ -121,6 +122,7 @@ init: function() {
         KEY_RIGHT:  'L'.charCodeAt(0),
         KEY_JUMP:   'I'.charCodeAt(0),
         KEY_FIRE:   'K'.charCodeAt(0),
+        KEY_WEPS:   'O'.charCodeAt(0),
         gunType:    "normal" 
     });
     
@@ -348,14 +350,14 @@ fireBullet : function(cx, cy, velX, gunType) {
             cx   : cx,
             cy   : cy,
             velX : velX,
-            velY : -2
+            velY : -3.5
         }));
 
         this._bullets.push(new Bullet({
             cx   : cx,
             cy   : cy,
             velX : velX,
-            velY : 2
+            velY : 3.5
         }));
     }
 },

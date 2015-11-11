@@ -20,6 +20,7 @@ Kall.prototype.KEY_LEFT;
 Kall.prototype.KEY_RIGHT;
 Kall.prototype.KEY_JUMP;
 Kall.prototype.KEY_FIRE;
+Kall.prototype.KEY_WEPS;
 
 Kall.prototype.IS_SLOWING_DOWN = false;
 Kall.prototype.IN_AIR = true;
@@ -144,6 +145,14 @@ Kall.prototype.jump = function () {
 
 };
 
+Kall.prototype.switchGuns = function () {
+
+    console.log("CAN HEAR?");
+    if(this.gunType === "shotgun") return this.gunType = "normal";
+    return this.gunType = "shotgun";
+
+}
+
 Kall.prototype.update = function(du) {
 	
     // Unregister
@@ -156,8 +165,11 @@ Kall.prototype.update = function(du) {
         this.computeSubStep(dStep);
     }
 
+    if(eatKey(this.KEY_WEPS)) {
+        this.switchGuns();
+    }
     this.maybeFireBullet();
-
+    
     this.velLimit();
 
     // Ef kallinn snertir eitthvað, þá verður hitEntity objecið sem að kallinn snerti
