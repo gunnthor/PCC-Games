@@ -32,11 +32,13 @@ Kall.prototype.accRate = 1;
 
 Kall.prototype.numSubSteps = 1;
 
+Kall.prototype.weaponList = ["normal","shotgun"];
+Kall.prototype.gunSlot = 0;
 
 Kall.prototype.width = 50;
 Kall.prototype.height = 50;
 
-Kall.prototype.gunType = "normal";
+//Kall.prototype.gunType = this.weaponList[0];
 
 Kall.prototype.maybeFireBullet = function () {
 
@@ -147,10 +149,13 @@ Kall.prototype.jump = function () {
 
 Kall.prototype.switchGuns = function () {
 
-    if(this.gunType === "shotgun") return this.gunType = "normal";
-    return this.gunType = "shotgun";
+    this.gunSlot++;
+    if(this.gunSlot >= this.weaponList.length) {
+        this.gunSlot = 0;
+    }
+    return this.gunType = this.weaponList[this.gunSlot];
+};
 
-}
 
 Kall.prototype.update = function(du) {
 	
