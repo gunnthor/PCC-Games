@@ -175,6 +175,7 @@ Kall.prototype.update = function(du) {
     this.maybeFireBullet();
     
     this.velLimit();
+    this.sprite.update(du,this.velX,this.velY);
 
     // Ef kallinn snertir eitthvað, þá verður hitEntity objecið sem að kallinn snerti
     var hitEntity = this.findHitEntity();
@@ -200,10 +201,11 @@ Kall.prototype.update = function(du) {
 };
 
 Kall.prototype.render = function(ctx) {
-	oldStyle = ctx.fillStyle;
+    this.sprite.drawAnimationAt(ctx,this.cx-this.width/2,this.cy-this.height/2,this.direction);
+	/*oldStyle = ctx.fillStyle;
     ctx.fillStyle = this.color;
     ctx.fillRect(this.cx-this.width/2, this.cy-this.height/2, this.width, this.height);
     ctx.strokeRect(this.cx-this.width/2, this.cy-this.height/2, this.width, this.height);
-    ctx.fillStyle = oldStyle;
+    ctx.fillStyle = oldStyle;*/
 
 };

@@ -109,8 +109,8 @@ init: function() {
         KEY_RIGHT:  'D'.charCodeAt(0),
         KEY_JUMP:   'W'.charCodeAt(0),
         KEY_FIRE:   'S'.charCodeAt(0),
-        KEY_WEPS:   'E'.charCodeAt(0),
-        gunType:    "normal"
+        gunType:    "shotgun",
+        sprite : g_sprites.player1
     });
 
     this.generateKall({
@@ -122,8 +122,8 @@ init: function() {
         KEY_RIGHT:  'L'.charCodeAt(0),
         KEY_JUMP:   'I'.charCodeAt(0),
         KEY_FIRE:   'K'.charCodeAt(0),
-        KEY_WEPS:   'O'.charCodeAt(0),
-        gunType:    "normal" 
+        gunType:    "normal", 
+        sprite : g_sprites.player2
     });
     
     /*

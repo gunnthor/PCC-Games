@@ -111,7 +111,7 @@ register: function(entity) {
 
     // Sækja um spatialPositions
     var spatialPositions = this.getSpatialPos(pos.cx, pos.cy, dimensions.width, dimensions.height, entity.spatialPositions);
-    console.log(spatialPositions);
+    //console.log(spatialPositions);
 
     var spatialID = entity.getSpatialID();
     this._entities[spatialID] =

@@ -14,19 +14,85 @@
 
 // Construct a "sprite" from the given `image`,
 //
-function Sprite(image) {
-    this.image = image;
+function Sprite(descr) {
+    for (var property in descr) {
+        this[property] = descr[property];
+    }
+    
 
-    this.width = image.width;
-    this.height = image.height;
+    //this.width = image.width;
+    //this.height = image.height;
     this.scale = 1;
-}
-
-Sprite.prototype.drawAt = function (ctx, x, y) {
-    ctx.drawImage(this.image, 
-                  x, y);
+    this.time = 0;
+    this.frame = 0;
+    this.frames = this.runningFrames;
+    this.frameWidth = this.runningFrameWidth;
+    this.frameHeight = this.runningFrameHeight;
+    this.startX = this.runningEndX;
+    //this.startX = this.runningStartX;
+    this.startY = this.runningEndY;
+    //this.startY = this.runningStartY;
+    this.spriteX = this.startX;
+    this.spriteY = this.startY;
+    this.timeperframe = (SECS_TO_NOMINALS/this.runningFrames)/2;
+    /*this.frames = this.idleFrames
+    this.frameWidth = this.idleFrameWidth;
+    this.frameHeight = this.idleFrameHeight;
+    this.startX = this.idleEndX;
+    this.startY = this.idleEndY;
+    this.spriteX = this.startX;
+    this.spriteY = this.startY;
+    this.ticksperframe = 60/this.idleFrames;*/
 };
+Sprite.prototype.update = function (du,xVel,yVel){
+    this.time += du;
+    while (this.time > (this.frame + 1) * this.timeperframe){
+        this.updateFrames();
+    }
+};
+Sprite.prototype.updateAnimations = function(){
+    /*this.frames = this.idleFrames
+    this.frameWidth = this.idleFrameWidth;
+    this.frameHeight = this.idleFrameHeight;
+    this.startX = this.idleEndX;
+    this.startY = this.idleEndY;
+    this.spriteX = this.startX;
+    this.spriteY = this.startY;
+    this.ticksperframe = 60/this.idleFrames;*/
 
+};
+Sprite.prototype.updateFrames = function(){
+        this.frame = (this.frame + 1) % this.frames;
+        if (this.frame === 0){
+            this.spriteX = this.startX;
+            this.spriteY = this.startY;
+            this.time = 0;
+        }
+        else{
+            this.spriteX -= this.frameWidth;
+        }
+};
+Sprite.prototype.drawAnimationAt = function (ctx, x, y, dirn) {
+    
+    //ctx.strokeStyle="#FF0000";
+    //ctx.strokeRect(x,y,this.idleFrameWidth,this.idleFrameHeight);
+    if (dirn === "right"){
+    ctx.drawImage(this.image,this.spriteX,this.spriteY,this.frameWidth,this.frameHeight,
+        x,y,this.frameWidth,this.frameHeight);
+    }
+    else {
+        ctx.save();
+        ctx.translate(this.frameWidth,0);
+        ctx.scale(-1,1);
+        ctx.drawImage(this.image,this.spriteX,this.spriteY,this.frameWidth,this.frameHeight,
+        -x,y,this.frameWidth,this.frameHeight);
+        ctx.restore();
+    }
+    //this.updateFrames();
+};
+Sprite.prototype.drawAt = function(ctx,x,y){
+    ctx.drawImage(this.image,x,y);
+};
 Sprite.prototype.drawCentredAt = function (ctx, cx, cy, rotation) {
     if (rotation === undefined) rotation = 0;
     
