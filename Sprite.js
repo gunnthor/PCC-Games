@@ -45,6 +45,14 @@ function Sprite(descr) {
     this.ticksperframe = 60/this.idleFrames;*/
 };
 Sprite.prototype.updateAnimations = function(){
+    /*this.frames = this.idleFrames
+    this.frameWidth = this.idleFrameWidth;
+    this.frameHeight = this.idleFrameHeight;
+    this.startX = this.idleEndX;
+    this.startY = this.idleEndY;
+    this.spriteX = this.startX;
+    this.spriteY = this.startY;
+    this.ticksperframe = 60/this.idleFrames;*/
 
 };
 Sprite.prototype.updateFrames = function(){
