@@ -39,8 +39,8 @@ var g_bricks = new Bricks({
     width : g_canvas.width,
     height : g_canvas.height,
     padding : 0,
-    rows: 80,
-    collumns : 60,
+    rows: 1,
+    collumns : 1,
     startingX : 0,
     startingY : 0
 
