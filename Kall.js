@@ -147,7 +147,6 @@ Kall.prototype.jump = function () {
 
 Kall.prototype.switchGuns = function () {
 
-    console.log("CAN HEAR?");
     if(this.gunType === "shotgun") return this.gunType = "normal";
     return this.gunType = "shotgun";
 

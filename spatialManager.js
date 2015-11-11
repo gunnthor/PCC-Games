@@ -28,6 +28,8 @@ _entities : [],
 //
 // <none yet>
 
+blockWidth : g_canvas.width / 32,
+blockHeight : g_canvas.height / 32,
 
 
 // PUBLIC METHODS
@@ -51,6 +53,54 @@ getNewSpatialID : function() {
 
 },
 
+getSpatialPos : function(cx, cy, width, height, oldPositions) {
+
+    // Staðsetningar á hliðum:
+    var left = cx - width/2;
+    var right = left + width;
+    var top = cy - height/2;
+    var bottom = top + height;
+
+    // spatialPositions:
+    var leftPos = 0;
+    var rightPos = 0;
+    var topPos = 0;
+    var bottomPos = 0;
+
+    // booleans sem að segja til um hvort spatialPos sé fundið
+    var leftFound = false;
+    var rightFound = false;
+    var topFound = false;
+    var bottomFound = false;
+
+    // Finnum rétt spatial positions:
+    for(var i = 0; i < 32; i++) {
+        //console.log(left > i * this.blockWidth && !leftFound);
+        if(left < i * this.blockWidth && !leftFound) {
+            leftPos = i - 1;
+            leftFound = true;
+        }
+
+        if(right < i * this.blockWidth && !rightFound) {
+            rightPos = i - 1;
+            rightFound = true;
+        }
+
+        if(top < i * this.blockHeight && !topFound) {
+            topPos = i - 1;
+            topFound = true;
+        }
+
+        if(bottom < i * this.blockHeight && !bottomFound) {
+            bottomPos = i - 1;
+            bottomFound = true;
+        }
+    }
+
+    // returnum objecti sem að inniheldur öll spatialPos
+    return {leftPos: leftPos, rightPos: rightPos, topPos: topPos, bottomPos: bottomPos};
+},
+
 
 // BREYTA AÐEINS
 
@@ -58,6 +108,11 @@ register: function(entity) {
     var pos = entity.getPos();
     var dimensions = entity.getInfo();
     //var radius = entity.getRadius();
+
+    // Sækja um spatialPositions
+    var spatialPositions = this.getSpatialPos(pos.cx, pos.cy, dimensions.width, dimensions.height, entity.spatialPositions);
+    console.log(spatialPositions);
+
     var spatialID = entity.getSpatialID();
     this._entities[spatialID] =
         {cx: pos.cx,
@@ -67,7 +122,8 @@ register: function(entity) {
         //radius: radius,
         entity : entity,
         isUndefined : false,
-        isDead : entity._isDeadNow
+        isDead : entity._isDeadNow,
+        spatialPositions : spatialPositions
     };
     // TODO: YOUR STUFF HERE!
 },
@@ -105,6 +161,9 @@ findEntityInRange: function(posX, posY, width, height, colEntity) {
             posY  - height/2 < e.posY - e.height/2 + e.height &&
             posY  - height/2 + height > e.posY - e.height/2) return e.entity;
     }*/
+
+    // Notum spatialPositions hér, ef að einhver hlutur er í sama position, þá gerum við collision detection
+    
 
     // variables for all the sides of the object 
     var right = colEntity.cx + colEntity.width/2 ;

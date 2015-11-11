@@ -29,8 +29,10 @@ function Entity() {
     this._entityProperty = true;
     console.dir(this);
 */
-
+    //this.spatialPositions = 
 };
+
+Entity.prototype.spatialPositions = {leftPos: 0, rightPos: 0, topPos: 0, bottomPos: 0};
 
 Entity.prototype.setup = function (descr) {
 
