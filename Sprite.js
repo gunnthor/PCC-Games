@@ -26,14 +26,14 @@ function Sprite(descr) {
     this.scale = 1;
     this.time = 0;
     this.frame = 0;
-    this.frames = this.runningFrames;
-    this.frameWidth = this.runningFrameWidth;
-    this.frameHeight = this.runningFrameHeight;
-    this.startX = this.runningEndX;
-    this.startY = this.runningEndY;
+    this.frames = this.idleFrames;
+    this.frameWidth = this.idleFrameWidth;
+    this.frameHeight = this.idleFrameHeight;
+    this.startX = this.idleEndX;
+    this.startY = this.idleEndY;
     this.spriteX = this.startX;
     this.spriteY = this.startY;
-    this.timeperframe = (SECS_TO_NOMINALS/this.runningFrames)/2;
+    this.timeperframe = (SECS_TO_NOMINALS/this.idleFrames);
     /*this.frames = this.idleFrames
     this.frameWidth = this.idleFrameWidth;
     this.frameHeight = this.idleFrameHeight;
@@ -67,7 +67,7 @@ Sprite.prototype.updateAnimations = function(string){
         this.startY = this.idleEndY;
         this.spriteX = this.startX;
         this.spriteY = this.startY;
-        this.ticksperframe = (SECS_TO_NOMINALS/this.idleFrames);
+        this.timeperframe = (SECS_TO_NOMINALS/this.idleFrames);
     }
     if(string === "jumping"){
         this.time = 0;
