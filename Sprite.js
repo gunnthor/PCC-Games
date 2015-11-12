@@ -22,6 +22,7 @@ function Sprite(descr) {
 
     //this.width = image.width;
     //this.height = image.height;
+    this.animationState = "running";
     this.scale = 1;
     this.time = 0;
     this.frame = 0;
@@ -29,9 +30,7 @@ function Sprite(descr) {
     this.frameWidth = this.runningFrameWidth;
     this.frameHeight = this.runningFrameHeight;
     this.startX = this.runningEndX;
-    //this.startX = this.runningStartX;
     this.startY = this.runningEndY;
-    //this.startY = this.runningStartY;
     this.spriteX = this.startX;
     this.spriteY = this.startY;
     this.timeperframe = (SECS_TO_NOMINALS/this.runningFrames)/2;
@@ -46,19 +45,58 @@ function Sprite(descr) {
 };
 Sprite.prototype.update = function (du,xVel,yVel){
     this.time += du;
+    if (yVel != 0) this.updateAnimations("jumping");
+    else if (xVel != 0) this.updateAnimations("running");
+    else this.updateAnimations("idle");
+
     while (this.time > (this.frame + 1) * this.timeperframe){
         this.updateFrames();
     }
 };
-Sprite.prototype.updateAnimations = function(){
-    /*this.frames = this.idleFrames
-    this.frameWidth = this.idleFrameWidth;
-    this.frameHeight = this.idleFrameHeight;
-    this.startX = this.idleEndX;
-    this.startY = this.idleEndY;
-    this.spriteX = this.startX;
-    this.spriteY = this.startY;
-    this.ticksperframe = 60/this.idleFrames;*/
+Sprite.prototype.updateAnimations = function(string){
+    console.log(string);
+    if(string === this.animationState) return;
+    if(string === "idle"){
+        this.time = 0;
+        this.frame = 0;
+        this.animationState = string;
+        this.frames = this.idleFrames
+        this.frameWidth = this.idleFrameWidth;
+        this.frameHeight = this.idleFrameHeight;
+        this.startX = this.idleEndX;
+        this.startY = this.idleEndY;
+        this.spriteX = this.startX;
+        this.spriteY = this.startY;
+        this.ticksperframe = (SECS_TO_NOMINALS/this.idleFrames);
+    }
+    if(string === "jumping"){
+        this.time = 0;
+        this.frame = 0;
+        this.animationState = string;
+        this.frames = this.jumpingFrames;
+        this.frameWidth = this.jumpingFrameWidth;
+        this.frameHeight = this.jumpingFrameHeight;
+        this.startX = this.jumpingEndX;
+        this.startY = this.jumpingEndY;
+        this.spriteX = this.startX;
+        this.spriteY = this.startY;
+        this.timeperframe = (SECS_TO_NOMINALS/this.jumpingFrames);
+
+
+    }
+    if(string === "running"){
+        this.time = 0;
+        this.frame = 0;
+        this.animationState = string;
+        this.frames = this.runningFrames;
+        this.frameWidth = this.runningFrameWidth;
+        this.frameHeight = this.runningFrameHeight;
+        this.startX = this.runningEndX;
+        this.startY = this.runningEndY;
+        this.spriteX = this.startX;
+        this.spriteY = this.startY;
+        this.timeperframe = (SECS_TO_NOMINALS/this.runningFrames)/2;
+    }
 
 };
 Sprite.prototype.updateFrames = function(){

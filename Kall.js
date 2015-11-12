@@ -175,7 +175,6 @@ Kall.prototype.update = function(du) {
     this.maybeFireBullet();
     
     this.velLimit();
-    this.sprite.update(du,this.velX,this.velY);
 
     // Ef kallinn snertir eitthvað, þá verður hitEntity objecið sem að kallinn snerti
     var hitEntity = this.findHitEntity();
@@ -192,7 +191,8 @@ Kall.prototype.update = function(du) {
 
         if(!keys[this.KEY_LEFT] && !keys[this.KEY_RIGHT]) this.velX *= 0.7; //0.7 á að vera block.friction
     }
-
+    
+    this.sprite.update(du,this.velX,this.velY);
 
     this.IN_AIR = true;
 
