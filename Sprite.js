@@ -18,12 +18,7 @@ function Sprite(descr) {
     for (var property in descr) {
         this[property] = descr[property];
     }
-    
-
-    //this.width = image.width;
-    //this.height = image.height;
     this.animationState = "running";
-    this.scale = 1;
     this.time = 0;
     this.frame = 0;
     this.frames = this.idleFrames;
@@ -35,11 +30,17 @@ function Sprite(descr) {
     this.spriteY = this.startY;
     this.timeperframe = (SECS_TO_NOMINALS/this.idleFrames)*3;
 };
-Sprite.prototype.update = function (du,xVel,yVel){
+Sprite.prototype.update = function (du,xVel,isJumping){
     this.time += du;
-    if (yVel != 0) this.updateAnimations("jumping");
+    if (isJumping) this.updateAnimations("jumping");
     else if (xVel != 0) this.updateAnimations("running");
     else this.updateAnimations("idle");
+
+    /*if(isJumping && isShooting);
+    else if (isJumping);
+    else if (isShooting);
+    else if (isRunning);
+    else*/  
 
     while (this.time > (this.frame + 1) * this.timeperframe){
         this.updateFrames();

@@ -191,8 +191,8 @@ Kall.prototype.update = function(du) {
 
         if(!keys[this.KEY_LEFT] && !keys[this.KEY_RIGHT]) this.velX *= 0.7; //0.7 á að vera block.friction
     }
-    
-    this.sprite.update(du,this.velX,this.velY);
+
+    this.sprite.update(du,this.velX,this.IN_AIR);
 
     this.IN_AIR = true;
 

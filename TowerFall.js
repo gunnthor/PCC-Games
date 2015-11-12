@@ -193,6 +193,7 @@ function preloadDone() {
     g_sprites.backgroundLVL1 = new Sprite({image :g_images.backgroundLVL1});
     g_sprites.player1  = new Sprite({
         image : g_images.player1,
+        
         idleEndX : 49*2,
         idleEndY : 0,
         idleStartX : 0,
@@ -200,6 +201,7 @@ function preloadDone() {
         idleFrameWidth : 49,
         idleFrameHeight : 49,
         idleFrames: 3,
+        
         runningEndX : 444.5-100,
         runningEndY : 49,
         runningStartX : -5.5,
@@ -207,16 +209,34 @@ function preloadDone() {
         runningFrameWidth : 50,
         runningFrameHeight : 49,
         runningFrames : 8,
+        
         jumpingFrames : 1,
         jumpingEndX : 198,
         jumpingEndY : 228,
         jumpingStartX : 198,
         jumpingStartY : 228,
-        jumpingFrameWidth : 40,
-        jumpingFrameHeight : 49
+        jumpingFrameWidth : 49,
+        jumpingFrameHeight : 49,
+
+        jumpShootingEndX : 49,
+        jumpShootingEndY : 387,
+        jumpShootingStartX : 0,
+        jumpShootingStartY : 387,
+        jumpShootingFrameWidth : 49,
+        jumpShootingFrameHeight : 49,
+        jumpShootingFrames : 2,
+        
+        shootingEndX : 49,
+        shootingEndY : 110,
+        shootingStartX : 0,
+        shootingStartY : 110,
+        shootingFrameWidth : 49,
+        shootingFrameHeight : 49,
+        shootingFrames: 2
     });
     g_sprites.player2  = new Sprite({
         image : g_images.player1,
+        
         idleEndX : 49*2,
         idleEndY : 0,
         idleStartX : 0,
@@ -224,6 +244,7 @@ function preloadDone() {
         idleFrameWidth : 49,
         idleFrameHeight : 49,
         idleFrames: 3,
+        
         runningEndX : 444.5-100,
         runningEndY : 49,
         runningStartX : -5.5,
@@ -231,13 +252,30 @@ function preloadDone() {
         runningFrameWidth : 50,
         runningFrameHeight : 49,
         runningFrames : 8,
+        
         jumpingFrames : 1,
         jumpingEndX : 198,
         jumpingEndY : 228,
         jumpingStartX : 198,
         jumpingStartY : 228,
-        jumpingFrameWidth : 40,
-        jumpingFrameHeight : 49
+        jumpingFrameWidth : 49,
+        jumpingFrameHeight : 49,
+        
+        jumpShootingEndX : 49,
+        jumpShootingEndY : 387,
+        jumpShootingStartX : 0,
+        jumpShootingStartY : 387,
+        jumpShootingFrameWidth : 49,
+        jumpShootingFrameHeight : 49,
+        jumpShootingFrames : 2,
+        
+        shootingEndX : 49,
+        shootingEndY : 110,
+        shootingStartX : 0,
+        shootingStartY : 110,
+        shootingFrameWidth : 49,
+        shootingFrameHeight : 49,
+        shootingFrames: 2
     });
     entityManager.init();
     //createInitialShips();
