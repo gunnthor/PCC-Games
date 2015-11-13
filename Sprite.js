@@ -54,7 +54,7 @@ Sprite.prototype.updateAnimations = function(string){
         this.frame = 0;
         this.animationState = string;
         this.frames = this.idleFrames
-        this.frameWidth = this.idleFrameWidth;
+        this.frameWidth = this.idleFrameWidth;  
         this.frameHeight = this.idleFrameHeight;
         this.startX = this.idleEndX;
         this.startY = this.idleEndY;
@@ -115,6 +115,32 @@ Sprite.prototype.updateAnimations = function(string){
         this.spriteX = this.startX;
         this.spriteY = this.startY;
         this.timeperframe = (SECS_TO_NOMINALS/this.shootingFrames)/2;
+    }
+    if(string === "shot"){
+        this.time = 0;
+        this.frame = 0;
+        this.animationState = string;
+        this.frames = this.shotFrames;
+        this.frameWidth = this.shotFrameWidth;
+        this.frameHeight = this.shotFrameHeight;
+        this.startX = this.shotEndX;
+        this.startY = this.shotEndY;
+        this.spriteX = this.startX;
+        this.spriteY = this.startY;
+        this.timeperframe = (SECS_TO_NOMINALS/this.shotFrames)/2;
+    }
+    if(string === "dead"){
+        this.time = 0;
+        this.frame = 0;
+        this.animationState = string;
+        this.frames = this.deadFrames;
+        this.frameWidth = this.deadFrameWidth;
+        this.frameHeight = this.deadFrameHeight;
+        this.startX = this.deadEndX;
+        this.startY = this.deadEndY;
+        this.spriteX = this.startX;
+        this.spriteY = this.startY;
+        this.timeperframe = (SECS_TO_NOMINALS/this.deadFrames)/2;
     }
     if(string === "runShooting"){
         this.time = 0;
