@@ -294,7 +294,6 @@ function preloadDone() {
         runShootingFrames: 1*/
     });
     entityManager.init();
-    //createInitialShips();
 
     main.init();
 }

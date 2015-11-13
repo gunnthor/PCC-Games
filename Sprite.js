@@ -30,10 +30,10 @@ function Sprite(descr) {
     this.spriteY = this.startY;
     this.timeperframe = (SECS_TO_NOMINALS/this.idleFrames)*3;
 };
-Sprite.prototype.update = function (du,xVel,isJumping,isShooting){
+Sprite.prototype.update = function (du,isRunning,isJumping,isShooting){
     this.time += du;
-    var isRunning = false;
-    if (xVel != 0) isRunning = true;
+    //var isRunning = false;
+    //if (xVel != 0) isRunning = true;
 
     if(isJumping && isShooting) this.updateAnimations("jumpShooting");
     else if (isJumping) this.updateAnimations("jumping");

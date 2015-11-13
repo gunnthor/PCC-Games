@@ -23,8 +23,9 @@ Kall.prototype.KEY_FIRE;
 Kall.prototype.KEY_WEPS;
 
 
-Kall.prototype.IsShooting = false;
+Kall.prototype.isShooting = false;
 Kall.prototype.shootingTimeNomials = 0;
+Kall.prototype.isRunning = false;
 
 Kall.prototype.IS_SLOWING_DOWN = false;
 Kall.prototype.IN_AIR = true;
@@ -47,7 +48,7 @@ Kall.prototype.height = 50;
 Kall.prototype.maybeFireBullet = function () {
 
     if (eatKey(this.KEY_FIRE)) {
-        this.IsShooting = true;
+        this.isShooting = true;
         this.shootingTimeNomials = SECS_TO_NOMINALS/4;
     
         if(this.direction === "right") {
@@ -129,10 +130,12 @@ Kall.prototype.computeSubStep = function (du) {
     var accelY = 0;
 
     if(keys[this.KEY_LEFT]) {
+        this.isRunning = true;
         accelX -= this.accRate;
         this.direction = "left";
     }
     if(keys[this.KEY_RIGHT]) {
+        this.isRunning = true;
         accelX += this.accRate;
         this.direction = "right";
     }
@@ -199,13 +202,14 @@ Kall.prototype.update = function(du) {
         if(!keys[this.KEY_LEFT] && !keys[this.KEY_RIGHT]) this.velX *= 0.7; //0.7 á að vera block.friction
     }
 
-    this.sprite.update(du,this.velX,this.IN_AIR,this.IsShooting);
+    this.sprite.update(du,this.isRunning,this.IN_AIR,this.isShooting);
 
+    this.isRunning = false;
     this.IN_AIR = true;
     this.shootingTimeNomials -= du;
     if (this.shootingTimeNomials <= 0)
     {
-        this.IsShooting = false;
+        this.isShooting = false;
     }
 
     // Register
