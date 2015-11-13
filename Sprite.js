@@ -37,6 +37,7 @@ Sprite.prototype.update = function (du,xVel,isJumping,isShooting){
 
     if(isJumping && isShooting) this.updateAnimations("jumpShooting");
     else if (isJumping) this.updateAnimations("jumping");
+    //else if (isRunning && isShooting) this.updateAnimations("runShooting");
     else if (isShooting) this.updateAnimations("shooting");
     else if (isRunning) this.updateAnimations("running");
     else  this.updateAnimations("idle");
@@ -114,6 +115,19 @@ Sprite.prototype.updateAnimations = function(string){
         this.spriteX = this.startX;
         this.spriteY = this.startY;
         this.timeperframe = (SECS_TO_NOMINALS/this.shootingFrames)/2;
+    }
+    if(string === "runShooting"){
+        this.time = 0;
+        this.frame = 0;
+        this.animationState = string;
+        this.frames = this.runShootingFrames;
+        this.frameWidth = this.runShootingFrameWidth;
+        this.frameHeight = this.runShootingFrameHeight;
+        this.startX = this.runShootingEndX;
+        this.startY = this.runShootingEndY;
+        this.spriteX = this.startX;
+        this.spriteY = this.startY;
+        this.timeperframe = (SECS_TO_NOMINALS/this.runShootingFrames)/2;
     }
 
 };

@@ -48,7 +48,7 @@ Kall.prototype.maybeFireBullet = function () {
 
     if (eatKey(this.KEY_FIRE)) {
         this.IsShooting = true;
-        this.shootingTimeNomials = SECS_TO_NOMINALS/2;
+        this.shootingTimeNomials = SECS_TO_NOMINALS/4;
     
         if(this.direction === "right") {
             var bulletX = this.cx + this.width/3*2;
