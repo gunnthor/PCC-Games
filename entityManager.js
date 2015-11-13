@@ -475,7 +475,7 @@ generateLevel : function(level) {
     //mjög plássfrekur kóði - hugsanlega hlaða upplýsingum or database/JSON/xml
     
     
-
+    //console.log(Grid.getGrid()[0].cx);
 
     var i = 0;
     while(i < this._levels[level].length)

@@ -3,6 +3,8 @@ function Block(descr) {
 
     // Common inherited setup logic from Entity
     this.setup(descr);
+    this.sprite = g_sprites.brick_blue;
+
 
     //this.rememberResets();
 };
@@ -27,11 +29,13 @@ Block.prototype.update = function(du) {
 Block.prototype.render = function(ctx) {	
 
 	
-	ctx.save();
+	this.sprite.drawAt(ctx, this.cx-this.width/2, this.cy-this.height/2);
+
+	/*ctx.save();
 	ctx.fillStyle = "blue";
 	ctx.fillRect(this.cx-this.width/2, this.cy-this.height/2, this.width, this.height);
 	ctx.strokeRect(this.cx-this.width/2, this.cy-this.height/2, this.width, this.height);
-	ctx.restore();
+	ctx.restore();*/
 	
 
 };

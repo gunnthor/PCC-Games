@@ -1,24 +1,25 @@
 // constructor for the brick field
 
-function Bricks(descr){
+function Grid(descr){
 	for (var property in descr) {
         this[property] = descr[property];
     }
-	this.brickwidth = (this.width / this.rows) - this.padding;
-	this.brickheight = (this.height / this.collumns) - this.padding; 
-	this.BuildBricks();
+	this.gridwidth = (this.width / this.rows) - this.padding;
+	this.gridheight = (this.height / this.collumns) - this.padding; 
+	this.grid = [];
+	this.BuildGrid();
 	//this.Particles = new BrickParticles();
 	//this.Drops = new Drops();//#FF033E
 	//this.color = ["#FF033E","#FF686B", "#FFA69E", "#A5FFD6" ,"#84DCC6" ,"#FFFFFF" ,"#DBE4EE" ,"#DBE4EE"];
 }
 
 // builds the brick field using 2d arrays
-Bricks.prototype.BuildBricks = function(){
-	this.brick = [];
+Grid.prototype.BuildGrid = function(){
+	//this.grid = [];
 	for(c = 0; c < this.collumns; c++){
-		this.brick[c] = []
+		this.grid[c] = []
 		for(r = 0; r< this.rows; r++){
-			this.brick[c][r] = 
+			this.grid[c][r] = 
 			{	x : (this.startingX +((this.width / this.rows) * r)) , 
 				y : (this.startingY +((this.height / this.collumns) * c)),
 				life : this.collumns - c
@@ -26,6 +27,10 @@ Bricks.prototype.BuildBricks = function(){
 		}
 	}
 };
+
+Grid.prototype.getGrid = function(){
+	return this.grid;
+}
 /*
 // removes a brick from the brick field
 Bricks.prototype.remove = function(c,r){
@@ -50,15 +55,15 @@ Bricks.prototype.update = function(du){
 	this.Drops.update(du);
 }
 */
-// renders the brickfield and the drops and particles
-Bricks.prototype.render = function(ctx){
-	for(c = 0; c < this.brick.length; c++){
-		for(r = 0; r < this.brick[c].length; r++){
+// renders the grid and the drops and particles
+Grid.prototype.render = function(ctx){
+	for(c = 0; c < this.grid.length; c++){
+		for(r = 0; r < this.grid[c].length; r++){
 			ctx.save();
 			ctx.beginPath();
 			ctx.strokeStyle = "red";
 			//ctx.fillStyle = this.color[this.brick[c][r].life -1];
-			ctx.strokeRect(this.brick[c][r].x,this.brick[c][r].y,this.brickwidth,this.brickheight);
+			ctx.strokeRect(this.grid[c][r].x,this.grid[c][r].y,this.gridwidth,this.gridheight);
 			ctx.closePath();
 			ctx.restore();
 

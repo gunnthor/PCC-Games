@@ -24,6 +24,8 @@ _nextSpatialID : 1, // make all valid IDs non-falsey (i.e. don't start at 0)
 
 _entities : [],
 
+_grid : undefined,
+
 // "PRIVATE" METHODS
 //
 // <none yet>
@@ -49,6 +51,20 @@ getNewSpatialID : function() {
     return spatialID;
 
 
+},
+
+init : function() {
+
+    this._grid =  new Grid({
+        width : g_canvas.width,
+        height : g_canvas.height,
+        padding : 0,
+        rows: 32,
+        collumns : 32,
+        startingX : 0,
+        startingY : 0
+
+    });
 },
 
 

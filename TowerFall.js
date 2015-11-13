@@ -35,16 +35,7 @@ need to tweak it if you do something "non-obvious" in yours.
 
 var g_canvas = document.getElementById("myCanvas");
 var g_ctx = g_canvas.getContext("2d");
-var g_bricks = new Bricks({
-    width : g_canvas.width,
-    height : g_canvas.height,
-    padding : 0,
-    rows: 32,
-    collumns : 32,
-    startingX : 0,
-    startingY : 0
 
-});
 /*
 0        1         2         3         4         5         6         7         8
 12345678901234567890123456789012345678901234567890123456789012345678901234567890
@@ -175,7 +166,7 @@ function renderSimulation(ctx) {
 
     levelManager.render(ctx);
     entityManager.render(ctx);
-    g_bricks.render(ctx);
+    //g_bricks.render(ctx);
 
     if (g_renderSpatialDebug) spatialManager.render(ctx);
 }
@@ -223,14 +214,15 @@ function preloadDone() {
         runningFrames : 8
     });
 
-    g_sprites.ship  = new Sprite(g_images.ship);
-    g_sprites.ship2 = new Sprite(g_images.ship2);
-    g_sprites.rock  = new Sprite(g_images.rock);
+    g_sprites.brick_blue = new Sprite({
+        image : g_images.brick_blue
+    });
 
     g_sprites.bullet = new Sprite(g_images.ship);
     g_sprites.bullet.scale = 0.25;
 
     entityManager.init();
+    spatialManager.init();
     //createInitialShips();
 
     main.init();
