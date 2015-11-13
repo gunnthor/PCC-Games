@@ -218,21 +218,21 @@ function preloadDone() {
         jumpingFrameWidth : 49,
         jumpingFrameHeight : 49,
 
-        jumpShootingEndX : 49,
+        jumpShootingEndX : 0,
         jumpShootingEndY : 387,
         jumpShootingStartX : 0,
         jumpShootingStartY : 387,
         jumpShootingFrameWidth : 49,
         jumpShootingFrameHeight : 49,
-        jumpShootingFrames : 2,
+        jumpShootingFrames : 1,
         
-        shootingEndX : 49,
+        shootingEndX : 0,
         shootingEndY : 110,
         shootingStartX : 0,
         shootingStartY : 110,
         shootingFrameWidth : 49,
         shootingFrameHeight : 49,
-        shootingFrames: 2
+        shootingFrames: 1
     });
     g_sprites.player2  = new Sprite({
         image : g_images.player1,
@@ -261,21 +261,21 @@ function preloadDone() {
         jumpingFrameWidth : 49,
         jumpingFrameHeight : 49,
         
-        jumpShootingEndX : 49,
+        jumpShootingEndX : 0,
         jumpShootingEndY : 387,
         jumpShootingStartX : 0,
         jumpShootingStartY : 387,
         jumpShootingFrameWidth : 49,
         jumpShootingFrameHeight : 49,
-        jumpShootingFrames : 2,
+        jumpShootingFrames : 1,
         
-        shootingEndX : 49,
+        shootingEndX : 0,
         shootingEndY : 110,
         shootingStartX : 0,
         shootingStartY : 110,
         shootingFrameWidth : 49,
         shootingFrameHeight : 49,
-        shootingFrames: 2
+        shootingFrames: 1
     });
     entityManager.init();
     //createInitialShips();

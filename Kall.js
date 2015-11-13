@@ -22,6 +22,10 @@ Kall.prototype.KEY_JUMP;
 Kall.prototype.KEY_FIRE;
 Kall.prototype.KEY_WEPS;
 
+
+Kall.prototype.IsShooting = false;
+Kall.prototype.shootingTimeNomials = 0;
+
 Kall.prototype.IS_SLOWING_DOWN = false;
 Kall.prototype.IN_AIR = true;
 Kall.prototype.velX = 0;
@@ -43,16 +47,18 @@ Kall.prototype.height = 50;
 Kall.prototype.maybeFireBullet = function () {
 
     if (eatKey(this.KEY_FIRE)) {
+        this.IsShooting = true;
+        this.shootingTimeNomials = SECS_TO_NOMINALS/2;
     
         if(this.direction === "right") {
             var bulletX = this.cx + this.width/3*2;
-            var bulletY = this.cy;
+            var bulletY = this.cy - this.height/3;
             var bulletXVel = 7;
         }
 
         else {
             var bulletX = this.cx - this.width/3*2;
-            var bulletY = this.cy;
+            var bulletY = this.cy - this.height/3;
             var bulletXVel = -7;
         }
 
@@ -69,6 +75,7 @@ Kall.prototype.recoil = function() {
     
     if(this.direction === "right") this.velX -= 10;
     else this.velX += 10;
+
 };
 
 
@@ -192,9 +199,14 @@ Kall.prototype.update = function(du) {
         if(!keys[this.KEY_LEFT] && !keys[this.KEY_RIGHT]) this.velX *= 0.7; //0.7 á að vera block.friction
     }
 
-    this.sprite.update(du,this.velX,this.IN_AIR);
+    this.sprite.update(du,this.velX,this.IN_AIR,this.IsShooting);
 
     this.IN_AIR = true;
+    this.shootingTimeNomials -= du;
+    if (this.shootingTimeNomials <= 0)
+    {
+        this.IsShooting = false;
+    }
 
     // Register
     spatialManager.register(this);

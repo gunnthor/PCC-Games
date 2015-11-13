@@ -30,24 +30,23 @@ function Sprite(descr) {
     this.spriteY = this.startY;
     this.timeperframe = (SECS_TO_NOMINALS/this.idleFrames)*3;
 };
-Sprite.prototype.update = function (du,xVel,isJumping){
+Sprite.prototype.update = function (du,xVel,isJumping,isShooting){
     this.time += du;
-    if (isJumping) this.updateAnimations("jumping");
-    else if (xVel != 0) this.updateAnimations("running");
-    else this.updateAnimations("idle");
+    var isRunning = false;
+    if (xVel != 0) isRunning = true;
 
-    /*if(isJumping && isShooting);
-    else if (isJumping);
-    else if (isShooting);
-    else if (isRunning);
-    else*/  
+    if(isJumping && isShooting) this.updateAnimations("jumpShooting");
+    else if (isJumping) this.updateAnimations("jumping");
+    else if (isShooting) this.updateAnimations("shooting");
+    else if (isRunning) this.updateAnimations("running");
+    else  this.updateAnimations("idle");
 
     while (this.time > (this.frame + 1) * this.timeperframe){
         this.updateFrames();
     }
 };
 Sprite.prototype.updateAnimations = function(string){
-    console.log(string);
+    //console.log(string);
     if(string === this.animationState) return;
     if(string === "idle"){
         this.time = 0;
@@ -89,6 +88,32 @@ Sprite.prototype.updateAnimations = function(string){
         this.spriteX = this.startX;
         this.spriteY = this.startY;
         this.timeperframe = (SECS_TO_NOMINALS/this.runningFrames)/2;
+    }
+    if(string === "jumpShooting"){
+        this.time = 0;
+        this.frame = 0;
+        this.animationState = string;
+        this.frames = this.jumpShootingFrames;
+        this.frameWidth = this.jumpShootingFrameWidth;
+        this.frameHeight = this.jumpShootingFrameHeight;
+        this.startX = this.jumpShootingEndX;
+        this.startY = this.jumpShootingEndY;
+        this.spriteX = this.startX;
+        this.spriteY = this.startY;
+        this.timeperframe = (SECS_TO_NOMINALS/this.jumpShootingFrames)/2;
+    }
+    if(string === "shooting"){
+        this.time = 0;
+        this.frame = 0;
+        this.animationState = string;
+        this.frames = this.shootingFrames;
+        this.frameWidth = this.shootingFrameWidth;
+        this.frameHeight = this.shootingFrameHeight;
+        this.startX = this.shootingEndX;
+        this.startY = this.shootingEndY;
+        this.spriteX = this.startX;
+        this.spriteY = this.startY;
+        this.timeperframe = (SECS_TO_NOMINALS/this.shootingFrames)/2;
     }
 
 };
