@@ -197,7 +197,7 @@ var g_sprites = {};
 
 function preloadDone() {
 
-    g_audio.pistolSound = new Audio({audio : g_audio.pistolSound})
+    g_audio.pistolSound = new Sound({audio : g_audio.pistolSound})
     g_sprites.backgroundLVL1 = new Sprite({image :g_images.backgroundLVL1});
 
     g_sprites.player1  = new Sprite({

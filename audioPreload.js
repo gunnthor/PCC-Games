@@ -2,7 +2,7 @@
 
 "use strict";
 
-soundtest.prototype.asyncLoad = function(src, asyncCallback) {
+Audio.prototype.asyncLoad = function(src, asyncCallback) {
 
 	this.onload = asyncCallback;
     this.onerror = asyncCallback;
@@ -36,11 +36,11 @@ function audioPreload(requiredAudio,
 
         console.log("preloadHandler called with this=", this);
         loadedAudio[this.name] = this;
-
+        /*
         if (0 === this.width) {
             console.log("loading failed for", this.name);
         }
-
+        */
         // Allow this handler closure to eventually be GC'd (!)
         this.onload = null;
         this.onerror = null;
@@ -75,7 +75,7 @@ function audioPreload(requiredAudio,
         if (requiredAudio.hasOwnProperty(currentName)) {
             
             console.log("preloading audio", currentName);
-            currentAudio = new soundtest();
+            currentAudio = new Audio();
             currentAudio.name = currentName;
 
             currentAudio.asyncLoad(requiredAudio[currentName], preloadHandler);
