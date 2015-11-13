@@ -176,6 +176,7 @@ function renderSimulation(ctx) {
 // =============
 
 var g_images = {};
+var g_audio = {};
 
 function requestPreloads() {
 
@@ -184,13 +185,21 @@ function requestPreloads() {
         backgroundLVL1 : "backgrounds/backgroundLVL1.png"
     };
 
+    var requiredAudio = {
+        pistolSound     : "sounds/pistolSound.ogg"   
+    }
+
     imagesPreload(requiredImages, g_images, preloadDone);
+    audioPreload(requiredAudio, g_audio, preloadDone)
 }
 
 var g_sprites = {};
 
 function preloadDone() {
+
+    g_audio.pistolSound = new Audio({audio : g_audio.pistolSound})
     g_sprites.backgroundLVL1 = new Sprite({image :g_images.backgroundLVL1});
+
     g_sprites.player1  = new Sprite({
         image : g_images.player1,
         idleEndX : 49*2,

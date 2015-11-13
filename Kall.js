@@ -59,7 +59,12 @@ Kall.prototype.maybeFireBullet = function () {
         entityManager.fireBullet(
            bulletX, bulletY, bulletXVel, this.gunType);
 
-        if(this.gunType === "shotgun") this.recoil();
+        if(this.gunType === "shotgun") {
+            this.recoil();
+        } else if( this.gunType === "pistol") {
+            this.audio.playSound();
+        }
+
            
     }
     

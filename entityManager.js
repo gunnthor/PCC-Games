@@ -115,7 +115,8 @@ init: function() {
         KEY_WEPS:   'E'.charCodeAt(0),
         health :    100,
         gunType:    "pistol",
-        sprite : g_sprites.player1
+        sprite : g_sprites.player1,
+        audio  : g_audio.pistolSound
     });
 
     this.generateKall({
@@ -133,7 +134,8 @@ init: function() {
         KEY_WEPS:   'O'.charCodeAt(0),
         health :    100,
         gunType:    "pistol", 
-        sprite : g_sprites.player2
+        sprite : g_sprites.player2,
+        audio  : g_audio.pistolSound
     });
     
     /*
