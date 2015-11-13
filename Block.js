@@ -26,11 +26,12 @@ Block.prototype.update = function(du) {
 
 Block.prototype.render = function(ctx) {	
 
-	/*
+	
 	ctx.save();
 	ctx.fillStyle = "blue";
 	ctx.fillRect(this.cx-this.width/2, this.cy-this.height/2, this.width, this.height);
+	ctx.strokeRect(this.cx-this.width/2, this.cy-this.height/2, this.width, this.height);
 	ctx.restore();
-	*/
+	
 
 };

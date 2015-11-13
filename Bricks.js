@@ -61,6 +61,7 @@ Bricks.prototype.render = function(ctx){
 			ctx.strokeRect(this.brick[c][r].x,this.brick[c][r].y,this.brickwidth,this.brickheight);
 			ctx.closePath();
 			ctx.restore();
+
 		}
 	}
 };

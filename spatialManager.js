@@ -106,6 +106,9 @@ findEntityInRange: function(posX, posY, width, height, colEntity) {
             posY  - height/2 + height > e.posY - e.height/2) return e.entity;
     }*/
 
+    //every time I collide with an entity, I push into this array
+    var _hitentities = [];
+
     // variables for all the sides of the object 
     var right = colEntity.cx + colEntity.width/2 ;
     var prevRight = colEntity.prevCx + colEntity.width/2;
@@ -158,7 +161,8 @@ findEntityInRange: function(posX, posY, width, height, colEntity) {
                     colEntity.cy = entity.cy - entity.height/2 - colEntity.height/2;
                     colEntity.velY = 0;
                     colEntity.IN_AIR = false;
-                    //colEntity.SLOWING_DOWN = true;
+                    _hitentities.push(colEntity);
+                    
                 }
             }
 
@@ -170,7 +174,7 @@ findEntityInRange: function(posX, posY, width, height, colEntity) {
                 if(Math.abs(colEntity.cy - colEntity.prevCy) <= colEntity.velYLimit*2) {
                     colEntity.cy = entity.cy + entity.height/2 + colEntity.height/2;
                     colEntity.velY = 0;
-
+                    _hitentities.push(colEntity);
                 }
             }
         }
@@ -191,6 +195,7 @@ findEntityInRange: function(posX, posY, width, height, colEntity) {
                 if(Math.abs(colEntity.cx - colEntity.prevCx) <= colEntity.velXLimit*2) {
                     colEntity.cx = entity.cx - entity.width/2 - colEntity.width/2;
                     colEntity.velX = 0;
+                    _hitentities.push(colEntity);
                 }
             }
 
@@ -202,11 +207,15 @@ findEntityInRange: function(posX, posY, width, height, colEntity) {
                 if(Math.abs(colEntity.cx - colEntity.prevCx) <= colEntity.velXLimit*2) {
                     colEntity.cx = entity.cx + entity.width/2 + colEntity.width/2;
                     colEntity.velX = 0;
+                    _hitentities.push(colEntity);
                 }
             }
         }
         
     }
+
+
+    return _hitentities;
 
     // ÞARF AÐ BREYTA ÞESSU FYRST VIÐ VERÐUM MEÐ KASSA HIT BOX
     /*for (var ID in this._entities) {

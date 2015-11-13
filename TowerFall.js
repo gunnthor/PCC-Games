@@ -39,13 +39,8 @@ var g_bricks = new Bricks({
     width : g_canvas.width,
     height : g_canvas.height,
     padding : 0,
-<<<<<<< HEAD
     rows: 32,
     collumns : 32,
-=======
-    rows: 1,
-    collumns : 1,
->>>>>>> origin/BrickBranch
     startingX : 0,
     startingY : 0
 
@@ -199,7 +194,8 @@ function requestPreloads() {
         backgroundLVL1 : "backgrounds/backgroundLVL1.png",  
         ship   : "https://notendur.hi.is/~pk/308G/images/ship.png",
         ship2  : "https://notendur.hi.is/~pk/308G/images/ship_2.png",
-        rock   : "https://notendur.hi.is/~pk/308G/images/rock.png"
+        rock   : "https://notendur.hi.is/~pk/308G/images/rock.png",
+        brick_blue : "bricks/brick_background_1.png"
     };
 
     imagesPreload(requiredImages, g_images, preloadDone);

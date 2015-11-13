@@ -72,7 +72,7 @@ _findNearestShip : function(posX, posY) {
 _kallar : [],
 _blocks : [],
 _bullets : [],
-
+_levels : [],
 
 _forEachOf: function(aCategory, fn) {
     for (var i = 0; i < aCategory.length; ++i) {
@@ -313,7 +313,7 @@ init: function() {
         height : 16
      });*/
 
-    this.generateHitBoxes(1);
+    this.generateLevel(1);
 
 
 },
@@ -361,15 +361,15 @@ fireBullet : function(cx, cy, velX, gunType) {
 },
 
 //fall sem setur upplýsingar um hitBoxes í fylki og generatear blocks - breyta seinna
-generateHitBoxes : function(level) {
+generateLevel : function(level) {
     //kalla á þetta í init functioninu hérna uppi í bili, tek inn level = 1
     //levels er 2d array þar sem fyrir hvert level er array af þeim hitboxum sem á að gera fyrir levelið, þ.e.a.s. levels[level][block]
     
 
     
-    var levels = [];
-    levels[1] = [];
-    levels[1][0] = {cx : 11, cy : 447, width : 17, height : 65};
+    this._levels[1] = [];
+    this._levels[1][0] = {x: 10, y: 11, endx: 15, endy: 15, width: 32, height: 18};
+    /*levels[1][0] = {cx : 11, cy : 447, width : 17, height : 65};
     levels[1][1] = {cx : 12,
         cy : 133,
         width : 17,
@@ -459,28 +459,34 @@ generateHitBoxes : function(level) {
         width : 24,
         height : 43};
 
-        levels[1][22] = {cx : g_canvas.width/2 +242 ,
+        levels[1][23] = {cx : g_canvas.width/2 +242 ,
         cy : g_canvas.height-32,
         width : 24,
         height : 20};
 
-        levels[1][22] = {cx : g_canvas.width/2 + 7,
+        levels[1][24] = {cx : g_canvas.width/2 + 7,
         cy : g_canvas.height/2 + 16 ,
         width : 223,
-        height : 16};
+        height : 16,
+        friction: 0.05};*/
+
+    
 
     //mjög plássfrekur kóði - hugsanlega hlaða upplýsingum or database/JSON/xml
     
+    
+
 
     var i = 0;
-    while(i < levels[level].length)
+    while(i < this._levels[level].length)
     {
-        this.generateBlock({
+        /*this.generateBlock({
             cx : levels[level][i].cx,
             cy : levels[level][i].cy,
             width : levels[level][i].width,
             height : levels[level][i].height
-        });
+        });*/
+        this.generateHitboxes(this._levels[level][i]);
         i++;
     }
 
@@ -520,6 +526,21 @@ haltShips: function() {
 toggleRocks: function() {
     this._bShowRocks = !this._bShowRocks;
 },*/
+generateHitboxes: function(block) {
+
+    for(var i = block.x; i < block.endx; i++) {
+        for(var n = block.y; n < block.endy; n++) {
+            console.log(i*block.width);
+            this.generateBlock({
+                cx : i * block.width - block.width/2 + 1,
+                cy : n * block.height - block.height/2 + 1,
+                width : block.width,
+                height : block.height
+            });
+
+        }
+    }
+},
 
 update: function(du) {
 
