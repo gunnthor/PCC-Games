@@ -189,6 +189,8 @@ Kall.prototype.update = function(du) {
            {
 
                 //console.log(hitEntity.friction);
+                console.log(hitEntity);
+                //console.log(hitEntity[i].friction);
                 if(hitEntity.hasOwnProperty("friction")) mostFriction = hitEntity.friction;
 
            }

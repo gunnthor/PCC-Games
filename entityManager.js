@@ -190,7 +190,8 @@ generateLevel : function(level) {
         endx : maps.levels[level-1].blocks[i].endx,
         endy : maps.levels[level-1].blocks[i].endy,
         width : maps.levels[level-1].blocks[i].width,
-        height : maps.levels[level-1].blocks[i].height};
+        height : maps.levels[level-1].blocks[i].height,
+        friction : maps.levels[level-1].blocks[i].height};
     }
 
 
@@ -244,7 +245,8 @@ generateObjects: function(block) {
                 cx : i * block.width - block.width/2,
                 cy : n * block.height - block.height/2,
                 width : block.width,
-                height : block.height
+                height : block.height,
+                friction : block.friction
             });
 
         }

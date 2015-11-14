@@ -155,7 +155,7 @@ var maps =
 				 	height : 18,
 				 	friction: 0.7 
 				 	//type: iceblock/blueblock/mudblock
-				},
+				}
 
 
 
