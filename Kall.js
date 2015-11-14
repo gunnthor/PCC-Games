@@ -165,7 +165,9 @@ Kall.prototype.computeGravity = function () {
 Kall.prototype.jump = function () {
     this.velY -= 8;
     this.IN_AIR = true;
-    this.pickupGuns("shotgun");
+    if (this.gunSlot < 2){
+        this.pickupGuns("shotgun");
+    }
 };
 
 Kall.prototype.switchGuns = function () {
