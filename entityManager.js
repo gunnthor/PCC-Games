@@ -124,194 +124,6 @@ init: function() {
         gunType:    "normal" 
     });
     
-    /*
-    //vinstri veggur1
-    this.generateBlock({
-        cx : 11,
-        cy : 447,
-        width : 17,
-        height : 65
-    });
-
-    //vinstri veggur2
-    this.generateBlock({
-        cx : 12,
-        cy : 133,
-        width : 17,
-        height : 133*2
-    })
-
-    // vinstri veggs neðri rampur 1/4
-    this.generateBlock({
-        cx : g_canvas.width/2 - 452,
-        cy : g_canvas.height - 155,
-        width : 100,
-        height : 14
-    });
-    // vinstri veggs neðri rampur 2/4
-    this.generateBlock({
-        cx : g_canvas.width/2 - 373,
-        cy : g_canvas.height - 177,
-        width : 40,
-        height : 14
-    });
-    // vinstri veggs neðri rampur 3/4
-    this.generateBlock({
-        cx : g_canvas.width/2 - 325,
-        cy : g_canvas.height - 197,
-        width : 40,
-        height : 14
-    });
-    // vinstri veggs neðri rampur 4/4
-    this.generateBlock({
-        cx : g_canvas.width/2 - 274,
-        cy : g_canvas.height - 219,
-        width : 40,
-        height : 14
-    });
-
-    //hægri veggur1
-    this.generateBlock({
-        cx : g_canvas.width-11,
-        cy : 447,
-        width : 17,
-        height : 65
-    });
-
-    //hægri veggur2
-    this.generateBlock({
-        cx : g_canvas.width-12,
-        cy : 133,
-        width : 17,
-        height : 133*2
-    })
-
-    // hægri veggs neðri rampur 1/4
-    this.generateBlock({
-        cx : g_canvas.width/2 + 450,
-        cy : g_canvas.height - 155,
-        width : 100,
-        height : 14
-    });
-    // vinstri veggs neðri rampur 2/4
-    this.generateBlock({
-        cx : g_canvas.width/2 + 373,
-        cy : g_canvas.height - 174,
-        width : 40,
-        height : 14
-    });
-    // vinstri veggs neðri rampur 3/4
-    this.generateBlock({
-        cx : g_canvas.width/2 + 327,
-        cy : g_canvas.height - 193,
-        width : 40,
-        height : 14
-    });
-    // vinstri veggs neðri rampur 4/4
-    this.generateBlock({
-        cx : g_canvas.width/2 + 283,
-        cy : g_canvas.height - 214,
-        width : 40,
-        height : 14
-    });
-
-
-    //vinstra gólf
-    this.generateBlock({
-        cx : 210,
-        cy : g_canvas.height-15,
-        width : 430,
-        height : 15
-    });
-
-    //hægra gólf
-     this.generateBlock({
-        cx : g_canvas.width - 210,
-        cy : g_canvas.height-15,
-        width : 430,
-        height : 15
-    });
-
-     // vinstri gólf rampur 1/5
-     this.generateBlock({
-        cx : g_canvas.width/2 - 115,
-        cy : g_canvas.height-74,
-        width : 87,
-        height : 100
-     });
-     // 2/5
-     this.generateBlock({
-        cx : g_canvas.width/2 -170 ,
-        cy : g_canvas.height-65,
-        width : 24,
-        height : 80
-     });
-     // 3/5
-     this.generateBlock({
-        cx : g_canvas.width/2 -193 ,
-        cy : g_canvas.height-53,
-        width : 24,
-        height : 60
-     });
-     // 4/5
-     this.generateBlock({
-        cx : g_canvas.width/2 -216 ,
-        cy : g_canvas.height-42,
-        width : 24,
-        height : 43
-     });
-     //5/5
-     this.generateBlock({
-        cx : g_canvas.width/2 -239 ,
-        cy : g_canvas.height-32,
-        width : 24,
-        height : 20
-     });
-
-
-     // hægri gólf rampur 1/5
-     this.generateBlock({
-        cx : g_canvas.width/2 + 118,
-        cy : g_canvas.height-74,
-        width : 87,
-        height : 100
-     });
-     // 2/5
-     this.generateBlock({
-        cx : g_canvas.width/2 +174 ,
-        cy : g_canvas.height-65,
-        width : 24,
-        height : 80
-     });
-     // 3/5
-     this.generateBlock({
-        cx : g_canvas.width/2 +196 ,
-        cy : g_canvas.height-53,
-        width : 24,
-        height : 60
-     });
-     // 4/5
-     this.generateBlock({
-        cx : g_canvas.width/2 +219 ,
-        cy : g_canvas.height-42,
-        width : 24,
-        height : 43
-     });
-     //5/5
-     this.generateBlock({
-        cx : g_canvas.width/2 +242 ,
-        cy : g_canvas.height-32,
-        width : 24,
-        height : 20
-     });
-
-     //miðju pallur
-     this.generateBlock({
-        cx : g_canvas.width/2 + 7,
-        cy : g_canvas.height/2 + 16 ,
-        width : 223,
-        height : 16
-     });*/
 
     this.generateLevel(1);
 
@@ -360,134 +172,31 @@ fireBullet : function(cx, cy, velX, gunType) {
     }
 },
 
-//fall sem setur upplýsingar um hitBoxes í fylki og generatear blocks - breyta seinna
+//fall sem setur upplýsingar um levelið í fylki og generatear blocks - breyta seinna
 generateLevel : function(level) {
     //kalla á þetta í init functioninu hérna uppi í bili, tek inn level = 1
     //levels er 2d array þar sem fyrir hvert level er array af þeim hitboxum sem á að gera fyrir levelið, þ.e.a.s. levels[level][block]
     
 
     
-    this._levels[1] = [];
-    this._levels[1][0] = {x: 10, y: 11, endx: 15, endy: 15, width: 32, height: 18};
-    /*levels[1][0] = {cx : 11, cy : 447, width : 17, height : 65};
-    levels[1][1] = {cx : 12,
-        cy : 133,
-        width : 17,
-        height : 133*2};
-    levels[1][2] = {cx : g_canvas.width/2 - 452,
-        cy : g_canvas.height - 155,
-        width : 100,
-        height : 14};
-    levels[1][3] = {cx : g_canvas.width/2 - 373,
-        cy : g_canvas.height - 177,
-        width : 40,
-        height : 14};
-    levels[1][4] = {cx : g_canvas.width/2 - 325,
-        cy : g_canvas.height - 197,
-        width : 40,
-        height : 14};
-    levels[1][5] = {cx : g_canvas.width/2 - 274,
-        cy : g_canvas.height - 219,
-        width : 40,
-        height : 14};
-    levels[1][6] = {cx : g_canvas.width-11,
-        cy : 447,
-        width : 17,
-        height : 65};
-    levels[1][7] = {cx : g_canvas.width-12,
-        cy : 133,
-        width : 17,
-        height : 133*2};
-    levels[1][8] = {cx : g_canvas.width/2 + 450,
-        cy : g_canvas.height - 155,
-        width : 100,
-        height : 14};
-    levels[1][9] = {cx : g_canvas.width/2 + 373,
-        cy : g_canvas.height - 174,
-        width : 40,
-        height : 14};
-    levels[1][10] = {cx : g_canvas.width/2 + 327,
-        cy : g_canvas.height - 193,
-        width : 40,
-        height : 14};
-    levels[1][11] = {cx : g_canvas.width/2 + 283,
-        cy : g_canvas.height - 214,
-        width : 40,
-        height : 14};
-    levels[1][12] = {cx : 210,
-        cy : g_canvas.height-15,
-        width : 430,
-        height : 15};
-    levels[1][13] = {cx : g_canvas.width - 210,
-        cy : g_canvas.height-15,
-        width : 430,
-        height : 15};
-    levels[1][14] = {cx : g_canvas.width/2 - 115,
-        cy : g_canvas.height-74,
-        width : 87,
-        height : 100};
-    levels[1][15] = {cx : g_canvas.width/2 -170 ,
-        cy : g_canvas.height-65,
-        width : 24,
-        height : 80};
-    levels[1][16] = {cx : g_canvas.width/2 -193 ,
-        cy : g_canvas.height-53,
-        width : 24,
-        height : 60};
-    levels[1][17] = {cx : g_canvas.width/2 -216 ,
-        cy : g_canvas.height-42,
-        width : 24,
-        height : 43};
-    levels[1][18] = {cx : g_canvas.width/2 -239 ,
-        cy : g_canvas.height-32,
-        width : 24,
-        height : 20};
-    levels[1][19] = {cx : g_canvas.width/2 + 118,
-        cy : g_canvas.height-74,
-        width : 87,
-        height : 100};
-    levels[1][20] = {cx : g_canvas.width/2 +174 ,
-        cy : g_canvas.height-65,
-        width : 24,
-        height : 80};
-    levels[1][21] = {cx : g_canvas.width/2 +196 ,
-        cy : g_canvas.height-53,
-        width : 24,
-        height : 60};
-    levels[1][22] = {cx : g_canvas.width/2 +219 ,
-        cy : g_canvas.height-42,
-        width : 24,
-        height : 43};
-
-        levels[1][23] = {cx : g_canvas.width/2 +242 ,
-        cy : g_canvas.height-32,
-        width : 24,
-        height : 20};
-
-        levels[1][24] = {cx : g_canvas.width/2 + 7,
-        cy : g_canvas.height/2 + 16 ,
-        width : 223,
-        height : 16,
-        friction: 0.05};*/
-
+    this._levels[level] = [];
     
-
-    //mjög plássfrekur kóði - hugsanlega hlaða upplýsingum or database/JSON/xml
-    
-    
-    //console.log(Grid.getGrid()[0].cx);
-
-    var i = 0;
-    while(i < this._levels[level].length)
+    for(var i = 0; i<maps.levels[level-1].blocks.length; i++)
     {
-        /*this.generateBlock({
-            cx : levels[level][i].cx,
-            cy : levels[level][i].cy,
-            width : levels[level][i].width,
-            height : levels[level][i].height
-        });*/
-        this.generateHitboxes(this._levels[level][i]);
-        i++;
+        //console.log(i);
+        this._levels[level][i] = {
+        x : maps.levels[level-1].blocks[i].x,
+        y : maps.levels[level-1].blocks[i].y,
+        endx : maps.levels[level-1].blocks[i].endx,
+        endy : maps.levels[level-1].blocks[i].endy,
+        width : maps.levels[level-1].blocks[i].width,
+        height : maps.levels[level-1].blocks[i].height};
+    }
+
+
+    for(var i = 0; i<this._levels[level].length; i++)
+    {
+        this.generateObjects(this._levels[level][i]);
     }
 
 },
@@ -526,11 +235,11 @@ haltShips: function() {
 toggleRocks: function() {
     this._bShowRocks = !this._bShowRocks;
 },*/
-generateHitboxes: function(block) {
+generateObjects: function(block) {
 
     for(var i = block.x; i < block.endx; i++) {
         for(var n = block.y; n < block.endy; n++) {
-            console.log(i*block.width);
+            //console.log(i*block.width);
             this.generateBlock({
                 cx : i * block.width - block.width/2 + 1,
                 cy : n * block.height - block.height/2 + 1,

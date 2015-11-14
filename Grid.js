@@ -20,17 +20,15 @@ Grid.prototype.BuildGrid = function(){
 		this.grid[c] = []
 		for(r = 0; r< this.rows; r++){
 			this.grid[c][r] = 
-			{	x : (this.startingX +((this.width / this.rows) * r)) , 
-				y : (this.startingY +((this.height / this.collumns) * c)),
+			{	cx : (this.startingX +((this.width / this.rows) * r)) , 
+				cy : (this.startingY +((this.height / this.collumns) * c)),
 				life : this.collumns - c
 			};
 		}
 	}
 };
 
-Grid.prototype.getGrid = function(){
-	return this.grid;
-}
+
 /*
 // removes a brick from the brick field
 Bricks.prototype.remove = function(c,r){
@@ -63,7 +61,7 @@ Grid.prototype.render = function(ctx){
 			ctx.beginPath();
 			ctx.strokeStyle = "red";
 			//ctx.fillStyle = this.color[this.brick[c][r].life -1];
-			ctx.strokeRect(this.grid[c][r].x,this.grid[c][r].y,this.gridwidth,this.gridheight);
+			ctx.strokeRect(this.grid[c][r].cx,this.grid[c][r].cy,this.gridwidth,this.gridheight);
 			ctx.closePath();
 			ctx.restore();
 

@@ -42,19 +42,6 @@ var g_ctx = g_canvas.getContext("2d");
 */
 
 
-// ====================
-// CREATE INITIAL SHIPS
-// ====================
-
-/*function createInitialShips() {
-
-    entityManager.generateShip({
-        cx : 200,
-        cy : 200
-    });
-    
-}*/
-
 // =============
 // GATHER INPUTS
 // =============
@@ -221,8 +208,9 @@ function preloadDone() {
     g_sprites.bullet = new Sprite(g_images.ship);
     g_sprites.bullet.scale = 0.25;
 
-    entityManager.init();
     spatialManager.init();
+    entityManager.init();
+
     //createInitialShips();
 
     main.init();

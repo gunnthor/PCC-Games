@@ -53,7 +53,7 @@ getNewSpatialID : function() {
 
 },
 
-init : function() {
+init: function() {
 
     this._grid =  new Grid({
         width : g_canvas.width,
@@ -65,7 +65,15 @@ init : function() {
         startingY : 0
 
     });
+
+    //console.log(this._grid.grid[0][0].cx);
 },
+
+getGrid : function() {
+
+    return this._grid;
+},
+
 
 
 // BREYTA AÐEINS
@@ -200,7 +208,7 @@ findEntityInRange: function(posX, posY, width, height, colEntity) {
         // Collision with the Sides of a entity
 
         // Check for y coords
-        if(bottom > entTop &&
+        if(bottom - 1 > entTop &&
             top < entBottom) {
             
             // Check for x coords on left collision
@@ -223,6 +231,7 @@ findEntityInRange: function(posX, posY, width, height, colEntity) {
                 if(Math.abs(colEntity.cx - colEntity.prevCx) <= colEntity.velXLimit*2) {
                     colEntity.cx = entity.cx + entity.width/2 + colEntity.width/2;
                     colEntity.velX = 0;
+                    //console.log(bottom, entTop);
                     _hitentities.push(colEntity);
                 }
             }
