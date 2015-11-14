@@ -185,13 +185,15 @@ Kall.prototype.update = function(du) {
             var mostFriction = 1;
 
             //Skoða alla hluti sem ég er að snerta, og vel hlutinn sem er með mestann núning til að ákvarða næsta hraða
-           /*for(var i = 0; i<hitEntity.length; i++)
-            {
+           for(var i = 0; i<hitEntity.length; i++)
+           {
+
+                //console.log(hitEntity.friction);
                 if(hitEntity.hasOwnProperty("friction")) mostFriction = hitEntity.friction;
 
-            }
+           }
 
-            this.velX *= mostFriction;*/
+            this.velX *= mostFriction;
 
         }
         //this.velX *= 0.7; //0.7 á að vera block.friction

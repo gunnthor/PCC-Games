@@ -241,8 +241,8 @@ generateObjects: function(block) {
         for(var n = block.y; n < block.endy; n++) {
             //console.log(i*block.width);
             this.generateBlock({
-                cx : i * block.width - block.width/2 + 1,
-                cy : n * block.height - block.height/2 + 1,
+                cx : i * block.width - block.width/2,
+                cy : n * block.height - block.height/2,
                 width : block.width,
                 height : block.height
             });

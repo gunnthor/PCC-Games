@@ -63,7 +63,6 @@ init: function() {
         collumns : 32,
         startingX : 0,
         startingY : 0
-
     });
 
     //console.log(this._grid.grid[0][0].cx);
@@ -173,8 +172,8 @@ findEntityInRange: function(posX, posY, width, height, colEntity) {
 
         // Check for x coords
 
-        if(right > entLeft &&
-            left < entRight) {
+        if(right - 1 > entLeft &&
+            left + 1 < entRight) {
             
             // Check for y coords on top collision
             if(prevBottom <= entTop &&

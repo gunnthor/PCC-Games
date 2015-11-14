@@ -4,6 +4,7 @@ function Grid(descr){
 	for (var property in descr) {
         this[property] = descr[property];
     }
+    //console.log("grid made");
 	this.gridwidth = (this.width / this.rows) - this.padding;
 	this.gridheight = (this.height / this.collumns) - this.padding; 
 	this.grid = [];

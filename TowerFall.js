@@ -153,7 +153,7 @@ function renderSimulation(ctx) {
 
     levelManager.render(ctx);
     entityManager.render(ctx);
-    //g_bricks.render(ctx);
+    //spatialManager._grid.render(ctx);
 
     if (g_renderSpatialDebug) spatialManager.render(ctx);
 }
