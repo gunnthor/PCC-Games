@@ -2,9 +2,10 @@
 
 "use strict";
 
-Audio.prototype.asyncLoad = function(src, asyncCallback) {
+Audio.prototype.asyncLoad2 = function(src, asyncCallback) {
 
-	this.onload = asyncCallback;
+    this.addEventListener('canplaythrough', asyncCallback, false);
+	//this.onload = asyncCallback;
     this.onerror = asyncCallback;
 
     console.log("requesting audio src of ", src);
@@ -78,7 +79,7 @@ function audioPreload(requiredAudio,
             currentAudio = new Audio();
             currentAudio.name = currentName;
 
-            currentAudio.asyncLoad(requiredAudio[currentName], preloadHandler);
+            currentAudio.asyncLoad2(requiredAudio[currentName], preloadHandler);
         }
     }
 }

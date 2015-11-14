@@ -190,14 +190,15 @@ function requestPreloads() {
     }
 
     imagesPreload(requiredImages, g_images, preloadDone);
-    audioPreload(requiredAudio, g_audio, preloadDone)
+    audioPreload(requiredAudio, g_sounds, preloadDone)
 }
 
 var g_sprites = {};
+var g_sounds = {};
 
 function preloadDone() {
 
-    g_audio.pistolSound = new Sound({audio : g_audio.pistolSound})
+    g_sounds.pistolSound = new Sound({audio : g_audio.pistolSound})
     g_sprites.backgroundLVL1 = new Sprite({image :g_images.backgroundLVL1});
 
     g_sprites.player1  = new Sprite({

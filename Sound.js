@@ -11,6 +11,7 @@ function Sound(descr) {
 };
 
 Sound.prototype.playSound = function() {
-	this.play();
+	console.log(this.audio);
+	this.audio.play();
 };
 

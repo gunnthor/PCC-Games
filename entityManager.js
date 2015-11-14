@@ -116,7 +116,7 @@ init: function() {
         health :    100,
         gunType:    "pistol",
         sprite : g_sprites.player1,
-        audio  : g_audio.pistolSound
+        audio  : g_sounds.pistolSound
     });
 
     this.generateKall({
@@ -135,7 +135,7 @@ init: function() {
         health :    100,
         gunType:    "pistol", 
         sprite : g_sprites.player2,
-        audio  : g_audio.pistolSound
+        audio  : g_sounds.pistolSound
     });
     
     /*
