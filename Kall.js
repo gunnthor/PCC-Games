@@ -26,6 +26,8 @@ Kall.prototype.KEY_WEPS;
 Kall.prototype.isShooting = false;
 Kall.prototype.shootingTimeNomials = 0;
 Kall.prototype.isRunning = false;
+Kall.prototype.pistolNomials = 0;
+Kall.prototype.shotgunNomials = 0;
 
 Kall.prototype.IS_SLOWING_DOWN = false;
 Kall.prototype.IN_AIR = true;
@@ -48,8 +50,6 @@ Kall.prototype.height = 50;
 Kall.prototype.maybeFireBullet = function () {
 
     if (eatKey(this.KEY_FIRE)) {
-        this.isShooting = true;
-        this.shootingTimeNomials = SECS_TO_NOMINALS/4;
     
         if(this.direction === "right") {
             var bulletX = this.cx + this.width/3*2;
@@ -63,10 +63,23 @@ Kall.prototype.maybeFireBullet = function () {
             var bulletXVel = -7;
         }
 
-        entityManager.fireBullet(
-           bulletX, bulletY, bulletXVel, this.gunType);
+        if (this.gunType === "shotgun" && this.shotgunNomials <= 0){
 
-        if(this.gunType === "shotgun") this.recoil();
+        this.isShooting = true;
+        this.shootingTimeNomials = SECS_TO_NOMINALS/4;
+            this.shotgunNomials = SECS_TO_NOMINALS;
+            entityManager.fireBullet(
+           bulletX, bulletY, bulletXVel, this.gunType);
+            this.recoil();
+        }
+        else if(this.gunType === "normal" && this.pistolNomials <= 0){
+            
+        this.isShooting = true;
+        this.shootingTimeNomials = SECS_TO_NOMINALS/4;
+            this.pistolNomials = SECS_TO_NOMINALS;
+            entityManager.fireBullet(
+           bulletX, bulletY, bulletXVel, this.gunType);
+        }
            
     }
     
@@ -207,6 +220,8 @@ Kall.prototype.update = function(du) {
     this.isRunning = false;
     this.IN_AIR = true;
     this.shootingTimeNomials -= du;
+    this.pistolNomials -= du;
+    this.shotgunNomials -=du;
     if (this.shootingTimeNomials <= 0)
     {
         this.isShooting = false;
