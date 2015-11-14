@@ -166,6 +166,31 @@ Sprite.prototype.updateFrames = function(){
             this.spriteX -= this.frameWidth;
         }
 };
+Sprite.prototype.drawWrappedAnimationdAt = function (ctx, cx, cy, dirn) {
+    
+    // Get "screen width"
+    var sw = g_canvas.width;
+    
+    // Draw primary instance
+    this.drawWrappedVerticalAnimationAt(ctx, cx, cy, dirn);
+    
+    // Left and Right wraps
+    this.drawWrappedVerticalAnimationAt(ctx, cx - sw, cy, dirn);
+    this.drawWrappedVerticalAnimationAt(ctx, cx + sw, cy, dirn);
+};
+
+Sprite.prototype.drawWrappedVerticalAnimationAt = function (ctx, cx, cy, dirn) {
+
+    // Get "screen height"
+    var sh = g_canvas.height;
+    
+    // Draw primary instance
+    this.drawAnimationAt(ctx, cx, cy, dirn);
+    
+    // Top and Bottom wraps
+    this.drawAnimationAt(ctx, cx, cy - sh, dirn);
+    this.drawAnimationAt(ctx, cx, cy + sh, dirn);
+};
 Sprite.prototype.drawAnimationAt = function (ctx, x, y, dirn) {
     
     //ctx.strokeStyle="#FF0000";

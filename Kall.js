@@ -235,7 +235,7 @@ Kall.prototype.update = function(du) {
 };
 
 Kall.prototype.render = function(ctx) {
-    this.sprite.drawAnimationAt(ctx,this.cx-this.width/2,this.cy-this.height/2,this.direction);
+    this.sprite.drawWrappedAnimationdAt(ctx,this.cx-this.width/2,this.cy-this.height/2,this.direction);
 	/*oldStyle = ctx.fillStyle;
     ctx.fillStyle = this.color;
     ctx.fillRect(this.cx-this.width/2, this.cy-this.height/2, this.width, this.height);
