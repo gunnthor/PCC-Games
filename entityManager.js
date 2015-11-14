@@ -116,7 +116,7 @@ init: function() {
         health :    100,
         gunType:    "pistol",
         sprite : g_sprites.player1,
-        audio  : g_sounds.pistolSound
+        audio  : g_sounds.pistolSound2
     });
 
     this.generateKall({

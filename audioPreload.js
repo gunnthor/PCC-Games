@@ -5,11 +5,13 @@
 Audio.prototype.asyncLoad2 = function(src, asyncCallback) {
 
     this.addEventListener('canplaythrough', asyncCallback, false);
+    //this.oncanplaythrough = asyncCallback;
 	//this.onload = asyncCallback;
     this.onerror = asyncCallback;
 
     console.log("requesting audio src of ", src);
     this.src = src;
+    console.log("this.src : " + this.src + "src:" + src);
 }
 
 
@@ -26,7 +28,7 @@ function audioPreload(requiredAudio,
     // Count our `requiredAudio` by using `Object.keys` to get all 
     // "*OWN* enumerable properties" i.e. doesn't traverse the prototype chain
     numAudioRequired = Object.keys(requiredAudio).length;
-
+    console.log("NUM AUDIO REQUIRED?" + numAudioRequired);
     // A handler which will be called when our required audio are finally
     // loaded (or when the fail to load).
     //
@@ -35,7 +37,7 @@ function audioPreload(requiredAudio,
     //
     preloadHandler = function () {
 
-        console.log("preloadHandler called with this=", this);
+        console.log("(audio)preloadHandler called with this=", this);
         loadedAudio[this.name] = this;
         /*
         if (0 === this.width) {
@@ -78,7 +80,7 @@ function audioPreload(requiredAudio,
             console.log("preloading audio", currentName);
             currentAudio = new Audio();
             currentAudio.name = currentName;
-
+            console.log("CURRENTNAME = " + currentName);
             currentAudio.asyncLoad2(requiredAudio[currentName], preloadHandler);
         }
     }
