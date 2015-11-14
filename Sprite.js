@@ -74,8 +74,6 @@ Sprite.prototype.updateAnimations = function(string){
         this.spriteX = this.startX;
         this.spriteY = this.startY;
         this.timeperframe = (SECS_TO_NOMINALS/this.jumpingFrames);
-
-
     }
     if(string === "running"){
         this.time = 0;
@@ -101,7 +99,7 @@ Sprite.prototype.updateAnimations = function(string){
         this.startY = this.jumpShootingEndY;
         this.spriteX = this.startX;
         this.spriteY = this.startY;
-        this.timeperframe = (SECS_TO_NOMINALS/this.jumpShootingFrames)/2;
+        this.timeperframe = SECS_TO_NOMINALS/this.jumpShootingFrames;
     }
     if(string === "shooting"){
         this.time = 0;
@@ -114,7 +112,7 @@ Sprite.prototype.updateAnimations = function(string){
         this.startY = this.shootingEndY;
         this.spriteX = this.startX;
         this.spriteY = this.startY;
-        this.timeperframe = (SECS_TO_NOMINALS/this.shootingFrames)/2;
+        this.timeperframe = SECS_TO_NOMINALS/this.shootingFrames;
     }
     if(string === "shot"){
         this.time = 0;
@@ -127,7 +125,7 @@ Sprite.prototype.updateAnimations = function(string){
         this.startY = this.shotEndY;
         this.spriteX = this.startX;
         this.spriteY = this.startY;
-        this.timeperframe = (SECS_TO_NOMINALS/this.shotFrames)/2;
+        this.timeperframe = SECS_TO_NOMINALS/this.shotFrames;
     }
     if(string === "dead"){
         this.time = 0;
@@ -140,7 +138,7 @@ Sprite.prototype.updateAnimations = function(string){
         this.startY = this.deadEndY;
         this.spriteX = this.startX;
         this.spriteY = this.startY;
-        this.timeperframe = (SECS_TO_NOMINALS/this.deadFrames)/2;
+        this.timeperframe = SECS_TO_NOMINALS/this.deadFrames;
     }
     if(string === "runShooting"){
         this.time = 0;
@@ -153,7 +151,7 @@ Sprite.prototype.updateAnimations = function(string){
         this.startY = this.runShootingEndY;
         this.spriteX = this.startX;
         this.spriteY = this.startY;
-        this.timeperframe = (SECS_TO_NOMINALS/this.runShootingFrames)/2;
+        this.timeperframe = SECS_TO_NOMINALS/this.runShootingFrames;
     }
 
 };
