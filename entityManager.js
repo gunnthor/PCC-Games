@@ -103,26 +103,36 @@ init: function() {
     this.generateKall({
         cx      :   g_canvas.width/2 -450,
         cy      :   300,
-        color   :   "blue",
+        color   :   "red",
+        playerID:   1, 
+        scorePosX:  10,
+        scorePosY:  20,
         direction:  "right",
         KEY_LEFT:   'A'.charCodeAt(0),
         KEY_RIGHT:  'D'.charCodeAt(0),
         KEY_JUMP:   'W'.charCodeAt(0),
         KEY_FIRE:   'S'.charCodeAt(0),
-        gunType:    "shotgun",
+        KEY_WEPS:   'E'.charCodeAt(0),
+        health :    100,
+        gunType:    "pistol",
         sprite : g_sprites.player1
     });
 
     this.generateKall({
         cx      :   g_canvas.width/2 +450,
         cy      :   300,
-        color   :   "red",
+        color   :   "green",
+        playerID:   2,
+        scorePosX:  g_canvas.width  - 150,
+        scorePosY:  20,
         direction:  "left",
         KEY_LEFT:   'J'.charCodeAt(0),
         KEY_RIGHT:  'L'.charCodeAt(0),
         KEY_JUMP:   'I'.charCodeAt(0),
         KEY_FIRE:   'K'.charCodeAt(0),
-        gunType:    "normal", 
+        KEY_WEPS:   'O'.charCodeAt(0),
+        health :    100,
+        gunType:    "pistol", 
         sprite : g_sprites.player2
     });
     
@@ -329,7 +339,7 @@ generateBlock : function(descr) {
 },
 
 fireBullet : function(cx, cy, velX, gunType) {
-    if(gunType === "normal") {
+    if(gunType === "pistol") {
         this._bullets.push(new Bullet({
             cx   : cx,
             cy   : cy,

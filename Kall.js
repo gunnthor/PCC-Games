@@ -39,7 +39,7 @@ Kall.prototype.accRate = 1;
 
 Kall.prototype.numSubSteps = 1;
 
-Kall.prototype.weaponList = ["normal","shotgun"];
+Kall.prototype.weaponList = ["pistol"];
 Kall.prototype.gunSlot = 0;
 
 Kall.prototype.width = 50;
@@ -165,16 +165,18 @@ Kall.prototype.computeGravity = function () {
 Kall.prototype.jump = function () {
     this.velY -= 8;
     this.IN_AIR = true;
-
+    this.pickupGuns("shotgun");
 };
 
 Kall.prototype.switchGuns = function () {
-
     this.gunSlot++;
     if(this.gunSlot >= this.weaponList.length) {
         this.gunSlot = 0;
     }
     return this.gunType = this.weaponList[this.gunSlot];
+};
+Kall.prototype.pickupGuns = function(weapon) {
+    this.weaponList.push(weapon);
 };
 
 
@@ -237,5 +239,11 @@ Kall.prototype.render = function(ctx) {
     ctx.fillRect(this.cx-this.width/2, this.cy-this.height/2, this.width, this.height);
     ctx.strokeRect(this.cx-this.width/2, this.cy-this.height/2, this.width, this.height);
     ctx.fillStyle = oldStyle;*/
-
+    var oldStyle = ctx.fillStyle;
+    ctx.fillStyle = this.color;
+    ctx.font="20px Georgia, bold";
+    ctx.fillText("Player "+ this.playerID + ": "+ this.weaponList[this.gunSlot],this.scorePosX,this.scorePosY);
+    ctx.fillText("Health: " + this.health + "%",this.scorePosX,this.scorePosY+25);
+    ctx.fillStyle = oldStyle;
+    
 };
