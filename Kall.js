@@ -71,7 +71,7 @@ Kall.prototype.maybeFireBullet = function () {
            bulletX, bulletY, bulletXVel, this.gunType);
             this.recoil();
         }
-        else if(this.gunType === "normal" && this.pistolNomials <= 0){
+        else if(this.gunType === "pistol" && this.pistolNomials <= 0){
             this.isShooting = true;
             this.shootingTimeNomials = SECS_TO_NOMINALS/4;
             this.pistolNomials = SECS_TO_NOMINALS/2;
