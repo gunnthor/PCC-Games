@@ -193,40 +193,108 @@ function preloadDone() {
     g_sprites.backgroundLVL1 = new Sprite({image :g_images.backgroundLVL1});
     g_sprites.player1  = new Sprite({
         image : g_images.player1,
+        
         idleEndX : 49*2,
         idleEndY : 0,
-        idleStartX : 0,
-        idleStartY : 0,
         idleFrameWidth : 49,
         idleFrameHeight : 49,
         idleFrames: 3,
+        
         runningEndX : 444.5-100,
         runningEndY : 49,
-        runningStartX : -5.5,
-        runningStartY : 49,
         runningFrameWidth : 50,
         runningFrameHeight : 49,
-        runningFrames : 8
+        runningFrames : 8,
+        
+        jumpingFrames : 1,
+        jumpingEndX : 198,
+        jumpingEndY : 228,
+        jumpingFrameWidth : 49,
+        jumpingFrameHeight : 49,
+
+        jumpShootingEndX : 0,
+        jumpShootingEndY : 387,
+        jumpShootingFrameWidth : 49,
+        jumpShootingFrameHeight : 49,
+        jumpShootingFrames : 1,
+        
+        shootingEndX : 0,
+        shootingEndY : 110,
+        shootingFrameWidth : 49,
+        shootingFrameHeight : 49,
+        shootingFrames: 1,
+        
+        shotEndX : 49*6,
+        shotEndY : 327,
+        shotFrameWidth : 49,
+        shotFrameHeight : 49,
+        shotFrames : 1,
+
+        deadEndX : 49*7,
+        deadEndY : 313,
+        deadFrameWidth : 60,
+        deadFrameHeight : 49,
+        deadFrames : 1/*,
+
+        runShootingEndX : -5.5,
+        runShootingEndY : 49,
+        runShootingFrameWidth : 49,
+        runShootingFrameHeight : 49,
+        runShootingFrames: 1*/
     });
     g_sprites.player2  = new Sprite({
         image : g_images.player1,
+        
         idleEndX : 49*2,
         idleEndY : 0,
-        idleStartX : 0,
-        idleStartY : 0,
         idleFrameWidth : 49,
         idleFrameHeight : 49,
         idleFrames: 3,
+        
         runningEndX : 444.5-100,
         runningEndY : 49,
-        runningStartX : -5.5,
-        runningStartY : 49,
         runningFrameWidth : 50,
         runningFrameHeight : 49,
-        runningFrames : 8
+        runningFrames : 8,
+        
+        jumpingFrames : 1,
+        jumpingEndX : 198,
+        jumpingEndY : 228,
+        jumpingFrameWidth : 49,
+        jumpingFrameHeight : 49,
+        
+        jumpShootingEndX : 0,
+        jumpShootingEndY : 387,
+        jumpShootingFrameWidth : 49,
+        jumpShootingFrameHeight : 49,
+        jumpShootingFrames : 1,
+        
+        shootingEndX : 0,
+        shootingEndY : 110,
+        shootingFrameWidth : 49,
+        shootingFrameHeight : 49,
+        shootingFrames: 1,
+        
+        shotEndX : 49*6,
+        shotEndY : 327,
+        shotFrameWidth : 49,
+        shotFrameHeight : 49,
+        shotFrames : 1,
+
+        deadEndX : 49*7,
+        deadEndY : 313,
+        deadFrameWidth : 60,
+        deadFrameHeight : 49,
+        deadFrames : 1/*,
+
+
+        runShootingEndX : -5.5,
+        runShootingEndY : 49,
+        runShootingFrameWidth : 49,
+        runShootingFrameHeight : 49,
+        runShootingFrames: 1*/
     });
     entityManager.init();
-    //createInitialShips();
 
     main.init();
 }
