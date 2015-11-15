@@ -64,6 +64,7 @@ Kall.prototype.maybeFireBullet = function () {
         }
 
         if (this.gunType === "shotgun" && this.shotgunNomials <= 0){
+            this.audio.playSound();
             this.isShooting = true;
             this.shootingTimeNomials = SECS_TO_NOMINALS/4;
             this.shotgunNomials = SECS_TO_NOMINALS/2;
@@ -74,7 +75,7 @@ Kall.prototype.maybeFireBullet = function () {
             this.audio.playSound();
             this.isShooting = true;
             this.shootingTimeNomials = SECS_TO_NOMINALS/4;
-            this.pistolNomials = SECS_TO_NOMINALS/2;
+            this.pistolNomials = SECS_TO_NOMINALS;
             entityManager.fireBullet(
            bulletX, bulletY, bulletXVel, this.gunType);
         } 
@@ -165,13 +166,26 @@ Kall.prototype.jump = function () {
     this.IN_AIR = true;
     if (this.gunSlot < 2){
         this.pickupGuns("shotgun");
-    }
+    }   
 };
 
 Kall.prototype.switchGuns = function () {
     this.gunSlot++;
     if(this.gunSlot >= this.weaponList.length) {
         this.gunSlot = 0;
+    }
+    if(this.weaponList[this.gunSlot] === "pistol") {
+        if(this.playerID === 1) {
+            this.audio = g_sounds.pistolSound;
+        } else {
+            this.audio = g_sounds.pistolSound2;
+        }
+    } else if(this.weaponList[this.gunSlot] === "shotgun") {
+        if(this.playerId === 1) {
+            this.audio = g_sounds.shotgunSound;
+        } else {
+            this.audio = g_sounds.shotgunSound2;
+        }
     }
     return this.gunType = this.weaponList[this.gunSlot];
 };

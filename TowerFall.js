@@ -186,9 +186,10 @@ function requestPreloads() {
     };
 
     var requiredAudio = {
-        pistolSound     : "sounds/shotgunSound.ogg",   
-        pistolSound2     : "sounds/shotgunSound.ogg"
-        //shotgunSound    :   "sounds/shotgunSound.ogg"
+        pistolSound     : "sounds/pistolSound.ogg",   
+        pistolSound2     : "sounds/pistolSound.ogg",
+        shotgunSound    :  "sounds/shotgunSound.ogg",
+        shotgunSound2   :  "sounds/shotgunSound.ogg"
     };
 
     imagesPreload(requiredImages, g_images, preloadDone);
@@ -201,14 +202,14 @@ var g_sounds = {};
 function preloadDone() {
 
     g_sounds.pistolSound = new Sound({audio : g_audio.pistolSound});
-
     //g_sounds.pistolSound.audio.play();
     g_sounds.pistolSound.audio.pause();
     g_sounds.pistolSound2 = new Sound({audio : g_audio.pistolSound2});
+    g_sounds.shotgunSound = new Sound({audio : g_audio.shotgunSound});
+    g_sounds.shotgunSound2 = new Sound({audio : g_audio.shotgunSound2});
+    
 
     g_sprites.backgroundLVL1 = new Sprite({image :g_images.backgroundLVL1});
-
-
     g_sprites.player1  = new Sprite({
         image : g_images.player1,
         
