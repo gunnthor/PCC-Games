@@ -66,8 +66,8 @@ Entity.prototype.getPos = function () {
     return 0;
 };*/
 Entity.prototype.getInfo = function (){
-    return {cx : this.cx, cy : this.cy, width : this.width, height : this.height}
-}
+    return {cx : this.cx, cy : this.cy, width : this.width, height : this.height, friction: this.friction};
+};
 
 Entity.prototype.getSpatialID = function () {
     return this._spatialID;

@@ -228,10 +228,35 @@ Kall.prototype.update = function(du) {
 
     }
 
-    if(!this.IN_AIR) {
+    if(!this.IN_AIR) 
+    {
 
-        if(!keys[this.KEY_LEFT] && !keys[this.KEY_RIGHT]) this.velX *= 0.7; //0.7 á að vera block.friction
+        if(!keys[this.KEY_LEFT] && !keys[this.KEY_RIGHT] && hitEntity != undefined)
+        {
+
+            var mostFriction = 1;
+
+            //Skoða alla hluti sem ég er að snerta, og vel hlutinn sem er með mestann núning til að ákvarða næsta hraða
+           for(var i = 0; i<hitEntity.length; i++)
+           {
+
+                //console.log(hitEntity[i].friction);
+                
+                if(typeof hitEntity[i].friction != "undefined")
+                {
+                    //console.log(hitEntity[i].friction);
+                    mostFriction = hitEntity[i].friction;
+                    //console.log("mostFriction : " + mostFriction);
+
+                } 
+           }
+            
+            this.velX *= mostFriction;
+        }
+            
+
     }
+    
 
     this.sprite.update(du,this.isRunning,this.IN_AIR,this.isShooting);
 

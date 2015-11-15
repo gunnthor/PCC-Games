@@ -42,19 +42,6 @@ var g_ctx = g_canvas.getContext("2d");
 */
 
 
-// ====================
-// CREATE INITIAL SHIPS
-// ====================
-
-/*function createInitialShips() {
-
-    entityManager.generateShip({
-        cx : 200,
-        cy : 200
-    });
-    
-}*/
-
 // =============
 // GATHER INPUTS
 // =============
@@ -171,6 +158,7 @@ function renderSimulation(ctx) {
 
     levelManager.render(ctx);
     entityManager.render(ctx);
+    //spatialManager._grid.render(ctx);
 
     if (g_renderSpatialDebug) spatialManager.render(ctx);
 }
@@ -187,7 +175,7 @@ function requestPreloads() {
 
     var requiredImages = {
         player1  : "Player1.png",
-        backgroundLVL1 : "backgrounds/backgroundLVL1.png"
+        brick_blue : "bricks/brick_background_1.png"        
     };
 
     var requiredAudio = {
@@ -212,9 +200,11 @@ function preloadDone() {
     g_sounds.pistolSound2 = new Sound({audio : g_audio.pistolSound2});
     g_sounds.shotgunSound = new Sound({audio : g_audio.shotgunSound});
     g_sounds.shotgunSound2 = new Sound({audio : g_audio.shotgunSound2});
-    
 
-    g_sprites.backgroundLVL1 = new Sprite({image :g_images.backgroundLVL1});
+    g_sprites.brick_blue = new Sprite({
+        image : g_images.brick_blue
+    });
+    
     g_sprites.player1  = new Sprite({
         image : g_images.player1,
         
@@ -318,6 +308,7 @@ function preloadDone() {
         runShootingFrameHeight : 49,
         runShootingFrames: 1*/
     });
+    spatialManager.init();
     entityManager.init();
 
     main.init();

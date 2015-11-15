@@ -3,6 +3,7 @@ function Block(descr) {
 
     // Common inherited setup logic from Entity
     this.setup(descr);
+    this.sprite = g_sprites.brick_blue;
 
     //this.rememberResets();
 };
@@ -25,6 +26,8 @@ Block.prototype.update = function(du) {
 };
 
 Block.prototype.render = function(ctx) {	
+
+	this.sprite.drawAt(ctx, this.cx-this.width/2, this.cy-this.height/2);
 
 	/*
 	ctx.save();

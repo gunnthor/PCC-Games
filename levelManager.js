@@ -35,8 +35,10 @@ var levelManager = {
 	},
 
 	render : function(ctx) {
+		ctx.fillStyle = "Black";
+		ctx.fillRect(0,0,1024,576);
 		//ctx.drawImage(g_sprites.backgroundLVL1,0,0);
 		//g_sprites.backgroundLVL1.drawAt(ctx,0,0);
-		g_sprites.backgroundLVL1.drawAt(ctx,0,0);
+		
 	}
 }
