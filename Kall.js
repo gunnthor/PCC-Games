@@ -61,6 +61,7 @@ Kall.prototype.maybeFireBullet = function () {
 
         if(this.gunType === "shotgun") {
             this.recoil();
+            this.audio.playSound();
         } else if( this.gunType === "pistol") {
             this.audio.playSound();
         }
