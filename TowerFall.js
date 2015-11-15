@@ -46,14 +46,6 @@ var g_ctx = g_canvas.getContext("2d");
 // CREATE INITIAL SHIPS
 // ====================
 
-/*function createInitialShips() {
-
-    entityManager.generateShip({
-        cx : 200,
-        cy : 200
-    });
-    
-}*/
 
 // =============
 // GATHER INPUTS
@@ -166,6 +158,7 @@ function renderSimulation(ctx) {
 
     levelManager.render(ctx);
     entityManager.render(ctx);
+    
 
     if (g_renderSpatialDebug) spatialManager.render(ctx);
 }
@@ -198,6 +191,7 @@ var g_sprites = {};
 var g_sounds = {};
 
 function preloadDone() {
+
     console.log(g_audio.pistolSound);
     g_sounds.pistolSound = new Sound({audio : g_audio.pistolSound});
     console.log("PISTOLSOUND BLABLA" + g_audio.pistolSound);
@@ -311,6 +305,8 @@ function preloadDone() {
         runShootingFrameHeight : 49,
         runShootingFrames: 1*/
     });
+    
+    spatialManager.init();
     entityManager.init();
 
     main.init();

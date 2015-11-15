@@ -117,6 +117,7 @@ init: function() {
         gunType:    "pistol",
         sprite : g_sprites.player1,
         audio  : g_sounds.pistolSound2
+
     });
 
     this.generateKall({
@@ -136,6 +137,7 @@ init: function() {
         gunType:    "pistol", 
         sprite : g_sprites.player2,
         audio  : g_sounds.pistolSound
+
     });
     
     /*

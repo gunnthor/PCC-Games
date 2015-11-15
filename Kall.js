@@ -3,6 +3,7 @@ function Kall(descr) {
 
     // Common inherited setup logic from Entity
     this.setup(descr);
+        //this.sprite = g_sprites.player;
 
     //this.rememberResets();
 };
@@ -203,6 +204,7 @@ Kall.prototype.update = function(du) {
     this.maybeFireBullet();
     
     this.velLimit();
+    
 
     // Ef kallinn snertir eitthvað, þá verður hitEntity objecið sem að kallinn snerti
     var hitEntity = this.findHitEntity();
@@ -234,7 +236,9 @@ Kall.prototype.update = function(du) {
 };
 
 Kall.prototype.render = function(ctx) {
+
     this.sprite.drawWrappedAnimationdAt(ctx,this.cx-this.width/2,this.cy-this.height/2,this.direction);
+
 	/*oldStyle = ctx.fillStyle;
     ctx.fillStyle = this.color;
     ctx.fillRect(this.cx-this.width/2, this.cy-this.height/2, this.width, this.height);
@@ -247,4 +251,5 @@ Kall.prototype.render = function(ctx) {
     ctx.fillText("Health: " + this.health + "%",this.scorePosX,this.scorePosY+25);
     ctx.fillStyle = oldStyle;
     
+
 };
