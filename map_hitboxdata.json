@@ -1,0 +1,17 @@
+
+var MapHitBoxes =
+{ L1 : {
+
+	blocks :
+	[
+		{
+			cx : 1024/2 + 7,
+		 	cy : 576/2 + 16,
+		 	width : 223,
+		 	height : 16 
+		 	//type: block
+		}
+	]	
+
+	}	
+}
