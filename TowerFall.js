@@ -95,11 +95,14 @@ var g_allowMixedActions = true;
 var g_useGravity = false;
 var g_useAveVel = true;
 var g_renderSpatialDebug = false;
+var g_mute = false;
 
 var KEY_MIXED   = keyCode('M');;
 var KEY_GRAVITY = keyCode('G');
 var KEY_AVE_VEL = keyCode('V');
 var KEY_SPATIAL = keyCode('X');
+
+var KEY_MUTE = keyCode('B');
 
 var KEY_HALT  = keyCode('H');
 var KEY_RESET = keyCode('R');
@@ -123,6 +126,8 @@ function processDiagnostics() {
     */
 
     if (eatKey(KEY_SPATIAL)) g_renderSpatialDebug = !g_renderSpatialDebug;
+
+    if (eatKey(KEY_MUTE)) g_mute = !g_mute;
 
     /*if (eatKey(KEY_HALT)) entityManager.haltShips();
 

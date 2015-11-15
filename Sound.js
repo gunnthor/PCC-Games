@@ -11,8 +11,10 @@ function Sound(descr) {
 };
 
 Sound.prototype.playSound = function() {
-	console.log(this.audio);
-	this.audio.pause();
-	var currentSound = this.audio;
-	currentSound.play();
+	if(!g_mute) {
+		console.log(this.audio);
+		this.audio.pause();
+		var currentSound = this.audio;
+		currentSound.play();
+	}
 };
