@@ -273,12 +273,7 @@ Kall.prototype.update = function(du) {
 
 Kall.prototype.render = function(ctx) {
     this.sprite.drawWrappedAnimationdAt(ctx,this.cx-this.width/2,this.cy-this.height/2,this.direction);
-	/*oldStyle = ctx.fillStyle;
-    ctx.fillStyle = this.color;
-    ctx.fillRect(this.cx-this.width/2, this.cy-this.height/2, this.width, this.height);
-    ctx.strokeRect(this.cx-this.width/2, this.cy-this.height/2, this.width, this.height);
-    ctx.fillStyle = oldStyle;*/
-    var oldStyle = ctx.fillStyle;
+	var oldStyle = ctx.fillStyle;
     ctx.fillStyle = this.color;
     ctx.font="20px Georgia, bold";
     ctx.fillText("Player "+ this.playerID + ": "+ this.weaponList[this.gunSlot],this.scorePosX,this.scorePosY);
