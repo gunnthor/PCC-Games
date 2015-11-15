@@ -174,6 +174,7 @@ function requestPreloads() {
         ship2  : "https://notendur.hi.is/~pk/308G/images/ship_2.png",
         rock   : "https://notendur.hi.is/~pk/308G/images/rock.png",
         brick_blue : "bricks/brick_background_1.png"
+
     };
 
     imagesPreload(requiredImages, g_images, preloadDone);
@@ -183,8 +184,8 @@ var g_sprites = {};
 
 function preloadDone() {
     g_sprites.backgroundLVL1 = new Sprite({image :g_images.backgroundLVL1});
-    g_sprites.player  = new Sprite({
-        image : g_images.player,
+    g_sprites.player1  = new Sprite({
+        image : g_images.player1,
         idleEndX : 49*2,
         idleEndY : 0,
         idleStartX : 0,
@@ -201,6 +202,7 @@ function preloadDone() {
         runningFrames : 8
     });
 
+
     g_sprites.brick_blue = new Sprite({
         image : g_images.brick_blue
     });
@@ -209,6 +211,7 @@ function preloadDone() {
     g_sprites.bullet.scale = 0.25;
 
     spatialManager.init();
+
     entityManager.init();
 
     //createInitialShips();

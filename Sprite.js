@@ -23,7 +23,7 @@ function Sprite(descr) {
     //this.width = image.width;
     //this.height = image.height;
     this.scale = 1;
-    this.tick = 0;
+    this.time = 0;
     this.frame = 0;
     this.frames = this.runningFrames;
     this.frameWidth = this.runningFrameWidth;
@@ -34,7 +34,7 @@ function Sprite(descr) {
     //this.startY = this.runningStartY;
     this.spriteX = this.startX;
     this.spriteY = this.startY;
-    this.ticksperframe = 60/this.runningFrames;
+    this.timeperframe = (SECS_TO_NOMINALS/this.runningFrames)/2;
     /*this.frames = this.idleFrames
     this.frameWidth = this.idleFrameWidth;
     this.frameHeight = this.idleFrameHeight;
@@ -43,6 +43,12 @@ function Sprite(descr) {
     this.spriteX = this.startX;
     this.spriteY = this.startY;
     this.ticksperframe = 60/this.idleFrames;*/
+};
+Sprite.prototype.update = function (du,xVel,yVel){
+    this.time += du;
+    while (this.time > (this.frame + 1) * this.timeperframe){
+        this.updateFrames();
+    }
 };
 Sprite.prototype.updateAnimations = function(){
     /*this.frames = this.idleFrames
@@ -56,19 +62,15 @@ Sprite.prototype.updateAnimations = function(){
 
 };
 Sprite.prototype.updateFrames = function(){
-    this.tick++;
-    if (this.tick >= this.ticksperframe)
-    {
         this.frame = (this.frame + 1) % this.frames;
         if (this.frame === 0){
             this.spriteX = this.startX;
             this.spriteY = this.startY;
+            this.time = 0;
         }
         else{
             this.spriteX -= this.frameWidth;
         }
-        this.tick = 0;
-    }
 };
 Sprite.prototype.drawAnimationAt = function (ctx, x, y, dirn) {
     
@@ -86,7 +88,7 @@ Sprite.prototype.drawAnimationAt = function (ctx, x, y, dirn) {
         -x,y,this.frameWidth,this.frameHeight);
         ctx.restore();
     }
-    this.updateFrames();
+    //this.updateFrames();
 };
 Sprite.prototype.drawAt = function(ctx,x,y){
     ctx.drawImage(this.image,x,y);
