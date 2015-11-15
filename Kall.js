@@ -70,8 +70,7 @@ Kall.prototype.maybeFireBullet = function () {
             entityManager.fireBullet(
            bulletX, bulletY, bulletXVel, this.gunType);
             this.recoil();
-        }
-        else if(this.gunType === "pistol" && this.pistolNomials <= 0){
+        } else if(this.gunType === "pistol" && this.pistolNomials <= 0){
             this.audio.playSound();
             this.isShooting = true;
             this.shootingTimeNomials = SECS_TO_NOMINALS/4;
