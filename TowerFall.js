@@ -187,8 +187,8 @@ function requestPreloads() {
 
     var requiredAudio = {
         pistolSound     : "sounds/shotgunSound.ogg",   
-        pistolSound2     : "sounds/shotgunSound.ogg",
-        shotgunSound    :   "sounds/shotgunSound.ogg"
+        pistolSound2     : "sounds/shotgunSound.ogg"
+        //shotgunSound    :   "sounds/shotgunSound.ogg"
     };
 
     imagesPreload(requiredImages, g_images, preloadDone);
