@@ -20,7 +20,7 @@ var Menu = {
     },
     onhover : function (xPos,yPos){
         for (var p = 0; p < this._options.length; p++){
-            if ((this._options[p].y >= yPos && this._options[p].y <= yPos + 30) &&(this._options[p].x <= xPos && this._options[p].x >= xPos - 100)){
+            if ((this._options[p].y >= yPos && this._options[p].y < yPos + 30) &&(this._options[p].x <= xPos && this._options[p].x >= xPos - 100)){
                 this._options[p].font = "30px Georgia,bold"; 
             }
             else{
@@ -29,8 +29,29 @@ var Menu = {
         }
     },
     onclick : function (xPos,yPos){
-        g_menu = !g_menu;
+        for (var p = 0; p < this._options.length; p++){
+            if ((this._options[p].y >= yPos && this._options[p].y < yPos + 30) &&(this._options[p].x <= xPos && this._options[p].x >= xPos - 100)){
+                switch(this._options[p].text){
+                    case "Begin":
+                        g_menu = !g_menu;
+                        break;
+                    case "Sound":
+                        this.clearOptions();
+                        break;
+                    case "Map":
+                        break;
+                    case "Instructions":
+                        break;
+                    default : 
+                        break;
+                }
+            }
+        }
+        //g_menu = !g_menu;
 
+    },
+    clearOptions : function(){
+        this._options.splice(0,this._options.length);
     },
     generateOption : function(descr) {
     this._options.push((descr));
