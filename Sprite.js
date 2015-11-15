@@ -18,6 +18,7 @@ function Sprite(descr) {
     for (var property in descr) {
         this[property] = descr[property];
     }
+
     this.animationState = "running";
     this.time = 0;
     this.frame = 0;
@@ -177,7 +178,23 @@ Sprite.prototype.drawWrappedAnimationdAt = function (ctx, cx, cy, dirn) {
     // Left and Right wraps
     this.drawWrappedVerticalAnimationAt(ctx, cx - sw, cy, dirn);
     this.drawWrappedVerticalAnimationAt(ctx, cx + sw, cy, dirn);
+
 };
+Sprite.prototype.update = function (du,xVel,yVel){
+    this.time += du;
+    while (this.time > (this.frame + 1) * this.timeperframe){
+        this.updateFrames();
+    }
+};
+Sprite.prototype.updateAnimations = function(){
+    /*this.frames = this.idleFrames
+    this.frameWidth = this.idleFrameWidth;
+    this.frameHeight = this.idleFrameHeight;
+    this.startX = this.idleEndX;
+    this.startY = this.idleEndY;
+    this.spriteX = this.startX;
+    this.spriteY = this.startY;
+    this.ticksperframe = 60/this.idleFrames;*/
 
 Sprite.prototype.drawWrappedVerticalAnimationAt = function (ctx, cx, cy, dirn) {
 
@@ -190,6 +207,7 @@ Sprite.prototype.drawWrappedVerticalAnimationAt = function (ctx, cx, cy, dirn) {
     // Top and Bottom wraps
     this.drawAnimationAt(ctx, cx, cy - sh, dirn);
     this.drawAnimationAt(ctx, cx, cy + sh, dirn);
+
 };
 Sprite.prototype.drawAnimationAt = function (ctx, x, y, dirn) {
     
