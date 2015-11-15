@@ -88,6 +88,9 @@ function updateSimulation(du) {
     // Prevent perpetual firing!
     //eatKey(Ship.prototype.KEY_FIRE);
 }
+function updateMenu(du){
+
+}
 
 // GAME-SPECIFIC DIAGNOSTICS
 
@@ -95,6 +98,7 @@ var g_allowMixedActions = true;
 var g_useGravity = false;
 var g_useAveVel = true;
 var g_renderSpatialDebug = false;
+var g_menu = true;
 
 var KEY_MIXED   = keyCode('M');;
 var KEY_GRAVITY = keyCode('G');
@@ -161,6 +165,9 @@ function processDiagnostics() {
 
 
 // GAME-SPECIFIC RENDERING
+function renderMenu(ctx){
+    Menu.render(ctx);
+}
 
 function renderSimulation(ctx) {
 
@@ -295,6 +302,7 @@ function preloadDone() {
         runShootingFrames: 1*/
     });
     entityManager.init();
+    Menu.init();
 
     main.init();
 }

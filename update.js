@@ -17,8 +17,16 @@ var g_prevUpdateDu = null;
 //
 var g_isUpdateOdd = false;
 
+var KEY_CODE_ESC = 27;
+var KEY_MENU = KEY_CODE_ESC;
+
 
 function update(dt) {
+
+    if (eatKey(KEY_MENU)) {
+        console.log("pressed");
+        g_menu = !g_menu;
+    }
     
     // Get out if skipping (e.g. due to pause-mode)
     //
@@ -40,7 +48,8 @@ function update(dt) {
     //
     var du = (dt / NOMINAL_UPDATE_INTERVAL);
     
-    updateSimulation(du);
+    if(!g_menu)updateSimulation(du);
+    else updateMenu(du);
     
     g_prevUpdateDt = original_dt;
     g_prevUpdateDu = du;
