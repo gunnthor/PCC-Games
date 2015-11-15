@@ -72,15 +72,14 @@ Kall.prototype.maybeFireBullet = function () {
             this.recoil();
         }
         else if(this.gunType === "pistol" && this.pistolNomials <= 0){
+            this.audio.playSound();
             this.isShooting = true;
             this.shootingTimeNomials = SECS_TO_NOMINALS/4;
             this.pistolNomials = SECS_TO_NOMINALS/2;
             entityManager.fireBullet(
            bulletX, bulletY, bulletXVel, this.gunType);
-        }
-           
-    }
-    
+        } 
+    }    
 };
 
 Kall.prototype.recoil = function() {
