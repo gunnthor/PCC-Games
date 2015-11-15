@@ -54,5 +54,11 @@ var Menu = {
             y: g_canvas.height/2,
             font: "20px Georgia, bold"
         });
+        this.generateOption({
+            text: "Instructions",
+            x: g_canvas.width/2,
+            y: (g_canvas.height/2) + 30,
+            font: "20px Georgia, bold"
+        });
     }
 }
