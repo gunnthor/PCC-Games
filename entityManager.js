@@ -180,6 +180,9 @@ generateLevel : function(level) {
 
     
     this._levels[level] = [];
+
+    //console.log(maps.levels[level-1].blocks[0].friction);
+
     
     for(var i = 0; i<maps.levels[level-1].blocks.length; i++)
     {
@@ -191,7 +194,7 @@ generateLevel : function(level) {
         endy : maps.levels[level-1].blocks[i].endy,
         width : maps.levels[level-1].blocks[i].width,
         height : maps.levels[level-1].blocks[i].height,
-        friction : maps.levels[level-1].blocks[i].height};
+        friction : maps.levels[level-1].blocks[i].friction};
     }
 
 
@@ -237,6 +240,7 @@ toggleRocks: function() {
     this._bShowRocks = !this._bShowRocks;
 },*/
 generateObjects: function(block) {
+
 
     for(var i = block.x; i < block.endx; i++) {
         for(var n = block.y; n < block.endy; n++) {

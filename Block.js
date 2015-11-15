@@ -13,7 +13,7 @@ function Block(descr) {
 Block.prototype = new Entity();
 
 // Þegar við búum til nýja blocks, gefum við þeim staðsetningu og stærð
-// cx, cy, width, height.
+// cx, cy, width, height, friction.
 
 Block.prototype.cx;
 Block.prototype.cy;

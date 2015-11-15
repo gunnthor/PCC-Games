@@ -45,7 +45,9 @@ Entity.prototype.setup = function (descr) {
     
     // I am not dead yet!
     this._isDeadNow = false;
+
 };
+
 Entity.prototype.prevCx;
 Entity.prototype.prevCy;
 Entity.prototype.lastCollision;
@@ -64,7 +66,7 @@ Entity.prototype.getPos = function () {
     return 0;
 };*/
 Entity.prototype.getInfo = function (){
-    return {cx : this.cx, cy : this.cy, width : this.width, height : this.height}
+    return {cx : this.cx, cy : this.cy, width : this.width, height : this.height, friction : this.friction};//this.friction
 }
 
 Entity.prototype.getSpatialID = function () {

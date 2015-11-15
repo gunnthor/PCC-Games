@@ -163,6 +163,11 @@ Kall.prototype.update = function(du) {
 
     // Ef kallinn snertir eitthvað, þá verður hitEntity objecið sem að kallinn snerti
     var hitEntity = this.findHitEntity();
+    for(var i = 0; i<hitEntity.length; i++)
+    {
+        //console.log(hitEntity[i].friction);
+    }
+    //console.log(hitEntity[0].cx);
     //console.log("hit entity: " + hitEntity.length);
     // Ef að hann snerti eitthvað, framkvæmum þá rétta aðgerð miðað við hvaða hlut hann snerti
     //if(hitEntity) 
@@ -176,10 +181,13 @@ Kall.prototype.update = function(du) {
     if(!this.IN_AIR) {
 
 
+
         
 
-        if(!keys[this.KEY_LEFT] && !keys[this.KEY_RIGHT] && hitEntity != undefined)//
+        if(!keys[this.KEY_LEFT] && !keys[this.KEY_RIGHT] && hitEntity != undefined)
         {
+
+
 
 
             var mostFriction = 1;
@@ -188,14 +196,20 @@ Kall.prototype.update = function(du) {
            for(var i = 0; i<hitEntity.length; i++)
            {
 
-                //console.log(hitEntity.friction);
-                console.log(hitEntity);
                 //console.log(hitEntity[i].friction);
-                if(hitEntity.hasOwnProperty("friction")) mostFriction = hitEntity.friction;
+                
+                if(hitEntity[i].hasOwnProperty("friction"))
+                {
+                    mostFriction = hitEntity[i].friction;
+                    //console.log("mostFriction : " + mostFriction);
 
+                } 
            }
 
+           
+
             this.velX *= mostFriction;
+            //console.log("velX : " + this.velX);
 
         }
         //this.velX *= 0.7; //0.7 á að vera block.friction

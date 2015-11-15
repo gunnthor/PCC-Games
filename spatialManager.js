@@ -87,6 +87,7 @@ register: function(entity) {
         cy: pos.cy,
         width: dimensions.width,
         height: dimensions.height,
+        friction: dimensions.friction,
         //radius: radius,
         entity : entity,
         isUndefined : false,
@@ -107,6 +108,7 @@ unregister: function(entity)
         cy: pos.cy,
         width: dimensions.width,
         height: dimensions.height,
+        friction: dimensions.friction,
         //radius: radius,
         entity : entity,
         isUndefined : true,
@@ -153,6 +155,7 @@ findEntityInRange: function(posX, posY, width, height, colEntity) {
 
         // Get an object with the entity coords and size
         var entity = this._entities[i];
+        //console.log(entity.friction);
 
         if (entity.isUndefined) continue;
 
@@ -184,7 +187,7 @@ findEntityInRange: function(posX, posY, width, height, colEntity) {
                     colEntity.cy = entity.cy - entity.height/2 - colEntity.height/2;
                     colEntity.velY = 0;
                     colEntity.IN_AIR = false;
-                    _hitentities.push(colEntity);
+                    _hitentities.push(entity);
                     
                 }
             }
@@ -197,12 +200,10 @@ findEntityInRange: function(posX, posY, width, height, colEntity) {
                 if(Math.abs(colEntity.cy - colEntity.prevCy) <= colEntity.velYLimit*2) {
                     colEntity.cy = entity.cy + entity.height/2 + colEntity.height/2;
                     colEntity.velY = 0;
-                    _hitentities.push(colEntity);
+                    _hitentities.push(entity);
                 }
             }
         }
-
-
 
         // Collision with the Sides of a entity
 
@@ -218,7 +219,7 @@ findEntityInRange: function(posX, posY, width, height, colEntity) {
                 if(Math.abs(colEntity.cx - colEntity.prevCx) <= colEntity.velXLimit*2) {
                     colEntity.cx = entity.cx - entity.width/2 - colEntity.width/2;
                     colEntity.velX = 0;
-                    _hitentities.push(colEntity);
+                    _hitentities.push(entity);
                 }
             }
 
@@ -231,7 +232,7 @@ findEntityInRange: function(posX, posY, width, height, colEntity) {
                     colEntity.cx = entity.cx + entity.width/2 + colEntity.width/2;
                     colEntity.velX = 0;
                     //console.log(bottom, entTop);
-                    _hitentities.push(colEntity);
+                    _hitentities.push(entity);
                 }
             }
         }
