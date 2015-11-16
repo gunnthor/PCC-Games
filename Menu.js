@@ -11,10 +11,12 @@ var Menu = {
             this.renderoption(this._options[i],ctx);
         }
     },
+
     renderoption : function (option,ctx){
         ctx.font = option.font;
         ctx.fillText(option.text,option.x,option.y)
     },
+
     update : function (du){
 
     },
@@ -28,6 +30,7 @@ var Menu = {
             }
         }
     },
+
     onclick : function (xPos,yPos){
         for (var p = 0; p < this._options.length; p++){
             if ((this._options[p].y >= yPos && this._options[p].y < yPos + 30) &&(this._options[p].x <= xPos && this._options[p].x >= xPos - 100)){
@@ -37,6 +40,7 @@ var Menu = {
                         break;
                     case "Sound":
                         this.clearOptions();
+                        this.init();
                         break;
                     case "Map":
                         break;
@@ -48,14 +52,16 @@ var Menu = {
             }
         }
         //g_menu = !g_menu;
-
     },
+
     clearOptions : function(){
         this._options.splice(0,this._options.length);
     },
+
     generateOption : function(descr) {
     this._options.push((descr));
     },
+
     init : function (){
         this.generateOption({
             text: "Begin",
