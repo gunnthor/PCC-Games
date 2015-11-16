@@ -39,8 +39,7 @@ var Menu = {
                         g_menu = !g_menu;
                         break;
                     case "Sound":
-                        this.clearOptions();
-                        this.init();
+                        g_mute = !g_mute;
                         break;
                     case "Map":
                         break;
@@ -51,7 +50,6 @@ var Menu = {
                 }
             }
         }
-        //g_menu = !g_menu;
     },
 
     clearOptions : function(){
