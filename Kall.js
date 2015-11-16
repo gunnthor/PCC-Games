@@ -3,6 +3,7 @@ function Kall(descr) {
 
     // Common inherited setup logic from Entity
     this.setup(descr);
+        this.sprite = g_sprites.player;
 
     //this.rememberResets();
 };
@@ -20,14 +21,6 @@ Kall.prototype.KEY_LEFT;
 Kall.prototype.KEY_RIGHT;
 Kall.prototype.KEY_JUMP;
 Kall.prototype.KEY_FIRE;
-Kall.prototype.KEY_WEPS;
-
-
-Kall.prototype.isShooting = false;
-Kall.prototype.shootingTimeNomials = 0;
-Kall.prototype.isRunning = false;
-Kall.prototype.pistolNomials = 0;
-Kall.prototype.shotgunNomials = 0;
 
 Kall.prototype.IS_SLOWING_DOWN = false;
 Kall.prototype.IN_AIR = true;
@@ -39,13 +32,11 @@ Kall.prototype.accRate = 1;
 
 Kall.prototype.numSubSteps = 1;
 
-Kall.prototype.weaponList = ["pistol"];
-Kall.prototype.gunSlot = 0;
 
 Kall.prototype.width = 50;
 Kall.prototype.height = 50;
 
-//Kall.prototype.gunType = this.weaponList[0];
+Kall.prototype.gunType = "normal";
 
 Kall.prototype.maybeFireBullet = function () {
 
@@ -53,40 +44,29 @@ Kall.prototype.maybeFireBullet = function () {
     
         if(this.direction === "right") {
             var bulletX = this.cx + this.width/3*2;
-            var bulletY = this.cy - this.height/3;
+            var bulletY = this.cy;
             var bulletXVel = 7;
         }
 
         else {
             var bulletX = this.cx - this.width/3*2;
-            var bulletY = this.cy - this.height/3;
+            var bulletY = this.cy;
             var bulletXVel = -7;
         }
 
-        if (this.gunType === "shotgun" && this.shotgunNomials <= 0){
-            this.audio.playSound();
-            this.isShooting = true;
-            this.shootingTimeNomials = SECS_TO_NOMINALS/4;
-            this.shotgunNomials = SECS_TO_NOMINALS/2;
-            entityManager.fireBullet(
+        entityManager.fireBullet(
            bulletX, bulletY, bulletXVel, this.gunType);
-            this.recoil();
-        } else if(this.gunType === "pistol" && this.pistolNomials <= 0){
-            this.audio.playSound();
-            this.isShooting = true;
-            this.shootingTimeNomials = SECS_TO_NOMINALS/4;
-            this.pistolNomials = SECS_TO_NOMINALS;
-            entityManager.fireBullet(
-           bulletX, bulletY, bulletXVel, this.gunType);
-        } 
-    }    
+
+        if(this.gunType === "shotgun") this.recoil();
+           
+    }
+    
 };
 
 Kall.prototype.recoil = function() {
     
     if(this.direction === "right") this.velX -= 10;
     else this.velX += 10;
-
 };
 
 
@@ -140,12 +120,10 @@ Kall.prototype.computeSubStep = function (du) {
     var accelY = 0;
 
     if(keys[this.KEY_LEFT]) {
-        this.isRunning = true;
         accelX -= this.accRate;
         this.direction = "left";
     }
     if(keys[this.KEY_RIGHT]) {
-        this.isRunning = true;
         accelX += this.accRate;
         this.direction = "right";
     }
@@ -164,44 +142,13 @@ Kall.prototype.computeGravity = function () {
 Kall.prototype.jump = function () {
     this.velY -= 8;
     this.IN_AIR = true;
-    if (this.gunSlot < 2){
-        this.pickupGuns("shotgun");
-    }   
-};
 
-Kall.prototype.switchGuns = function () {
-    this.gunSlot++;
-    if(this.gunSlot >= this.weaponList.length) {
-        this.gunSlot = 0;
-    }
-    if(this.weaponList[this.gunSlot] === "pistol") {
-        if(this.playerID === 1) {
-            this.audio = g_sounds.pistolSound;
-        } else {
-            this.audio = g_sounds.pistolSound2;
-        }
-    } else if(this.weaponList[this.gunSlot] === "shotgun") {
-        if(this.playerId === 1) {
-            this.audio = g_sounds.shotgunSound;
-        } else {
-            this.audio = g_sounds.shotgunSound2;
-        }
-    }
-    return this.gunType = this.weaponList[this.gunSlot];
 };
-Kall.prototype.pickupGuns = function(weapon) {
-    this.weaponList.push(weapon);
-};
-
 
 Kall.prototype.update = function(du) {
 	
     // Unregister
     spatialManager.unregister(this);
-    
-    this.shootingTimeNomials -= du;
-    this.pistolNomials -= du;
-    this.shotgunNomials -=du;
 
     // Perform movement substeps
     var steps = this.numSubSteps;
@@ -210,15 +157,22 @@ Kall.prototype.update = function(du) {
         this.computeSubStep(dStep);
     }
 
-    if(eatKey(this.KEY_WEPS)) {
-        this.switchGuns();
-    }
     this.maybeFireBullet();
-    
+
     this.velLimit();
+
+    // Update'a spatialPos
+    this.spatialPos = this.updateSpatialPos(this.cx, this.cy, this.width, this.height);
 
     // Ef kallinn snertir eitthvað, þá verður hitEntity objecið sem að kallinn snerti
     var hitEntity = this.findHitEntity();
+
+    /*for(var i = 0; i < hitEntity.length; i++)
+    {
+        //console.log(hitEntity[i].friction);
+    }*/
+    //console.log(hitEntity[0].cx);
+    //console.log("hit entity: " + hitEntity.length);
     // Ef að hann snerti eitthvað, framkvæmum þá rétta aðgerð miðað við hvaða hlut hann snerti
     //if(hitEntity) 
     if(keys[this.KEY_JUMP])
@@ -228,11 +182,17 @@ Kall.prototype.update = function(du) {
 
     }
 
-    if(!this.IN_AIR) 
-    {
+    if(!this.IN_AIR) {
+
+
+
+        
 
         if(!keys[this.KEY_LEFT] && !keys[this.KEY_RIGHT] && hitEntity != undefined)
         {
+
+
+
 
             var mostFriction = 1;
 
@@ -244,40 +204,35 @@ Kall.prototype.update = function(du) {
                 
                 if(typeof hitEntity[i].friction != "undefined")
                 {
-                    //console.log(hitEntity[i].friction);
                     mostFriction = hitEntity[i].friction;
                     //console.log("mostFriction : " + mostFriction);
 
                 } 
            }
-            
+
+           
+
             this.velX *= mostFriction;
+            //console.log("velX : " + this.velX);
+
         }
-            
-
+        //this.velX *= 0.7; //0.7 á að vera block.friction
     }
-    
 
-    this.sprite.update(du,this.isRunning,this.IN_AIR,this.isShooting);
 
-    this.isRunning = false;
     this.IN_AIR = true;
-    if (this.shootingTimeNomials <= 0)
-    {
-        this.isShooting = false;
-    }
 
     // Register
     spatialManager.register(this);
 };
 
 Kall.prototype.render = function(ctx) {
-    this.sprite.drawWrappedAnimationdAt(ctx,this.cx-this.width/2,this.cy-this.height/2,this.direction);
-	var oldStyle = ctx.fillStyle;
+
+    this.sprite.drawAnimationAt(ctx,this.cx-this.width/2,this.cy-this.height/2,this.direction);
+	/*oldStyle = ctx.fillStyle;
     ctx.fillStyle = this.color;
-    ctx.font="20px Georgia, bold";
-    ctx.fillText("Player "+ this.playerID + ": "+ this.weaponList[this.gunSlot],this.scorePosX,this.scorePosY);
-    ctx.fillText("Health: " + this.health + "%",this.scorePosX,this.scorePosY+25);
-    ctx.fillStyle = oldStyle;
-    
+    ctx.fillRect(this.cx-this.width/2, this.cy-this.height/2, this.width, this.height);
+    ctx.strokeRect(this.cx-this.width/2, this.cy-this.height/2, this.width, this.height);
+    ctx.fillStyle = oldStyle;*/
+
 };

@@ -25,15 +25,54 @@ with suitable 'data' and 'methods'.
 
 var entityManager = {
 
-
 // "PRIVATE" DATA
+
+/*_rocks   : [],
+_bullets : [],
+_ships   : [],
+
+_bShowRocks : true,*/
+
+// "PRIVATE" METHODS
+
+/*_generateRocks : function() {
+    var i,
+        NUM_ROCKS = 4;
+
+    for (i = 0; i < NUM_ROCKS; ++i) {
+        this.generateRock();
+    }
+},
+
+_findNearestShip : function(posX, posY) {
+    var closestShip = null,
+        closestIndex = -1,
+        closestSq = 1000 * 1000;
+
+    for (var i = 0; i < this._ships.length; ++i) {
+
+        var thisShip = this._ships[i];
+        var shipPos = thisShip.getPos();
+        var distSq = util.wrappedDistSq(
+            shipPos.posX, shipPos.posY, 
+            posX, posY,
+            g_canvas.width, g_canvas.height);
+
+        if (distSq < closestSq) {
+            closestShip = thisShip;
+            closestIndex = i;
+            closestSq = distSq;
+        }
+    }
+    return {
+        theShip : closestShip,
+        theIndex: closestIndex
+    };
+},*/
 _kallar : [],
 _blocks : [],
 _bullets : [],
 _levels : [],
-
-
-// "PRIVATE" METHODS
 
 _forEachOf: function(aCategory, fn) {
     for (var i = 0; i < aCategory.length; ++i) {
@@ -54,8 +93,45 @@ KILL_ME_NOW : -1,
 // i.e. thing which need `this` to be defined.
 //
 deferredSetup : function () {
-    
+    //this._categories = [this._rocks, this._bullets, this._ships];
     this._categories = [this._kallar, this._blocks,this._bullets];
+},
+
+init: function() {
+    //this._generateRocks();
+    //this._generateShip();
+
+    // Initializum spatial net
+    spatialManager.initializeSpatialNet();
+
+    this.generateKall({
+        cx      :   g_canvas.width/2 -450,
+        cy      :   300,
+        color   :   "blue",
+        direction:  "right",
+        KEY_LEFT:   'A'.charCodeAt(0),
+        KEY_RIGHT:  'D'.charCodeAt(0),
+        KEY_JUMP:   'W'.charCodeAt(0),
+        KEY_FIRE:   'S'.charCodeAt(0),
+        gunType:    "shotgun"
+    });
+
+    this.generateKall({
+        cx      :   g_canvas.width/2 +450,
+        cy      :   300,
+        color   :   "red",
+        direction:  "left",
+        KEY_LEFT:   'J'.charCodeAt(0),
+        KEY_RIGHT:  'L'.charCodeAt(0),
+        KEY_JUMP:   'I'.charCodeAt(0),
+        KEY_FIRE:   'K'.charCodeAt(0),
+        gunType:    "normal" 
+    });
+    
+
+    this.generateLevel(1);
+
+
 },
 
 generateKall : function(descr) {
@@ -67,7 +143,7 @@ generateBlock : function(descr) {
 },
 
 fireBullet : function(cx, cy, velX, gunType) {
-    if(gunType === "pistol") {
+    if(gunType === "normal") {
         this._bullets.push(new Bullet({
             cx   : cx,
             cy   : cy,
@@ -88,32 +164,97 @@ fireBullet : function(cx, cy, velX, gunType) {
             cx   : cx,
             cy   : cy,
             velX : velX,
-            velY : -3.5
+            velY : -1
         }));
 
         this._bullets.push(new Bullet({
             cx   : cx,
             cy   : cy,
             velX : velX,
-            velY : 3.5
+            velY : 1
         }));
     }
 },
 
+//fall sem setur upplýsingar um levelið í fylki og generatear blocks - breyta seinna
+generateLevel : function(level) {
+    //kalla á þetta í init functioninu hérna uppi í bili, tek inn level = 1
+    //levels er 2d array þar sem fyrir hvert level er array af þeim hitboxum sem á að gera fyrir levelið, þ.e.a.s. levels[level][block]
+    
 
-//This function generates a cluster of objects from slots x,y to endx,endy in the grid
-//Each object in the cluster has a width and height, specified in cluster.width, cluster.height
-generateObjects: function(cluster) {
+    
+    this._levels[level] = [];
 
-    for(var i = cluster.x; i < cluster.endx; i++) {
-        for(var n = cluster.y; n < cluster.endy; n++) {
+    //console.log(maps.levels[level-1].blocks[0].friction);
+
+    
+    for(var i = 0; i<maps.levels[level-1].blocks.length; i++)
+    {
+        //console.log(i);
+        this._levels[level][i] = {
+        x : maps.levels[level-1].blocks[i].x,
+        y : maps.levels[level-1].blocks[i].y,
+        endx : maps.levels[level-1].blocks[i].endx,
+        endy : maps.levels[level-1].blocks[i].endy,
+        width : maps.levels[level-1].blocks[i].width,
+        height : maps.levels[level-1].blocks[i].height,
+        friction : maps.levels[level-1].blocks[i].friction};
+    }
+
+
+    for(var i = 0; i<this._levels[level].length; i++)
+    {
+        this.generateObjects(this._levels[level][i]);
+    }
+
+},
+
+/*
+generateRock : function(descr) {
+    this._rocks.push(new Rock(descr));
+},
+
+generateShip : function(descr) {
+    this._ships.push(new Ship(descr));
+},
+
+killNearestShip : function(xPos, yPos) {
+    var theShip = this._findNearestShip(xPos, yPos).theShip;
+    if (theShip) {
+        theShip.kill();
+    }
+},
+
+yoinkNearestShip : function(xPos, yPos) {
+    var theShip = this._findNearestShip(xPos, yPos).theShip;
+    if (theShip) {
+        theShip.setPos(xPos, yPos);
+    }
+},
+
+resetShips: function() {
+    this._forEachOf(this._ships, Ship.prototype.reset);
+},
+
+haltShips: function() {
+    this._forEachOf(this._ships, Ship.prototype.halt);
+},	
+
+toggleRocks: function() {
+    this._bShowRocks = !this._bShowRocks;
+},*/
+generateObjects: function(block) {
+
+
+    for(var i = block.x; i < block.endx; i++) {
+        for(var n = block.y; n < block.endy; n++) {
             //console.log(i*block.width);
             this.generateBlock({
-                cx : i * cluster.width - cluster.width/2,
-                cy : n * cluster.height - cluster.height/2,
-                width : cluster.width,
-                height : cluster.height,
-                friction : cluster.friction
+                cx : i * block.width - block.width/2,
+                cy : n * block.height - block.height/2,
+                width : block.width,
+                height : block.height,
+                friction : block.friction
             });
 
         }
@@ -141,8 +282,11 @@ update: function(du) {
             }
         }
     }
+
+    // Resetta spatial netið hér
+    spatialManager.resetSpatialNet();
     
-    
+    //if (this._rocks.length === 0) this._generateRocks();
 
 },
 

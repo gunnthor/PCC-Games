@@ -1,3 +1,33 @@
+// =========
+// ASTEROIDS
+// =========
+/*
+
+A sort-of-playable version of the classic arcade game.
+
+
+HOMEWORK INSTRUCTIONS:
+
+You have some "TODO"s to fill in again, particularly in:
+
+spatialManager.js
+
+But also, to a lesser extent, in:
+
+Rock.js
+Bullet.js
+Ship.js
+
+
+...Basically, you need to implement the core of the spatialManager,
+and modify the Rock/Bullet/Ship to register (and unregister)
+with it correctly, so that they can participate in collisions.
+
+Be sure to test the diagnostic rendering for the spatialManager,
+as toggled by the 'X' key. We rely on that for marking. My default
+implementation will work for the "obvious" approach, but you might
+need to tweak it if you do something "non-obvious" in yours.
+*/
 
 "use strict";
 
@@ -52,14 +82,11 @@ var g_allowMixedActions = true;
 var g_useGravity = false;
 var g_useAveVel = true;
 var g_renderSpatialDebug = false;
-var g_mute = false;
 
 var KEY_MIXED   = keyCode('M');;
 var KEY_GRAVITY = keyCode('G');
 var KEY_AVE_VEL = keyCode('V');
 var KEY_SPATIAL = keyCode('X');
-
-var KEY_MUTE = keyCode('B');
 
 var KEY_HALT  = keyCode('H');
 var KEY_RESET = keyCode('R');
@@ -83,8 +110,6 @@ function processDiagnostics() {
     */
 
     if (eatKey(KEY_SPATIAL)) g_renderSpatialDebug = !g_renderSpatialDebug;
-
-    if (eatKey(KEY_MUTE)) g_mute = !g_mute;
 
     /*if (eatKey(KEY_HALT)) entityManager.haltShips();
 
@@ -130,6 +155,7 @@ function renderSimulation(ctx) {
     entityManager.render(ctx);
     //spatialManager._grid.render(ctx);
 
+    spatialManager.renderSpatialNet(ctx);
     if (g_renderSpatialDebug) spatialManager.render(ctx);
 }
 
@@ -139,149 +165,54 @@ function renderSimulation(ctx) {
 // =============
 
 var g_images = {};
-var g_audio = {};
 
 function requestPreloads() {
 
     var requiredImages = {
-        player1  : "Player1.png",
-        brick_blue : "bricks/brick_background_1.png"        
-    };
-
-    var requiredAudio = {
-        pistolSound     : "sounds/pistolSound.ogg",   
-        pistolSound2     : "sounds/pistolSound.ogg",
-        shotgunSound    :  "sounds/shotgunSound.ogg",
-        shotgunSound2   :  "sounds/shotgunSound.ogg"
+        player  : "Player1.png",
+        backgroundLVL1 : "backgrounds/backgroundLVL1.png",  
+        ship   : "https://notendur.hi.is/~pk/308G/images/ship.png",
+        ship2  : "https://notendur.hi.is/~pk/308G/images/ship_2.png",
+        rock   : "https://notendur.hi.is/~pk/308G/images/rock.png",
+        brick_blue : "bricks/brick_background_1.png"
     };
 
     imagesPreload(requiredImages, g_images, preloadDone);
-    audioPreload(requiredAudio, g_audio, preloadDone);
 }
 
 var g_sprites = {};
-var g_sounds = {};
 
 function preloadDone() {
-
-    g_sounds.pistolSound = new Sound({audio : g_audio.pistolSound});
-    //g_sounds.pistolSound.audio.play();
-    g_sounds.pistolSound.audio.pause();
-    g_sounds.pistolSound2 = new Sound({audio : g_audio.pistolSound2});
-    g_sounds.shotgunSound = new Sound({audio : g_audio.shotgunSound});
-    g_sounds.shotgunSound2 = new Sound({audio : g_audio.shotgunSound2});
+    g_sprites.backgroundLVL1 = new Sprite({image :g_images.backgroundLVL1});
+    g_sprites.player  = new Sprite({
+        image : g_images.player,
+        idleEndX : 49*2,
+        idleEndY : 0,
+        idleStartX : 0,
+        idleStartY : 0,
+        idleFrameWidth : 49,
+        idleFrameHeight : 49,
+        idleFrames: 3,
+        runningEndX : 444.5-100,
+        runningEndY : 49,
+        runningStartX : -5.5,
+        runningStartY : 49,
+        runningFrameWidth : 50,
+        runningFrameHeight : 49,
+        runningFrames : 8
+    });
 
     g_sprites.brick_blue = new Sprite({
         image : g_images.brick_blue
     });
-    
-    g_sprites.player1  = new Sprite({
-        image : g_images.player1,
-        
-        idleEndX : 49*2,
-        idleEndY : 0,
-        idleFrameWidth : 49,
-        idleFrameHeight : 49,
-        idleFrames: 3,
-        
-        runningEndX : 444.5-100,
-        runningEndY : 49,
-        runningFrameWidth : 50,
-        runningFrameHeight : 49,
-        runningFrames : 8,
-        
-        jumpingFrames : 1,
-        jumpingEndX : 198,
-        jumpingEndY : 228,
-        jumpingFrameWidth : 49,
-        jumpingFrameHeight : 49,
 
-        jumpShootingEndX : 0,
-        jumpShootingEndY : 387,
-        jumpShootingFrameWidth : 49,
-        jumpShootingFrameHeight : 49,
-        jumpShootingFrames : 1,
-        
-        shootingEndX : 0,
-        shootingEndY : 110,
-        shootingFrameWidth : 49,
-        shootingFrameHeight : 49,
-        shootingFrames: 1,
-        
-        shotEndX : 49*6,
-        shotEndY : 327,
-        shotFrameWidth : 49,
-        shotFrameHeight : 49,
-        shotFrames : 1,
+    g_sprites.bullet = new Sprite(g_images.ship);
+    g_sprites.bullet.scale = 0.25;
 
-        deadEndX : 49*7,
-        deadEndY : 313,
-        deadFrameWidth : 60,
-        deadFrameHeight : 49,
-        deadFrames : 1/*,
-
-        runShootingEndX : -5.5,
-        runShootingEndY : 49,
-        runShootingFrameWidth : 49,
-        runShootingFrameHeight : 49,
-        runShootingFrames: 1*/
-    });
-    g_sprites.player2  = new Sprite({
-        image : g_images.player1,
-        
-        idleEndX : 49*2,
-        idleEndY : 0,
-        idleFrameWidth : 49,
-        idleFrameHeight : 49,
-        idleFrames: 3,
-        
-        runningEndX : 444.5-100,
-        runningEndY : 49,
-        runningFrameWidth : 50,
-        runningFrameHeight : 49,
-        runningFrames : 8,
-        
-        jumpingFrames : 1,
-        jumpingEndX : 198,
-        jumpingEndY : 228,
-        jumpingFrameWidth : 49,
-        jumpingFrameHeight : 49,
-        
-        jumpShootingEndX : 0,
-        jumpShootingEndY : 387,
-        jumpShootingFrameWidth : 49,
-        jumpShootingFrameHeight : 49,
-        jumpShootingFrames : 1,
-        
-        shootingEndX : 0,
-        shootingEndY : 110,
-        shootingFrameWidth : 49,
-        shootingFrameHeight : 49,
-        shootingFrames: 1,
-        
-        shotEndX : 49*6,
-        shotEndY : 327,
-        shotFrameWidth : 49,
-        shotFrameHeight : 49,
-        shotFrames : 1,
-
-        deadEndX : 49*7,
-        deadEndY : 313,
-        deadFrameWidth : 60,
-        deadFrameHeight : 49,
-        deadFrames : 1/*,
-
-
-        runShootingEndX : -5.5,
-        runShootingEndY : 49,
-        runShootingFrameWidth : 49,
-        runShootingFrameHeight : 49,
-        runShootingFrames: 1*/
-    });
-    
     spatialManager.init();
-    levelManager.initLevel();
-    //entityManager.init();
+    entityManager.init();
+
+    //createInitialShips();
 
     main.init();
 }

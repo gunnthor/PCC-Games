@@ -5,6 +5,7 @@ function Block(descr) {
     this.setup(descr);
     this.sprite = g_sprites.brick_blue;
 
+
     //this.rememberResets();
 };
 
@@ -12,7 +13,7 @@ function Block(descr) {
 Block.prototype = new Entity();
 
 // Þegar við búum til nýja blocks, gefum við þeim staðsetningu og stærð
-// cx, cy, width, height.
+// cx, cy, width, height, friction.
 
 Block.prototype.cx;
 Block.prototype.cy;
@@ -27,13 +28,14 @@ Block.prototype.update = function(du) {
 
 Block.prototype.render = function(ctx) {	
 
+	
 	this.sprite.drawAt(ctx, this.cx-this.width/2, this.cy-this.height/2);
 
-	/*
-	ctx.save();
+	/*ctx.save();
 	ctx.fillStyle = "blue";
 	ctx.fillRect(this.cx-this.width/2, this.cy-this.height/2, this.width, this.height);
-	ctx.restore();
-	*/
+	ctx.strokeRect(this.cx-this.width/2, this.cy-this.height/2, this.width, this.height);
+	ctx.restore();*/
+	
 
 };
