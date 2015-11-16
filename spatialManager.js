@@ -30,91 +30,7 @@ _grid : undefined,
 //
 // <none yet>
 
-spatialNet : [],
 
-firstRegister : true,
-registeredLocations : [],
-
-blockWidth : g_canvas.width / 32,
-blockHeight : g_canvas.height / 32,
-
-
-// PUBLIC METHODS
-
-initializeSpatialNet : function() {
-    
-    for(var i = 0; i < 32; i++) {
-
-        this.spatialNet[i] = [];
-        
-        for(var n = 0; n < 32; n++) {
-            
-            this.spatialNet[i][n] = [];
-        }
-    }
-},
-
-registerInSpatialNet : function(left, right, top, bottom, spatialID) {
-
-    // Viljum ekki registera kallana í fyrsta iteration.
-    if(spatialID === 1 || spatialID === 2 && this.firstRegister) return;
-    
-    for(var i = left; i <= right; i++) {
-        
-        for(var n = top; n <= bottom; n++) {
-            
-            //console.log("bla");
-            this.spatialNet[i][n].push(spatialID);
-            this.registeredLocations.push([i,n]);
-        }
-    }
-    //console.log("register", this.spatialNet);
-},
-
-checkSpatialPos : function(left, right, top, bottom) {
-
-    //console.log(left, right, top, bottom);
-    //console.log("check", this.spatialNet);
-    for(var i = left; i !== right; i++) {
-
-        if(i === 32) i = 0;
-        
-        for(var n = top; n <= bottom; n++) {
-            
-            if(typeof this.spatialNet[i][n][0] === "number") return true;
-        }
-    }
-
-    return false;
-},
-
-resetSpatialNet : function() {
-    
-    // Ef þetta er fyrsta skipti sem að við registeruðum, þá clearum við ekki
-    // því að þá myndum við cleara burt blockana.
-    //console.log("reset");
-    if(this.firstRegister) {
-        this.firstRegister = false;
-        this.registeredLocations = [];
-        return;
-    }
-
-    //console.log(this.spatialNet);
-    // Clearum burt öll locations sem voru registeruð síðast.
-    for(var x = 0; x < this.registeredLocations.length; x++) {
-        
-        var i = this.registeredLocations[x][0];
-        var n = this.registeredLocations[x][1];
-        //console.log(i, n);
-        var last = this.spatialNet[i][n].length-1;
-
-        this.spatialNet[i][n].splice(last,1);
-    }
-
-    //console.log("reset", this.spatialNet);
-
-    this.registeredLocations = [];
-},
 
 
 // PUBLIC METHODS
@@ -158,6 +74,54 @@ getGrid : function() {
     return this._grid;
 },
 
+getSpatialPos : function(cx, cy, width, height, oldPositions) {
+
+    // Staðsetningar á hliðum:
+    var left = cx - width/2;
+    var right = left + width;
+    var top = cy - height/2;
+    var bottom = top + height;
+
+    // spatialPositions:
+    var leftPos = 0;
+    var rightPos = 0;
+    var topPos = 0;
+    var bottomPos = 0;
+
+    // booleans sem að segja til um hvort spatialPos sé fundið
+    var leftFound = false;
+    var rightFound = false;
+    var topFound = false;
+    var bottomFound = false;
+
+    // Finnum rétt spatial positions:
+    for(var i = 0; i < 32; i++) {
+        //console.log(left > i * this.blockWidth && !leftFound);
+        if(left < i * this.blockWidth && !leftFound) {
+            leftPos = i - 1;
+            leftFound = true;
+        }
+
+        if(right < i * this.blockWidth && !rightFound) {
+            rightPos = i - 1;
+            rightFound = true;
+        }
+
+        if(top < i * this.blockHeight && !topFound) {
+            topPos = i - 1;
+            topFound = true;
+        }
+
+        if(bottom < i * this.blockHeight && !bottomFound) {
+            bottomPos = i - 1;
+            bottomFound = true;
+        }
+    }
+
+    // returnum objecti sem að inniheldur öll spatialPos
+    return {leftPos: leftPos, rightPos: rightPos, topPos: topPos, bottomPos: bottomPos};
+},
+
 
 // BREYTA AÐEINS
 
@@ -167,10 +131,8 @@ register: function(entity) {
     //var radius = entity.getRadius();
 
     // Sækja um spatialPositions
-    var spatialPos = entity.getSpatialPos();
-
-    // registera svo í spatial netinu
-    this.registerInSpatialNet(spatialPos.leftPos, spatialPos.rightPos, spatialPos.topPos, spatialPos.bottomPos, entity._spatialID);
+    var spatialPositions = this.getSpatialPos(pos.cx, pos.cy, dimensions.width, dimensions.height, entity.spatialPositions);
+    //console.log(spatialPositions);
 
     var spatialID = entity.getSpatialID();
     this._entities[spatialID] =
@@ -183,7 +145,7 @@ register: function(entity) {
         entity : entity,
         isUndefined : false,
         isDead : entity._isDeadNow,
-        spatialPos : spatialPos
+        spatialPositions : spatialPositions
     };
     // TODO: YOUR STUFF HERE!
 },
@@ -195,7 +157,6 @@ unregister: function(entity)
     var dimensions = entity.getInfo();
     //var radius = entity.getRadius();
     var spatialID = entity.getSpatialID();
-    var spatialPos = entity.spatialPos;
     this._entities[spatialID] =
         {cx: pos.cx,
         cy: pos.cy,
@@ -223,19 +184,6 @@ findEntityInRange: function(posX, posY, width, height, colEntity) {
             posY  - height/2 < e.posY - e.height/2 + e.height &&
             posY  - height/2 + height > e.posY - e.height/2) return e.entity;
     }*/
-
-    // Náum í spatial positions á colEntity
-    var left = colEntity.spatialPos.leftPos;
-    var right = colEntity.spatialPos.rightPos;
-    var top = colEntity.spatialPos.topPos;
-    var bottom = colEntity.spatialPos.bottomPos;
-
-    // Notum spatialPositions hér, ef að einhver hlutur er í sama position, þá gerum við collision detection
-    if(!this.checkSpatialPos(left, right, top, bottom)) {
-
-        console.log("cock");
-        return;
-    }
 
     //every time I collide with an entity, I push into this array
     var _hitentities = [];
@@ -311,7 +259,7 @@ findEntityInRange: function(posX, posY, width, height, colEntity) {
             }
         }
 
-        // Collision with the Sides of an entity
+        // Collision with the Sides of a entity
 
         // Check for y coords
         if(bottom - 1 > entTop &&
@@ -375,24 +323,6 @@ render: function(ctx) {
         ctx.fillText(ID,e.cx,e.cy);    }
     ctx.strokeStyle = oldStyle;
     ctx.fillStyle = oldFill;
-},
-
-renderSpatialNet: function(ctx) {
-    
-    //ctx.save();
-    ctx.fillStyle = "orange";
-
-    for(var i = 0; i < this.spatialNet.length; i++) {
-        
-        for(var n = 0; n < this.spatialNet[i].length; n++) {
-            
-            var x = i*32;
-            var y = n*18;
-            //console.log(i, n);
-            if(this.spatialNet[i][n][0] !== undefined) ctx.fillRect(x, y, 32, 18);
-            //ctx.restore();
-        }
-    }
 }
 
 }

@@ -31,17 +31,6 @@ wrapRange: function(value, lowBound, highBound) {
     return value;
 },
 
-// Special case af wrapRange sem að ég nota í spatial Netinu
-wrapRangeSpecial: function(value, lowBound, highBound) {
-    while (value < lowBound) {
-    value += (highBound - lowBound);
-    }
-    while (value > highBound - 1) {
-    value -= (highBound - lowBound);
-    }
-    return value;
-},
-
 wrapX: function (value){
     return this.wrapRange(value, 0, g_canvas.width);
 },
