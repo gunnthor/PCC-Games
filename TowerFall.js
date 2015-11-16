@@ -172,7 +172,7 @@ function renderMenu(ctx){
 function renderSimulation(ctx) {
 
     levelManager.render(ctx);
-    entityManager.render(ctx);
+    if (!g_menu) entityManager.render(ctx);
 
     if (g_renderSpatialDebug) spatialManager.render(ctx);
 }
