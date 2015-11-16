@@ -114,6 +114,8 @@ var KEY_1 = keyCode('1');
 var KEY_2 = keyCode('2');
 
 var KEY_K = keyCode('K');
+var KEY_CODE_ESC = 27;
+var KEY_MENU = KEY_CODE_ESC;
 
 function processDiagnostics() {
 
@@ -125,6 +127,7 @@ function processDiagnostics() {
     if (eatKey(KEY_AVE_VEL)) g_useAveVel = !g_useAveVel;
 
     */
+    if (eatKey(KEY_MENU)) g_menu = !g_menu;
 
     if (eatKey(KEY_SPATIAL)) g_renderSpatialDebug = !g_renderSpatialDebug;
 
