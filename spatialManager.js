@@ -76,19 +76,16 @@ checkSpatialPos : function(left, right, top, bottom) {
     //console.log("check", this.spatialNet);
     //var diff;
     //if(left > right) diff = 32 - left;
+    if(left < right) right++;
 
-
-    for(var i = left; i !== right + 1; i++) {
-
+    for(var i = left; i !== right; i++) {
         if(i === 32) {
-
             i = 0;
             // bug fix ef að hitboxið er lítið:
             if(i === right) break;
         }
         
         for(var n = top; n <= bottom; n++) {
-            
             if(typeof this.spatialNet[i][n][0] === "number") return true;
         }
     }

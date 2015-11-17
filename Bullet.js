@@ -22,18 +22,6 @@ Bullet.prototype.update = function (du) {
 
     spatialManager.unregister(this);
 
-    this.cx += this.velX * du;
-    this.cy += this.velY * du;
-
-    this.wrapPosition();
-    
-    // Handle collisions
-    //
-    //
-    // Update'a spatialPos
-    //this.spatialPos = this.updateSpatialPos(this.cx, this.cy, this.width, this.height);
-    //console.log(this.spatialPos);
-    
     var hitEntity = this.findHitEntity();
     //console.log(hitEntity.length);
 
@@ -49,6 +37,18 @@ Bullet.prototype.update = function (du) {
         }
         
     }
+
+    this.cx += this.velX * du;
+    this.cy += this.velY * du;
+
+    this.wrapPosition();
+    
+    // Handle collisions
+    //
+    //
+    // Update'a spatialPos
+    //this.spatialPos = this.updateSpatialPos(this.cx, this.cy, this.width, this.height);
+    //console.log(this.spatialPos);
     
 
     /*
