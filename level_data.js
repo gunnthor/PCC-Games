@@ -132,7 +132,8 @@ var maps =
 				 	endy : 24,
 				 	width : 32,
 				 	height : 18,
-				 	friction: 0.7 
+				 	friction: 0.7
+				 	//efri pallur vinstri 
 				 	//type: iceblock/blueblock/mudblock
 				},
 
@@ -144,6 +145,7 @@ var maps =
 				 	width : 32,
 				 	height : 18,
 				 	friction: 0.7 
+				 	//efri pallur hægri
 				 	//type: iceblock/blueblock/mudblock
 				},
 
