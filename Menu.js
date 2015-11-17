@@ -49,7 +49,13 @@ var Menu = {
                         g_menu = !g_menu;
                         break;
                     case "Sound":
-                        //g_mute = !g_mute;
+                        this.clearOptions();
+                        this.generateSoundOptions();
+                        break;
+                    case "Music":
+                        break;
+                    case "Effects":
+                        g_muteEffects = !g_muteEffects
                         break;
                     case "Map":
                         break;
@@ -59,7 +65,6 @@ var Menu = {
                         break;
                     case "Back" :
                         this.clearOptions();
-                        //console.log(this.IsStarted);
                         if(this.IsStarted){
                             this.generatePauseMenu();
                         }
@@ -80,6 +85,30 @@ var Menu = {
 
     generateOption : function(descr) {
     this._options.push((descr));
+    },
+
+    generateSoundOptions: function(){
+        this.generateOption({
+            text: "Music",
+            x: g_canvas.width/2,
+            y: (g_canvas.height/2) - 60,
+            font: "20px Georgia, bold",
+            active: true
+        });
+        this.generateOption({
+            text: "Effects",
+            x: g_canvas.width/2 ,
+            y: (g_canvas.height/2) -30,
+            font: "20px Georgia, bold",
+            active: true
+        });
+        this.generateOption({
+            text: "Back",
+            x: g_canvas.width/2,
+            y: g_canvas.height/2,
+            font: "20px Georgia, bold",
+            active: true
+        });
     },
 
     generateInstructions: function(){
