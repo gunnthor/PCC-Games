@@ -41,8 +41,8 @@ Entity.prototype.setup = function (descr) {
         this[property] = descr[property];
     }
 
-    // Gefa blocks strax, svo að blocks hafi ekki alltaf 0 í spatial pos.
-    if(this instanceof Block) this.spatialPos = this.updateSpatialPos(this.cx, this.cy, this.width, this.height);
+    // Gefa öllum hlutum spatial pos strax, svo að blocks hafi ekki alltaf 0 í spatial pos.
+    this.spatialPos = this.updateSpatialPos(this.cx, this.cy, this.width, this.height);
     
     // Get my (unique) spatial ID
     this._spatialID = spatialManager.getNewSpatialID();
@@ -74,16 +74,16 @@ Entity.prototype.getSpatialID = function () {
     return this._spatialID;
 };
 
-Entity.prototype.updateSpatialPos = function() {
+Entity.prototype.updateSpatialPos = function(cx, cy, width, height) {
 
     var blockWidth = 32;
     var blockHeight = 18;
 
     // Staðsetningar á hliðum:
-    var left = this.cx - this.width/2;
-    var right = left + this.width;
-    var top = this.cy - this.height/2;
-    var bottom = top + this.height;
+    var left = cx - width/2;
+    var right = left + width;
+    var top = cy - height/2;
+    var bottom = top + height;
 
     // spatialPositions:
     var leftPos = 0;
@@ -100,7 +100,7 @@ Entity.prototype.updateSpatialPos = function() {
     // Finnum rétt spatial positions:
     for(var i = 0; i <= 32; i++) {
         //console.log(left > i * this.blockWidth && !leftFound);
-        if(left < i * blockWidth && !leftFound) {
+        if(left <= i * blockWidth && !leftFound) {
             leftPos = i - 1;
             leftFound = true;
         }
@@ -110,7 +110,7 @@ Entity.prototype.updateSpatialPos = function() {
             rightFound = true;
         }
 
-        if(top < i * blockHeight && !topFound) {
+        if(top <= i * blockHeight && !topFound) {
             topPos = i - 1;
             topFound = true;
         }
