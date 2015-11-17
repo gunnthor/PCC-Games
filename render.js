@@ -40,7 +40,8 @@ function render(ctx) {
     
     // The core rendering of the actual game / simulation
     //
-    if (g_doRender) renderSimulation(ctx);
+    if (!g_menu) renderSimulation(ctx);
+    else renderMenu(ctx);
     
     
     // This flip-flip mechanism illustrates the pattern of alternation
