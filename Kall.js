@@ -54,13 +54,13 @@ Kall.prototype.maybeFireBullet = function () {
         if(this.direction === "right") {
             var bulletX = this.cx + this.width/3*2;
             var bulletY = this.cy - this.height/3;
-            var bulletXVel = 7;
+            var bulletXVel = 16;
         }
 
         else {
             var bulletX = this.cx - this.width/3*2;
             var bulletY = this.cy - this.height/3;
-            var bulletXVel = -7;
+            var bulletXVel = -16;
         }
 
         if (this.gunType === "shotgun" && this.shotgunNomials <= 0){
