@@ -29,7 +29,26 @@ Bullet.prototype.update = function (du) {
     
     // Handle collisions
     //
+    
+    var hitEntity = this.findHitEntity();
+    //console.log(hitEntity.length);
+
+    if (typeof hitEntity != "undefined") {
+
+        //console.log(hitEntity.length);
+
+        if(hitEntity.length > 0)
+        {
+            this.kill();
+            spatialManager.unregister(this); 
+            return entityManager.KILL_ME_NOW;
+        }
+        
+    }
+    
+
     /*
+    //gamla útfærslan
     var hitEntity = this.findHitEntity();
     if (hitEntity) {
         var canTakeHit = hitEntity.takeBulletHit;

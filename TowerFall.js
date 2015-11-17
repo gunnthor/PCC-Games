@@ -45,6 +45,9 @@ function updateSimulation(du) {
     // Prevent perpetual firing!
     //eatKey(Ship.prototype.KEY_FIRE);
 }
+function updateMenu(du){
+
+}
 
 // GAME-SPECIFIC DIAGNOSTICS
 
@@ -54,6 +57,7 @@ var g_useAveVel = true;
 var g_renderSpatialDebug = false;
 var g_muteEffects = false;
 var g_muteThemeSong = false;
+var g_menu = true;
 
 var KEY_MIXED   = keyCode('M');;
 var KEY_GRAVITY = keyCode('G');
@@ -72,6 +76,9 @@ var KEY_1 = keyCode('1');
 var KEY_2 = keyCode('2');
 
 var KEY_K = keyCode('K');
+var KEY_CODE_ESC = 27;
+var KEY_MENU = KEY_CODE_ESC;
+
 
 function processDiagnostics() {
 
@@ -83,6 +90,8 @@ function processDiagnostics() {
     if (eatKey(KEY_AVE_VEL)) g_useAveVel = !g_useAveVel;
 
     */
+        if (eatKey(KEY_MENU)) g_menu = !g_menu;
+
 
     if (eatKey(KEY_SPATIAL)) g_renderSpatialDebug = !g_renderSpatialDebug;
 
@@ -135,13 +144,16 @@ function processDiagnostics() {
 
 
 // GAME-SPECIFIC RENDERING
+function renderMenu(ctx){
+    Menu.render(ctx);
+}
 
 function renderSimulation(ctx) {
 
     levelManager.render(ctx);
-    entityManager.render(ctx);
-    //spatialManager._grid.render(ctx);
+    if (!g_menu) entityManager.render(ctx);
 
+    //spatialManager.renderSpatialNet(ctx);
     if (g_renderSpatialDebug) spatialManager.render(ctx);
 }
 
@@ -159,7 +171,8 @@ function requestPreloads() {
     
     var requiredImages = {
         player1  : "Player1.png",
-        brick_blue : "bricks/brick_background_1.png"        
+        brick_blue : "bricks/brick_background_1.png",
+        background : maps.levels[level-1].images.background        
     };
 
 
@@ -192,6 +205,9 @@ function preloadDone() {
 
     g_sprites.brick_blue = new Sprite({
         image : g_images.brick_blue
+    });
+    g_sprites.background = new Sprite({
+        image : g_images.background
     });
     
     g_sprites.player1  = new Sprite({
@@ -300,7 +316,8 @@ function preloadDone() {
     });
     
     spatialManager.init();
-    levelManager.initLevel();    
+    levelManager.initLevel(); 
+    Menu.init();   
 
     main.init();
 }

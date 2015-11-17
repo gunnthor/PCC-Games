@@ -82,6 +82,27 @@ fireBullet : function(cx, cy, velX, gunType) {
             cx   : cx,
             cy   : cy,
             velX : velX,
+            velY : -0.6
+        }));
+
+        this._bullets.push(new Bullet({
+            cx   : cx,
+            cy   : cy,
+            velX : velX,
+            velY : -0.4
+        }));
+
+        this._bullets.push(new Bullet({
+            cx   : cx,
+            cy   : cy,
+            velX : velX,
+            velY : -0.2
+        }));
+
+        this._bullets.push(new Bullet({
+            cx   : cx,
+            cy   : cy,
+            velX : velX,
             velY : 0
         }));
 
@@ -89,14 +110,21 @@ fireBullet : function(cx, cy, velX, gunType) {
             cx   : cx,
             cy   : cy,
             velX : velX,
-            velY : -3.5
+            velY : 0.2
         }));
 
         this._bullets.push(new Bullet({
             cx   : cx,
             cy   : cy,
             velX : velX,
-            velY : 3.5
+            velY : 0.4
+        }));
+
+        this._bullets.push(new Bullet({
+            cx   : cx,
+            cy   : cy,
+            velX : velX,
+            velY : 0.6
         }));
     }
 },
@@ -143,7 +171,8 @@ update: function(du) {
         }
     }
     
-    
+    // Resetta spatial netið hér
+    spatialManager.resetSpatialNet();
 
 },
 
