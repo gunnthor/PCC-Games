@@ -160,11 +160,11 @@ function requestPreloads() {
 
 
     var requiredAudio = {
-        
-        pistolSound     : maps.levels[level-1].sounds.pistolSound,   
-        pistolSound2     : maps.levels[level-1].sounds.pistolSound,
+        pistolSound     :  maps.levels[level-1].sounds.pistolSound,   
+        pistolSound2    :  maps.levels[level-1].sounds.pistolSound,
         shotgunSound    :  maps.levels[level-1].sounds.shotgunSound,
-        shotgunSound2   :  maps.levels[level-1].sounds.shotgunSound
+        shotgunSound2   :  maps.levels[level-1].sounds.shotgunSound,
+        backgroundSong  :  maps.levels[level-1].sounds.backgroundSong
     };
 
     imagesPreload(requiredImages, g_images, preloadDone);
@@ -181,9 +181,9 @@ function preloadDone() {
     g_sounds.pistolSound2 = new Sound({audio : g_audio.pistolSound2});
     g_sounds.shotgunSound = new Sound({audio : g_audio.shotgunSound});
     g_sounds.shotgunSound2 = new Sound({audio : g_audio.shotgunSound2});
-    g_sounds.theKraken = new Sound({audio : g_audio.theKraken});
+    g_sounds.theKraken = new Sound({audio : g_audio.backgroundSong});
     //g_sounds.theKraken.audio.play();
-    Sound.prototype.playThemeSong(g_audio.theKraken);
+    Sound.prototype.playThemeSong(g_audio.backgroundSong);
 
     g_sprites.brick_blue = new Sprite({
         image : g_images.brick_blue
