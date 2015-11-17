@@ -9,6 +9,7 @@ function Sound(descr) {
         this[property] = descr[property];
     }
 };
+Sound.prototype.themeSong;
 
 Sound.prototype.playSound = function() {
 	if(!g_muteEffects) {
@@ -18,11 +19,16 @@ Sound.prototype.playSound = function() {
 	}
 };
 
-Sound.prototype.playThemeSong = function () {
-	var themeSong = this.audio;
+Sound.prototype.playThemeSong = function (theme) {
+	Sound.prototype.themeSong = theme;
+	if(!g_muteThemeSong) {
+		Sound.prototype.themeSong.play();
+	}
 	
-}
+};
 
 Sound.prototype.pauseThemeSong = function (){
+	//Sound.prototype.themeSong
+	Sound.prototype.themeSong.pause();
 
-}
+};

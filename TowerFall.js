@@ -87,7 +87,11 @@ function processDiagnostics() {
     if (eatKey(KEY_SPATIAL)) g_renderSpatialDebug = !g_renderSpatialDebug;
 
     if (eatKey(KEY_MUTEEFFECT)) g_muteEffects = !g_muteEffects;
-    if (eatKey(KEY_MUTESONG)) g_muteThemeSong = !g_muteThemeSong;
+    if (eatKey(KEY_MUTESONG)) {
+        g_muteThemeSong = !g_muteThemeSong;
+        Sound.prototype.pauseThemeSong();
+        //Sound.prototype.playThemeSong();
+    } 
 
     /*if (eatKey(KEY_HALT)) entityManager.haltShips();
 
@@ -169,12 +173,13 @@ var g_sounds = {};
 function preloadDone() {
     g_sounds.pistolSound = new Sound({audio : g_audio.pistolSound});
 
-    g_sounds.pistolSound.audio.pause();
+    //g_sounds.pistolSound.audio.pause();
     g_sounds.pistolSound2 = new Sound({audio : g_audio.pistolSound2});
     g_sounds.shotgunSound = new Sound({audio : g_audio.shotgunSound});
     g_sounds.shotgunSound2 = new Sound({audio : g_audio.shotgunSound2});
     g_sounds.theKraken = new Sound({audio : g_audio.theKraken});
     //g_sounds.theKraken.audio.play();
+    Sound.prototype.playThemeSong(g_audio.theKraken);
 
     g_sprites.brick_blue = new Sprite({
         image : g_images.brick_blue
