@@ -6,7 +6,7 @@ var Menu = {
     textWidth : 100,
 
     render : function (ctx) {
-        ctx.globalAlpha=0.7;
+        ctx.globalAlpha=0.3;
         renderSimulation(ctx);
         ctx.globalAlpha = 1;
         ctx.fillStyle = "red";
@@ -57,14 +57,6 @@ var Menu = {
                         this.clearOptions();
                         this.generateInstructions();
                         break;
-                    case "Buttons Player 1" :
-                        this.clearOptions();
-                        this.generateInstructions2();
-                        break;
-                    case "Buttons Player 2" :
-                        this.clearOptions();
-                        this.generateInstructions();
-                        break;
                     case "Back" :
                         this.clearOptions();
                         console.log(this.IsStarted);
@@ -90,70 +82,17 @@ var Menu = {
     this._options.push((descr));
     },
 
-    generateInstructions2: function(){
-        this.generateOption({
-            text: "Buttons Player 2",
-            x: g_canvas.width/2,
-            y: (g_canvas.height/2) - 60,
-            font: "20px Georgia, bold",
-            active: true 
-        });
-        this.generateOption({
-            text: "I : jump",
-            x: g_canvas.width/2 ,
-            y: (g_canvas.height/2) -30,
-            font: "20px Georgia, bold",
-            active: false
-        });
-        this.generateOption({
-            text: "J : move left",
-            x: g_canvas.width/2,
-            y: g_canvas.height/2,
-            font: "20px Georgia, bold",
-            active: false
-        });
-        this.generateOption({
-            text: "L : move right",
-            x: g_canvas.width/2,
-            y: (g_canvas.height/2) + 30,
-            font: "20px Georgia, bold",
-            active: false
-        });
-
-        this.generateOption({
-            text: "K : shoot",
-            x: g_canvas.width/2,
-            y: (g_canvas.height/2) + 60,
-            font: "20px Georgia, bold",
-            active: false
-        });
-        this.generateOption({
-            text: "O : change gun",
-            x: g_canvas.width/2,
-            y: (g_canvas.height/2) + 90,
-            font: "20px Georgia, bold",
-            active: false
-        });
-        this.generateOption({
-            text: "Back",
-            x: g_canvas.width/2,
-            y: (g_canvas.height/2) + 120,
-            font: "20px Georgia, bold",
-            active: true
-        });
-
-    },
     generateInstructions: function(){
         this.generateOption({
             text: "Buttons Player 1",
-            x: g_canvas.width/2,
+            x: (g_canvas.width/2) - 130,
             y: (g_canvas.height/2) - 60,
             font: "20px Georgia, bold",
-            active: true
+            active: false
         });
         this.generateOption({
             text: "W : jump",
-            x: g_canvas.width/2 ,
+            x: (g_canvas.width/2) - 130,
             y: (g_canvas.height/2) -30,
             font: "20px Georgia, bold",
             active: false
@@ -161,14 +100,14 @@ var Menu = {
         });
         this.generateOption({
             text: "A : move left",
-            x: g_canvas.width/2,
+            x: (g_canvas.width/2) - 130,
             y: g_canvas.height/2,
             font: "20px Georgia, bold",
             active: false
         });
         this.generateOption({
             text: "D : move right",
-            x: g_canvas.width/2,
+            x: (g_canvas.width/2) - 130,
             y: (g_canvas.height/2) + 30,
             font: "20px Georgia, bold",
             active: false
@@ -176,14 +115,57 @@ var Menu = {
 
         this.generateOption({
             text: "S : shoot",
-            x: g_canvas.width/2,
+            x: (g_canvas.width/2) - 130,
             y: (g_canvas.height/2) + 60,
             font: "20px Georgia, bold",
             active: false
         });
         this.generateOption({
             text: "E: change gun",
-            x: g_canvas.width/2,
+            x: (g_canvas.width/2) - 130,
+            y: (g_canvas.height/2) + 90,
+            font: "20px Georgia, bold",
+            active: false
+        });
+        this.generateOption({
+            text: "Buttons Player 2",
+            x: (g_canvas.width/2) + 60,
+            y: (g_canvas.height/2) - 60,
+            font: "20px Georgia, bold",
+            active: false 
+        });
+        this.generateOption({
+            text: "I : jump",
+            x: (g_canvas.width/2) + 60,
+            y: (g_canvas.height/2) -30,
+            font: "20px Georgia, bold",
+            active: false
+        });
+        this.generateOption({
+            text: "J : move left",
+            x: (g_canvas.width/2) + 60,
+            y: g_canvas.height/2,
+            font: "20px Georgia, bold",
+            active: false
+        });
+        this.generateOption({
+            text: "L : move right",
+            x: (g_canvas.width/2) + 60,
+            y: (g_canvas.height/2) + 30,
+            font: "20px Georgia, bold",
+            active: false
+        });
+
+        this.generateOption({
+            text: "K : shoot",
+            x: (g_canvas.width/2) + 60,
+            y: (g_canvas.height/2) + 60,
+            font: "20px Georgia, bold",
+            active: false
+        });
+        this.generateOption({
+            text: "O : change gun",
+            x: (g_canvas.width/2) + 60,
             y: (g_canvas.height/2) + 90,
             font: "20px Georgia, bold",
             active: false
