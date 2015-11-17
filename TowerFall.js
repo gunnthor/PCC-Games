@@ -226,6 +226,7 @@ function preloadDone() {
         runShootingFrameHeight : 49,
         runShootingFrames: 1*/
     });
+
     g_sprites.player2  = new Sprite({
         image : g_images.player1,
         
@@ -280,8 +281,7 @@ function preloadDone() {
     });
     
     spatialManager.init();
-    levelManager.initLevel();
-    //entityManager.init();
+    levelManager.initLevel();    
 
     main.init();
 }

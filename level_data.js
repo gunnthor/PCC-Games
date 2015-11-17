@@ -18,18 +18,20 @@ var maps =
 				 	endy : 33,
 				 	width : 32,
 				 	height : 18,
-				 	friction: 0.7 
+				 	friction: 0.7
+				 	//row 1 - left side 
 				 	//type: iceblock/blueblock/mudblock
 				},
 
 				{
-					x : 19,
+					x : 20,
 				 	y : 32,
 				 	endx : 33,
 				 	endy : 33,
 				 	width : 32,
 				 	height : 18,
 				 	friction: 0.7
+				 	//row 1 - right side
 				 	//type: iceblock/blueblock/mudblock
 				},
 
@@ -80,9 +82,9 @@ var maps =
 				},
 
 				{
-					x : 19,
+					x : 20,
 				 	y : 31,
-				 	endx : 24,
+				 	endx : 25,
 				 	endy : 32,
 				 	width : 32,
 				 	height : 18,
@@ -91,9 +93,9 @@ var maps =
 				},
 
 				{
-					x : 19,
+					x : 20,
 				 	y : 30,
-				 	endx : 22,
+				 	endx : 23,
 				 	endy : 31,
 				 	width : 32,
 				 	height : 18,
@@ -102,9 +104,9 @@ var maps =
 				},
 
 				{
-					x : 19,
+					x : 20,
 				 	y : 29,
-				 	endx : 21,
+				 	endx : 22,
 				 	endy : 30,
 				 	width : 32,
 				 	height : 18,
@@ -113,9 +115,9 @@ var maps =
 				},
 
 				{
-					x : 19,
+					x : 20,
 				 	y : 28,
-				 	endx : 20,
+				 	endx : 21,
 				 	endy : 29,
 				 	width : 32,
 				 	height : 18,
@@ -135,7 +137,7 @@ var maps =
 				},
 
 				{
-					x : 22,
+					x : 23,
 				 	y : 23,
 				 	endx : 33,
 				 	endy : 24,
@@ -149,11 +151,12 @@ var maps =
 				{
 					x : 12,
 				 	y : 18,
-				 	endx : 21,
+				 	endx : 22,
 				 	endy : 19,
 				 	width : 32,
 				 	height : 18,
-				 	friction: 0.7 
+				 	friction: 0.7
+				 	//miðjupallur 
 				 	//type: iceblock/blueblock/mudblock
 				}
 
