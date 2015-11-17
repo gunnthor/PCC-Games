@@ -18,7 +18,7 @@ function Sprite(descr) {
     for (var property in descr) {
         this[property] = descr[property];
     }
-    this.animationState = "running";
+    this.animationState = "idle";
     this.time = 0;
     this.frame = 0;
     this.frames = this.idleFrames;
@@ -54,7 +54,7 @@ Sprite.prototype.updateAnimations = function(string){
             this.time = 0;
             this.frame = 0;
             this.animationState = string;
-            this.frames = this.idleFrames
+            this.frames = this.idleFrames;
             this.frameWidth = this.idleFrameWidth;  
             this.frameHeight = this.idleFrameHeight;
             this.startX = this.idleEndX;
