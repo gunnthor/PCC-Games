@@ -52,14 +52,16 @@ var g_allowMixedActions = true;
 var g_useGravity = false;
 var g_useAveVel = true;
 var g_renderSpatialDebug = false;
-var g_mute = false;
+var g_muteEffects = false;
+var g_muteThemeSong = false;
 
 var KEY_MIXED   = keyCode('M');;
 var KEY_GRAVITY = keyCode('G');
 var KEY_AVE_VEL = keyCode('V');
 var KEY_SPATIAL = keyCode('X');
 
-var KEY_MUTE = keyCode('B');
+var KEY_MUTEEFFECT = keyCode('B');
+var KEY_MUTESONG = keyCode('V');
 
 var KEY_HALT  = keyCode('H');
 var KEY_RESET = keyCode('R');
@@ -84,7 +86,8 @@ function processDiagnostics() {
 
     if (eatKey(KEY_SPATIAL)) g_renderSpatialDebug = !g_renderSpatialDebug;
 
-    if (eatKey(KEY_MUTE)) g_mute = !g_mute;
+    if (eatKey(KEY_MUTEEFFECT)) g_muteEffects = !g_muteEffects;
+    if (eatKey(KEY_MUTESONG)) g_muteThemeSong = !g_muteThemeSong;
 
     /*if (eatKey(KEY_HALT)) entityManager.haltShips();
 
@@ -149,8 +152,9 @@ function requestPreloads() {
     };
 
     var requiredAudio = {
-        pistolSound     : "sounds/pistolSound.ogg",   
-        pistolSound2     : "sounds/pistolSound.ogg",
+        theKraken       : "sounds/HansZimmerTheKraken.ogg", 
+        pistolSound     :  "sounds/pistolSound.ogg",   
+        pistolSound2    :  "sounds/pistolSound.ogg",
         shotgunSound    :  "sounds/shotgunSound.ogg",
         shotgunSound2   :  "sounds/shotgunSound.ogg"
     };
@@ -163,13 +167,14 @@ var g_sprites = {};
 var g_sounds = {};
 
 function preloadDone() {
-
     g_sounds.pistolSound = new Sound({audio : g_audio.pistolSound});
-    //g_sounds.pistolSound.audio.play();
+
     g_sounds.pistolSound.audio.pause();
     g_sounds.pistolSound2 = new Sound({audio : g_audio.pistolSound2});
     g_sounds.shotgunSound = new Sound({audio : g_audio.shotgunSound});
     g_sounds.shotgunSound2 = new Sound({audio : g_audio.shotgunSound2});
+    g_sounds.theKraken = new Sound({audio : g_audio.theKraken});
+    //g_sounds.theKraken.audio.play();
 
     g_sprites.brick_blue = new Sprite({
         image : g_images.brick_blue

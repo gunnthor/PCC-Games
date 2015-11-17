@@ -11,10 +11,18 @@ function Sound(descr) {
 };
 
 Sound.prototype.playSound = function() {
-	if(!g_mute) {
-		console.log(this.audio);
+	if(!g_muteEffects) {
 		this.audio.pause();
 		var currentSound = this.audio;
 		currentSound.play();
 	}
 };
+
+Sound.prototype.playThemeSong = function () {
+	var themeSong = this.audio;
+	
+}
+
+Sound.prototype.pauseThemeSong = function (){
+
+}
