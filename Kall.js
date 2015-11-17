@@ -42,7 +42,7 @@ Kall.prototype.numSubSteps = 1;
 Kall.prototype.weaponList = ["pistol"];
 Kall.prototype.gunSlot = 0;
 
-Kall.prototype.width = 50;
+Kall.prototype.width = 33;
 Kall.prototype.height = 50;
 
 //Kall.prototype.gunType = this.weaponList[0];
@@ -279,7 +279,7 @@ Kall.prototype.update = function(du) {
 };
 
 Kall.prototype.render = function(ctx) {
-    this.sprite.drawWrappedAnimationdAt(ctx,this.cx-this.width/2,this.cy-this.height/2,this.direction);
+    this.sprite.drawWrappedAnimationdAt(ctx,this.cx,this.cy,this.direction);
 	var oldStyle = ctx.fillStyle;
     ctx.fillStyle = this.color;
     ctx.font="20px Georgia, bold";
