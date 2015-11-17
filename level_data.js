@@ -164,6 +164,11 @@ var maps =
 
 			],
 
+			images :
+			{
+				background : "backgrounds/Background.png"
+			},
+
 
 			sounds : 
 			{

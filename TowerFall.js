@@ -166,7 +166,8 @@ function requestPreloads() {
     
     var requiredImages = {
         player1  : "Player1.png",
-        brick_blue : "bricks/brick_background_1.png"        
+        brick_blue : "bricks/brick_background_1.png",
+        background : maps.levels[level-1].images.background        
     };
 
 
@@ -199,6 +200,9 @@ function preloadDone() {
 
     g_sprites.brick_blue = new Sprite({
         image : g_images.brick_blue
+    });
+    g_sprites.background = new Sprite({
+        image : g_images.background
     });
     
     g_sprites.player1  = new Sprite({

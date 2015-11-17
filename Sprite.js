@@ -216,6 +216,10 @@ Sprite.prototype.drawAnimationAt = function (ctx, x, y, dirn) {
 Sprite.prototype.drawAt = function(ctx,x,y){
     ctx.drawImage(this.image,x,y);
 };
+Sprite.prototype.drawFullscreen = function(ctx){
+    ctx.drawImage(this.image,0,0,this.image.width,this.image.height,0,0,g_canvas.width,g_canvas.height);
+
+};
 Sprite.prototype.drawCentredAt = function (ctx, cx, cy, rotation) {
     if (rotation === undefined) rotation = 0;
     
