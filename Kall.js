@@ -43,7 +43,7 @@ Kall.prototype.weaponList = ["pistol"];
 Kall.prototype.gunSlot = 0;
 
 Kall.prototype.width = 33;
-Kall.prototype.height = 50;
+Kall.prototype.height = 48;
 
 //Kall.prototype.gunType = this.weaponList[0];
 
