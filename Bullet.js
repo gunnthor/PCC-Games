@@ -13,8 +13,8 @@ Bullet.prototype.cx;
 Bullet.prototype.cy;
 Bullet.prototype.velX;
 Bullet.prototype.velY;
-Bullet.prototype.width = 6;
-Bullet.prototype.height = 6;
+Bullet.prototype.width = 3;
+Bullet.prototype.height = 3;
 //Bullet.prototype.pistolSound = new Audio("sounds/pistol.ogv");
 
 
