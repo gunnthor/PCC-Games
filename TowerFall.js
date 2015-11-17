@@ -143,16 +143,20 @@ var g_audio = {};
 
 function requestPreloads() {
 
+    var level = levelManager.getLevel();
+    
     var requiredImages = {
         player1  : "Player1.png",
         brick_blue : "bricks/brick_background_1.png"        
     };
 
+
+
     var requiredAudio = {
-        pistolSound     : "sounds/pistolSound.ogg",   
-        pistolSound2     : "sounds/pistolSound.ogg",
-        shotgunSound    :  "sounds/shotgunSound.ogg",
-        shotgunSound2   :  "sounds/shotgunSound.ogg"
+        pistolSound     : maps.levels[level-1].sounds.pistolSound,   
+        pistolSound2     : maps.levels[level-1].sounds.pistolSound,
+        shotgunSound    :  maps.levels[level-1].sounds.shotgunSound,
+        shotgunSound2   :  maps.levels[level-1].sounds.shotgunSound
     };
 
     imagesPreload(requiredImages, g_images, preloadDone);

@@ -162,9 +162,18 @@ var maps =
 				 	//type: iceblock/blueblock/mudblock
 				}
 
+			],
 
 
-			]
+			sounds : 
+			{
+				pistolSound     : "sounds/pistolSound.ogg",   
+        		pistolSound2     : "sounds/pistolSound.ogg",
+        		shotgunSound    :  "sounds/shotgunSound.ogg",
+        		shotgunSound2   :  "sounds/shotgunSound.ogg"
+			}
+
+
 
 		}
 	]	

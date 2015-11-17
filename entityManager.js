@@ -67,6 +67,7 @@ generateBlock : function(descr) {
 },
 
 fireBullet : function(cx, cy, velX, gunType) {
+    
     if(gunType === "pistol") {
         this._bullets.push(new Bullet({
             cx   : cx,

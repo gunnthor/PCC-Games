@@ -20,12 +20,13 @@ var levelManager = {
 
 
 	nextLevel : function() {
-		_level++
+		this._level++
 
 	},
 
 	getLevel : function() {
-		return _level;
+		
+		return this._level;
 	},
 
 	initLevel : function() {

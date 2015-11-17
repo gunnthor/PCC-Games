@@ -195,6 +195,8 @@ Kall.prototype.pickupGuns = function(weapon) {
 
 
 Kall.prototype.update = function(du) {
+    
+    
 	
     // Unregister
     spatialManager.unregister(this);
