@@ -89,14 +89,14 @@ fireBullet : function(cx, cy, velX, gunType) {
             cx   : cx,
             cy   : cy,
             velX : velX,
-            velY : -3.5
+            velY : -1
         }));
 
         this._bullets.push(new Bullet({
             cx   : cx,
             cy   : cy,
             velX : velX,
-            velY : 3.5
+            velY : 1
         }));
     }
 },
