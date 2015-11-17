@@ -53,6 +53,12 @@ var Menu = {
                         this.generateSoundOptions();
                         break;
                     case "Music":
+                    g_muteThemeSong = !g_muteThemeSong;
+                    if(!g_muteThemeSong) {
+                        Sound.prototype.replayThemeSong();
+                    } else {
+                        Sound.prototype.pauseThemeSong();
+                    }
                         break;
                     case "Effects":
                         g_muteEffects = !g_muteEffects
