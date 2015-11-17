@@ -70,7 +70,7 @@ var levelManager = {
 	        KEY_JUMP:   'I'.charCodeAt(0),
 	        KEY_FIRE:   'K'.charCodeAt(0),
 	        KEY_WEPS:   'O'.charCodeAt(0),
-	        health :    100,
+	        health :    50,
 	        gunType:    "pistol", 
 	        sprite : g_sprites.player2,
 	        audio  : g_sounds.pistolSound2

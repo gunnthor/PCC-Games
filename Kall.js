@@ -284,7 +284,13 @@ Kall.prototype.render = function(ctx) {
     ctx.fillStyle = this.color;
     ctx.font="20px Georgia, bold";
     ctx.fillText("Player "+ this.playerID + ": "+ this.weaponList[this.gunSlot],this.scorePosX,this.scorePosY);
-    ctx.fillText("Health: " + this.health + "%",this.scorePosX,this.scorePosY+25);
+    //ctx.fillText("Health: " + this.health + "%",this.scorePosX,this.scorePosY+25);
+    ctx.fillStyle = "black";
+    ctx.fillRect(this.scorePosX-1,this.scorePosY + 19, 102,22);
+    ctx.fillStyle = "#b90000";
+    ctx.fillRect(this.scorePosX,this.scorePosY + 20, 100,20);
+    ctx.fillStyle = "green";
+    ctx.fillRect(this.scorePosX,this.scorePosY + 20, this.health, 20)
     ctx.fillStyle = oldStyle;
     
 };
