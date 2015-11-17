@@ -19,16 +19,25 @@ Sound.prototype.playSound = function() {
 	}
 };
 
-Sound.prototype.playThemeSong = function (theme) {
-	Sound.prototype.themeSong = theme;
-	if(!g_muteThemeSong) {
-		Sound.prototype.themeSong.play();
-	}
-	
+Sound.prototype.setThemeSong = function(song) {
+	var level = levelManager.getLevel()-1;
+	//this.themeSong = maps.levels[level].sounds.backgroundSong;
+	this.themeSong = song;
 };
 
-Sound.prototype.pauseThemeSong = function (){
-	//Sound.prototype.themeSong
-	Sound.prototype.themeSong.pause();
+Sound.prototype.playThemeSong = function(thesong) {
+	this.setThemeSong(thesong);
+	if(!g_muteThemeSong) {
+		var playThis = this.themeSong
+		playThis.play();
+	}
+};
 
+Sound.prototype.pauseThemeSong = function() {
+	//Sound.prototype.themeSong
+	this.themeSong.pause();
+};
+
+Sound.prototype.replayThemeSong = function () {
+	this.themeSong.play();
 };

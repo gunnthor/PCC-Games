@@ -89,8 +89,13 @@ function processDiagnostics() {
     if (eatKey(KEY_MUTEEFFECT)) g_muteEffects = !g_muteEffects;
     if (eatKey(KEY_MUTESONG)) {
         g_muteThemeSong = !g_muteThemeSong;
-        Sound.prototype.pauseThemeSong();
-        //Sound.prototype.playThemeSong();
+        if(!g_muteThemeSong) {
+            Sound.prototype.replayThemeSong();
+        } else {
+            Sound.prototype.pauseThemeSong();
+        }
+        
+        
     } 
 
     /*if (eatKey(KEY_HALT)) entityManager.haltShips();
