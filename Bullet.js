@@ -31,7 +31,7 @@ Bullet.prototype.update = function (du) {
     //
     
     var hitEntity = this.findHitEntity();
-    console.log(hitEntity.length);
+    //console.log(hitEntity.length);
 
     if (typeof hitEntity != "undefined") {
 
