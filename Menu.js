@@ -49,7 +49,7 @@ var Menu = {
                         g_menu = !g_menu;
                         break;
                     case "Sound":
-                        g_mute = !g_mute;
+                        //g_mute = !g_mute;
                         break;
                     case "Map":
                         break;

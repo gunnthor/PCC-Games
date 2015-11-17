@@ -224,6 +224,8 @@ Kall.prototype.update = function(du) {
 
     // Ef kallinn snertir eitthvað, þá verður hitEntity objecið sem að kallinn snerti
     var hitEntity = this.findHitEntity();
+    //console.log(hitEntity.length);
+
     // Ef að hann snerti eitthvað, framkvæmum þá rétta aðgerð miðað við hvaða hlut hann snerti
     //if(hitEntity) 
     if(keys[this.KEY_JUMP])
