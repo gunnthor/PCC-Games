@@ -219,6 +219,9 @@ Kall.prototype.update = function(du) {
     
     this.velLimit();
 
+    // Update'a spatialPos
+    this.spatialPos = this.updateSpatialPos(this.cx, this.cy, this.width, this.height);
+
     // Ef kallinn snertir eitthvað, þá verður hitEntity objecið sem að kallinn snerti
     var hitEntity = this.findHitEntity();
     // Ef að hann snerti eitthvað, framkvæmum þá rétta aðgerð miðað við hvaða hlut hann snerti

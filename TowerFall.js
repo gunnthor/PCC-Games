@@ -137,6 +137,7 @@ function renderSimulation(ctx) {
     entityManager.render(ctx);
     //spatialManager._grid.render(ctx);
 
+    //spatialManager.renderSpatialNet(ctx);
     if (g_renderSpatialDebug) spatialManager.render(ctx);
 }
 

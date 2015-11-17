@@ -143,7 +143,8 @@ update: function(du) {
         }
     }
     
-    
+    // Resetta spatial netið hér
+    spatialManager.resetSpatialNet();
 
 },
 

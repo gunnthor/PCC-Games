@@ -78,7 +78,11 @@ var levelManager = {
 	},
 
 	generateLevel : function() {
-    //levels er 2d array þar sem fyrir hvert level er array af þeim hitboxum sem á að gera fyrir levelið, þ.e.a.s. levels[level][object]
+
+		// Initializum spatial net
+    	spatialManager.initializeSpatialNet();
+    	
+    	//levels er 2d array þar sem fyrir hvert level er array af þeim hitboxum sem á að gera fyrir levelið, þ.e.a.s. levels[level][object]
         
 	    this._levels[this._level] = [];
 
