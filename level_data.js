@@ -12,7 +12,7 @@ var maps =
 			blocks :
 			[
 				{
-					x : 0,
+					x : 1,
 				 	y : 32,
 				 	endx : 14,
 				 	endy : 33,
@@ -24,9 +24,61 @@ var maps =
 				},
 
 				{
+					x : 1,
+				 	y : 15,
+				 	endx : 2,
+				 	endy : 33,
+				 	width : 32,
+				 	height : 18,
+				 	friction: 0.7
+				 	//wall - left side 
+				 	//type: iceblock/blueblock/mudblock
+				},
+
+				{
+					x : 32,
+				 	y : 15,
+				 	endx : 33,
+				 	endy : 33,
+				 	width : 32,
+				 	height : 18,
+				 	friction: 0.7
+				 	//wall - right side 
+				 	//type: iceblock/blueblock/mudblock
+				},
+
+				{
+					x : 1,
+				 	y : 1,
+				 	endx : 2,
+				 	endy : 10,
+				 	width : 32,
+				 	height : 18,
+				 	friction: 0.7
+				 	//wall_top - left side 
+				 	//type: iceblock/blueblock/mudblock
+				},
+
+				{
+					x : 32,
+				 	y : 1,
+				 	endx : 33,
+				 	endy : 10,
+				 	width : 32,
+				 	height : 18,
+				 	friction: 0.7
+				 	//wall_top - right side 
+				 	//type: iceblock/blueblock/mudblock
+				},
+
+
+
+
+
+				{
 					x : 20,
 				 	y : 32,
-				 	endx : 33,
+				 	endx : 32,
 				 	endy : 33,
 				 	width : 32,
 				 	height : 18,
@@ -126,7 +178,7 @@ var maps =
 				},
 
 				{
-					x : 1,
+					x : 2,
 				 	y : 23,
 				 	endx : 11,
 				 	endy : 24,
@@ -140,7 +192,7 @@ var maps =
 				{
 					x : 23,
 				 	y : 23,
-				 	endx : 33,
+				 	endx : 32,
 				 	endy : 24,
 				 	width : 32,
 				 	height : 18,
