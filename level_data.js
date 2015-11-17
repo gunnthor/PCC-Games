@@ -160,7 +160,56 @@ var maps =
 				 	friction: 0.7
 				 	//miðjupallur 
 				 	//type: iceblock/blueblock/mudblock
-				}
+				},
+
+				{
+					x : 1,
+					y : 14,
+					endx : 8,
+					endy : 15,
+					width : 32,
+					height : 18,
+					friction : 0.7
+					//efsti pallur vinstri
+				},
+
+				{
+					x : 26,
+					y : 14,
+					endx : 33,
+					endy : 15,
+					width : 32,
+					height : 18,
+					friction : 0.7
+					//efsti pallur hægri
+				},
+
+
+				{
+					x : 12,
+					y : 10,
+					endx : 16,
+					endy : 11,
+					width : 32,
+					height : 18,
+					friction : 0.7
+					//efsti miðjupallur vinstri
+				},
+
+
+				{
+					x : 18,
+					y : 10,
+					endx : 22,
+					endy : 11,
+					width : 32,
+					height : 18,
+					friction : 0.7
+					//efsti miðjupallur hægri
+				},
+
+
+
 
 			],
 

@@ -59,7 +59,7 @@ var Menu = {
                         break;
                     case "Back" :
                         this.clearOptions();
-                        console.log(this.IsStarted);
+                        //console.log(this.IsStarted);
                         if(this.IsStarted){
                             this.generatePauseMenu();
                         }
