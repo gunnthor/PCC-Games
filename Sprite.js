@@ -201,14 +201,14 @@ Sprite.prototype.drawAnimationAt = function (ctx, x, y, dirn) {
     //ctx.strokeRect(x,y,this.idleFrameWidth,this.idleFrameHeight);
     if (dirn === "right"){
     ctx.drawImage(this.image,this.spriteX,this.spriteY,this.frameWidth,this.frameHeight,
-        x,y,this.frameWidth,this.frameHeight);
+        (x-this.frameWidth/2),(y-this.frameHeight/2),this.frameWidth,this.frameHeight);
     }
     else {
         ctx.save();
         ctx.translate(this.frameWidth,0);
         ctx.scale(-1,1);
         ctx.drawImage(this.image,this.spriteX,this.spriteY,this.frameWidth,this.frameHeight,
-        -x,y,this.frameWidth,this.frameHeight);
+        -(x-this.frameWidth/2),(y-this.frameHeight/2),this.frameWidth,this.frameHeight);
         ctx.restore();
     }
     //this.updateFrames();
