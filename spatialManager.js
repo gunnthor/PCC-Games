@@ -15,7 +15,6 @@ e.g. general collision detection.
 0        1         2         3         4         5         6         7         8
 12345678901234567890123456789012345678901234567890123456789012345678901234567890
 */
-
 var spatialManager = {
 
 // "PRIVATE" DATA
@@ -57,7 +56,7 @@ initializeSpatialNet : function() {
 registerInSpatialNet : function(left, right, top, bottom, spatialID) {
 
     // Viljum ekki registera kallana í fyrsta iteration.
-    if(spatialID === 1 || spatialID === 2 && this.firstRegister) return;
+    //if((spatialID === 1 || spatialID === 2) && this.firstRegister) return;
     
     for(var i = left; i <= right; i++) {
         
@@ -75,9 +74,18 @@ checkSpatialPos : function(left, right, top, bottom) {
 
     //console.log(left, right, top, bottom);
     //console.log("check", this.spatialNet);
-    for(var i = left; i !== right; i++) {
+    //var diff;
+    //if(left > right) diff = 32 - left;
 
-        if(i === 32) i = 0;
+
+    for(var i = left; i !== right + 1; i++) {
+
+        if(i === 32) {
+
+            i = 0;
+            // bug fix ef að hitboxið er lítið:
+            if(i === right) break;
+        }
         
         for(var n = top; n <= bottom; n++) {
             
@@ -110,8 +118,6 @@ resetSpatialNet : function() {
 
         this.spatialNet[i][n].splice(last,1);
     }
-
-    //console.log("reset", this.spatialNet);
 
     this.registeredLocations = [];
 },
@@ -227,12 +233,14 @@ findEntityInRange: function(posX, posY, width, height, colEntity) {
     var top = colEntity.spatialPos.topPos;
     var bottom = colEntity.spatialPos.bottomPos;
 
-    // Notum spatialPositions hér, ef að einhver hlutur er í sama position, þá gerum við collision detection
-    if(!this.checkSpatialPos(left, right, top, bottom)) {
+    //console.log(left);
 
-        //console.log("cock");
-        return;
-    }
+    // Notum spatialPositions hér, ef að einhver hlutur er í sama position, þá gerum við collision detection
+    if(!this.checkSpatialPos(left, right, top, bottom)) return;
+
+    //console.log(colEntity.spatialPos);
+
+    //console.log("heh");
 
     //every time I collide with an entity, I push into this array
     var _hitentities = [];

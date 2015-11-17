@@ -195,8 +195,6 @@ Kall.prototype.pickupGuns = function(weapon) {
 
 
 Kall.prototype.update = function(du) {
-    
-    
 	
     // Unregister
     spatialManager.unregister(this);
@@ -204,23 +202,6 @@ Kall.prototype.update = function(du) {
     this.shootingTimeNomials -= du;
     this.pistolNomials -= du;
     this.shotgunNomials -=du;
-
-    // Perform movement substeps
-    var steps = this.numSubSteps;
-    var dStep = du / steps;
-    for (var i = 0; i < steps; ++i) {
-        this.computeSubStep(dStep);
-    }
-
-    if(eatKey(this.KEY_WEPS)) {
-        this.switchGuns();
-    }
-    this.maybeFireBullet();
-    
-    this.velLimit();
-
-    // Update'a spatialPos
-    this.spatialPos = this.updateSpatialPos(this.cx, this.cy, this.width, this.height);
 
     // Ef kallinn snertir eitthvað, þá verður hitEntity objecið sem að kallinn snerti
     var hitEntity = this.findHitEntity();
@@ -273,6 +254,24 @@ Kall.prototype.update = function(du) {
     {
         this.isShooting = false;
     }
+
+    // Perform movement substeps
+    var steps = this.numSubSteps;
+    var dStep = du / steps;
+    for (var i = 0; i < steps; ++i) {
+        this.computeSubStep(dStep);
+    }
+
+    if(eatKey(this.KEY_WEPS)) {
+        this.switchGuns();
+    }
+    this.maybeFireBullet();
+    
+    this.velLimit();
+
+    // Update'a spatialPos
+    //this.spatialPos = this.updateSpatialPos(this.cx, this.cy, this.width, this.height);
+
 
     // Register
     spatialManager.register(this);
