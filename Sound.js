@@ -9,12 +9,26 @@ function Sound(descr) {
         this[property] = descr[property];
     }
 };
+Sound.prototype.themeSong;
 
 Sound.prototype.playSound = function() {
-	if(!g_mute) {
-		console.log(this.audio);
+	if(!g_muteEffects) {
 		this.audio.pause();
 		var currentSound = this.audio;
 		currentSound.play();
 	}
+};
+
+Sound.prototype.playThemeSong = function (theme) {
+	Sound.prototype.themeSong = theme;
+	if(!g_muteThemeSong) {
+		Sound.prototype.themeSong.play();
+	}
+	
+};
+
+Sound.prototype.pauseThemeSong = function (){
+	//Sound.prototype.themeSong
+	Sound.prototype.themeSong.pause();
+
 };
