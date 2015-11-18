@@ -222,9 +222,10 @@ function preloadDone() {
      g_sprites.player1  = new Sprite({
         image : g_images.player1,
         
-        updateKall: function (du,isRunning,isJumping,isShooting){
+        updateKall: function (du,isRunning,isJumping,isShooting,isDead){
             this.time += du;
-            if(isJumping && isShooting) this.updateAnimations(this.jumpShooting);
+            if (isDead) this.updateAnimations(this.dead);
+            else if(isJumping && isShooting) this.updateAnimations(this.jumpShooting);
             else if (isJumping) this.updateAnimations(this.jumping);
             else if (isShooting) this.updateAnimations(this.shooting);
             else if (isRunning) this.updateAnimations(this.running);
@@ -316,9 +317,10 @@ function preloadDone() {
 
     g_sprites.player2  = new Sprite({
         image : g_images.player1,
-        updateKall: function (du,isRunning,isJumping,isShooting){
+        updateKall: function (du,isRunning,isJumping,isShooting,isDead){
             this.time += du;
-            if(isJumping && isShooting) this.updateAnimations(this.jumpShooting);
+            if (isDead) this.updateAnimations(this.dead);
+            else if(isJumping && isShooting) this.updateAnimations(this.jumpShooting);
             else if (isJumping) this.updateAnimations(this.jumping);
             else if (isShooting) this.updateAnimations(this.shooting);
             else if (isRunning) this.updateAnimations(this.running);

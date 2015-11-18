@@ -29,6 +29,7 @@ Kall.prototype.isRunning = false;
 Kall.prototype.pistolNomials = 0;
 Kall.prototype.shotgunNomials = 0;
 
+Kall.prototype.isDead = false;
 Kall.prototype.IS_SLOWING_DOWN = false;
 Kall.prototype.IN_AIR = true;
 Kall.prototype.velX = 0;
@@ -212,6 +213,7 @@ Kall.prototype.takeBulletHit = function() {
     if(this.health <= 0) {
         
         this.health = 0;
+        this.isDead = true;
     }
 
 };
@@ -269,7 +271,7 @@ Kall.prototype.update = function(du) {
     }
     
 
-    this.sprite.updateKall(du,this.isRunning,this.IN_AIR,this.isShooting);
+    this.sprite.updateKall(du,this.isRunning,this.IN_AIR,this.isShooting,this.isDead);
 
     this.isRunning = false;
     this.IN_AIR = true;
