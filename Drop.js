@@ -25,11 +25,19 @@ Drop.prototype.height;
 Drop.prototype.type;
 Drop.prototype.cooldown;
 Drop.prototype.visible;
+Drop.prototype.timer;
 
 
 Drop.prototype.update = function(du) {
-	// Ekkert að gera hér
 	
+
+	if(!this.visible) this.timer += du;
+	if(this.timer >= this.cooldown * SECS_TO_NOMINALS)
+	{
+		this.visible = true;
+		this.timer = 0;
+	}
+	//console.log(du);
 
 	//if(this._isDeadNow) return entityManager.KILL_ME_NOW;
 };
@@ -43,6 +51,7 @@ Drop.prototype.determineSprite = function(){
 
 Drop.prototype.pickedUp = function(){
 	this.visible = false;
+	this.timer = 0;
 };
 
 

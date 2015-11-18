@@ -250,7 +250,14 @@ Kall.prototype.update = function(du) {
     if(!this.IN_AIR) 
     {
 
-
+        for(var i = 0; i<hitEntity.length; i++)
+        {
+            if(hitEntity[i].type === "shotgun")
+            {
+                    //console.log("Touching a shotgun");
+                    hitEntity[i].pickedUp();
+            }
+        }
 
         //the code in this if statement makes the player stop after he stops pressing movement keys
         if(!keys[this.KEY_LEFT] && !keys[this.KEY_RIGHT] && hitEntity != undefined)
@@ -263,13 +270,7 @@ Kall.prototype.update = function(du) {
            {
 
                 //console.log(hitEntity[i].type);
-
-                if(hitEntity[i].type === "shotgun")
-                {
-                    //console.log("Touching a shotgun");
-                    hitEntity[i].pickedUp();
-
-                }
+                
                 
                 if(typeof hitEntity[i].friction != "undefined")
                 {

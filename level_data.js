@@ -307,7 +307,7 @@ var maps =
 				 	width : 32,
 				 	height : 18,
 				 	type : "shotgun",
-				 	cooldown : 15,
+				 	cooldown : 2,
 				 	visible : true
 				 	//shotgun				 	
 				}
