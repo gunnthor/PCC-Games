@@ -23,6 +23,8 @@ Drop.prototype.cy;
 Drop.prototype.width;
 Drop.prototype.height;
 Drop.prototype.type;
+Drop.prototype.cooldown;
+Drop.prototype.visible;
 
 
 Drop.prototype.update = function(du) {
@@ -35,15 +37,20 @@ Drop.prototype.update = function(du) {
 Drop.prototype.determineSprite = function(){
 	//if(this.friction === 0) return;
 	//console.log(this.type);
-	if(this.type === "shotgun") return g_sprites.shotgun;
-	
+	if(this.type === "shotgun") return g_sprites.shotgun;	
 
 };
+
+Drop.prototype.pickedUp = function(){
+	this.visible = false;
+};
+
+
 
 Drop.prototype.render = function(ctx) {	
 
 	//if(this.type === "shotgun") this.sprite.drawCustomSize(ctx, this.cx, this.cy, this.width, this.height)
-	this.sprite.drawCustomSize(ctx, this.cx-this.width/2, this.cy-this.height/2, this.width, this.height);
+	if(this.visible) this.sprite.drawCustomSize(ctx, this.cx-this.width/2, this.cy-this.height/2, this.width, this.height);
 	//console.log(this.type);
 	
 };

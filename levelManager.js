@@ -114,7 +114,7 @@ var levelManager = {
 	    for(var i = 0; i<maps.levels[this._level-1].drops.length; i++)
 	    {
 
-	    	console.log(i);
+	    	console.log(maps.levels[this._level-1].drops.length);
 
 	    	var currDrop = {
 		        x : maps.levels[this._level-1].drops[i].x,
@@ -124,7 +124,8 @@ var levelManager = {
 	        	width : maps.levels[this._level-1].drops[i].width,
 	        	height : maps.levels[this._level-1].drops[i].height,
 	        	type : maps.levels[this._level-1].drops[i].type,
-	        	cooldown : maps.levels[this._level-1].drops[i].cooldown
+	        	cooldown : maps.levels[this._level-1].drops[i].cooldown,
+	        	visible : maps.levels[this._level-1].drops[i].visible
 		    }
 
 		    this._levels[this._level].push(currDrop);

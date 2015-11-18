@@ -172,7 +172,8 @@ generateObjects: function(cluster) {
                     width : cluster.width,
                     height : cluster.height,
                     type : cluster.type,
-                    cooldown : cluster.cooldown
+                    cooldown : cluster.cooldown,
+                    visible : cluster.visible
                 });
             }
         }
