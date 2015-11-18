@@ -55,7 +55,7 @@ KILL_ME_NOW : -1,
 //
 deferredSetup : function () {
     
-    this._categories = [this._kallar, this._blocks,this._bullets];
+    this._categories = [this._blocks,this._kallar, this._bullets];
 },
 
 generateKall : function(descr) {
