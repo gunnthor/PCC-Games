@@ -136,9 +136,12 @@ generateObjects: function(cluster) {
 
     for(var i = cluster.x; i < cluster.endx; i++) {
         for(var n = cluster.y; n < cluster.endy; n++) {
+            //console.log(cluster.type);
+
             //console.log(i*block.width);
                 
             console.log(cluster.moving);
+
             this.generateBlock({
                 cx : i * cluster.width - cluster.width/2,
                 cy : n * cluster.height - cluster.height/2,
