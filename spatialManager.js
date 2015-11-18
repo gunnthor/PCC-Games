@@ -250,6 +250,8 @@ findEntityInRange: function(colEntity) {
 
         if (entity.isUndefined) continue;
 
+        if(entity.visible === false) continue;
+
         //variables for all the sides of the entities being checked
 
         var entRight = entity.cx + entity.width/2;
