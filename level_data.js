@@ -18,7 +18,8 @@ var maps =
 				 	endy : 33,
 				 	width : 32,
 				 	height : 18,
-				 	friction: 0.7
+				 	friction: 0.7,
+				 	type : "brick_blue"
 				 	//row 1 - left side 
 				 	//type: iceblock/blueblock/mudblock
 				},
@@ -30,7 +31,8 @@ var maps =
 				 	endy : 33,
 				 	width : 32,
 				 	height : 18,
-				 	friction: 0.7
+				 	friction: 0.7,
+				 	type : "brick_blue"
 				 	//wall - left side 
 				 	//type: iceblock/blueblock/mudblock
 				},
@@ -42,7 +44,8 @@ var maps =
 				 	endy : 33,
 				 	width : 32,
 				 	height : 18,
-				 	friction: 0.7
+				 	friction: 0.7,
+				 	type : "brick_blue"
 				 	//wall - right side 
 				 	//type: iceblock/blueblock/mudblock
 				},
@@ -54,7 +57,8 @@ var maps =
 				 	endy : 10,
 				 	width : 32,
 				 	height : 18,
-				 	friction: 0.7
+				 	friction: 0.7,
+				 	type : "brick_blue"
 				 	//wall_top - left side 
 				 	//type: iceblock/blueblock/mudblock
 				},
@@ -66,7 +70,8 @@ var maps =
 				 	endy : 10,
 				 	width : 32,
 				 	height : 18,
-				 	friction: 0.7
+				 	friction: 0.7,
+				 	type : "brick_blue"
 				 	//wall_top - right side 
 				 	//type: iceblock/blueblock/mudblock
 				},
@@ -82,7 +87,8 @@ var maps =
 				 	endy : 33,
 				 	width : 32,
 				 	height : 18,
-				 	friction: 0.7
+				 	friction: 0.7,
+				 	type : "brick_blue"
 				 	//row 1 - right side
 				 	//type: iceblock/blueblock/mudblock
 				},
@@ -95,7 +101,8 @@ var maps =
 				 	endy : 32,
 				 	width : 32,
 				 	height : 18,
-				 	friction: 0.7 
+				 	friction: 0.7,
+				 	type : "brick_blue" 
 				 	//type: iceblock/blueblock/mudblock
 				},
 
@@ -107,7 +114,8 @@ var maps =
 				 	endy : 31,
 				 	width : 32,
 				 	height : 18,
-				 	friction: 0.7 
+				 	friction: 0.7,
+				 	type : "brick_blue"
 				 	//type: iceblock/blueblock/mudblock
 				},
 
@@ -118,7 +126,8 @@ var maps =
 				 	endy : 30,
 				 	width : 32,
 				 	height : 18,
-				 	friction: 0.7 
+				 	friction: 0.7,
+				 	type : "brick_blue" 
 				 	//type: iceblock/blueblock/mudblock
 				},
 
@@ -129,7 +138,8 @@ var maps =
 				 	endy : 29,
 				 	width : 32,
 				 	height : 18,
-				 	friction: 0.7 
+				 	friction: 0.7,
+				 	type : "brick_blue" 
 				 	//type: iceblock/blueblock/mudblock
 				},
 
@@ -140,7 +150,8 @@ var maps =
 				 	endy : 32,
 				 	width : 32,
 				 	height : 18,
-				 	friction: 0.7 
+				 	friction: 0.7,
+				 	type : "brick_blue" 
 				 	//type: iceblock/blueblock/mudblock
 				},
 
@@ -151,7 +162,8 @@ var maps =
 				 	endy : 31,
 				 	width : 32,
 				 	height : 18,
-				 	friction: 0.7 
+				 	friction: 0.7,
+				 	type : "brick_blue" 
 				 	//type: iceblock/blueblock/mudblock
 				},
 
@@ -162,7 +174,8 @@ var maps =
 				 	endy : 30,
 				 	width : 32,
 				 	height : 18,
-				 	friction: 0.7 
+				 	friction: 0.7,
+				 	type : "brick_blue" 
 				 	//type: iceblock/blueblock/mudblock
 				},
 
@@ -173,8 +186,9 @@ var maps =
 				 	endy : 29,
 				 	width : 32,
 				 	height : 18,
-				 	friction: 0.7 
-				 	//type: iceblock/blueblock/mudblock
+				 	friction: 0.7,
+				 	type : "brick_blue" 
+				 	
 				},
 
 				{
@@ -184,9 +198,10 @@ var maps =
 				 	endy : 24,
 				 	width : 32,
 				 	height : 18,
-				 	friction: 0.7
+				 	friction: 0.7,
+				 	type : "brick_blue"
 				 	//efri pallur vinstri 
-				 	//type: iceblock/blueblock/mudblock
+				 	
 				},
 
 				{
@@ -196,9 +211,10 @@ var maps =
 				 	endy : 24,
 				 	width : 32,
 				 	height : 18,
-				 	friction: 0.7 
+				 	friction: 0.7,
+				 	type : "brick_blue" 
 				 	//efri pallur hægri
-				 	//type: iceblock/blueblock/mudblock
+				 	
 				},
 
 
@@ -209,9 +225,10 @@ var maps =
 				 	endy : 19,
 				 	width : 32,
 				 	height : 18,
-				 	friction: 0.7
+				 	friction: 0.7,
+				 	type : "brick_blue"
 				 	//miðjupallur 
-				 	//type: iceblock/blueblock/mudblock
+				 	
 				},
 
 				{
@@ -221,7 +238,8 @@ var maps =
 					endy : 15,
 					width : 32,
 					height : 18,
-					friction : 0.7
+					friction : 0.7,
+				 	type : "brick_blue"
 					//efsti pallur vinstri
 				},
 
@@ -232,7 +250,8 @@ var maps =
 					endy : 15,
 					width : 32,
 					height : 18,
-					friction : 0.7
+					friction : 0.7,
+				 	type : "brick_blue"
 					//efsti pallur hægri
 				},
 
@@ -244,7 +263,8 @@ var maps =
 					endy : 11,
 					width : 32,
 					height : 18,
-					friction : 0.7
+					friction : 0.7,
+				 	type : "brick_blue"
 					//efsti miðjupallur vinstri
 				},
 
@@ -256,19 +276,27 @@ var maps =
 					endy : 11,
 					width : 32,
 					height : 18,
-					friction : 0.7
-					//efsti miðjupallur hægri
-				}
+					friction : 0.7,
+				 	type : "brick_blue"
+					
+				},
+
+				{
+					x : 16,
+				 	y : 17,
+				 	endx : 17,
+				 	endy : 18,
+				 	width : 32,
+				 	height : 18,
+				 	friction: 0.7,
+				 	type : "shotgun"
+				 	//miðjupallur 
+				 	
+				},
+
+
 
 			],
-
-			images :
-			{				
-				background : "backgrounds/Background.png",
-				player1 : "Player1.png",
-				brick_blue : "bricks/brick_background_1.png"				
-			},
-
 
 			sounds : 
 			{
@@ -277,13 +305,19 @@ var maps =
         		shotgunSound    :  "sounds/shotgunSound.ogg",
         		shotgunSound2   :  "sounds/shotgunSound.ogg",
         		backgroundSong  : "sounds/HansZimmerTheKraken.ogg"
-			},
-
-
-
+			}
 
 		}
 	],
+
+
+	images :
+	{				
+		background : "backgrounds/Background.png",
+		player1 : "Player1.png",
+		brick_blue : "bricks/brick_background_1.png",
+		shotgun : "backgrounds/shotgunicon.png"				
+	},
 
 
 	options :

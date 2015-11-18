@@ -142,7 +142,8 @@ generateObjects: function(cluster) {
                 cy : n * cluster.height - cluster.height/2,
                 width : cluster.width,
                 height : cluster.height,
-                friction : cluster.friction
+                friction : cluster.friction,
+                type : cluster.type
             });
 
         }
@@ -161,8 +162,7 @@ update: function(du) {
         
         this._bullets[i].spatialPos = this._bullets[i].updateSpatialPos();
     }
-
-    ///////////////////////////////
+    
 
     for (var c = 0; c < this._categories.length; ++c) {
 

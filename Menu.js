@@ -106,7 +106,7 @@ var Menu = {
             });
         }
 
-        console.log(maps.options.sharedOptions.Back.x);
+        //console.log(maps.options.sharedOptions.Back.x);
         
     },
 

@@ -174,9 +174,10 @@ function requestPreloads() {
     var level = levelManager.getLevel();
     
     var requiredImages = {
-        player1  : maps.levels[level-1].images.player1,
-        brick_blue : maps.levels[level-1].images.brick_blue,
-        background : maps.levels[level-1].images.background        
+        player1  : maps.images.player1,
+        brick_blue : maps.images.brick_blue,
+        background : maps.images.background,
+        shotgun : maps.images.shotgun        
     };
 
 
@@ -210,6 +211,10 @@ function preloadDone() {
     g_sprites.brick_blue = new Sprite({
         image : g_images.brick_blue
     });
+
+    g_sprites.shotgun = new Sprite({
+        image : g_images.shotgun
+    })
     g_sprites.background = new Sprite({
         image : g_images.background
     });

@@ -220,6 +220,11 @@ Sprite.prototype.drawFullscreen = function(ctx){
     ctx.drawImage(this.image,0,0,this.image.width,this.image.height,0,0,g_canvas.width,g_canvas.height);
 
 };
+
+Sprite.prototype.drawCustomSize = function(ctx,x,y,width,height){
+    ctx.drawImage(this.image,x,y,width,height);
+
+};
 Sprite.prototype.drawCentredAt = function (ctx, cx, cy, rotation) {
     if (rotation === undefined) rotation = 0;
     

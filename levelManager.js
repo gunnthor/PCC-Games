@@ -96,7 +96,8 @@ var levelManager = {
 	        endy : maps.levels[this._level-1].blocks[i].endy,
 	        width : maps.levels[this._level-1].blocks[i].width,
 	        height : maps.levels[this._level-1].blocks[i].height,
-	        friction : maps.levels[this._level-1].blocks[i].friction};
+	        friction : maps.levels[this._level-1].blocks[i].friction,
+	    	type : maps.levels[this._level-1].blocks[i].type};
 	    }
 
 
