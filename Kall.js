@@ -24,10 +24,10 @@ Kall.prototype.KEY_WEPS;
 
 
 Kall.prototype.isShooting = false;
-Kall.prototype.shootingTimeNomials = 0;
+Kall.prototype.shootingTimeNominals = 0;
 Kall.prototype.isRunning = false;
-Kall.prototype.pistolNomials = 0;
-Kall.prototype.shotgunNomials = 0;
+Kall.prototype.pistolNominals = 0;
+Kall.prototype.shotgunNominals = 0;
 
 Kall.prototype.IS_SLOWING_DOWN = false;
 Kall.prototype.IN_AIR = true;
@@ -61,19 +61,19 @@ Kall.prototype.maybeFireBullet = function () {
             var bulletXVel = -16;
         }
 
-        if (this.gunType === "shotgun" && this.shotgunNomials <= 0){
+        if (this.gunType === "shotgun" && this.shotgunNominals <= 0){
             this.audio.playSound();
             this.isShooting = true;
-            this.shootingTimeNomials = SECS_TO_NOMINALS/4;
-            this.shotgunNomials = SECS_TO_NOMINALS/2;
+            this.shootingTimeNominals = SECS_TO_NOMINALS/4;
+            this.shotgunNominals = SECS_TO_NOMINALS/1.5;
             entityManager.fireBullet(
            bulletX, bulletY, bulletXVel, this.gunType);
             this.recoil();
-        } else if(this.gunType === "pistol" && this.pistolNomials <= 0){
+        } else if(this.gunType === "pistol" && this.pistolNominals <= 0){
             this.audio.playSound();
             this.isShooting = true;
-            this.shootingTimeNomials = SECS_TO_NOMINALS/4;
-            this.pistolNomials = SECS_TO_NOMINALS;
+            this.shootingTimeNominals = SECS_TO_NOMINALS/4;
+            this.pistolNominals = SECS_TO_NOMINALS;
             entityManager.fireBullet(
            bulletX, bulletY, bulletXVel, this.gunType);
         } 
@@ -210,9 +210,9 @@ Kall.prototype.update = function(du) {
     // Unregister
     spatialManager.unregister(this);
     
-    this.shootingTimeNomials -= du;
-    this.pistolNomials -= du;
-    this.shotgunNomials -=du;
+    this.shootingTimeNominals -= du;
+    this.pistolNominals -= du;
+    this.shotgunNominals -=du;
 
     // Ef kallinn snertir eitthvað, þá verður hitEntity objecið sem að kallinn snerti
     var hitEntity = this.findHitEntity();
@@ -230,6 +230,9 @@ Kall.prototype.update = function(du) {
     if(!this.IN_AIR) 
     {
 
+
+
+        //the code in this if statement makes the player stop after he stops pressing movement keys
         if(!keys[this.KEY_LEFT] && !keys[this.KEY_RIGHT] && hitEntity != undefined)
         {
 
@@ -239,7 +242,14 @@ Kall.prototype.update = function(du) {
            for(var i = 0; i<hitEntity.length; i++)
            {
 
-                //console.log(hitEntity[i].friction);
+                //console.log(hitEntity[i].type);
+
+                if(hitEntity[i].type === "shotgun")
+                {
+                    console.log("Touching a shotgun");
+                    hitEntity.kill();
+
+                }
                 
                 if(typeof hitEntity[i].friction != "undefined")
                 {
@@ -261,7 +271,7 @@ Kall.prototype.update = function(du) {
 
     this.isRunning = false;
     this.IN_AIR = true;
-    if (this.shootingTimeNomials <= 0)
+    if (this.shootingTimeNominals <= 0)
     {
         this.isShooting = false;
     }

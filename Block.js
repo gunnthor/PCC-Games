@@ -50,15 +50,6 @@ Block.prototype.render = function(ctx) {
 
 	//if(this.type === "shotgun") this.sprite.drawCustomSize(ctx, this.cx, this.cy, this.width, this.height)
 	this.sprite.drawCustomSize(ctx, this.cx-this.width/2, this.cy-this.height/2, this.width, this.height);
-
-
+	//console.log(this.type);
 	
-
-	/*
-	ctx.save();
-	ctx.fillStyle = "blue";
-	ctx.fillRect(this.cx-this.width/2, this.cy-this.height/2, this.width, this.height);
-	ctx.restore();
-	*/
-
 };
