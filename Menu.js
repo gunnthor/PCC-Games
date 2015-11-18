@@ -6,9 +6,7 @@ var Menu = {
     textWidth : 100,
 
     render : function (ctx) {
-        ctx.globalAlpha=0.3;
         renderSimulation(ctx);
-        ctx.globalAlpha = 1;
         ctx.fillStyle = "red";
          for (var i = 0; i < this._options.length; i++){
             this.renderoption(this._options[i],ctx);
@@ -29,7 +27,7 @@ var Menu = {
             if ((this._options[p].y >= yPos && this._options[p].y < yPos + 30) &&(this._options[p].x <= xPos && this._options[p].x >= xPos - this.textWidth) && this._options[p].active){
                 this._options[p].font = "30px Georgia,bold"; 
             }
-            else{
+            else if (this._options[p].active){
                 this._options[p].font = "20px Georgia,bold";
             }
         }

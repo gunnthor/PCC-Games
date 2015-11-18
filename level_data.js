@@ -264,6 +264,8 @@ var maps =
 					width : 32,
 					height : 18,
 					friction : 0.7,
+					moving : true,
+					moveDistance : 60,
 				 	type : "brick_blue"
 					//efsti miðjupallur vinstri
 				},
@@ -475,6 +477,13 @@ var maps =
 
         pauseMenu : 
         [
+        	{
+        		text:"Tower Fall",
+        		x: (g_canvas.width/2) - 160,
+        		y: 80,
+        		font: "small-caps 70px Georgia,bold",
+        		active: false
+        	},
 	        {
 	            text: "Resume",
 	            x: g_canvas.width/2,
@@ -503,6 +512,13 @@ var maps =
 
         startMenu : 
         [
+        	{
+        		text:"Tower Fall",
+        		x: (g_canvas.width/2) - 160,
+        		y: 80,
+        		font: "small-caps 70px Georgia,bold",
+        		active: false
+        	},
 	        {
 	            text: "Begin",
             	x: g_canvas.width/2,

@@ -35,7 +35,13 @@ Block.prototype.update = function(du) {
 	// Ekkert að gera hér
 	/*if(!this.moving) return;
 
-	if(this.cy >= this.start)*/
+	spatialManager.unregister(this);
+
+	if(this.cy >= this.startingCy + this.moveDistance || this.cy < this.startingCy) this.velY = -this.velY;
+
+	this.cy += this.velY;
+
+	spatialManager.register(this);*/
 };
 
 Block.prototype.determineSprite = function(){

@@ -29,11 +29,14 @@ Kall.prototype.isRunning = false;
 Kall.prototype.pistolNominals = 0;
 Kall.prototype.shotgunNominals = 0;
 
+Kall.prototype.isDead = false;
 Kall.prototype.IS_SLOWING_DOWN = false;
 Kall.prototype.IN_AIR = true;
 Kall.prototype.velX = 0;
 Kall.prototype.velY = 0;
 Kall.prototype.accRate = 1;
+
+Kall.prototype.health = 100;
 
 Kall.prototype.numSubSteps = 1;
 
@@ -204,6 +207,17 @@ Kall.prototype.dropGun = function(weapon) {
     }
 };
 
+Kall.prototype.takeBulletHit = function() {
+
+    this.health -= 20;
+    if(this.health <= 0) {
+        
+        this.health = 0;
+        this.isDead = true;
+    }
+
+};
+
 
 Kall.prototype.update = function(du) {
 	
@@ -267,7 +281,7 @@ Kall.prototype.update = function(du) {
     }
     
 
-    this.sprite.updateKall(du,this.isRunning,this.IN_AIR,this.isShooting);
+    this.sprite.updateKall(du,this.isRunning,this.IN_AIR,this.isShooting,this.isDead);
 
     this.isRunning = false;
     this.IN_AIR = true;

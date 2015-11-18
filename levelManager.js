@@ -50,7 +50,6 @@ var levelManager = {
 	        KEY_JUMP:   'W'.charCodeAt(0),
 	        KEY_FIRE:   'S'.charCodeAt(0),
 	        KEY_WEPS:   'E'.charCodeAt(0),
-	        health :    100,
 	        gunType:    "pistol",
 	        sprite : g_sprites.player1,
 	        audio  : g_sounds.pistolSound
@@ -70,7 +69,6 @@ var levelManager = {
 	        KEY_JUMP:   'I'.charCodeAt(0),
 	        KEY_FIRE:   'K'.charCodeAt(0),
 	        KEY_WEPS:   'O'.charCodeAt(0),
-	        health :    50,
 	        gunType:    "pistol", 
 	        sprite : g_sprites.player2,
 	        audio  : g_sounds.pistolSound2
@@ -97,6 +95,8 @@ var levelManager = {
 	        width : maps.levels[this._level-1].blocks[i].width,
 	        height : maps.levels[this._level-1].blocks[i].height,
 	        friction : maps.levels[this._level-1].blocks[i].friction,
+	        moving : maps.levels[this._level-1].blocks[i].moving,
+	        moveDistance : maps.levels[this._level-1].blocks[i].moveDistance,
 	    	type : maps.levels[this._level-1].blocks[i].type};
 	    }
 

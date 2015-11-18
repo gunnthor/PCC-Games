@@ -128,8 +128,8 @@ getNewSpatialID : function() {
     // check if any of the identities are dead and if they are dead give that spatialId to a new entity
     for (var ID in this._entities) {
         var e = this._entities[ID];
-        if( e.isDead) {
-            e.isDead = false;
+        if( e._isDeadNow) {
+            e._isDeadNow = false;
             return ID;
         }
     }
@@ -176,18 +176,8 @@ register: function(entity) {
     this.registerInSpatialNet(spatialPos.leftPos, spatialPos.rightPos, spatialPos.topPos, spatialPos.bottomPos, entity._spatialID);
 
     var spatialID = entity.getSpatialID();
-    this._entities[spatialID] =
-        {cx: pos.cx,
-        cy: pos.cy,
-        width: dimensions.width,
-        height: dimensions.height,
-        friction: dimensions.friction,
-        //radius: radius,
-        entity : entity,
-        isUndefined : false,
-        isDead : entity._isDeadNow,
-        spatialPos : spatialPos
-    };
+    this._entities[spatialID] = entity;
+    this._entities[spatialID].isUndefined = false;
     // TODO: YOUR STUFF HERE!
 },
 
@@ -199,17 +189,7 @@ unregister: function(entity)
     //var radius = entity.getRadius();
     var spatialID = entity.getSpatialID();
     var spatialPos = entity.spatialPos;
-    this._entities[spatialID] =
-        {cx: pos.cx,
-        cy: pos.cy,
-        width: dimensions.width,
-        height: dimensions.height,
-        friction: dimensions.friction,
-        //radius: radius,
-        entity : entity,
-        isUndefined : true,
-        isDead : entity._isDeadNow
-    };
+    this._entities[spatialID].isUndefined = true;
     entity.lastCollision = undefined;
     
 },
@@ -326,7 +306,6 @@ findEntityInRange: function(colEntity) {
                 
                 // Do this
                 if(Math.abs(colEntity.cx - colEntity.prevCx) <= colEntity.velXLimit*2) {
-                    if(colEntity instanceof Bullet) console.log(colEntity);
                     colEntity.cx = entity.cx - entity.width/2 - colEntity.width/2;
                     colEntity.velX = 0;
                     _hitentities.push(entity);
