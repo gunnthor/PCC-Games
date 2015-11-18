@@ -281,20 +281,7 @@ var maps =
 					friction : 0.7,
 				 	type : "brick_blue"
 					
-				},
-
-				{
-					x : 16,
-				 	y : 17,
-				 	endx : 17,
-				 	endy : 18,
-				 	width : 32,
-				 	height : 18,
-				 	friction: 0.7,
-				 	type : "shotgun"
-				 	//miðjupallur 
-				 	
-				},
+				}				
 
 
 
@@ -307,7 +294,23 @@ var maps =
         		shotgunSound    :  "sounds/shotgunSound.ogg",
         		shotgunSound2   :  "sounds/shotgunSound.ogg",
         		backgroundSong  : "sounds/HansZimmerTheKraken.ogg"
-			}
+			},
+
+
+			drops : 
+			[
+				{
+					x : 16,
+				 	y : 17,
+				 	endx : 17,
+				 	endy : 18,
+				 	width : 32,
+				 	height : 18,
+				 	type : "shotgun",
+				 	cooldown : 15
+				 	//shotgun				 	
+				}
+			]
 
 		}
 	],

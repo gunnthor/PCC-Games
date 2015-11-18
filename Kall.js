@@ -266,8 +266,8 @@ Kall.prototype.update = function(du) {
 
                 if(hitEntity[i].type === "shotgun")
                 {
-                    console.log("Touching a shotgun");
-                    hitEntity.kill();
+                    //console.log("Touching a shotgun");
+                    //hitEntity[i].kill();
 
                 }
                 

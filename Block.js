@@ -42,6 +42,8 @@ Block.prototype.update = function(du) {
 	this.cy += this.velY;
 
 	spatialManager.register(this);*/
+
+	if(this._isDeadNow) return entityManager.KILL_ME_NOW;
 };
 
 Block.prototype.determineSprite = function(){

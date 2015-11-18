@@ -29,6 +29,7 @@ var entityManager = {
 // "PRIVATE" DATA
 _kallar : [],
 _blocks : [],
+_drops : [],
 _bullets : [],
 _levels : [],
 
@@ -55,7 +56,7 @@ KILL_ME_NOW : -1,
 //
 deferredSetup : function () {
     
-    this._categories = [this._blocks,this._kallar, this._bullets];
+    this._categories = [this._blocks,this._kallar, this._bullets, this._drops];
 },
 
 generateKall : function(descr) {
@@ -65,6 +66,11 @@ generateKall : function(descr) {
 generateBlock : function(descr) {
     this._blocks.push(new Block(descr));
 },
+
+generateDrop : function(descr){
+    this._drops.push(new Drop(descr));
+},
+
 
 fireBullet : function(cx, cy, velX, gunType) {
     
@@ -140,24 +146,40 @@ generateObjects: function(cluster) {
 
             //console.log(i*block.width);
                 
-            console.log(cluster.moving);
-
-            this.generateBlock({
-                cx : i * cluster.width - cluster.width/2,
-                cy : n * cluster.height - cluster.height/2,
-                width : cluster.width,
-                height : cluster.height,
-                friction : cluster.friction,
-                moving : cluster.moving,
-                moveDistance : cluster.moveDistance,
-                type : cluster.type
-
-            });
+            //console.log(cluster.moving);
 
 
+            if(typeof cluster.friction != "undefined")
+            {
+                    this.generateBlock({
+                    cx : i * cluster.width - cluster.width/2,
+                    cy : n * cluster.height - cluster.height/2,
+                    width : cluster.width,
+                    height : cluster.height,
+                    friction : cluster.friction,
+                    moving : cluster.moving,
+                    moveDistance : cluster.moveDistance,
+                    type : cluster.type
+
+                });
+            }
+
+            else
+            {
+                this.generateDrop({
+                    cx : i * cluster.width - cluster.width/2,
+                    cy : n * cluster.height - cluster.height/2,
+                    width : cluster.width,
+                    height : cluster.height,
+                    type : cluster.type,
+                    cooldown : cluster.cooldown
+                });
+            }
         }
     }
 },
+
+
 
 update: function(du) {
 
