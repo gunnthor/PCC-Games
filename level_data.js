@@ -475,6 +475,13 @@ var maps =
 
         pauseMenu : 
         [
+        	{
+        		text:"Tower Fall",
+        		x: (g_canvas.width/2) - 160,
+        		y: 80,
+        		font: "small-caps 70px Georgia,bold",
+        		active: false
+        	},
 	        {
 	            text: "Resume",
 	            x: g_canvas.width/2,
@@ -503,6 +510,13 @@ var maps =
 
         startMenu : 
         [
+        	{
+        		text:"Tower Fall",
+        		x: (g_canvas.width/2) - 160,
+        		y: 80,
+        		font: "small-caps 70px Georgia,bold",
+        		active: false
+        	},
 	        {
 	            text: "Begin",
             	x: g_canvas.width/2,

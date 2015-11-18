@@ -278,7 +278,7 @@ function preloadDone() {
         },
         
         shooting : {
-            animationstate : "jumpShooting",
+            animationstate : "shooting",
             endX : 0,
             endY : 110,
             frameWidth : 49,
@@ -289,7 +289,7 @@ function preloadDone() {
         },
         
         shot : {
-            animationstate : "jumpShooting",
+            animationstate : "shot",
             endX : 49*6,
             endY : 327,
             frameWidth : 49,
@@ -301,7 +301,7 @@ function preloadDone() {
         },
         
         dead : {
-            animationstate : "jumpShooting",
+            animationstate : "dead",
             endX : 49*7,
             endY : 313,
             frameWidth : 60,
@@ -371,7 +371,7 @@ function preloadDone() {
         },
         
         shooting : {
-            animationstate : "jumpShooting",
+            animationstate : "shooting",
             endX : 0,
             endY : 110,
             frameWidth : 49,
@@ -382,7 +382,7 @@ function preloadDone() {
         },
         
         shot : {
-            animationstate : "jumpShooting",
+            animationstate : "shot",
             endX : 49*6,
             endY : 327,
             frameWidth : 49,
@@ -394,7 +394,7 @@ function preloadDone() {
         },
         
         dead : {
-            animationstate : "jumpShooting",
+            animationstate : "dead",
             endX : 49*7,
             endY : 313,
             frameWidth : 60,
