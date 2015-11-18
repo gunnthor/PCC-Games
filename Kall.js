@@ -193,6 +193,19 @@ Kall.prototype.pickupGuns = function(weapon) {
     this.weaponList.push(weapon);
 };
 
+Kall.prototype.dropGun = function(weapon) {
+    var slot;
+    for(var i = 0; i < this.weaponList.length; i++) {
+        if(this.weaponList[i] === weapon) {
+            slot = i;
+            this.weaponList.splice(slot, 1);
+            if(this.gunSlot === i) {
+                this.switchGuns();
+            }
+        }
+    }
+};
+
 
 Kall.prototype.update = function(du) {
 	
