@@ -174,8 +174,8 @@ function requestPreloads() {
     var level = levelManager.getLevel();
     
     var requiredImages = {
-        player1  : "Player1.png",
-        brick_blue : "bricks/brick_background_1.png",
+        player1  : maps.levels[level-1].images.player1,
+        brick_blue : maps.levels[level-1].images.brick_blue,
         background : maps.levels[level-1].images.background        
     };
 

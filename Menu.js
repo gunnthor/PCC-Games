@@ -94,7 +94,7 @@ var Menu = {
     },
 
     generateSoundOptions: function(){
-        this.generateOption({
+        /*this.generateOption({
             text: "Music",
             x: g_canvas.width/2,
             y: (g_canvas.height/2) - 60,
@@ -114,7 +114,19 @@ var Menu = {
             y: g_canvas.height/2,
             font: "20px Georgia, bold",
             active: true
-        });
+        });*/
+
+        for(var i = 0; i<maps.options.soundOptions.length; i++)
+        {
+            this.generateOption({
+                text : maps.options.soundOptions[i].text,
+                x : maps.options.soundOptions[i].x,
+                y : maps.options.soundOptions[i].y,
+                font : maps.options.soundOptions[i].font,
+                active : maps.options.soundOptions[i].active,
+            });
+        }
+        
     },
 
     generateInstructions: function(){

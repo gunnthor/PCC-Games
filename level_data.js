@@ -280,12 +280,46 @@ var maps =
         		shotgunSound    :  "sounds/shotgunSound.ogg",
         		shotgunSound2   :  "sounds/shotgunSound.ogg",
         		backgroundSong  : "sounds/HansZimmerTheKraken.ogg"
-			}
+			},
+
 
 
 
 		}
-	]	
+	],
+
+
+	options :
+	{
+		soundOptions : 
+		[
+			{
+				text: "Music",
+            	x: g_canvas.width/2,
+            	y: (g_canvas.height/2) - 60,
+            	font: "20px Georgia, bold",
+            	active: true
+			},
+
+			{
+	            text: "Effects",
+	            x: g_canvas.width/2 ,
+	            y: (g_canvas.height/2) -30,
+	            font: "20px Georgia, bold",
+	            active: true
+            },
+
+            {
+	            text: "Back",
+	            x: g_canvas.width/2,
+	            y: g_canvas.height/2,
+	            font: "20px Georgia, bold",
+	            active: true
+            }
+        ]
+
+	}
+
 
 		
 }
