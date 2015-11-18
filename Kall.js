@@ -28,8 +28,10 @@ Kall.prototype.shootingTimeNomials = 0;
 Kall.prototype.isRunning = false;
 Kall.prototype.pistolNomials = 0;
 Kall.prototype.shotgunNomials = 0;
+Kall.prototype.knockbakcNominals = 0;
 
 Kall.prototype.isDead = false;
+Kall.prototype.isShot = false;
 Kall.prototype.IS_SLOWING_DOWN = false;
 Kall.prototype.IN_AIR = true;
 Kall.prototype.velX = 0;
@@ -208,6 +210,8 @@ Kall.prototype.dropGun = function(weapon) {
 };
 
 Kall.prototype.takeBulletHit = function() {
+    this.knockbakcNominals = 10;
+    this.isShot = true;
 
     this.health -= 20;
     if(this.health <= 0) {
@@ -226,7 +230,8 @@ Kall.prototype.update = function(du) {
     
     this.shootingTimeNomials -= du;
     this.pistolNomials -= du;
-    this.shotgunNomials -=du;
+    this.shotgunNomials -= du;
+    this.knockbakcNominals -= du;
 
     // Ef kallinn snertir eitthvað, þá verður hitEntity objecið sem að kallinn snerti
     var hitEntity = this.findHitEntity();
@@ -271,13 +276,17 @@ Kall.prototype.update = function(du) {
     }
     
 
-    this.sprite.updateKall(du,this.isRunning,this.IN_AIR,this.isShooting,this.isDead);
+    this.sprite.updateKall(du,this.isRunning,this.IN_AIR,this.isShooting,this.isDead,this.isShot);
 
     this.isRunning = false;
     this.IN_AIR = true;
     if (this.shootingTimeNomials <= 0)
     {
         this.isShooting = false;
+    }
+    if (this.knockbakcNominals <= 0)
+    {
+        this.isShot = false;
     }
 
     // Perform movement substeps
