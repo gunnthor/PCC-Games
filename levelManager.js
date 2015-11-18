@@ -40,9 +40,9 @@ var levelManager = {
 		entityManager.generateKall({
 	        cx      :   g_canvas.width/2 -450,
 	        cy      :   300,
-	        color   :   "red",
+	        color   :   "orange",
 	        playerID:   1, 
-	        scorePosX:  10,
+	        scorePosX:  50,
 	        scorePosY:  20,
 	        direction:  "right",
 	        KEY_LEFT:   'A'.charCodeAt(0),
@@ -60,7 +60,7 @@ var levelManager = {
     	entityManager.generateKall({
 	        cx      :   g_canvas.width/2 +450,
 	        cy      :   300,
-	        color   :   "green",
+	        color   :   "orange",
 	        playerID:   2,
 	        scorePosX:  g_canvas.width  - 150,
 	        scorePosY:  20,

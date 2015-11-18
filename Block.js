@@ -6,6 +6,9 @@ function Block(descr) {
     //this.sprite = this.determineSprite();
     this.sprite = this.determineSprite();
 
+    this.startingCx = this.cx;
+    this.startingCy = this.cy;
+
     //this.rememberResets();
 };
 
@@ -23,8 +26,16 @@ Block.prototype.friction;//núningur á blockinu(t.d. ís eða drulla með eitth
 Block.prototype.maxVel;//Hæsti mögulegi hraðinn sem kallinn kemst á blokkinu
 Block.prototype.type;
 
+Block.prototype.moving = false;
+Block.prototype.moveDistance;
+Block.prototype.velY = 0.5;
+
+
 Block.prototype.update = function(du) {
 	// Ekkert að gera hér
+	/*if(!this.moving) return;
+
+	if(this.cy >= this.start)*/
 };
 
 Block.prototype.determineSprite = function(){

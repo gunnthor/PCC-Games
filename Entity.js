@@ -42,7 +42,7 @@ Entity.prototype.setup = function (descr) {
     }
 
     // Gefa blocks strax, svo að blocks hafi ekki alltaf 0 í spatial pos.
-    if(this instanceof Block) this.spatialPos = this.updateSpatialPos(this.cx, this.cy, this.width, this.height);
+    this.spatialPos = this.updateSpatialPos(this.cx, this.cy, this.width, this.height);
     
     // Get my (unique) spatial ID
     this._spatialID = spatialManager.getNewSpatialID();
@@ -56,6 +56,10 @@ Entity.prototype.prevCx;
 Entity.prototype.prevCy;
 Entity.prototype.lastCollision;
 Entity.prototype.friction;
+
+// Setti þetta hér til þess að collision virki líka á bullets.
+Entity.prototype.velXLimit = 4;
+Entity.prototype.velYLimit = 25;
 
 Entity.prototype.setPos = function (cx, cy) {
     this.cx = cx;
@@ -140,11 +144,8 @@ Entity.prototype.kill = function () {
 };
 
 Entity.prototype.findHitEntity = function () {
-    var pos = this.getPos();
-    var dimensions = this.getInfo();
-    return spatialManager.findEntityInRange(
-        pos.posX, pos.posY, dimensions.width, dimensions.height, this
-    );
+
+    return spatialManager.findEntityInRange(this);
 };
 
 // This is just little "convenience wrapper"

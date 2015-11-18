@@ -33,8 +33,6 @@ Kall.prototype.IS_SLOWING_DOWN = false;
 Kall.prototype.IN_AIR = true;
 Kall.prototype.velX = 0;
 Kall.prototype.velY = 0;
-Kall.prototype.velXLimit = 4;
-Kall.prototype.velYLimit = 25;
 Kall.prototype.accRate = 1;
 
 Kall.prototype.numSubSteps = 1;
@@ -259,7 +257,7 @@ Kall.prototype.update = function(du) {
     }
     
 
-    this.sprite.update(du,this.isRunning,this.IN_AIR,this.isShooting);
+    this.sprite.updateKall(du,this.isRunning,this.IN_AIR,this.isShooting);
 
     this.isRunning = false;
     this.IN_AIR = true;
@@ -293,16 +291,24 @@ Kall.prototype.update = function(du) {
 Kall.prototype.render = function(ctx) {
     this.sprite.drawWrappedAnimationdAt(ctx,this.cx,this.cy,this.direction);
 	var oldStyle = ctx.fillStyle;
-    ctx.fillStyle = this.color;
-    ctx.font="20px Georgia, bold";
-    ctx.fillText("Player "+ this.playerID + ": "+ this.weaponList[this.gunSlot],this.scorePosX,this.scorePosY);
+    
     //ctx.fillText("Health: " + this.health + "%",this.scorePosX,this.scorePosY+25);
+
     ctx.fillStyle = "black";
-    ctx.fillRect(this.scorePosX-1,this.scorePosY + 19, 102,22);
+    //ctx.fillRect(this.scorePosX-1,this.scorePosY-18, 142,22);
+    ctx.fillRect(this.scorePosX-1,this.scorePosY-16, 102,22);
     ctx.fillStyle = "#b90000";
-    ctx.fillRect(this.scorePosX,this.scorePosY + 20, 100,20);
+    ctx.fillRect(this.scorePosX,this.scorePosY-15, 100,20);
     ctx.fillStyle = "green";
-    ctx.fillRect(this.scorePosX,this.scorePosY + 20, this.health, 20)
+    ctx.fillRect(this.scorePosX,this.scorePosY-15, this.health, 20)
+    ctx.globalAlpha = 0.5;
+    ctx.fillStyle = "yellow";
+    ctx.font="20px Georgia", "bold";
+    ctx.fillText("Player "+ this.playerID,this.scorePosX+13,this.scorePosY+1);
+    ctx.globalAlpha = 1;
+    ctx.fillStyle = this.color
+    ctx.font='small-caps 30px Georgia bold';
+    ctx.fillText(this.weaponList[this.gunSlot],this.scorePosX+5,this.scorePosY+25);
     ctx.fillStyle = oldStyle;
     
 };
