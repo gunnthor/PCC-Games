@@ -80,21 +80,21 @@ fireBullet : function(cx, cy, velX, gunType) {
     if(gunType === "shotgun") {
         this._bullets.push(new Bullet({
             cx   : cx,
-            cy   : cy,
+            cy   : cy-6,
             velX : velX,
             velY : -0.6
         }));
 
         this._bullets.push(new Bullet({
             cx   : cx,
-            cy   : cy,
+            cy   : cy-4,
             velX : velX,
             velY : -0.4
         }));
 
         this._bullets.push(new Bullet({
             cx   : cx,
-            cy   : cy,
+            cy   : cy-2,
             velX : velX,
             velY : -0.2
         }));
@@ -108,21 +108,21 @@ fireBullet : function(cx, cy, velX, gunType) {
 
         this._bullets.push(new Bullet({
             cx   : cx,
-            cy   : cy,
+            cy   : cy+2,
             velX : velX,
             velY : 0.2
         }));
 
         this._bullets.push(new Bullet({
             cx   : cx,
-            cy   : cy,
+            cy   : cy+4,
             velX : velX,
             velY : 0.4
         }));
 
         this._bullets.push(new Bullet({
             cx   : cx,
-            cy   : cy,
+            cy   : cy+6,
             velX : velX,
             velY : 0.6
         }));
