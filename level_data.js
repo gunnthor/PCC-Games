@@ -244,7 +244,9 @@ var maps =
 					endy : 11,
 					width : 32,
 					height : 18,
-					friction : 0.7
+					friction : 0.7,
+					moving : true,
+					moveDistance : 60
 					//efsti miðjupallur vinstri
 				},
 

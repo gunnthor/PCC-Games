@@ -35,6 +35,8 @@ Kall.prototype.velX = 0;
 Kall.prototype.velY = 0;
 Kall.prototype.accRate = 1;
 
+Kall.prototype.health = 100;
+
 Kall.prototype.numSubSteps = 1;
 
 Kall.prototype.weaponList = ["pistol"];
@@ -202,6 +204,16 @@ Kall.prototype.dropGun = function(weapon) {
             }
         }
     }
+};
+
+Kall.prototype.takeBulletHit = function() {
+
+    this.health -= 20;
+    if(this.health <= 0) {
+        
+        this.health = 0;
+    }
+
 };
 
 

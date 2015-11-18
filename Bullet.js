@@ -32,6 +32,9 @@ Bullet.prototype.update = function (du) {
 
         if(hitEntity.length > 0)
         {
+            var canTakeHit = hitEntity[0].takeBulletHit;
+            if (canTakeHit) canTakeHit.call(hitEntity[0]);
+
             this.kill();
             spatialManager.unregister(this); 
             return entityManager.KILL_ME_NOW;
