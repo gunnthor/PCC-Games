@@ -174,9 +174,10 @@ function requestPreloads() {
     var level = levelManager.getLevel();
     
     var requiredImages = {
-        player1  : maps.levels[level-1].images.player1,
-        brick_blue : maps.levels[level-1].images.brick_blue,
-        background : maps.levels[level-1].images.background        
+        player1  : maps.images.player1,
+        brick_blue : maps.images.brick_blue,
+        background : maps.images.background,
+        shotgun : maps.images.shotgun        
     };
 
 
@@ -210,113 +211,199 @@ function preloadDone() {
     g_sprites.brick_blue = new Sprite({
         image : g_images.brick_blue
     });
+
+    g_sprites.shotgun = new Sprite({
+        image : g_images.shotgun
+    })
     g_sprites.background = new Sprite({
         image : g_images.background
     });
     
-    g_sprites.player1  = new Sprite({
+     g_sprites.player1  = new Sprite({
         image : g_images.player1,
         
-        idleEndX : 49*2,
-        idleEndY : 0,
-        idleFrameWidth : 49,
-        idleFrameHeight : 49,
-        idleFrames: 3,
-        
-        runningEndX : 444.5-100,
-        runningEndY : 49,
-        runningFrameWidth : 50,
-        runningFrameHeight : 49,
-        runningFrames : 8,
-        
-        jumpingFrames : 1,
-        jumpingEndX : 198,
-        jumpingEndY : 228,
-        jumpingFrameWidth : 49,
-        jumpingFrameHeight : 49,
+        updateKall: function (du,isRunning,isJumping,isShooting){
+            this.time += du;
+            if(isJumping && isShooting) this.updateAnimations(this.jumpShooting);
+            else if (isJumping) this.updateAnimations(this.jumping);
+            else if (isShooting) this.updateAnimations(this.shooting);
+            else if (isRunning) this.updateAnimations(this.running);
+            else  this.updateAnimations(this.idle);
 
-        jumpShootingEndX : 0,
-        jumpShootingEndY : 387,
-        jumpShootingFrameWidth : 49,
-        jumpShootingFrameHeight : 49,
-        jumpShootingFrames : 1,
-        
-        shootingEndX : 0,
-        shootingEndY : 110,
-        shootingFrameWidth : 49,
-        shootingFrameHeight : 49,
-        shootingFrames: 1,
-        
-        shotEndX : 49*6,
-        shotEndY : 327,
-        shotFrameWidth : 49,
-        shotFrameHeight : 49,
-        shotFrames : 1,
+            while (this.time > (this.frame + 1) * this.timeperframe){
+                this.updateFrames();
+            }
+        },
 
-        deadEndX : 49*7,
-        deadEndY : 313,
-        deadFrameWidth : 60,
-        deadFrameHeight : 49,
-        deadFrames : 1/*,
+        idle : {
+            animationstate : "idle",
+            endX : 49*2,
+            endY : 0,
+            frameWidth : 49,
+            frameHeight : 49,
+            frames: 3,
+            timeperframe : 60
+        },
+        
+        running : {
+            animationstate : "running",
+            endX : 444.5-100,
+            endY : 49,
+            frameWidth : 50,
+            frameHeight : 49,
+            frames : 8,
+            timeperframe : (SECS_TO_NOMINALS/8)/2
+        },
+        
+        jumping : {            
+            animationstate : "jumping",
+            frames : 1,
+            endX : 198,
+            endY : 228,
+            frameWidth : 49,
+            frameHeight : 49,
+            timeperframe : 60
 
-        runShootingEndX : -5.5,
-        runShootingEndY : 49,
-        runShootingFrameWidth : 49,
-        runShootingFrameHeight : 49,
-        runShootingFrames: 1*/
+        },
+        
+        
+        jumpShooting :{
+            animationstate : "jumpShooting",
+            endX : 0,
+            endY : 387,
+            frameWidth : 49,
+            frameHeight : 49,
+            frames : 1,
+            timeperframe : 60
+        },
+        
+        shooting : {
+            animationstate : "shooting",
+            endX : 0,
+            endY : 110,
+            frameWidth : 49,
+            frameHeight : 49,
+            frames: 1,
+            timeperframe : 60
+
+        },
+        
+        shot : {
+            animationstate : "shot",
+            endX : 49*6,
+            endY : 327,
+            frameWidth : 49,
+            frameHeight : 49,
+            frames : 1,
+            timeperframe : 60
+
+
+        },
+        
+        dead : {
+            animationstate : "dead",
+            endX : 49*7,
+            endY : 313,
+            frameWidth : 60,
+            frameHeight : 49,
+            frames : 1,
+            timeperframe : 60
+
+        }
+        
+        
     });
 
     g_sprites.player2  = new Sprite({
         image : g_images.player1,
-        
-        idleEndX : 49*2,
-        idleEndY : 0,
-        idleFrameWidth : 49,
-        idleFrameHeight : 49,
-        idleFrames: 3,
-        
-        runningEndX : 444.5-100,
-        runningEndY : 49,
-        runningFrameWidth : 50,
-        runningFrameHeight : 49,
-        runningFrames : 8,
-        
-        jumpingFrames : 1,
-        jumpingEndX : 198,
-        jumpingEndY : 228,
-        jumpingFrameWidth : 49,
-        jumpingFrameHeight : 49,
-        
-        jumpShootingEndX : 0,
-        jumpShootingEndY : 387,
-        jumpShootingFrameWidth : 49,
-        jumpShootingFrameHeight : 49,
-        jumpShootingFrames : 1,
-        
-        shootingEndX : 0,
-        shootingEndY : 110,
-        shootingFrameWidth : 49,
-        shootingFrameHeight : 49,
-        shootingFrames: 1,
-        
-        shotEndX : 49*6,
-        shotEndY : 327,
-        shotFrameWidth : 49,
-        shotFrameHeight : 49,
-        shotFrames : 1,
+        updateKall: function (du,isRunning,isJumping,isShooting){
+            this.time += du;
+            if(isJumping && isShooting) this.updateAnimations(this.jumpShooting);
+            else if (isJumping) this.updateAnimations(this.jumping);
+            else if (isShooting) this.updateAnimations(this.shooting);
+            else if (isRunning) this.updateAnimations(this.running);
+            else  this.updateAnimations(this.idle);
 
-        deadEndX : 49*7,
-        deadEndY : 313,
-        deadFrameWidth : 60,
-        deadFrameHeight : 49,
-        deadFrames : 1/*,
+            while (this.time > (this.frame + 1) * this.timeperframe){
+                this.updateFrames();
+            }
+        },
+        idle : {
+            animationstate : "idle",
+            endX : 49*2,
+            endY : 0,
+            frameWidth : 49,
+            frameHeight : 49,
+            frames: 3,
+            timeperframe : 60
+        },
+        
+        running : {
+            animationstate : "running",
+            endX : 444.5-100,
+            endY : 49,
+            frameWidth : 50,
+            frameHeight : 49,
+            frames : 8,
+            timeperframe : (SECS_TO_NOMINALS/8)/2
+        },
+        
+        jumping : {            
+            animationstate : "jumping",
+            frames : 1,
+            endX : 198,
+            endY : 228,
+            frameWidth : 49,
+            frameHeight : 49,
+            timeperframe : 60
+
+        },
+        
+        
+        jumpShooting :{
+            animationstate : "jumpShooting",
+            endX : 0,
+            endY : 387,
+            frameWidth : 49,
+            frameHeight : 49,
+            frames : 1,
+            timeperframe : 60
+        },
+        
+        shooting : {
+            animationstate : "shooting",
+            endX : 0,
+            endY : 110,
+            frameWidth : 49,
+            frameHeight : 49,
+            frames: 1,
+            timeperframe : 60
+
+        },
+        
+        shot : {
+            animationstate : "shot",
+            endX : 49*6,
+            endY : 327,
+            frameWidth : 49,
+            frameHeight : 49,
+            frames : 1,
+            timeperframe : 60
 
 
-        runShootingEndX : -5.5,
-        runShootingEndY : 49,
-        runShootingFrameWidth : 49,
-        runShootingFrameHeight : 49,
-        runShootingFrames: 1*/
+        },
+        
+        dead : {
+            animationstate : "dead",
+            endX : 49*7,
+            endY : 313,
+            frameWidth : 60,
+            frameHeight : 49,
+            frames : 1,
+            timeperframe : 60
+
+        }
+        
     });
     
     spatialManager.init();

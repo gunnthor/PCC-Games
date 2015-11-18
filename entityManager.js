@@ -146,7 +146,9 @@ generateObjects: function(cluster) {
                 height : cluster.height,
                 friction : cluster.friction,
                 moving : cluster.moving,
-                moveDistance : cluster.moveDistance
+                moveDistance : cluster.moveDistance,
+                type : cluster.type
+
             });
 
 
@@ -166,8 +168,7 @@ update: function(du) {
         
         this._bullets[i].spatialPos = this._bullets[i].updateSpatialPos();
     }
-
-    ///////////////////////////////
+    
 
     for (var c = 0; c < this._categories.length; ++c) {
 
