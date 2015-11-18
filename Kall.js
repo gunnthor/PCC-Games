@@ -257,7 +257,7 @@ Kall.prototype.update = function(du) {
     }
     
 
-    this.sprite.update(du,this.isRunning,this.IN_AIR,this.isShooting);
+    this.sprite.updateKall(du,this.isRunning,this.IN_AIR,this.isShooting);
 
     this.isRunning = false;
     this.IN_AIR = true;
