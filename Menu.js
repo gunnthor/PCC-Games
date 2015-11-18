@@ -94,28 +94,7 @@ var Menu = {
     },
 
     generateSoundOptions: function(){
-        /*this.generateOption({
-            text: "Music",
-            x: g_canvas.width/2,
-            y: (g_canvas.height/2) - 60,
-            font: "20px Georgia, bold",
-            active: true
-        });
-        this.generateOption({
-            text: "Effects",
-            x: g_canvas.width/2 ,
-            y: (g_canvas.height/2) -30,
-            font: "20px Georgia, bold",
-            active: true
-        });
-        this.generateOption({
-            text: "Back",
-            x: g_canvas.width/2,
-            y: g_canvas.height/2,
-            font: "20px Georgia, bold",
-            active: true
-        });*/
-
+        
         for(var i = 0; i<maps.options.soundOptions.length; i++)
         {
             this.generateOption({
@@ -126,159 +105,52 @@ var Menu = {
                 active : maps.options.soundOptions[i].active,
             });
         }
+
+        console.log(maps.options.sharedOptions.Back.x);
         
     },
 
     generateInstructions: function(){
-        this.generateOption({
-            text: "Buttons Player 1",
-            x: (g_canvas.width/2) - 130,
-            y: (g_canvas.height/2) - 60,
-            font: "20px Georgia, bold",
-            active: false
-        });
-        this.generateOption({
-            text: "W : jump",
-            x: (g_canvas.width/2) - 130,
-            y: (g_canvas.height/2) -30,
-            font: "20px Georgia, bold",
-            active: false
-
-        });
-        this.generateOption({
-            text: "A : move left",
-            x: (g_canvas.width/2) - 130,
-            y: g_canvas.height/2,
-            font: "20px Georgia, bold",
-            active: false
-        });
-        this.generateOption({
-            text: "D : move right",
-            x: (g_canvas.width/2) - 130,
-            y: (g_canvas.height/2) + 30,
-            font: "20px Georgia, bold",
-            active: false
-        });
-
-        this.generateOption({
-            text: "S : shoot",
-            x: (g_canvas.width/2) - 130,
-            y: (g_canvas.height/2) + 60,
-            font: "20px Georgia, bold",
-            active: false
-        });
-        this.generateOption({
-            text: "E: change gun",
-            x: (g_canvas.width/2) - 130,
-            y: (g_canvas.height/2) + 90,
-            font: "20px Georgia, bold",
-            active: false
-        });
-        this.generateOption({
-            text: "Buttons Player 2",
-            x: (g_canvas.width/2) + 60,
-            y: (g_canvas.height/2) - 60,
-            font: "20px Georgia, bold",
-            active: false 
-        });
-        this.generateOption({
-            text: "I : jump",
-            x: (g_canvas.width/2) + 60,
-            y: (g_canvas.height/2) -30,
-            font: "20px Georgia, bold",
-            active: false
-        });
-        this.generateOption({
-            text: "J : move left",
-            x: (g_canvas.width/2) + 60,
-            y: g_canvas.height/2,
-            font: "20px Georgia, bold",
-            active: false
-        });
-        this.generateOption({
-            text: "L : move right",
-            x: (g_canvas.width/2) + 60,
-            y: (g_canvas.height/2) + 30,
-            font: "20px Georgia, bold",
-            active: false
-        });
-
-        this.generateOption({
-            text: "K : shoot",
-            x: (g_canvas.width/2) + 60,
-            y: (g_canvas.height/2) + 60,
-            font: "20px Georgia, bold",
-            active: false
-        });
-        this.generateOption({
-            text: "O : change gun",
-            x: (g_canvas.width/2) + 60,
-            y: (g_canvas.height/2) + 90,
-            font: "20px Georgia, bold",
-            active: false
-        });
-        this.generateOption({
-            text: "Back",
-            x: g_canvas.width/2,
-            y: (g_canvas.height/2) + 120,
-            font: "20px Georgia, bold",
-            active: true
-        });
-
+        
+        for(var i = 0; i<maps.options.instructions.length; i++)
+        {
+            this.generateOption({
+                text : maps.options.instructions[i].text,
+                x : maps.options.instructions[i].x,
+                y : maps.options.instructions[i].y,
+                font : maps.options.instructions[i].font,
+                active : maps.options.instructions[i].active,
+            });
+        }
     },
 
     generatePauseMenu: function(){
-        this.generateOption({
-            text: "Resume",
-            x: g_canvas.width/2,
-            y: (g_canvas.height/2) - 60,
-            font: "20px Georgia, bold",
-            active: true
-        });
-        this.generateOption({
-            text: "Sound",
-            x: g_canvas.width/2 ,
-            y: (g_canvas.height/2) -30,
-            font: "20px Georgia, bold",
-            active: true
-        });
-        this.generateOption({
-            text: "Instructions",
-            x: g_canvas.width/2,
-            y: g_canvas.height/2,
-            font: "20px Georgia, bold",
-            active: true
-        });
+        
+        for(var i = 0; i<maps.options.pauseMenu.length; i++)
+        {
+            this.generateOption({
+                text : maps.options.pauseMenu[i].text,
+                x : maps.options.pauseMenu[i].x,
+                y : maps.options.pauseMenu[i].y,
+                font : maps.options.pauseMenu[i].font,
+                active : maps.options.pauseMenu[i].active,
+            });
+        }
     },
 
     init : function (){
-        this.generateOption({
-            text: "Begin",
-            x: g_canvas.width/2,
-            y: (g_canvas.height/2) - 60,
-            font: "20px Georgia, bold",
-            active: true
-        });
-        this.generateOption({
-            text: "Sound",
-            x: g_canvas.width/2 ,
-            y: (g_canvas.height/2) -30,
-            font: "20px Georgia, bold",
-            active: true
-        });
-        this.generateOption({
-            text: "Map",
-            x: g_canvas.width/2,
-            y: g_canvas.height/2,
-            font: "20px Georgia, bold",
-            active: true
-        });
-        this.generateOption({
-            text: "Instructions",
-            x: g_canvas.width/2,
-            y: (g_canvas.height/2) + 30,
-            font: "20px Georgia, bold",
-            active: true
-        });
+        
+        for(var i = 0; i<maps.options.startMenu.length; i++)
+        {
+            this.generateOption({
+                text : maps.options.startMenu[i].text,
+                x : maps.options.startMenu[i].x,
+                y : maps.options.startMenu[i].y,
+                font : maps.options.startMenu[i].font,
+                active : maps.options.startMenu[i].active,
+            });
+        }
+
+    
     }
 }

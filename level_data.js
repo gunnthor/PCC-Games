@@ -260,9 +260,6 @@ var maps =
 					//efsti miðjupallur hægri
 				}
 
-
-
-
 			],
 
 			images :
@@ -291,6 +288,19 @@ var maps =
 
 	options :
 	{
+		sharedOptions :
+		{
+			Back : 
+			{
+	            text: "Back",
+	            x: g_canvas.width/2,
+	            y: g_canvas.height/2,
+	            font: "20px Georgia, bold",
+	            active: true
+            }
+		},
+
+
 		soundOptions : 
 		[
 			{
@@ -315,8 +325,186 @@ var maps =
 	            y: g_canvas.height/2,
 	            font: "20px Georgia, bold",
 	            active: true
-            }
+            }           
+
+        ],
+
+        instructions : 
+        [
+        	{
+	            text: "Buttons Player 1",
+	            x: (g_canvas.width/2) - 130,
+	            y: (g_canvas.height/2) - 60,
+	            font: "20px Georgia, bold",
+	            active: false
+            },
+
+	        {
+	            text: "W : jump",
+	            x: (g_canvas.width/2) - 130,
+	            y: (g_canvas.height/2) -30,
+	            font: "20px Georgia, bold",
+	            active: false
+
+	        },
+
+	        {
+	            text: "A : move left",
+	            x: (g_canvas.width/2) - 130,
+	            y: g_canvas.height/2,
+	            font: "20px Georgia, bold",
+	            active: false
+	        },
+
+	        {
+	            text: "D : move right",
+	            x: (g_canvas.width/2) - 130,
+	            y: (g_canvas.height/2) + 30,
+	            font: "20px Georgia, bold",
+	            active: false
+	        },
+
+	        {
+	            text: "S : shoot",
+	            x: (g_canvas.width/2) - 130,
+	            y: (g_canvas.height/2) + 60,
+	            font: "20px Georgia, bold",
+	            active: false
+	        },
+
+	        {
+	            text: "E: change gun",
+	            x: (g_canvas.width/2) - 130,
+	            y: (g_canvas.height/2) + 90,
+	            font: "20px Georgia, bold",
+	            active: false
+	        },
+
+	        {
+	            text: "Buttons Player 2",
+	            x: (g_canvas.width/2) + 60,
+	            y: (g_canvas.height/2) - 60,
+	            font: "20px Georgia, bold",
+	            active: false 
+	        },
+
+	        {
+	            text: "I : jump",
+	            x: (g_canvas.width/2) + 60,
+	            y: (g_canvas.height/2) -30,
+	            font: "20px Georgia, bold",
+	            active: false
+	        },
+
+	        {
+	            text: "J : move left",
+	            x: (g_canvas.width/2) + 60,
+	            y: g_canvas.height/2,
+	            font: "20px Georgia, bold",
+	            active: false
+	        },
+
+	        {
+	            text: "L : move right",
+	            x: (g_canvas.width/2) + 60,
+	            y: (g_canvas.height/2) + 30,
+	            font: "20px Georgia, bold",
+	            active: false
+	        },
+
+
+	        {
+	            text: "K : shoot",
+	            x: (g_canvas.width/2) + 60,
+	            y: (g_canvas.height/2) + 60,
+	            font: "20px Georgia, bold",
+	            active: false
+	        },
+
+	        {
+	            text: "O : change gun",
+	            x: (g_canvas.width/2) + 60,
+	            y: (g_canvas.height/2) + 90,
+	            font: "20px Georgia, bold",
+	            active: false
+	        },
+
+	        {
+	            text: "Back",
+	            x: g_canvas.width/2,
+	            y: (g_canvas.height/2) + 120,
+	            font: "20px Georgia, bold",
+	            active: true
+	        }
+
+        ],
+
+        pauseMenu : 
+        [
+	        {
+	            text: "Resume",
+	            x: g_canvas.width/2,
+	            y: (g_canvas.height/2) - 60,
+	            font: "20px Georgia, bold",
+	            active: true
+	        },
+
+	        {
+	            text: "Sound",
+	            x: g_canvas.width/2 ,
+	            y: (g_canvas.height/2) -30,
+	            font: "20px Georgia, bold",
+	            active: true
+	        },
+
+	        {
+	            text: "Instructions",
+	            x: g_canvas.width/2,
+	            y: g_canvas.height/2,
+	            font: "20px Georgia, bold",
+	            active: true
+	        }
+
+        ],
+
+        startMenu : 
+        [
+	        {
+	            text: "Begin",
+            	x: g_canvas.width/2,
+            	y: (g_canvas.height/2) - 60,
+            	font: "20px Georgia, bold",
+            	active: true
+	        },
+
+	        {
+	            text: "Sound",
+	            x: g_canvas.width/2 ,
+	            y: (g_canvas.height/2) -30,
+	            font: "20px Georgia, bold",
+	            active: true
+	        },
+
+		    {
+	            text: "Map",
+	            x: g_canvas.width/2,
+	            y: g_canvas.height/2,
+	            font: "20px Georgia, bold",
+	            active: true
+	        },
+
+	        {
+	           text: "Instructions",
+	            x: g_canvas.width/2,
+	            y: (g_canvas.height/2) + 30,
+	            font: "20px Georgia, bold",
+	            active: true
+	        }
+
         ]
+
+
+
 
 	}
 
