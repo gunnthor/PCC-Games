@@ -258,7 +258,7 @@ var maps =
 					height : 18,
 					friction : 0.7
 					//efsti miðjupallur hægri
-				},
+				}
 
 
 
@@ -266,18 +266,20 @@ var maps =
 			],
 
 			images :
-			{
-				background : "backgrounds/Background.png"
+			{				
+				background : "backgrounds/Background.png",
+				player1 : "Player1.png",
+				brick_blue : "bricks/brick_background_1.png"				
 			},
 
 
 			sounds : 
 			{
 				pistolSound     : "sounds/pistolSound.ogg",   
-        		pistolSound2     : "sounds/pistolSound.ogg",
+        		pistolSound2    : "sounds/pistolSound.ogg",
         		shotgunSound    :  "sounds/shotgunSound.ogg",
         		shotgunSound2   :  "sounds/shotgunSound.ogg",
-        		backgroundSong : "sounds/HansZimmerTheKraken.ogg"
+        		backgroundSong  : "sounds/HansZimmerTheKraken.ogg"
 			}
 
 
