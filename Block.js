@@ -5,6 +5,9 @@ function Block(descr) {
     this.setup(descr);
     this.sprite = g_sprites.brick_blue;
 
+    this.startingCx = this.cx;
+    this.startingCy = this.cy;
+
     //this.rememberResets();
 };
 
@@ -20,9 +23,15 @@ Block.prototype.width;
 Block.prototype.height;
 Block.prototype.friction;//núningur á blockinu(t.d. ís eða drulla með eitthvað friction gildi(0.5 eða 1))
 Block.prototype.maxVel;//Hæsti mögulegi hraðinn sem kallinn kemst á blokkinu
+Block.prototype.moving = false;
+Block.prototype.moveDistance;
+Block.prototype.velY = 0.5;
 
 Block.prototype.update = function(du) {
 	// Ekkert að gera hér
+	/*if(!this.moving) return;
+
+	if(this.cy >= this.start)*/
 };
 
 Block.prototype.render = function(ctx) {	

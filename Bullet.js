@@ -2,6 +2,7 @@ function Bullet(descr) {
 
     // Common inherited setup logic from Entity
     this.setup(descr);
+    this.velXLimit = 30;
 
     //this.pistolSound.play();
 }
@@ -23,7 +24,7 @@ Bullet.prototype.update = function (du) {
     spatialManager.unregister(this);
 
     var hitEntity = this.findHitEntity();
-    //console.log(hitEntity.length);
+    //console.log(hitEntity);
 
     if (typeof hitEntity != "undefined") {
 
@@ -37,6 +38,9 @@ Bullet.prototype.update = function (du) {
         }
         
     }
+
+    this.prevCx = this.cx;
+    this.prevCy = this.cy;
 
     this.cx += this.velX * du;
     this.cy += this.velY * du;
@@ -63,6 +67,8 @@ Bullet.prototype.update = function (du) {
     }*/
     
     spatialManager.register(this);
+
+    //console.log(this.spatialPos);
 
 };
 

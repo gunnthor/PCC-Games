@@ -33,8 +33,6 @@ Kall.prototype.IS_SLOWING_DOWN = false;
 Kall.prototype.IN_AIR = true;
 Kall.prototype.velX = 0;
 Kall.prototype.velY = 0;
-Kall.prototype.velXLimit = 4;
-Kall.prototype.velYLimit = 25;
 Kall.prototype.accRate = 1;
 
 Kall.prototype.numSubSteps = 1;

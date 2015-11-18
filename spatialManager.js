@@ -76,16 +76,19 @@ checkSpatialPos : function(left, right, top, bottom) {
     //console.log("check", this.spatialNet);
     //var diff;
     //if(left > right) diff = 32 - left;
-    if(left < right) right++;
+    //if(left < right) right++;
+    //console.log(left);
 
-    for(var i = left; i !== right; i++) {
+    for(var i = left; i !== right + 1; i++) {
         if(i === 32) {
             i = 0;
             // bug fix ef að hitboxið er lítið:
             if(i === right) break;
         }
+        //console.log(i);
         
         for(var n = top; n <= bottom; n++) {
+            //console.log(n);
             if(typeof this.spatialNet[i][n][0] === "number") return true;
         }
     }
@@ -211,7 +214,7 @@ unregister: function(entity)
     
 },
 
-findEntityInRange: function(posX, posY, width, height, colEntity) {
+findEntityInRange: function(colEntity) {
 
     // TODO: YOUR STUFF HERE!
     /*for (var ID in this._entities){
@@ -234,7 +237,6 @@ findEntityInRange: function(posX, posY, width, height, colEntity) {
 
     // Notum spatialPositions hér, ef að einhver hlutur er í sama position, þá gerum við collision detection
     if(!this.checkSpatialPos(left, right, top, bottom)) return;
-
     //console.log(colEntity.spatialPos);
 
     //console.log("heh");
@@ -256,6 +258,7 @@ findEntityInRange: function(posX, posY, width, height, colEntity) {
     var prevTop = colEntity.prevCy - colEntity.height/2;
     
     // Check against all entitys
+    //console.log("start", prevLeft, prevRight, prevBottom, prevTop);
 
     for(var i = 1; i < this._entities.length; i++) {
         
@@ -266,7 +269,6 @@ findEntityInRange: function(posX, posY, width, height, colEntity) {
         //console.log(entity.friction);
 
         if (entity.isUndefined) continue;
-
 
         //variables for all the sides of the entities being checked
 
@@ -282,7 +284,6 @@ findEntityInRange: function(posX, posY, width, height, colEntity) {
         // Collision with the Top and Bottom of a entity
 
         // Check for x coords
-
         if(right - 1 > entLeft &&
             left + 1 < entRight) {
             
@@ -325,6 +326,7 @@ findEntityInRange: function(posX, posY, width, height, colEntity) {
                 
                 // Do this
                 if(Math.abs(colEntity.cx - colEntity.prevCx) <= colEntity.velXLimit*2) {
+                    if(colEntity instanceof Bullet) console.log(colEntity);
                     colEntity.cx = entity.cx - entity.width/2 - colEntity.width/2;
                     colEntity.velX = 0;
                     _hitentities.push(entity);
