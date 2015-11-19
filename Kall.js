@@ -167,9 +167,9 @@ Kall.prototype.computeGravity = function () {
 Kall.prototype.jump = function () {
     this.velY -= 8;
     this.IN_AIR = true;
-    if (this.gunSlot < 2){
+    /*if (this.gunSlot < 2){
         this.pickupGuns("shotgun");
-    }   
+    }   */
 };
 
 Kall.prototype.switchGuns = function () {
@@ -192,7 +192,7 @@ Kall.prototype.switchGuns = function () {
     }
     return this.gunType = this.weaponList[this.gunSlot];
 };
-Kall.prototype.pickupGuns = function(weapon) {
+Kall.prototype.pickupGun = function(weapon) {
     this.weaponList.push(weapon);
 };
 
@@ -256,6 +256,7 @@ Kall.prototype.update = function(du) {
             {
                     //console.log("Touching a shotgun");
                     hitEntity[i].pickedUp();
+                    this.pickupGun("shotgun");
             }
         }
 

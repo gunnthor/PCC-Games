@@ -43,8 +43,7 @@ Drop.prototype.update = function(du) {
 };
 
 Drop.prototype.determineSprite = function(){
-	//if(this.friction === 0) return;
-	//console.log(this.type);
+	
 	if(this.type === "shotgun") return g_sprites.shotgun;	
 
 };
@@ -53,8 +52,6 @@ Drop.prototype.pickedUp = function(){
 	this.visible = false;
 	this.timer = 0;
 };
-
-
 
 Drop.prototype.render = function(ctx) {	
 
