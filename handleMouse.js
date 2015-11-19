@@ -25,7 +25,6 @@ function handleMouse(evt) {
     Menu.onhover(g_mouseX,g_mouseY);
     if (!button) return;
     Menu.onclick(g_mouseX,g_mouseY);
-    //entityManager.yoinkNearestShip(g_mouseX, g_mouseY);
 }
 
 // Handle "down" and "move" events the same way.
