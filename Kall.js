@@ -168,10 +168,7 @@ Kall.prototype.computeGravity = function () {
 
 Kall.prototype.jump = function () {
     this.velY -= 8;
-    this.IN_AIR = true;
-    /*if (this.gunSlot < 2){
-        this.pickupGuns("shotgun");
-    }   */
+    this.IN_AIR = true;  
 };
 
 Kall.prototype.switchGuns = function () {
@@ -194,8 +191,20 @@ Kall.prototype.switchGuns = function () {
     }
     return this.gunType = this.weaponList[this.gunSlot];
 };
-Kall.prototype.pickupGun = function(weapon) {
-    this.weaponList.push(weapon);
+Kall.prototype.pickupDrop = function(drop) {
+
+    if(drop.type === "shotgun") this.weaponList.push(drop.type);
+    if(drop.type === "healthpack") this.applyHealthPack(drop);
+};
+
+Kall.prototype.applyHealthPack = function(drop) {
+    //console.log("made it to application");
+    if(this.health < 100)
+    {
+        var totalHealth = this.health += drop.health;
+        if(totalHealth > 100) this.health = 100;
+        else this.health = totalHealth;        
+    } 
 };
 
 Kall.prototype.dropGun = function(weapon) {
@@ -277,11 +286,11 @@ Kall.prototype.update = function(du) {
 
         for(var i = 0; i<hitEntity.length; i++)
         {
-            if(hitEntity[i].type === "shotgun")
+            if(typeof hitEntity[i].cooldown != "undefined")
             {
                     //console.log("Touching a shotgun");
                     hitEntity[i].pickedUp();
-                    this.pickupGun("shotgun");
+                    this.pickupDrop(hitEntity[i]);
             }
         }
 
@@ -297,10 +306,8 @@ Kall.prototype.update = function(du) {
                 
                 if(typeof hitEntity[i].friction != "undefined")
                 {
-                    //console.log(hitEntity[i].friction);
+                    
                     mostFriction = hitEntity[i].friction;
-                    //console.log("mostFriction : " + mostFriction);
-
                 } 
            }
             

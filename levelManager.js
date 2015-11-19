@@ -30,7 +30,7 @@ var levelManager = {
 	},
 
 	initLevel : function() {
-		this.generateLevel(this._level);
+		this.generateLevel();
 		this.generatePlayers();
 	},
 
@@ -78,18 +78,6 @@ var levelManager = {
 
 	generateBlocks : function() {
 
-
-	},
-
-	generateLevel : function() {
-
-		// Initializum spatial net
-    	spatialManager.initializeSpatialNet();
-    	
-    	//levels er 2d array þar sem fyrir hvert level er array af þeim hitboxum sem á að gera fyrir levelið, þ.e.a.s. levels[level][object]
-        
-	    this._levels[this._level] = [];
-
 	    //place all blocks from level_data(maps) and place them into this._levels
 	    for(var i = 0; i<maps.levels[this._level-1].blocks.length; i++)
 	    {   
@@ -111,7 +99,12 @@ var levelManager = {
 
 	    }
 
-	    for(var i = 0; i<maps.levels[this._level-1].drops.length; i++)
+	},
+
+	generateDrops : function() {
+
+		//place all drops from level_data(maps) and place them into this._levels
+		for(var i = 0; i<maps.levels[this._level-1].drops.length; i++)
 	    {
 
 	    	console.log(maps.levels[this._level-1].drops.length);
@@ -125,12 +118,29 @@ var levelManager = {
 	        	height : maps.levels[this._level-1].drops[i].height,
 	        	type : maps.levels[this._level-1].drops[i].type,
 	        	cooldown : maps.levels[this._level-1].drops[i].cooldown,
-	        	visible : maps.levels[this._level-1].drops[i].visible
+	        	visible : maps.levels[this._level-1].drops[i].visible,
+	        	health : maps.levels[this._level-1].drops[i].health
 		    }
 
 		    this._levels[this._level].push(currDrop);
 
 	    }
+
+
+	},
+
+	generateLevel : function() {
+
+		// Initializum spatial net
+    	spatialManager.initializeSpatialNet();
+    	
+    	//levels er 2d array þar sem fyrir hvert level er array af þeim hitboxum sem á að gera fyrir levelið, þ.e.a.s. levels[level][object]
+        
+	    this._levels[this._level] = [];
+
+	    this.generateBlocks();
+	    this.generateDrops();
+	    
 
 	    //console.log(this._levels[this._level][0].x);
 

@@ -177,7 +177,8 @@ function requestPreloads() {
         player1  : maps.images.player1,
         brick_blue : maps.images.brick_blue,
         background : maps.images.background,
-        shotgun : maps.images.shotgun        
+        shotgun : maps.images.shotgun,
+        healthpack : maps.images.healthpack        
     };
 
 
@@ -210,6 +211,10 @@ function preloadDone() {
 
     g_sprites.brick_blue = new Sprite({
         image : g_images.brick_blue
+    });
+
+    g_sprites.healthpack = new Sprite({
+        image : g_images.healthpack
     });
 
     g_sprites.shotgun = new Sprite({

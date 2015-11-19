@@ -44,7 +44,8 @@ Drop.prototype.update = function(du) {
 
 Drop.prototype.determineSprite = function(){
 	
-	if(this.type === "shotgun") return g_sprites.shotgun;	
+	if(this.type === "shotgun") return g_sprites.shotgun;
+	if(this.type === "healthpack") return g_sprites.healthpack;	
 
 };
 
@@ -54,9 +55,8 @@ Drop.prototype.pickedUp = function(){
 };
 
 Drop.prototype.render = function(ctx) {	
-
-	//if(this.type === "shotgun") this.sprite.drawCustomSize(ctx, this.cx, this.cy, this.width, this.height)
+	
 	if(this.visible) this.sprite.drawCustomSize(ctx, this.cx-this.width/2, this.cy-this.height/2, this.width, this.height);
-	//console.log(this.type);
+
 	
 };

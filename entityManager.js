@@ -181,7 +181,8 @@ generateObjects: function(cluster) {
                     height : cluster.height,
                     type : cluster.type,
                     cooldown : cluster.cooldown,
-                    visible : cluster.visible
+                    visible : cluster.visible,
+                    health : cluster.health
                 });
             }
         }

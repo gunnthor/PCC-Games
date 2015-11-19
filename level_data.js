@@ -358,7 +358,22 @@ var maps =
 				 	cooldown : 2,
 				 	visible : true
 				 	//shotgun				 	
+				},
+
+				{
+					x : 28,
+				 	y : 13,
+				 	endx : 29,
+				 	endy : 14,
+				 	width : 32,
+				 	height : 18,
+				 	type : "healthpack",
+				 	cooldown : 2,
+				 	visible : true,
+				 	health : 50
+				 	//healthpack				 	
 				}
+
 			]
 
 		}
@@ -370,7 +385,8 @@ var maps =
 		background : "backgrounds/Background.png",
 		player1 : "Player1.png",
 		brick_blue : "bricks/brick_background_1.png",
-		shotgun : "backgrounds/shotgunicon.png"				
+		shotgun : "drops/shotgunicon.png",
+		healthpack : "drops/health_pack.png"				
 	},
 
 
