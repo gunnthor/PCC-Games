@@ -253,10 +253,10 @@ var maps =
 					friction : 0.7,
 				 	type : "brick_blue"
 					//efsti pallur hægri
-				},
+				}
 
 
-				{
+				/*{
 					x : 12,
 					y : 10,
 					endx : 16,
@@ -284,8 +284,8 @@ var maps =
 					moveDistance : -64,
 					velY : -1.4,
 				 	type : "brick_blue"
-					
-				}				
+				 	//efsti miðjupallur hægri					
+				}	*/			
 
 
 

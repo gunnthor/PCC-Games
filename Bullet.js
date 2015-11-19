@@ -16,12 +16,21 @@ Bullet.prototype.velX;
 Bullet.prototype.velY;
 Bullet.prototype.width = 3;
 Bullet.prototype.height = 3;
+Bullet.prototype.lifeSpan = 1300 / NOMINAL_UPDATE_INTERVAL;
 //Bullet.prototype.pistolSound = new Audio("sounds/pistol.ogv");
 
 
 Bullet.prototype.update = function (du) {
 
     spatialManager.unregister(this);
+
+    this.lifeSpan -= du;
+    if (this.lifeSpan < 0)
+    {
+        this.kill();
+        spatialManager.unregister(this);
+        return entityManager.KILL_ME_NOW;
+    }
 
     var hitEntity = this.findHitEntity();
     //console.log(hitEntity);
