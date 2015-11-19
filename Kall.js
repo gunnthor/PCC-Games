@@ -216,10 +216,17 @@ Kall.prototype.takeBulletHit = function() {
     this.health -= 20;
     if(this.health <= 0) {
         
-        this.health = 0;
-        this.isDead = true;
+        this.health = 100;
+        this.respawn();
     }
 
+};
+Kall.prototype.respawn = function(){
+    var level = levelManager.getLevel();
+    var respawns = maps.levels[level-1].respawns;
+    var i = Math.floor(Math.random() * respawns.length);
+    this.cx = respawns[i].x;
+    this.cy = respawns[i].y;
 };
 
 
@@ -332,6 +339,18 @@ Kall.prototype.render = function(ctx) {
 
     ctx.fillStyle = "black";
     //ctx.fillRect(this.scorePosX-1,this.scorePosY-18, 142,22);
+    // fyrir neðan eru commentuð út möguleg spawn locations
+    /*
+    ctx.fillRect(50,200,10,10);
+    ctx.fillRect(50,360,10,10);
+    ctx.fillRect(50,520,10,10);
+    ctx.fillRect(g_canvas.width/2 - 110, 130,10,10);
+    ctx.fillRect(g_canvas.width/2 + 100, 130,10,10);
+    ctx.fillRect(g_canvas.width -60,200,10,10);
+    ctx.fillRect(g_canvas.width -60,360,10,10);
+    ctx.fillRect(g_canvas.width -60,520,10,10);
+    ctx.fillRect(g_canvas.width/2 - 110, 450,10,10);
+    ctx.fillRect(g_canvas.width/2 + 100, 450,10,10);*/
     ctx.fillRect(this.scorePosX-1,this.scorePosY-16, 102,22);
     ctx.fillStyle = "#b90000";
     ctx.fillRect(this.scorePosX,this.scorePosY-15, 100,20);

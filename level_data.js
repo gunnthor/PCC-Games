@@ -287,6 +287,50 @@ var maps =
 
 			],
 
+			respawns : 
+			[
+				{
+					x : 50,
+					y : 200 
+				},
+				{
+					x : 50,
+					y : 360
+				},
+				{
+					x : 50,
+					y : 520 
+				},
+				{
+					x : g_canvas.width/2 - 110,
+					y : 130 
+				},
+				{
+					x : g_canvas.width/2 + 110,
+					y : 130
+				},
+				{
+					x : g_canvas.width -60,
+					y : 200 
+				},
+				{
+					x : g_canvas.width -60,
+					y : 360 
+				},
+				{
+					x : g_canvas.width -60,
+					y : 520 
+				},
+				{
+					x : g_canvas.width/2 - 110,
+					y : 450 
+				},
+				{
+					x : g_canvas.width/2 + 110,
+					y : 450
+				}
+			],
+
 			sounds : 
 			{
 				pistolSound     : "sounds/pistolSound.ogg",   
