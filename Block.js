@@ -37,7 +37,22 @@ Block.prototype.update = function(du) {
 
 	spatialManager.unregister(this);
 
-	if(this.cy >= this.startingCy + this.moveDistance || this.cy < this.startingCy) this.velY = -this.velY;
+	var high;
+	var low;
+
+	if(this.moveDistance > 0) {
+		
+		high = this.startingCy;
+		low = this.startingCy + this.moveDistance;
+	}
+
+	else {
+		
+		high = this.startingCy + this.moveDistance;
+		low = this.startingCy;
+	}
+
+	if(this.cy >= low || this.cy < high) this.velY = -this.velY;
 
 	this.cy += this.velY;
 

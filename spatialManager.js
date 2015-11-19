@@ -173,6 +173,7 @@ register: function(entity) {
     var spatialPos = entity.getSpatialPos();
 
     // registera svo í spatial netinu
+    //if(entity.moving) console.log(spatialPos);
     this.registerInSpatialNet(spatialPos.leftPos, spatialPos.rightPos, spatialPos.topPos, spatialPos.bottomPos, entity._spatialID);
 
     var spatialID = entity.getSpatialID();
