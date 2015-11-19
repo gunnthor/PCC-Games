@@ -192,7 +192,7 @@ generateObjects: function(cluster) {
 
 update: function(du) {
 
-    // Update spatialPos á köllum og bullets hér
+    // Update spatialPos hér
     for(var i = 0; i < this._kallar.length; i++) {
 
         this._kallar[i].spatialPos = this._kallar[i].updateSpatialPos();
@@ -201,6 +201,13 @@ update: function(du) {
     for(var i = 0; i < this._bullets.length; i++) {
         
         this._bullets[i].spatialPos = this._bullets[i].updateSpatialPos();
+    }
+
+    for(var i = 0; i < this._blocks.length; i++) {
+        
+        if(this._blocks[i].moving) {
+            this._blocks[i].spatialPos = this._blocks[i].updateSpatialPos();
+        }
     }
     
 

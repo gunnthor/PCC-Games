@@ -265,7 +265,8 @@ var maps =
 					height : 18,
 					friction : 0.7,
 					moving : true,
-					moveDistance : 60,
+					moveDistance : 64,
+					velY : 1.4,
 				 	type : "brick_blue"
 					//efsti miðjupallur vinstri
 				},
@@ -273,12 +274,15 @@ var maps =
 
 				{
 					x : 18,
-					y : 10,
+					y : 14,
 					endx : 22,
-					endy : 11,
+					endy : 15,
 					width : 32,
 					height : 18,
 					friction : 0.7,
+					moving : true,
+					moveDistance : -64,
+					velY : -1.4,
 				 	type : "brick_blue"
 					
 				}				

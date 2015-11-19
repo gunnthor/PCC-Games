@@ -294,9 +294,6 @@ Kall.prototype.update = function(du) {
             //Skoða alla hluti sem ég er að snerta, og vel hlutinn sem er með mestann núning til að ákvarða næsta hraða
            for(var i = 0; i<hitEntity.length; i++)
            {
-
-                //console.log(hitEntity[i].type);
-                
                 
                 if(typeof hitEntity[i].friction != "undefined")
                 {
