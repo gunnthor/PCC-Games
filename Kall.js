@@ -29,11 +29,13 @@ Kall.prototype.isRunning = false;
 Kall.prototype.knockbakcNominals = 0;
 Kall.prototype.pistolNominals = 0;
 Kall.prototype.shotgunNominals = 0;
+Kall.prototype.life = 5;
 
 Kall.prototype.isDead = false;
 Kall.prototype.isShot = false;
 Kall.prototype.IS_SLOWING_DOWN = false;
 Kall.prototype.IN_AIR = true;
+Kall.prototype.winner = false;
 Kall.prototype.velX = 0;
 Kall.prototype.velY = 0;
 Kall.prototype.accRate = 1;
@@ -208,6 +210,9 @@ Kall.prototype.dropGun = function(weapon) {
         }
     }
 };
+Kall.prototype.won = function(){
+    this.winner = true;
+};
 
 Kall.prototype.takeBulletHit = function() {
     this.knockbakcNominals = 10;
@@ -215,9 +220,22 @@ Kall.prototype.takeBulletHit = function() {
 
     this.health -= 20;
     if(this.health <= 0) {
-        
-        this.health = 100;
-        this.respawn();
+        this.life--;
+        if(this.life < 0){
+            this.isDead = true;
+            this.life = 0;
+            this.health = 0;
+            entityManager.gameover();
+            this.KEY_LEFT = undefined;
+            this.KEY_RIGHT = undefined;
+            this.KEY_JUMP = undefined;
+            this.KEY_FIRE = undefined;
+            
+        }
+        else{
+            this.respawn();
+            this.health = 100;   
+        }
     }
 
 };
@@ -334,9 +352,7 @@ Kall.prototype.update = function(du) {
 Kall.prototype.render = function(ctx) {
     this.sprite.drawWrappedAnimationdAt(ctx,this.cx,this.cy,this.direction);
 	var oldStyle = ctx.fillStyle;
-    
     //ctx.fillText("Health: " + this.health + "%",this.scorePosX,this.scorePosY+25);
-
     ctx.fillStyle = "black";
     //ctx.fillRect(this.scorePosX-1,this.scorePosY-18, 142,22);
     // fyrir neðan eru commentuð út möguleg spawn locations
@@ -364,6 +380,10 @@ Kall.prototype.render = function(ctx) {
     ctx.fillStyle = this.color
     ctx.font='small-caps 30px Georgia bold';
     ctx.fillText(this.weaponList[this.gunSlot],this.scorePosX+5,this.scorePosY+25);
+    ctx.fillText(this.life,this.scorePosX+5,this.scorePosY+50);
     ctx.fillStyle = oldStyle;
+    if (this.winner){
+        ctx.fillText("Player "+ this.playerID + "won",g_canvas.width/2 - 100,g_canvas.height/2);
+    }
     
 };

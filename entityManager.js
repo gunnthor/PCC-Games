@@ -50,6 +50,14 @@ _forEachOf: function(aCategory, fn) {
 //
 KILL_ME_NOW : -1,
 
+gameover : function(){
+    for (var i = 0; i < this._kallar.length; i++){
+        if(!this._kallar[i].isDead){
+            this._kallar[i].won();
+        }
+    }
+},
+
 
 // Some things must be deferred until after initial construction
 // i.e. thing which need `this` to be defined.
