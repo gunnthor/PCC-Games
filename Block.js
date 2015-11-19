@@ -33,7 +33,7 @@ Block.prototype.velY = 0.5;
 
 Block.prototype.update = function(du) {
 	// Ekkert að gera hér
-	/*if(!this.moving) return;
+	if(!this.moving) return;
 
 	spatialManager.unregister(this);
 
@@ -56,7 +56,7 @@ Block.prototype.update = function(du) {
 
 	this.cy += this.velY;
 
-	spatialManager.register(this);*/
+	spatialManager.register(this);
 
 	if(this._isDeadNow) return entityManager.KILL_ME_NOW;
 };
