@@ -75,6 +75,12 @@ var levelManager = {
     	});
 	},
 
+
+	generateBlocks : function() {
+
+
+	},
+
 	generateLevel : function() {
 
 		// Initializum spatial net
@@ -84,23 +90,49 @@ var levelManager = {
         
 	    this._levels[this._level] = [];
 
-	    //place all objects from level_data(maps) and place them into this._levels
+	    //place all blocks from level_data(maps) and place them into this._levels
 	    for(var i = 0; i<maps.levels[this._level-1].blocks.length; i++)
-	    {        
-	        this._levels[this._level][i] = {
-	        x : maps.levels[this._level-1].blocks[i].x,
-	        y : maps.levels[this._level-1].blocks[i].y,
-	        endx : maps.levels[this._level-1].blocks[i].endx,
-	        endy : maps.levels[this._level-1].blocks[i].endy,
-	        width : maps.levels[this._level-1].blocks[i].width,
-	        height : maps.levels[this._level-1].blocks[i].height,
-	        friction : maps.levels[this._level-1].blocks[i].friction,
-	        moving : maps.levels[this._level-1].blocks[i].moving,
-	        moveDistance : maps.levels[this._level-1].blocks[i].moveDistance,
-	        velY : maps.levels[this._level-1].blocks[i].velY,
-	    	type : maps.levels[this._level-1].blocks[i].type};
+	    {   
+
+	    	var currBlock = {
+		        x : maps.levels[this._level-1].blocks[i].x,
+		        y : maps.levels[this._level-1].blocks[i].y,
+		        endx : maps.levels[this._level-1].blocks[i].endx,
+		        endy : maps.levels[this._level-1].blocks[i].endy,
+		        width : maps.levels[this._level-1].blocks[i].width,
+		        height : maps.levels[this._level-1].blocks[i].height,
+		        friction : maps.levels[this._level-1].blocks[i].friction,
+		        moving : maps.levels[this._level-1].blocks[i].moving,
+		        moveDistance : maps.levels[this._level-1].blocks[i].moveDistance,
+		    	type : maps.levels[this._level-1].blocks[i].type
+		    }
+
+	    	this._levels[this._level].push(currBlock);
+
 	    }
 
+	    for(var i = 0; i<maps.levels[this._level-1].drops.length; i++)
+	    {
+
+	    	console.log(maps.levels[this._level-1].drops.length);
+
+	    	var currDrop = {
+		        x : maps.levels[this._level-1].drops[i].x,
+	        	y : maps.levels[this._level-1].drops[i].y,
+	        	endx : maps.levels[this._level-1].drops[i].endx,
+	        	endy : maps.levels[this._level-1].drops[i].endy,
+	        	width : maps.levels[this._level-1].drops[i].width,
+	        	height : maps.levels[this._level-1].drops[i].height,
+	        	type : maps.levels[this._level-1].drops[i].type,
+	        	cooldown : maps.levels[this._level-1].drops[i].cooldown,
+	        	visible : maps.levels[this._level-1].drops[i].visible
+		    }
+
+		    this._levels[this._level].push(currDrop);
+
+	    }
+
+	    //console.log(this._levels[this._level][0].x);
 
 	    for(var i = 0; i<this._levels[this._level].length; i++)
 	    {
@@ -108,6 +140,8 @@ var levelManager = {
 	    }
 
 	},
+
+
 
 	//(ætli það þurfi update fall?)
 	update : function(du) {

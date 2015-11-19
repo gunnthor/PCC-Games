@@ -285,23 +285,54 @@ var maps =
 					velY : -1.4,
 				 	type : "brick_blue"
 					
-				},
+				}				
 
+
+
+			],
+
+			respawns : 
+			[
 				{
-					x : 16,
-				 	y : 17,
-				 	endx : 17,
-				 	endy : 18,
-				 	width : 32,
-				 	height : 18,
-				 	friction: 0.7,
-				 	type : "shotgun"
-				 	//miðjupallur 
-				 	
+					x : 50,
+					y : 200 
 				},
-
-
-
+				{
+					x : 50,
+					y : 360
+				},
+				{
+					x : 50,
+					y : 520 
+				},
+				{
+					x : g_canvas.width/2 - 110,
+					y : 130 
+				},
+				{
+					x : g_canvas.width/2 + 110,
+					y : 130
+				},
+				{
+					x : g_canvas.width -60,
+					y : 200 
+				},
+				{
+					x : g_canvas.width -60,
+					y : 360 
+				},
+				{
+					x : g_canvas.width -60,
+					y : 520 
+				},
+				{
+					x : g_canvas.width/2 - 110,
+					y : 450 
+				},
+				{
+					x : g_canvas.width/2 + 110,
+					y : 450
+				}
 			],
 
 			sounds : 
@@ -311,7 +342,24 @@ var maps =
         		shotgunSound    :  "sounds/shotgunSound.ogg",
         		shotgunSound2   :  "sounds/shotgunSound.ogg",
         		backgroundSong  : "sounds/HansZimmerTheKraken.ogg"
-			}
+			},
+
+
+			drops : 
+			[
+				{
+					x : 16,
+				 	y : 17,
+				 	endx : 17,
+				 	endy : 18,
+				 	width : 32,
+				 	height : 18,
+				 	type : "shotgun",
+				 	cooldown : 2,
+				 	visible : true
+				 	//shotgun				 	
+				}
+			]
 
 		}
 	],

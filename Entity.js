@@ -140,11 +140,11 @@ Entity.prototype.getSpatialPos = function () {
 };
 
 Entity.prototype.kill = function () {
+    //console.log("killed a shotgun")
     this._isDeadNow = true;
 };
 
 Entity.prototype.findHitEntity = function () {
-
     return spatialManager.findEntityInRange(this);
 };
 

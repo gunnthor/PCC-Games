@@ -167,9 +167,9 @@ Kall.prototype.computeGravity = function () {
 Kall.prototype.jump = function () {
     this.velY -= 8;
     this.IN_AIR = true;
-    if (this.gunSlot < 2){
+    /*if (this.gunSlot < 2){
         this.pickupGuns("shotgun");
-    }   
+    }   */
 };
 
 Kall.prototype.switchGuns = function () {
@@ -192,7 +192,7 @@ Kall.prototype.switchGuns = function () {
     }
     return this.gunType = this.weaponList[this.gunSlot];
 };
-Kall.prototype.pickupGuns = function(weapon) {
+Kall.prototype.pickupGun = function(weapon) {
     this.weaponList.push(weapon);
 };
 
@@ -216,10 +216,17 @@ Kall.prototype.takeBulletHit = function() {
     this.health -= 20;
     if(this.health <= 0) {
         
-        this.health = 0;
-        this.isDead = true;
+        this.health = 100;
+        this.respawn();
     }
 
+};
+Kall.prototype.respawn = function(){
+    var level = levelManager.getLevel();
+    var respawns = maps.levels[level-1].respawns;
+    var i = Math.floor(Math.random() * respawns.length);
+    this.cx = respawns[i].x;
+    this.cy = respawns[i].y;
 };
 
 
@@ -250,7 +257,15 @@ Kall.prototype.update = function(du) {
     if(!this.IN_AIR) 
     {
 
-
+        for(var i = 0; i<hitEntity.length; i++)
+        {
+            if(hitEntity[i].type === "shotgun")
+            {
+                    //console.log("Touching a shotgun");
+                    hitEntity[i].pickedUp();
+                    this.pickupGun("shotgun");
+            }
+        }
 
         //the code in this if statement makes the player stop after he stops pressing movement keys
         if(!keys[this.KEY_LEFT] && !keys[this.KEY_RIGHT] && hitEntity != undefined)
@@ -261,15 +276,6 @@ Kall.prototype.update = function(du) {
             //Skoða alla hluti sem ég er að snerta, og vel hlutinn sem er með mestann núning til að ákvarða næsta hraða
            for(var i = 0; i<hitEntity.length; i++)
            {
-
-                //console.log(hitEntity[i].type);
-
-                if(hitEntity[i].type === "shotgun")
-                {
-                    //console.log("Touching a shotgun");
-                    //hitEntity.kill();
-
-                }
                 
                 if(typeof hitEntity[i].friction != "undefined")
                 {
@@ -330,6 +336,18 @@ Kall.prototype.render = function(ctx) {
 
     ctx.fillStyle = "black";
     //ctx.fillRect(this.scorePosX-1,this.scorePosY-18, 142,22);
+    // fyrir neðan eru commentuð út möguleg spawn locations
+    /*
+    ctx.fillRect(50,200,10,10);
+    ctx.fillRect(50,360,10,10);
+    ctx.fillRect(50,520,10,10);
+    ctx.fillRect(g_canvas.width/2 - 110, 130,10,10);
+    ctx.fillRect(g_canvas.width/2 + 100, 130,10,10);
+    ctx.fillRect(g_canvas.width -60,200,10,10);
+    ctx.fillRect(g_canvas.width -60,360,10,10);
+    ctx.fillRect(g_canvas.width -60,520,10,10);
+    ctx.fillRect(g_canvas.width/2 - 110, 450,10,10);
+    ctx.fillRect(g_canvas.width/2 + 100, 450,10,10);*/
     ctx.fillRect(this.scorePosX-1,this.scorePosY-16, 102,22);
     ctx.fillStyle = "#b90000";
     ctx.fillRect(this.scorePosX,this.scorePosY-15, 100,20);
