@@ -126,8 +126,7 @@ function requestPreloads() {
         shotgun : maps.images.shotgun,
         healthpack : maps.images.healthpack,
         sandbackground : maps.images.sandbackground,
-        brick_sand      :   maps.images.brick_sand, 
-        citybackground : maps.images.citybackground      
+        brick_sand      :   maps.images.brick_sand       
     };
 
 
@@ -180,10 +179,6 @@ function preloadDone() {
     g_sprites.background[1] = new Sprite({
         image : g_images.sandbackground
     });
-    g_sprites.background[2] = new Sprite({
-        image : g_images.citybackground
-    });
-
 
 
     

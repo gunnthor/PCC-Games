@@ -438,15 +438,60 @@ var maps =
 
 				{
 					x : 16,
-				 	y : 22,
+				 	y : 18,
 				 	endx : 18,
 				 	endy : 33,
 				 	width : 32,
 				 	height : 18,
 				 	friction: 0.7,
 				 	type : "brick_sand"
-				 	//lowest middle pillar
+				 	//lowest [big] middle pillar
 				},
+				{
+					x : 16,
+				 	y : 9,
+				 	endx : 18,
+				 	endy : 12,
+				 	width : 32,
+				 	height : 18,
+				 	friction: 0.7,
+				 	type : "brick_sand"
+				 	//top [big] middle/1 pillar
+				},
+				{
+					x : 15,
+				 	y : 10,
+				 	endx : 19,
+				 	endy : 12,
+				 	width : 32,
+				 	height : 18,
+				 	friction: 0.7,
+				 	type : "brick_sand"
+				 	//top [big] middle/2 pillar
+				},
+				{
+					x : 14,
+				 	y : 11,
+				 	endx : 20,
+				 	endy : 12,
+				 	width : 32,
+				 	height : 18,
+				 	friction: 0.7,
+				 	type : "brick_sand"
+				 	//top [big] middle/3 pillar
+				},
+				{
+					x : 10,
+				 	y : 12,
+				 	endx : 23,
+				 	endy : 13,
+				 	width : 32,
+				 	height : 18,
+				 	friction: 0.7,
+				 	type : "brick_sand"
+				 	//top [big] middle [LONG] pillar
+				},
+
 
 				{
 					x : 1,
@@ -459,6 +504,29 @@ var maps =
 				 	type : "brick_sand"
 				 	//lowest left pillar
 				},
+				{
+					x : 1,
+				 	y : 12,
+				 	endx : 2,
+				 	endy : 22,
+				 	width : 32,
+				 	height : 18,
+				 	friction: 0.7,
+				 	type : "brick_sand"
+				 	//middle left pillar
+				},
+				{
+					x : 1,
+				 	y : 0,
+				 	endx : 2,
+				 	endy : 7,
+				 	width : 32,
+				 	height : 18,
+				 	friction: 0.7,
+				 	type : "brick_sand"
+				 	//top left pillar
+				},
+
 
 				{
 					x : 32,
@@ -471,7 +539,28 @@ var maps =
 				 	type : "brick_sand"
 				 	//lowest right pillar
 				},
-
+				{
+					x : 32,
+				 	y : 12,
+				 	endx : 33,
+				 	endy : 22,
+				 	width : 32,
+				 	height : 18,
+				 	friction: 0.7,
+				 	type : "brick_sand"
+				 	//middle right pillar
+				},
+				{
+					x : 32,
+				 	y : 0,
+				 	endx : 33,
+				 	endy : 7,
+				 	width : 32,
+				 	height : 18,
+				 	friction: 0.7,
+				 	type : "brick_sand"
+				 	//top right pillar
+				},
 				{
 					x : 5,
 				 	y : 27,
@@ -481,26 +570,165 @@ var maps =
 				 	height : 18,
 				 	friction: 0.7,
 				 	type : "brick_sand"
-				 	//lowest right pillar
+				 	//lowest part of maze [left]
+				},
+				{
+					x : 21,
+				 	y : 27,
+				 	endx : 29,
+				 	endy : 28,
+				 	width : 32,
+				 	height : 18,
+				 	friction: 0.7,
+				 	type : "brick_sand"
+				 	//lowest part of maze [right]
 				},
 
-				
-				/*
+				{
+					x : 5,
+				 	y : 12,
+				 	endx : 6,
+				 	endy : 23,
+				 	width : 32,
+				 	height : 18,
+				 	friction: 0.7,
+				 	type : "brick_sand"
+				 	//lowest part of maze [left]
+				},
+				{
+					x : 28,
+				 	y : 12,
+				 	endx : 29,
+				 	endy : 23,
+				 	width : 32,
+				 	height : 18,
+				 	friction: 0.7,
+				 	type : "brick_sand"
+				 	//lowest part of maze [right]
+				},
+				{
+					x : 13,
+				 	y : 18,
+				 	endx : 16,
+				 	endy : 23,
+				 	width : 32,
+				 	height : 18,
+				 	friction: 0.7,
+				 	type : "brick_sand"
+				 	// middle ramp/1 [left side]
+				},
+				{
+					x : 12,
+				 	y : 19,
+				 	endx : 13,
+				 	endy : 23,
+				 	width : 32,
+				 	height : 18,
+				 	friction: 0.7,
+				 	type : "brick_sand"
+				 	// middle ramp/2 [left side]
+				},
+				{
+					x : 11,
+				 	y : 20,
+				 	endx : 12,
+				 	endy : 23,
+				 	width : 32,
+				 	height : 18,
+				 	friction: 0.7,
+				 	type : "brick_sand"
+				 	// middle ramp/3 [left side]
+				},
+				{
+					x : 10,
+				 	y : 21,
+				 	endx : 11,
+				 	endy : 23,
+				 	width : 32,
+				 	height : 18,
+				 	friction: 0.7,
+				 	type : "brick_sand"
+				 	// middle ramp/4 [left side]
+				},
+				{
+					x : 9,
+				 	y : 22,
+				 	endx : 10,
+				 	endy : 23,
+				 	width : 32,
+				 	height : 18,
+				 	friction: 0.7,
+				 	type : "brick_sand"
+				 	// middle ramp/5 [left side]
+				},
+
 				{
 					x : 18,
-					y : 14,
-					endx : 22,
-					endy : 15,
-					width : 32,
-					height : 18,
-					friction : 0.7,
-					moving : true,
-					moveDistance : -64,
-					velY : -1.4,
-				 	type : "brick_blue"
-					
-				}				
-*/
+				 	y : 18,
+				 	endx : 20,
+				 	endy : 23,
+				 	width : 32,
+				 	height : 18,
+				 	friction: 0.7,
+				 	type : "brick_sand"
+				 	// middle ramp/1 [right side]
+				},
+				{
+					x : 20,
+				 	y : 19,
+				 	endx : 21,
+				 	endy : 23,
+				 	width : 32,
+				 	height : 18,
+				 	friction: 0.7,
+				 	type : "brick_sand"
+				 	// middle ramp/2 [right side]
+				},
+				{
+					x : 21,
+				 	y : 20,
+				 	endx : 22,
+				 	endy : 23,
+				 	width : 32,
+				 	height : 18,
+				 	friction: 0.7,
+				 	type : "brick_sand"
+				 	// middle ramp/3 [right side]
+				},
+				{
+					x : 22,
+				 	y : 21,
+				 	endx : 23,
+				 	endy : 23,
+				 	width : 32,
+				 	height : 18,
+				 	friction: 0.7,
+				 	type : "brick_sand"
+				 	// middle ramp/4 [right side]
+				},
+				{
+					x : 23,
+				 	y : 22,
+				 	endx : 24,
+				 	endy : 23,
+				 	width : 32,
+				 	height : 18,
+				 	friction: 0.7,
+				 	type : "brick_sand"
+				 	// middle ramp/5 [right side]
+				},
+
+				{
+					x : 6,
+				 	y : 12,
+				 	endx : 7,
+				 	endy : 13,
+				 	width : 32,
+				 	height : 18,
+				 	friction: 0.7,
+				 	type : "brick_sand"
+				 	// SILLA [LEFT]
+				},
 
 
 			],
