@@ -363,20 +363,7 @@ Kall.prototype.update = function(du) {
 Kall.prototype.render = function(ctx) {
     this.sprite.drawWrappedAnimationdAt(ctx,this.cx,this.cy,this.direction);
 	var oldStyle = ctx.fillStyle;
-    //ctx.fillText("Health: " + this.health + "%",this.scorePosX,this.scorePosY+25);
     ctx.fillStyle = "black";
-    //ctx.fillRect(this.scorePosX-1,this.scorePosY-18, 142,22);
-    // fyrir neðan eru commentuð út möguleg spawn locations
-    /*
-    ctx.fillRect(50,200,10,10);
-    ctx.fillRect(50,360,10,10);
-    ctx.fillRect(50,520,10,10);
-    ctx.fillRect(g_canvas.width/2 - 110, 130,10,10);
-    ctx.fillRect(g_canvas.width/2 + 100, 130,10,10);
-    ctx.fillRect(g_canvas.width -60,200,10,10);
-    ctx.fillRect(g_canvas.width -60,360,10,10);
-    ctx.fillRect(g_canvas.width -60,520,10,10);
-    ctx.fillRect(g_canvas.width/2 - 110, 450,10,10);
     ctx.fillRect(g_canvas.width/2 + 100, 450,10,10);*/
     ctx.fillRect(this.scorePosX-1,this.scorePosY-16, 102,22);
     ctx.fillStyle = "#b90000";
