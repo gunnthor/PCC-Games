@@ -39,6 +39,16 @@ blockHeight : g_canvas.height / 32,
 
 
 // PUBLIC METHODS
+clear : function(){
+this._nextSpatialID = 1; // make all valid IDs non-falsey (i.e. don't start at 0)
+this._entities = [];
+this._grid = undefined;
+this.spatialNet = [];
+this.firstRegister = true;
+this.registeredLocations = [];
+this.blockWidth = g_canvas.width / 32;
+this.blockHeight = g_canvas.height / 32;
+},
 
 initializeSpatialNet : function() {
     

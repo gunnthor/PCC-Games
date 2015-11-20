@@ -38,6 +38,8 @@ var Menu = {
             if ((this._options[p].y >= yPos && this._options[p].y < yPos + 30) &&(this._options[p].x <= xPos && this._options[p].x >= xPos - this.textWidth) && this._options[p].active){
                 switch(this._options[p].text){
                     case "Begin":
+                        spatialManager.init();
+                        levelManager.initLevel();
                         this.clearOptions();
                         this.generatePauseMenu();
                         this.IsStarted = true;
@@ -62,6 +64,7 @@ var Menu = {
                         g_muteEffects = !g_muteEffects
                         break;
                     case "Map":
+                        levelManager.nextLevel();
                         break;
                     case "Instructions":
                         this.clearOptions();
@@ -75,6 +78,19 @@ var Menu = {
                         else{
                             this.init();
                         }
+                        break;
+                    case "Back to Menu" :
+                        levelManager.clear();
+                        this.clearOptions();
+                        this.IsStarted = false;
+                        this.init();
+                        break;
+                    case "Play again":
+                        //entityManager.resetKallar();
+                        levelManager.clear();
+                        spatialManager.init();
+                        levelManager.initLevel();
+                        g_menu = !g_menu;
                         break;
                     default : 
                         break;
@@ -106,6 +122,30 @@ var Menu = {
 
         //console.log(maps.options.sharedOptions.Back.x);
         
+    },
+    generateGameOver1 : function(){
+        for (var i = 0; i < maps.options.gameover1.length ; i++)
+        {
+            this.generateOption({
+                text : maps.options.gameover1[i].text,
+                x : maps.options.gameover1[i].x,
+                y : maps.options.gameover1[i].y,
+                font : maps.options.gameover1[i].font,
+                active : maps.options.gameover1[i].active,
+            });
+        }
+    },
+    generateGameOver2 : function(){
+        for (var i = 0; i < maps.options.gameover2.length ; i++)
+        {
+            this.generateOption({
+                text : maps.options.gameover2[i].text,
+                x : maps.options.gameover2[i].x,
+                y : maps.options.gameover2[i].y,
+                font : maps.options.gameover2[i].font,
+                active : maps.options.gameover2[i].active,
+            });
+        }
     },
 
     generateInstructions: function(){

@@ -67,6 +67,13 @@ deferredSetup : function () {
     this._categories = [this._blocks,this._kallar, this._bullets, this._drops];
 },
 
+clear : function (){
+    for (var c = 0; c < this._categories.length; ++c) {
+        console.log("kók");
+        this._categories[c].splice(0,this._categories[c].length);
+    }
+},
+
 generateKall : function(descr) {
     this._kallar.push(new Kall(descr));
 },

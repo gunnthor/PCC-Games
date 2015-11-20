@@ -208,6 +208,7 @@ function preloadDone() {
     g_sounds.theKraken = new Sound({audio : g_audio.backgroundSong});
     //g_sounds.theKraken.audio.play();
     Sound.prototype.playThemeSong(g_audio.backgroundSong);
+    //Sound.prototype.pauseThemeSong(g_audio.backgroundSong);
 
     g_sprites.brick_blue = new Sprite({
         image : g_images.brick_blue
@@ -415,10 +416,9 @@ function preloadDone() {
         
     });
     
-    spatialManager.init();
-    levelManager.initLevel(); 
+    //spatialManager.init();
+    //levelManager.initLevel();
     Menu.init();   
-
     main.init();
 }
 

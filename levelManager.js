@@ -17,11 +17,19 @@ var levelManager = {
 
 	_level : 1,
 	_levels : [],
+	_numOfLevels : maps.levels.length,
 
 
 	nextLevel : function() {
-		this._level++
+		this._level++;
+		if (this._level > this._numOfLevels) this._level = 1;
+	},
 
+	clear : function (){
+		this._level = 1;
+		this._levels = [];
+		entityManager.clear();
+		spatialManager.clear();
 	},
 
 	getLevel : function() {

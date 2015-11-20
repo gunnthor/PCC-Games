@@ -220,7 +220,10 @@ Kall.prototype.dropGun = function(weapon) {
     }
 };
 Kall.prototype.won = function(){
-    this.winner = true;
+    Menu.clearOptions();
+    if (this.playerID === 1) Menu.generateGameOver1();
+    else Menu.generateGameOver2();
+    g_menu = true;
 };
 
 Kall.prototype.takeBulletHit = function() {
@@ -235,11 +238,6 @@ Kall.prototype.takeBulletHit = function() {
             this.life = 0;
             this.health = 0;
             entityManager.gameover();
-            this.KEY_LEFT = undefined;
-            this.KEY_RIGHT = undefined;
-            this.KEY_JUMP = undefined;
-            this.KEY_FIRE = undefined;
-            
         }
         else{
             this.respawn();
@@ -249,6 +247,7 @@ Kall.prototype.takeBulletHit = function() {
 
 };
 Kall.prototype.respawn = function(){
+    this.weaponList = ["pistol"];
     var level = levelManager.getLevel();
     var respawns = maps.levels[level-1].respawns;
     var i = Math.floor(Math.random() * respawns.length);
@@ -386,8 +385,4 @@ Kall.prototype.render = function(ctx) {
     ctx.fillText(this.weaponList[this.gunSlot],this.scorePosX+5,this.scorePosY+25);
     ctx.fillText(this.life,this.scorePosX+5,this.scorePosY+50);
     ctx.fillStyle = oldStyle;
-    if (this.winner){
-        ctx.fillText("Player "+ this.playerID + "won",g_canvas.width/2 - 100,g_canvas.height/2);
-    }
-    
 };
