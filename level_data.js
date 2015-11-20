@@ -483,7 +483,7 @@ var maps =
 				{
 					x : 10,
 				 	y : 12,
-				 	endx : 23,
+				 	endx : 24,
 				 	endy : 13,
 				 	width : 32,
 				 	height : 18,
@@ -665,7 +665,7 @@ var maps =
 				{
 					x : 18,
 				 	y : 18,
-				 	endx : 20,
+				 	endx : 21,
 				 	endy : 23,
 				 	width : 32,
 				 	height : 18,
@@ -676,7 +676,7 @@ var maps =
 				{
 					x : 20,
 				 	y : 19,
-				 	endx : 21,
+				 	endx : 22,
 				 	endy : 23,
 				 	width : 32,
 				 	height : 18,
@@ -687,7 +687,7 @@ var maps =
 				{
 					x : 21,
 				 	y : 20,
-				 	endx : 22,
+				 	endx : 23,
 				 	endy : 23,
 				 	width : 32,
 				 	height : 18,
@@ -698,7 +698,7 @@ var maps =
 				{
 					x : 22,
 				 	y : 21,
-				 	endx : 23,
+				 	endx : 24,
 				 	endy : 23,
 				 	width : 32,
 				 	height : 18,
@@ -717,6 +717,17 @@ var maps =
 				 	type : "brick_sand"
 				 	// middle ramp/5 [right side]
 				},
+				{
+					x : 24,
+				 	y : 22,
+				 	endx : 25,
+				 	endy : 23,
+				 	width : 32,
+				 	height : 18,
+				 	friction: 0.7,
+				 	type : "brick_sand"
+				 	// middle ramp/6(auka) [right side]
+				},
 
 				{
 					x : 6,
@@ -728,6 +739,39 @@ var maps =
 				 	friction: 0.7,
 				 	type : "brick_sand"
 				 	// SILLA [LEFT]
+				},
+				{
+					x : 7,
+				 	y : 8,
+				 	endx : 10,
+				 	endy : 9,
+				 	width : 32,
+				 	height : 18,
+				 	friction: 0.7,
+				 	type : "brick_sand"
+				 	// SILLA2 [LEFT]
+				},
+				{
+					x : 27,
+				 	y : 12,
+				 	endx : 28,
+				 	endy : 13,
+				 	width : 32,
+				 	height : 18,
+				 	friction: 0.7,
+				 	type : "brick_sand"
+				 	// SILLA [RIGHT]
+				},
+				{
+					x : 24,
+				 	y : 8,
+				 	endx : 27,
+				 	endy : 9,
+				 	width : 32,
+				 	height : 18,
+				 	friction: 0.7,
+				 	type : "brick_sand"
+				 	// SILLA2 [LEFT]
 				},
 
 
