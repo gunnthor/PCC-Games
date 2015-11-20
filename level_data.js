@@ -823,14 +823,7 @@ var maps =
 				}
 			],
 
-			sounds : 
-			{
-				pistolSound     : "sounds/pistolSound.ogg",   
-        		pistolSound2    : "sounds/pistolSound.ogg",
-        		shotgunSound    :  "sounds/shotgunSound.ogg",
-        		shotgunSound2   :  "sounds/shotgunSound.ogg",
-        		backgroundSong  : "sounds/HansZimmerTheKraken.ogg"
-			},
+			
 
 
 			drops : 
@@ -1030,6 +1023,16 @@ var maps =
 		//lever 3(city map)
 		citybackground : "backgrounds/CityBackground.png"		
 	},
+	sounds : 
+		{
+			pistolSound     : "sounds/pistolSound.ogg",   
+        	pistolSound2    : "sounds/pistolSound.ogg",
+        	shotgunSound    :  "sounds/shotgunSound.ogg",
+        	shotgunSound2   :  "sounds/shotgunSound.ogg",
+        	backgroundSong  : "sounds/HansZimmerTheKraken.ogg",
+        	backgroundsong2 : "sounds/indianajonesthemesong.ogg",
+        	winsong			: "sounds/50centWinSong.ogg"
+		},
 
 
 	options :

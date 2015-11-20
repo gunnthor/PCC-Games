@@ -133,11 +133,13 @@ function requestPreloads() {
 
 
     var requiredAudio = {
-        pistolSound     :  maps.levels[level-1].sounds.pistolSound,   
-        pistolSound2    :  maps.levels[level-1].sounds.pistolSound,
-        shotgunSound    :  maps.levels[level-1].sounds.shotgunSound,
-        shotgunSound2   :  maps.levels[level-1].sounds.shotgunSound,
-        backgroundSong  :  maps.levels[level-1].sounds.backgroundSong
+        pistolSound     :  maps.sounds.pistolSound,   
+        pistolSound2    :  maps.sounds.pistolSound,
+        shotgunSound    :  maps.sounds.shotgunSound,
+        shotgunSound2   :  maps.sounds.shotgunSound,
+        backgroundSong  :  maps.sounds.backgroundSong,
+        backgroundSong2 :  maps.sounds.backgroundSong2,
+        winsong         : maps.sounds.winsong 
     };
 
     imagesPreload(requiredImages, g_images, preloadDone);
