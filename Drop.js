@@ -83,5 +83,7 @@ Drop.prototype.pickedUp = function(){
 Drop.prototype.render = function(ctx) {	
 	
 	if(this.visible) this.sprite.drawCustomSize(ctx, this.cx-this.width/2, this.cy-this.height/2, this.width, this.height);
+
 	//this.drawDropZones(ctx);	
+
 };

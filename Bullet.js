@@ -16,7 +16,7 @@ Bullet.prototype.velX;
 Bullet.prototype.velY;
 Bullet.prototype.width = 3;
 Bullet.prototype.height = 3;
-Bullet.prototype.lifeSpan = 1300 / NOMINAL_UPDATE_INTERVAL;
+Bullet.prototype.lifeSpan = 1050 / NOMINAL_UPDATE_INTERVAL;
 //Bullet.prototype.pistolSound = new Audio("sounds/pistol.ogv");
 
 

@@ -73,9 +73,10 @@ function processDiagnostics() {
     if (eatKey(KEY_MUTESONG)) {
         g_muteThemeSong = !g_muteThemeSong;
         if(!g_muteThemeSong) {
-            Sound.prototype.replayThemeSong();
+            console.log("whi2");
+            g_sounds.themesong[levelManager.getLevel()-1].playThemeSong();
         } else {
-            Sound.prototype.pauseThemeSong();
+            g_sounds.themesong[levelManager.getLevel()-1].pauseThemeSong();
         }
     }
 }
@@ -139,6 +140,7 @@ function requestPreloads() {
         shotgunSound2   :  maps.sounds.shotgunSound,
         backgroundSong  :  maps.sounds.backgroundSong,
         backgroundSong2 :  maps.sounds.backgroundSong2,
+        backgroundSong3 : maps.sounds.backgroundSong3,
         winsong         : maps.sounds.winsong 
     };
 
@@ -157,9 +159,14 @@ function preloadDone() {
     g_sounds.shotgunSound = new Sound({audio : g_audio.shotgunSound});
     g_sounds.shotgunSound2 = new Sound({audio : g_audio.shotgunSound2});
     g_sounds.theKraken = new Sound({audio : g_audio.backgroundSong});
-    //g_sounds.theKraken.audio.play();
-    Sound.prototype.playThemeSong(g_audio.backgroundSong);
-    Sound.prototype.pauseThemeSong(g_audio.backgroundSong);
+    g_sounds.winsong = new Sound({audio: g_audio.winsong});
+    g_sounds.themesong = [];
+    g_sounds.themesong[0] = new Sound ({audio: g_audio.backgroundSong});
+    g_sounds.themesong[1] = new Sound ({audio: g_audio.backgroundSong2});
+    g_sounds.themesong[2] = new Sound ({audio: g_audio.backgroundSong3});
+    g_sounds.themesong[0].playThemeSong();
+    g_sounds.themesong[0].pauseThemeSong();
+
 
     g_sprites.brick_blue = new Sprite({
         image : g_images.brick_blue

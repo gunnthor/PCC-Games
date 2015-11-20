@@ -282,6 +282,7 @@ update: function(du) {
         }
     }    
 
+
     for (var c = 0; c < this._categories.length; ++c) {
 
         var aCategory = this._categories[c];

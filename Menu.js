@@ -38,6 +38,8 @@ var Menu = {
             if ((this._options[p].y >= yPos && this._options[p].y < yPos + 30) &&(this._options[p].x <= xPos && this._options[p].x >= xPos - this.textWidth) && this._options[p].active){
                 switch(this._options[p].text){
                     case "Begin":
+                        g_muteThemeSong = false;
+                        g_sounds.themesong[levelManager.getLevel()-1].playThemeSong();
                         spatialManager.init();
                         levelManager.initLevel();
                         this.clearOptions();
@@ -55,15 +57,18 @@ var Menu = {
                     case "Music":
                         g_muteThemeSong = !g_muteThemeSong;
                         if(!g_muteThemeSong) {
-                            Sound.prototype.replayThemeSong();
+                            g_sounds.themesong[levelManager.getLevel()-1].playThemeSong();
                         } else {
-                            Sound.prototype.pauseThemeSong();
+                            g_sounds.themesong[levelManager.getLevel()-1].pauseThemeSong();
                         }
                         break;
                     case "Effects":
                         g_muteEffects = !g_muteEffects
                         break;
                     case "Map":
+                        g_sounds.themesong[levelManager.getLevel()-1].playThemeSong();
+                        g_muteThemeSong = true;
+                        g_sounds.themesong[levelManager.getLevel()-1].pauseThemeSong();
                         levelManager.nextLevel();
                         break;
                     case "Instructions":
@@ -80,13 +85,18 @@ var Menu = {
                         }
                         break;
                     case "Back to Menu" :
+                        g_muteThemeSong = true;
+                        g_sounds.winsong.pauseThemeSong();
                         levelManager.clear();
                         this.clearOptions();
                         this.IsStarted = false;
                         this.init();
                         break;
                     case "Play again":
-                        //entityManager.resetKallar();
+                        g_muteThemeSong = true;
+                        g_sounds.winsong.pauseThemeSong();
+                        g_muteThemeSong = false;
+                        g_sounds.themesong[levelManager.getLevel()-1].playThemeSong();
                         levelManager.clear();
                         spatialManager.init();
                         levelManager.initLevel();

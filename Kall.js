@@ -192,9 +192,13 @@ Kall.prototype.switchGuns = function () {
 };
 
 Kall.prototype.pickupDrop = function(drop) {
-
-    if(drop.type === "shotgun") this.weaponList.push(drop.type);
     if(drop.type === "healthpack") this.applyHealthPack(drop);
+    if(drop.type === "shotgun") {
+        if(this.weaponList.length < 2){
+            this.weaponList.push(drop.type);
+        }
+    }
+    
 };
 
 Kall.prototype.applyHealthPack = function(drop) {
@@ -224,6 +228,10 @@ Kall.prototype.won = function(){
     if (this.playerID === 1) Menu.generateGameOver1();
     else Menu.generateGameOver2();
     g_menu = true;
+    g_muteThemeSong = true;
+    g_sounds.themesong[levelManager.getLevel()-1].pauseThemeSong();
+    g_muteThemeSong = false;
+    g_sounds.winsong.playThemeSong();
 };
 
 Kall.prototype.takeBulletHit = function() {
@@ -373,7 +381,7 @@ Kall.prototype.render = function(ctx) {
     ctx.font="20px Georgia", "bold";
     ctx.fillText("Player "+ this.playerID,this.scorePosX+13,this.scorePosY+1);
     ctx.globalAlpha = 1;
-    ctx.fillStyle = this.color
+    ctx.fillStyle = this.color;
     ctx.font='small-caps 30px Georgia bold';
     ctx.fillText(this.weaponList[this.gunSlot],this.scorePosX+5,this.scorePosY+25);
     ctx.fillText(this.life,this.scorePosX+5,this.scorePosY+50);
