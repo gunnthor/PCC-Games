@@ -191,9 +191,13 @@ Kall.prototype.switchGuns = function () {
     return this.gunType = this.weaponList[this.gunSlot];
 };
 Kall.prototype.pickupDrop = function(drop) {
-
-    if(drop.type === "shotgun") this.weaponList.push(drop.type);
     if(drop.type === "healthpack") this.applyHealthPack(drop);
+    if(drop.type === "shotgun") {
+        if(this.weaponList.length < 2){
+            this.weaponList.push(drop.type);
+        }
+    }
+    
 };
 
 Kall.prototype.applyHealthPack = function(drop) {
