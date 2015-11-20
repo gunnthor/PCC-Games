@@ -29,7 +29,7 @@ Kall.prototype.isRunning = false;
 Kall.prototype.knockbakcNominals = 0;
 Kall.prototype.pistolNominals = 0;
 Kall.prototype.shotgunNominals = 0;
-Kall.prototype.life = 1;
+Kall.prototype.life = 5;
 
 Kall.prototype.isDead = false;
 Kall.prototype.isShot = false;
