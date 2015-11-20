@@ -446,7 +446,7 @@ var maps =
 				},
 				{
 					x : 16,
-				 	y : 9,
+				 	y : 10,
 				 	endx : 18,
 				 	endy : 12,
 				 	width : 32,
@@ -738,10 +738,10 @@ var maps =
 				 	// SILLA [LEFT]
 				},
 				{
-					x : 7,
-				 	y : 8,
-				 	endx : 10,
-				 	endy : 9,
+					x : 6,
+				 	y : 16,
+				 	endx : 9,
+				 	endy : 17,
 				 	width : 32,
 				 	height : 18,
 				 	friction: 0.7,
@@ -760,10 +760,10 @@ var maps =
 				 	// SILLA [RIGHT]
 				},
 				{
-					x : 24,
-				 	y : 8,
-				 	endx : 27,
-				 	endy : 9,
+					x : 25,
+				 	y : 16,
+				 	endx : 28,
+				 	endy : 17,
 				 	width : 32,
 				 	height : 18,
 				 	friction: 0.7,
@@ -826,10 +826,22 @@ var maps =
 			drops : 
 			[
 				{
-					x : 16,
-				 	y : 17,
-				 	endx : 17,
-				 	endy : 18,
+					x : 15,
+				 	y : 9,
+				 	endx : 16,
+				 	endy : 10,
+				 	width : 32,
+				 	height : 18,
+				 	type : "shotgun",
+				 	cooldown : 2,
+				 	visible : true
+				 	//shotgun				 	
+				},
+				{
+					x : 18,
+				 	y : 9,
+				 	endx : 19,
+				 	endy : 10,
 				 	width : 32,
 				 	height : 18,
 				 	type : "shotgun",
@@ -839,10 +851,23 @@ var maps =
 				},
 
 				{
-					x : 28,
-				 	y : 13,
-				 	endx : 29,
-				 	endy : 14,
+					x : 27,
+				 	y : 15,
+				 	endx : 28,
+				 	endy : 16,
+				 	width : 32,
+				 	height : 18,
+				 	type : "healthpack",
+				 	cooldown : 2,
+				 	visible : true,
+				 	health : 50
+				 	//healthpack				 	
+				},
+				{
+					x : 6,
+				 	y : 15,
+				 	endx : 7,
+				 	endy : 16,
 				 	width : 32,
 				 	height : 18,
 				 	type : "healthpack",
