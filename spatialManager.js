@@ -29,6 +29,8 @@ _grid : undefined,
 //
 // <none yet>
 
+// The spatial net is a 2d array which "makes a net" over every location possible on the canvas. 
+// In each of these locations, the spatial ID's  of every object that's in that location are held.
 spatialNet : [],
 
 firstRegister : true,
@@ -45,6 +47,8 @@ this._entities = [];
 this._grid = undefined;
 this.spatialNet = [];
 this.firstRegister = true;
+// Registered locations is an array which holds all the places in the spatial net which where changed
+// in this iteration, so that they can be reverted before the next iteration.
 this.registeredLocations = [];
 this.blockWidth = g_canvas.width / 32;
 this.blockHeight = g_canvas.height / 32;
@@ -52,6 +56,7 @@ this.blockHeight = g_canvas.height / 32;
 
 initializeSpatialNet : function() {
     
+    // Create a 32 by 32 array for the spatial net
     for(var i = 0; i < 32; i++) {
 
         this.spatialNet[i] = [];
@@ -65,70 +70,68 @@ initializeSpatialNet : function() {
 
 registerInSpatialNet : function(left, right, top, bottom, spatialID) {
 
-    // Viljum ekki registera kallana í fyrsta iteration.
-    //if((spatialID === 1 || spatialID === 2) && this.firstRegister) return;
+    // Register an object in it's location in the spatial net
     
     for(var i = left; i <= right; i++) {
         
         for(var n = top; n <= bottom; n++) {
             
-            //console.log("bla");
             this.spatialNet[i][n].push(spatialID);
             this.registeredLocations.push([i,n]);
         }
     }
-    //console.log("register", this.spatialNet);
 },
 
 checkSpatialPos : function(left, right, top, bottom) {
 
-    //console.log(left, right, top, bottom);
-    //console.log("check", this.spatialNet);
-    //var diff;
-    //if(left > right) diff = 32 - left;
-    //if(left < right) right++;
-    //console.log(left);
-
+    // Check if there is something in the given locations, 
+    // by scanning a part of the spatial net for it.
     for(var i = left; i !== right + 1; i++) {
+
+        // if any locations reaches 32, wrap it to 0
         if(i === 32) {
+
             i = 0;
-            // bug fix ef að hitboxið er lítið:
             if(i === right) break;
         }
-        //console.log(i);
         
+        // If there's anything in the location, return true
         for(var n = top; n <= bottom; n++) {
-            //console.log(n);
+
             if(typeof this.spatialNet[i][n][0] === "number") return true;
         }
     }
 
+    // nothing was found, that location was empty
     return false;
 },
 
 resetSpatialNet : function() {
     
-    // Ef þetta er fyrsta skipti sem að við registeruðum, þá clearum við ekki
-    // því að þá myndum við cleara burt blockana.
-    //console.log("reset");
+    // Clear the locations in the spatial net which we registered last iteration.
+
+    // Unless if it's the first register, so that the blocks won't be cleared.
+    // The blocks are registered once in the spatialNet( the ones that arent moving atleast)
+    // and then they aren't registered ever again, because they are never updated, which
+    // is fine.
     if(this.firstRegister) {
         this.firstRegister = false;
         this.registeredLocations = [];
         return;
     }
 
-    //console.log(this.spatialNet);
-    // Clearum burt öll locations sem voru registeruð síðast.
+    
+    // Remove every location from the spatial net that we registered last iteration:
     for(var x = 0; x < this.registeredLocations.length; x++) {
         
         var i = this.registeredLocations[x][0];
         var n = this.registeredLocations[x][1];
-        //console.log(i, n);
         var last = this.spatialNet[i][n].length-1;
 
         this.spatialNet[i][n].splice(last,1);
     }
 
+    // Empty the registeredLocations array, so that we can use it again next iteration.
     this.registeredLocations = [];
 },
 
@@ -162,8 +165,6 @@ init: function() {
         startingX : 0,
         startingY : 0
     });
-
-    //console.log(this._grid.grid[0][0].cx);
 },
 
 getGrid : function() {
@@ -177,13 +178,11 @@ getGrid : function() {
 register: function(entity) {
     var pos = entity.getPos();
     var dimensions = entity.getInfo();
-    //var radius = entity.getRadius();
 
-    // Sækja um spatialPositions
+    // Get the spatialPosition of the object.
     var spatialPos = entity.getSpatialPos();
 
-    // registera svo í spatial netinu
-    //if(entity.moving) console.log(spatialPos);
+    // Register the object in the spatial net.
     this.registerInSpatialNet(spatialPos.leftPos, spatialPos.rightPos, spatialPos.topPos, spatialPos.bottomPos, entity._spatialID);
 
     var spatialID = entity.getSpatialID();
@@ -197,7 +196,6 @@ unregister: function(entity)
     // TODO: YOUR STUFF HERE!
     var pos = entity.getPos();
     var dimensions = entity.getInfo();
-    //var radius = entity.getRadius();
     var spatialID = entity.getSpatialID();
     var spatialPos = entity.spatialPos;
     this._entities[spatialID].isUndefined = true;
@@ -207,30 +205,15 @@ unregister: function(entity)
 
 findEntityInRange: function(colEntity) {
 
-    // TODO: YOUR STUFF HERE!
-    /*for (var ID in this._entities){
-        var e = this._entities[ID];
-        if(e.isUndefined) continue;
-
-        if(posX - width/2 < e.posX - e.width/2 + e.width &&
-            posX - width/2 + width > e.posX - e.width/2 &&
-            posY  - height/2 < e.posY - e.height/2 + e.height &&
-            posY  - height/2 + height > e.posY - e.height/2) return e.entity;
-    }*/
-
-    // Náum í spatial positions á colEntity
+    // Get the spatial positions of the colliding entity.
     var left = colEntity.spatialPos.leftPos;
     var right = colEntity.spatialPos.rightPos;
     var top = colEntity.spatialPos.topPos;
     var bottom = colEntity.spatialPos.bottomPos;
 
-    //console.log(left);
-
-    // Notum spatialPositions hér, ef að einhver hlutur er í sama position, þá gerum við collision detection
+    // Check if there is anything in the same locations in the spatial net as the
+    // colliding entity. If not, we just return and won't do any collision detection.
     if(!this.checkSpatialPos(left, right, top, bottom)) return;
-    //console.log(colEntity.spatialPos);
-
-    //console.log("heh");
 
     //every time I collide with an entity, I push into this array
     var _hitentities = [];
@@ -333,7 +316,6 @@ findEntityInRange: function(colEntity) {
                 if(Math.abs(colEntity.cx - colEntity.prevCx) <= colEntity.velXLimit*2) {
                     colEntity.cx = entity.cx + entity.width/2 + colEntity.width/2;
                     colEntity.velX = 0;
-                    //console.log(bottom, entTop);
                     _hitentities.push(entity);
                 }
             }
@@ -344,16 +326,6 @@ findEntityInRange: function(colEntity) {
 
     return _hitentities;
 
-    // ÞARF AÐ BREYTA ÞESSU FYRST VIÐ VERÐUM MEÐ KASSA HIT BOX
-    /*for (var ID in this._entities) {
-        var e = this._entities[ID];
-        if( e.isUndefined) continue;
-        var distsq = util.wrappedDistSq(posX,posY,e.posX,e.posY,g_canvas.width,g_canvas.height);
-        var radiussq = (radius + e.radius) * (radius + e.radius);
-        if ( distsq < radiussq){
-            return e.entity;
-        }
-    }*/
 
 },
 
@@ -367,7 +339,6 @@ render: function(ctx) {
         var e = this._entities[ID];
         if(e.isUndefined) continue;
         ctx.strokeRect(e.cx - e.width/2, e.cy - e.height/2, e.width, e.height );
-        //util.strokeCircle(ctx, e.posX, e.posY, e.radius);
         ctx.fillText(ID,e.cx,e.cy);    }
     ctx.strokeStyle = oldStyle;
     ctx.fillStyle = oldFill;
@@ -375,7 +346,6 @@ render: function(ctx) {
 
 renderSpatialNet: function(ctx) {
     
-    //ctx.save();
     ctx.fillStyle = "orange";
 
     for(var i = 0; i < this.spatialNet.length; i++) {
@@ -384,9 +354,7 @@ renderSpatialNet: function(ctx) {
             
             var x = i*32;
             var y = n*18;
-            //console.log(i, n);
             if(this.spatialNet[i][n][0] !== undefined) ctx.fillRect(x, y, 32, 18);
-            //ctx.restore();
         }
     }
 }
