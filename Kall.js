@@ -364,7 +364,7 @@ Kall.prototype.render = function(ctx) {
     this.sprite.drawWrappedAnimationdAt(ctx,this.cx,this.cy,this.direction);
 	var oldStyle = ctx.fillStyle;
     ctx.fillStyle = "black";
-    ctx.fillRect(g_canvas.width/2 + 100, 450,10,10);*/
+    ctx.fillRect(g_canvas.width/2 + 100, 450,10,10);
     ctx.fillRect(this.scorePosX-1,this.scorePosY-16, 102,22);
     ctx.fillStyle = "#b90000";
     ctx.fillRect(this.scorePosX,this.scorePosY-15, 100,20);
@@ -375,7 +375,7 @@ Kall.prototype.render = function(ctx) {
     ctx.font="20px Georgia", "bold";
     ctx.fillText("Player "+ this.playerID,this.scorePosX+13,this.scorePosY+1);
     ctx.globalAlpha = 1;
-    ctx.fillStyle = this.color
+    ctx.fillStyle = this.color;
     ctx.font='small-caps 30px Georgia bold';
     ctx.fillText(this.weaponList[this.gunSlot],this.scorePosX+5,this.scorePosY+25);
     ctx.fillText(this.life,this.scorePosX+5,this.scorePosY+50);

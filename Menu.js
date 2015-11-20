@@ -66,6 +66,7 @@ var Menu = {
                         g_muteEffects = !g_muteEffects
                         break;
                     case "Map":
+                        g_sounds.themesong[levelManager.getLevel()-1].playThemeSong();
                         g_muteThemeSong = true;
                         g_sounds.themesong[levelManager.getLevel()-1].pauseThemeSong();
                         levelManager.nextLevel();
