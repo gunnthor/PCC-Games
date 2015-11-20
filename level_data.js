@@ -379,6 +379,15 @@ var maps =
 			]
 
 		},
+			//=====================================================================================
+			//=====================================================================================
+			//=====================================================================================
+			//==================================MAP TVÖ!!!=========================================
+			//==================================MAP TVÖ!!!=========================================
+			//==================================MAP TVÖ!!!=========================================
+			//=====================================================================================
+			//=====================================================================================
+			//=====================================================================================
 		{
 			// =================
 			// BLOCKS
@@ -389,253 +398,94 @@ var maps =
 			// =================
 			blocks :
 			[
+				//floor left
 				{
 					x : 1,
 				 	y : 32,
-				 	endx : 14,
+				 	endx : 7,
 				 	endy : 33,
 				 	width : 32,
 				 	height : 18,
 				 	friction: 0.7,
-				 	type : "brick_blue"
-				 	//row 1 - left side 
-				 	//type: iceblock/blueblock/mudblock
+				 	type : "brick_sand"
+				 	//floor - left 
 				},
-
-				{
-					x : 1,
-				 	y : 15,
-				 	endx : 2,
-				 	endy : 33,
-				 	width : 32,
-				 	height : 18,
-				 	friction: 0.7,
-				 	type : "brick_blue"
-				 	//wall - left side 
-				 	//type: iceblock/blueblock/mudblock
-				},
-
-				{
-					x : 32,
-				 	y : 15,
-				 	endx : 33,
-				 	endy : 33,
-				 	width : 32,
-				 	height : 18,
-				 	friction: 0.7,
-				 	type : "brick_blue"
-				 	//wall - right side 
-				 	//type: iceblock/blueblock/mudblock
-				},
-
-				{
-					x : 1,
-				 	y : 1,
-				 	endx : 2,
-				 	endy : 10,
-				 	width : 32,
-				 	height : 18,
-				 	friction: 0.7,
-				 	type : "brick_blue"
-				 	//wall_top - left side 
-				 	//type: iceblock/blueblock/mudblock
-				},
-
-				{
-					x : 32,
-				 	y : 1,
-				 	endx : 33,
-				 	endy : 10,
-				 	width : 32,
-				 	height : 18,
-				 	friction: 0.7,
-				 	type : "brick_blue"
-				 	//wall_top - right side 
-				 	//type: iceblock/blueblock/mudblock
-				},
-
-
-
-
-
-				{
-					x : 20,
-				 	y : 32,
-				 	endx : 32,
-				 	endy : 33,
-				 	width : 32,
-				 	height : 18,
-				 	friction: 0.7,
-				 	type : "brick_blue"
-				 	//row 1 - right side
-				 	//type: iceblock/blueblock/mudblock
-				},
-
-
-				{
-					x : 9,
-				 	y : 31,
-				 	endx : 14,
-				 	endy : 32,
-				 	width : 32,
-				 	height : 18,
-				 	friction: 0.7,
-				 	type : "brick_blue" 
-				 	//type: iceblock/blueblock/mudblock
-				},
-
 
 				{
 					x : 11,
-				 	y : 30,
-				 	endx : 14,
-				 	endy : 31,
-				 	width : 32,
-				 	height : 18,
-				 	friction: 0.7,
-				 	type : "brick_blue"
-				 	//type: iceblock/blueblock/mudblock
-				},
-
-				{
-					x : 12,
-				 	y : 29,
-				 	endx : 14,
-				 	endy : 30,
-				 	width : 32,
-				 	height : 18,
-				 	friction: 0.7,
-				 	type : "brick_blue" 
-				 	//type: iceblock/blueblock/mudblock
-				},
-
-				{
-					x : 13,
-				 	y : 28,
-				 	endx : 14,
-				 	endy : 29,
-				 	width : 32,
-				 	height : 18,
-				 	friction: 0.7,
-				 	type : "brick_blue" 
-				 	//type: iceblock/blueblock/mudblock
-				},
-
-				{
-					x : 20,
-				 	y : 31,
-				 	endx : 25,
-				 	endy : 32,
-				 	width : 32,
-				 	height : 18,
-				 	friction: 0.7,
-				 	type : "brick_blue" 
-				 	//type: iceblock/blueblock/mudblock
-				},
-
-				{
-					x : 20,
-				 	y : 30,
+				 	y : 32,
 				 	endx : 23,
-				 	endy : 31,
+				 	endy : 33,
 				 	width : 32,
 				 	height : 18,
 				 	friction: 0.7,
-				 	type : "brick_blue" 
-				 	//type: iceblock/blueblock/mudblock
+				 	type : "brick_sand"
+				 	//floor middle 
+				},
+
+
+				{
+					x : 27,
+				 	y : 32,
+				 	endx : 33,
+				 	endy : 33,
+				 	width : 32,
+				 	height : 18,
+				 	friction: 0.7,
+				 	type : "brick_sand"
+				 	//floor right 
 				},
 
 				{
-					x : 20,
-				 	y : 29,
-				 	endx : 22,
-				 	endy : 30,
+					x : 16,
+				 	y : 22,
+				 	endx : 18,
+				 	endy : 33,
 				 	width : 32,
 				 	height : 18,
 				 	friction: 0.7,
-				 	type : "brick_blue" 
-				 	//type: iceblock/blueblock/mudblock
-				},
-
-				{
-					x : 20,
-				 	y : 28,
-				 	endx : 21,
-				 	endy : 29,
-				 	width : 32,
-				 	height : 18,
-				 	friction: 0.7,
-				 	type : "brick_blue" 
-				 	
-				},
-
-				{
-					x : 2,
-				 	y : 23,
-				 	endx : 11,
-				 	endy : 24,
-				 	width : 32,
-				 	height : 18,
-				 	friction: 0.7,
-				 	type : "brick_blue"
-				 	//efri pallur vinstri 
-				 	
-				},
-
-				{
-					x : 23,
-				 	y : 23,
-				 	endx : 32,
-				 	endy : 24,
-				 	width : 32,
-				 	height : 18,
-				 	friction: 0.7,
-				 	type : "brick_blue" 
-				 	//efri pallur hægri
-				 	
+				 	type : "brick_sand"
+				 	//lowest middle pillar
 				},
 
 				{
 					x : 1,
-					y : 14,
-					endx : 8,
-					endy : 15,
-					width : 32,
-					height : 18,
-					friction : 0.7,
-				 	type : "brick_blue"
-					//efsti pallur vinstri
+				 	y : 27,
+				 	endx : 2,
+				 	endy : 33,
+				 	width : 32,
+				 	height : 18,
+				 	friction: 0.7,
+				 	type : "brick_sand"
+				 	//lowest left pillar
 				},
 
 				{
-					x : 26,
-					y : 14,
-					endx : 33,
-					endy : 15,
-					width : 32,
-					height : 18,
-					friction : 0.7,
-				 	type : "brick_blue"
-					//efsti pallur hægri
+					x : 32,
+				 	y : 27,
+				 	endx : 33,
+				 	endy : 33,
+				 	width : 32,
+				 	height : 18,
+				 	friction: 0.7,
+				 	type : "brick_sand"
+				 	//lowest right pillar
 				},
-
 
 				{
-					x : 12,
-					y : 10,
-					endx : 16,
-					endy : 11,
-					width : 32,
-					height : 18,
-					friction : 0.7,
-					moving : true,
-					moveDistance : 64,
-					velY : 1.4,
-				 	type : "brick_blue"
-					//efsti miðjupallur vinstri
+					x : 5,
+				 	y : 27,
+				 	endx : 13,
+				 	endy : 28,
+				 	width : 32,
+				 	height : 18,
+				 	friction: 0.7,
+				 	type : "brick_sand"
+				 	//lowest right pillar
 				},
 
-
+				
+				/*
 				{
 					x : 18,
 					y : 14,
@@ -650,7 +500,7 @@ var maps =
 				 	type : "brick_blue"
 					
 				}				
-
+*/
 
 
 			],
@@ -748,12 +598,16 @@ var maps =
 
 
 	images :
-	{				
-		background : "backgrounds/Background.png",
-		player1 : "Player1.png",
-		brick_blue : "bricks/brick_background_1.png",
+	{	//common			
 		shotgun : "drops/shotgunicon.png",
-		healthpack : "drops/health_pack.png"				
+		healthpack : "drops/health_pack.png",
+		player1 : "Player1.png",
+		//Level 1 (dark map)
+		background : "backgrounds/Background.png",
+		brick_blue : "bricks/brick_background_1.png",
+		//Level 2(sand map)
+		sandbackground : "backgrounds/sandbackground.png",
+		brick_sand :	"bricks/brick_sand.png"		
 	},
 
 

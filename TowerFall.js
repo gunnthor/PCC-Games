@@ -124,7 +124,9 @@ function requestPreloads() {
         brick_blue : maps.images.brick_blue,
         background : maps.images.background,
         shotgun : maps.images.shotgun,
-        healthpack : maps.images.healthpack        
+        healthpack : maps.images.healthpack,
+        sandbackground : maps.images.sandbackground,
+        brick_sand      :   maps.images.brick_sand       
     };
 
 
@@ -159,6 +161,9 @@ function preloadDone() {
     g_sprites.brick_blue = new Sprite({
         image : g_images.brick_blue
     });
+    g_sprites.brick_sand = new Sprite({
+        image : g_images.brick_sand
+    })
 
     g_sprites.healthpack = new Sprite({
         image : g_images.healthpack
@@ -166,10 +171,16 @@ function preloadDone() {
 
     g_sprites.shotgun = new Sprite({
         image : g_images.shotgun
-    })
-    g_sprites.background = new Sprite({
+    });
+    g_sprites.background = [];
+    g_sprites.background[0] = new Sprite({
         image : g_images.background
     });
+    g_sprites.background[1] = new Sprite({
+        image : g_images.sandbackground
+    });
+
+
     
      g_sprites.player1  = new Sprite({
         image : g_images.player1,

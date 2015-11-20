@@ -70,6 +70,7 @@ Block.prototype.determineSprite = function(){
 
 	if(this.type === "shotgun") return g_sprites.shotgun;
 	if(this.type === "brick_blue") return g_sprites.brick_blue;
+	if(this.type === "brick_sand") return g_sprites.brick_sand;
 
 };
 

@@ -174,6 +174,6 @@ var levelManager = {
 		//ctx.fillStyle = "Black";
 		//ctx.fillRect(0,0,1024,576);
 		//ctx.drawImage(g_sprites.background,0,0);
-		g_sprites.background.drawFullscreen(ctx);		
+		g_sprites.background[this._level-1].drawFullscreen(ctx);		
 	}
 }
