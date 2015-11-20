@@ -30,6 +30,7 @@ Sound.prototype.playThemeSong = function() {
 Sound.prototype.pauseThemeSong = function() {
 	//Sound.prototype.themeSong
 	this.themeSong.pause();
+	this.themeSong.currentTime = 0;
 };
 
 Sound.prototype.replayThemeSong = function () {
