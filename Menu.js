@@ -5,6 +5,7 @@ var Menu = {
     IsStarted : false,
     textWidth : 100,
 
+    //renders the Menu
     render : function (ctx) {
         renderSimulation(ctx);
         ctx.fillStyle = "red";
@@ -13,11 +14,13 @@ var Menu = {
         }
     },
 
+    // renders the generated optinos based on data
     renderoption : function (option,ctx){
         ctx.font = option.font;
         ctx.fillText(option.text,option.x,option.y)
     },
 
+    // makes active options pop up when the mouse hovers over them
     onhover : function (xPos,yPos){
         for (var p = 0; p < this._options.length; p++){
             if ((this._options[p].y >= yPos && this._options[p].y < yPos + 30) &&(this._options[p].x <= xPos && this._options[p].x >= xPos - this.textWidth) && this._options[p].active){
@@ -29,6 +32,7 @@ var Menu = {
         }
     },
 
+    // changes things based on what was clicked on in the menu
     onclick : function (xPos,yPos){
         for (var p = 0; p < this._options.length; p++){
             if ((this._options[p].y >= yPos && this._options[p].y < yPos + 30) &&(this._options[p].x <= xPos && this._options[p].x >= xPos - this.textWidth) && this._options[p].active){
@@ -97,14 +101,17 @@ var Menu = {
         }
     },
 
+    // clears the menu
     clearOptions : function(){
         this._options.splice(0,this._options.length);
     },
 
+    // generates an option in the menu
     generateOption : function(descr) {
     this._options.push((descr));
     },
 
+    // generate options for the sound
     generateSoundOptions: function(){
         
         for(var i = 0; i<maps.options.soundOptions.length; i++)
@@ -121,6 +128,7 @@ var Menu = {
         //console.log(maps.options.sharedOptions.Back.x);
         
     },
+    //generates the options for game over if player one won 
     generateGameOver1 : function(){
         for (var i = 0; i < maps.options.gameover1.length ; i++)
         {
@@ -133,6 +141,8 @@ var Menu = {
             });
         }
     },
+
+    //generates the options for game over if player two won 
     generateGameOver2 : function(){
         for (var i = 0; i < maps.options.gameover2.length ; i++)
         {
@@ -146,6 +156,7 @@ var Menu = {
         }
     },
 
+    // generates the text explaining the button layout
     generateInstructions: function(){
         
         for(var i = 0; i<maps.options.instructions.length; i++)
@@ -160,6 +171,7 @@ var Menu = {
         }
     },
 
+    //generates the pause menu
     generatePauseMenu: function(){
         
         for(var i = 0; i<maps.options.pauseMenu.length; i++)
@@ -174,6 +186,7 @@ var Menu = {
         }
     },
 
+    // generates the Main menu
     init : function (){
         
         for(var i = 0; i<maps.options.startMenu.length; i++)
