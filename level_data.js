@@ -592,6 +592,220 @@ var maps =
 
 			]
 
+		},
+		//=====================================================================================
+			//=====================================================================================
+			//=====================================================================================
+			//==================================MAP  3!!!=========================================
+			//==================================MAP 3!!!=========================================
+			//==================================MAP 3!!!=========================================
+			//=====================================================================================
+			//=====================================================================================
+			//=====================================================================================
+		{
+			// =================
+			// BLOCKS
+			// teikna kubba frá x til endx og y til endy, þar sem að x og y eru kubbastaðsetningar
+			//(þ.e.a.s. kubbur númer x í átt x og kubbur númer y í átt y) en ekki x og y hnit í canvas
+			// 
+			//  
+			// =================
+			blocks :
+			[
+				//floor left
+				{
+					x : 1,
+				 	y : 32,
+				 	endx : 7,
+				 	endy : 33,
+				 	width : 32,
+				 	height : 18,
+				 	friction: 0.7,
+				 	type : "brick_blue"
+				 	//floor - left 
+				},
+
+				{
+					x : 11,
+				 	y : 32,
+				 	endx : 23,
+				 	endy : 33,
+				 	width : 32,
+				 	height : 18,
+				 	friction: 0.7,
+				 	type : "brick_blue"
+				 	//floor middle 
+				},
+
+
+				{
+					x : 27,
+				 	y : 32,
+				 	endx : 33,
+				 	endy : 33,
+				 	width : 32,
+				 	height : 18,
+				 	friction: 0.7,
+				 	type : "brick_blue"
+				 	//floor right 
+				},
+
+				{
+					x : 16,
+				 	y : 22,
+				 	endx : 18,
+				 	endy : 33,
+				 	width : 32,
+				 	height : 18,
+				 	friction: 0.7,
+				 	type : "brick_blue"
+				 	//lowest middle pillar
+				},
+
+				{
+					x : 1,
+				 	y : 27,
+				 	endx : 2,
+				 	endy : 33,
+				 	width : 32,
+				 	height : 18,
+				 	friction: 0.7,
+				 	type : "brick_blue"
+				 	//lowest left pillar
+				},
+
+				{
+					x : 32,
+				 	y : 27,
+				 	endx : 33,
+				 	endy : 33,
+				 	width : 32,
+				 	height : 18,
+				 	friction: 0.7,
+				 	type : "brick_blue"
+				 	//lowest right pillar
+				},
+
+				{
+					x : 5,
+				 	y : 27,
+				 	endx : 13,
+				 	endy : 28,
+				 	width : 32,
+				 	height : 18,
+				 	friction: 0.7,
+				 	type : "brick_blue"
+				 	//lowest right pillar
+				},
+
+				
+				/*
+				{
+					x : 18,
+					y : 14,
+					endx : 22,
+					endy : 15,
+					width : 32,
+					height : 18,
+					friction : 0.7,
+					moving : true,
+					moveDistance : -64,
+					velY : -1.4,
+				 	type : "brick_blue"
+					
+				}				
+*/
+
+
+			],
+
+			respawns : 
+			[
+				
+
+				{
+					x : 50,
+					y : 360
+				},
+				{
+					x : g_canvas.width -60,
+					y : 360 
+				},{
+					x : 50,
+					y : 200 
+				},
+				{
+					x : 50,
+					y : 520 
+				},
+				{
+					x : g_canvas.width/2 - 110,
+					y : 130 
+				},
+				{
+					x : g_canvas.width/2 + 110,
+					y : 130
+				},
+				{
+					x : g_canvas.width -60,
+					y : 200 
+				},
+				
+				{
+					x : g_canvas.width -60,
+					y : 520 
+				},
+				{
+					x : g_canvas.width/2 - 110,
+					y : 450 
+				},
+				{
+					x : g_canvas.width/2 + 110,
+					y : 450
+				}
+			],
+
+			sounds : 
+			{
+				pistolSound     : "sounds/pistolSound.ogg",   
+        		pistolSound2    : "sounds/pistolSound.ogg",
+        		shotgunSound    :  "sounds/shotgunSound.ogg",
+        		shotgunSound2   :  "sounds/shotgunSound.ogg",
+        		backgroundSong  : "sounds/HansZimmerTheKraken.ogg"
+			},
+
+
+			drops : 
+			[
+				{
+					x : 16,
+				 	y : 17,
+				 	endx : 17,
+				 	endy : 18,
+				 	width : 32,
+				 	height : 18,
+				 	type : "shotgun",
+				 	cooldown : 2,
+				 	visible : true
+				 	//shotgun				 	
+				},
+
+				{
+					x : 28,
+				 	y : 13,
+				 	endx : 29,
+				 	endy : 14,
+				 	width : 32,
+				 	height : 18,
+				 	type : "healthpack",
+				 	cooldown : 2,
+				 	visible : true,
+				 	health : 50
+				 	//healthpack				 	
+				}
+
+			]
+
 		}
 	],
 
@@ -607,7 +821,9 @@ var maps =
 		brick_blue : "bricks/brick_background_1.png",
 		//Level 2(sand map)
 		sandbackground : "backgrounds/sandbackground.png",
-		brick_sand :	"bricks/brick_sand.png"		
+		brick_sand :	"bricks/brick_sand.png",
+		//lever 3(city map)
+		citybackground : "backgrounds/CityBackground.png"		
 	},
 
 
@@ -753,11 +969,18 @@ var maps =
 	            font: "20px Georgia, bold",
 	            active: false
 	        },
+	        {
+	            text: "Esc : access menu",
+	            x: g_canvas.width/2 - 40,
+	            y: (g_canvas.height/2) + 120,
+	            font: "20px Georgia, bold",
+	            active: false
+	        },
 
 	        {
 	            text: "Back",
 	            x: g_canvas.width/2,
-	            y: (g_canvas.height/2) + 120,
+	            y: (g_canvas.height/2) + 150,
 	            font: "20px Georgia, bold",
 	            active: true
 	        }

@@ -71,7 +71,7 @@ Kall.prototype.maybeFireBullet = function () {
             this.audio.playSound();
             this.isShooting = true;
             this.shootingTimeNominals = SECS_TO_NOMINALS/4;
-            this.shotgunNominals = SECS_TO_NOMINALS/1.5;
+            this.shotgunNominals = SECS_TO_NOMINALS*1.5;
             entityManager.fireBullet(
            bulletX, bulletY, bulletXVel, this.gunType);
             this.recoil();
@@ -79,7 +79,7 @@ Kall.prototype.maybeFireBullet = function () {
             this.audio.playSound();
             this.isShooting = true;
             this.shootingTimeNominals = SECS_TO_NOMINALS/4;
-            this.pistolNominals = SECS_TO_NOMINALS;
+            this.pistolNominals = SECS_TO_NOMINALS/1.5;
             entityManager.fireBullet(
            bulletX, bulletY, bulletXVel, this.gunType);
         } 

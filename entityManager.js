@@ -69,7 +69,6 @@ deferredSetup : function () {
 
 clear : function (){
     for (var c = 0; c < this._categories.length; ++c) {
-        console.log("kók");
         this._categories[c].splice(0,this._categories[c].length);
     }
 },
