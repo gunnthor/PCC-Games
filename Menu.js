@@ -18,10 +18,6 @@ var Menu = {
         ctx.fillText(option.text,option.x,option.y)
     },
 
-    update : function (du){
-
-    },
-
     onhover : function (xPos,yPos){
         for (var p = 0; p < this._options.length; p++){
             if ((this._options[p].y >= yPos && this._options[p].y < yPos + 30) &&(this._options[p].x <= xPos && this._options[p].x >= xPos - this.textWidth) && this._options[p].active){
@@ -91,6 +87,8 @@ var Menu = {
                         spatialManager.init();
                         levelManager.initLevel();
                         g_menu = !g_menu;
+                        this.clearOptions();
+                        this.generatePauseMenu();
                         break;
                     default : 
                         break;

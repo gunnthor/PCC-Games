@@ -248,6 +248,8 @@ Kall.prototype.takeBulletHit = function() {
 };
 Kall.prototype.respawn = function(){
     this.weaponList = ["pistol"];
+    this.gunSlot = 0;
+    this.switchGuns();
     var level = levelManager.getLevel();
     var respawns = maps.levels[level-1].respawns;
     var i = Math.floor(Math.random() * respawns.length);
