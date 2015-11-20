@@ -157,6 +157,7 @@ function preloadDone() {
     g_sounds.shotgunSound = new Sound({audio : g_audio.shotgunSound});
     g_sounds.shotgunSound2 = new Sound({audio : g_audio.shotgunSound2});
     g_sounds.theKraken = new Sound({audio : g_audio.backgroundSong});
+    g_sounds.winsong = new Sound({audio: g_audio.winsong});
     //g_sounds.theKraken.audio.play();
     Sound.prototype.playThemeSong(g_audio.backgroundSong);
     Sound.prototype.pauseThemeSong(g_audio.backgroundSong);

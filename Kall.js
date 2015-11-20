@@ -227,6 +227,7 @@ Kall.prototype.won = function(){
     if (this.playerID === 1) Menu.generateGameOver1();
     else Menu.generateGameOver2();
     g_menu = true;
+    g_sounds.winsong.playSound();
 };
 
 Kall.prototype.takeBulletHit = function() {
