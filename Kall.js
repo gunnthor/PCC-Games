@@ -364,7 +364,6 @@ Kall.prototype.render = function(ctx) {
     this.sprite.drawWrappedAnimationdAt(ctx,this.cx,this.cy,this.direction);
 	var oldStyle = ctx.fillStyle;
     ctx.fillStyle = "black";
-    ctx.fillRect(g_canvas.width/2 + 100, 450,10,10);
     ctx.fillRect(this.scorePosX-1,this.scorePosY-16, 102,22);
     ctx.fillStyle = "#b90000";
     ctx.fillRect(this.scorePosX,this.scorePosY-15, 100,20);

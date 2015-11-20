@@ -140,6 +140,7 @@ function requestPreloads() {
         shotgunSound2   :  maps.sounds.shotgunSound,
         backgroundSong  :  maps.sounds.backgroundSong,
         backgroundSong2 :  maps.sounds.backgroundSong2,
+        backgroundSong3 : maps.sounds.backgroundSong3,
         winsong         : maps.sounds.winsong 
     };
 
@@ -162,10 +163,10 @@ function preloadDone() {
     g_sounds.themesong = [];
     g_sounds.themesong[0] = new Sound ({audio: g_audio.backgroundSong});
     g_sounds.themesong[1] = new Sound ({audio: g_audio.backgroundSong2});
-    g_sounds.themesong[2] = new Sound ({audio: g_audio.backgroundSong2});
+    g_sounds.themesong[2] = new Sound ({audio: g_audio.backgroundSong3});
     g_sounds.themesong[0].playThemeSong();
     g_sounds.themesong[0].pauseThemeSong();
-    
+
 
     g_sprites.brick_blue = new Sprite({
         image : g_images.brick_blue
