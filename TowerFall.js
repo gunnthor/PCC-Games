@@ -39,11 +39,7 @@ function gatherInputs() {
 function updateSimulation(du) {
     
     processDiagnostics();
-    
     entityManager.update(du);
-
-    // Prevent perpetual firing!
-    //eatKey(Ship.prototype.KEY_FIRE);
 }
 
 // GAME-SPECIFIC DIAGNOSTICS
@@ -154,7 +150,6 @@ var g_sounds = {};
 function preloadDone() {
     g_sounds.pistolSound = new Sound({audio : g_audio.pistolSound});
 
-    //g_sounds.pistolSound.audio.pause();
     g_sounds.pistolSound2 = new Sound({audio : g_audio.pistolSound2});
     g_sounds.shotgunSound = new Sound({audio : g_audio.shotgunSound});
     g_sounds.shotgunSound2 = new Sound({audio : g_audio.shotgunSound2});
@@ -386,11 +381,8 @@ function preloadDone() {
         
     });
     
-    //spatialManager.init();
-    //levelManager.initLevel();
     Menu.init();   
     main.init();
 }
 
-// Kick it off
 requestPreloads();

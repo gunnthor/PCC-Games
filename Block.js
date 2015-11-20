@@ -66,14 +66,15 @@ Block.prototype.update = function(du) {
 	if(this._isDeadNow) return entityManager.KILL_ME_NOW;*/
 };
 
+// determines what the block will look like
 Block.prototype.determineSprite = function(){
 
-	if(this.type === "shotgun") return g_sprites.shotgun;
 	if(this.type === "brick_blue") return g_sprites.brick_blue;
 	if(this.type === "brick_sand") return g_sprites.brick_sand;
 
 };
 
+// draws the block with the correct sprite
 Block.prototype.render = function(ctx) {	
 
 	this.sprite.drawCustomSize(ctx, this.cx-this.width/2, this.cy-this.height/2, this.width, this.height);	

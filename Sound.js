@@ -11,6 +11,7 @@ function Sound(descr) {
 };
 Sound.prototype.themeSong;
 
+// plays the sound effect
 Sound.prototype.playSound = function() {
 	if(!g_muteEffects) {
 		this.audio.pause();
@@ -19,6 +20,7 @@ Sound.prototype.playSound = function() {
 	}
 };
 
+// plays a song 
 Sound.prototype.playThemeSong = function() {
 	this.themeSong = this.audio;
 	if(!g_muteThemeSong) {
@@ -27,12 +29,8 @@ Sound.prototype.playThemeSong = function() {
 	}
 };
 
+// stops a song and resets it
 Sound.prototype.pauseThemeSong = function() {
-	//Sound.prototype.themeSong
 	this.themeSong.pause();
 	this.themeSong.currentTime = 0;
-};
-
-Sound.prototype.replayThemeSong = function () {
-	this.themeSong.play();
 };

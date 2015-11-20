@@ -17,9 +17,8 @@ Bullet.prototype.velY;
 Bullet.prototype.width = 3;
 Bullet.prototype.height = 3;
 Bullet.prototype.lifeSpan = 1050 / NOMINAL_UPDATE_INTERVAL;
-//Bullet.prototype.pistolSound = new Audio("sounds/pistol.ogv");
 
-
+// updates the bullet
 Bullet.prototype.update = function (du) {
 
     spatialManager.unregister(this);
@@ -58,36 +57,15 @@ Bullet.prototype.update = function (du) {
     this.cy += this.velY * du;
 
     this.wrapPosition();
-    
-    // Handle collisions
-    //
-    //
-    // Update'a spatialPos
-    //this.spatialPos = this.updateSpatialPos(this.cx, this.cy, this.width, this.height);
-    //console.log(this.spatialPos);
-    
-
-    /*
-    //gamla útfærslan
-    var hitEntity = this.findHitEntity();
-    if (hitEntity) {
-        var canTakeHit = hitEntity.takeBulletHit;
-        if (canTakeHit) canTakeHit.call(hitEntity);
-        this.kill();
-        spatialManager.unregister(this); 
-        return entityManager.KILL_ME_NOW;
-    }*/
-    
     spatialManager.register(this);
-
-    //console.log(this.spatialPos);
-
 };
 
+// functino that kills the bullet if it is hit
 Bullet.prototype.takeBulletHit = function () {
     this.kill();
 };
 
+// renders the bullet
 Bullet.prototype.render = function (ctx) {
     oldStyle = ctx.fillStyle;
     ctx.fillStyle = "white";

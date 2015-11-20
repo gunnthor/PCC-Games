@@ -19,29 +19,32 @@ var levelManager = {
 	_levels : [],
 	_numOfLevels : maps.levels.length,
 
-
+	// choose next level
 	nextLevel : function() {
 		this._level++;
 		if (this._level > this._numOfLevels) this._level = 1;
 	},
 
+	// clears the level so that it can be changed
 	clear : function (){
-		//this._level = 1;
 		this._levels = [];
 		entityManager.clear();
 		spatialManager.clear();
 	},
 
+	// gets the current level
 	getLevel : function() {
 		
 		return this._level;
 	},
 
+	// initiates the current level 
 	initLevel : function() {
 		this.generateLevel();
 		this.generatePlayers();
 	},
 
+	// generates the players in the level
 	generatePlayers : function() {
 
 		//PLAYER 1 GENERATED
@@ -87,7 +90,7 @@ var levelManager = {
     	});
 	},
 
-
+	// generates the blocks in the level
 	generateBlocks : function() {
 
 	    //place all blocks from level_data(maps) and place them into this._levels
@@ -113,6 +116,7 @@ var levelManager = {
 
 	},
 
+	// generates the drops in the level
 	generateDrops : function() {
 
 		//place all drops from level_data(maps) and place them into this._levels
@@ -135,6 +139,8 @@ var levelManager = {
 	    }
 	},
 
+
+	// generates the level
 	generateLevel : function() {
 
 		// Initializum spatial net
@@ -157,16 +163,8 @@ var levelManager = {
 	},
 
 
-
-	//(ætli það þurfi update fall?)
-	update : function(du) {
-		//var sprite = g_sprites.backgroundLVL1 
-	},
-
+	// renders the level
 	render : function(ctx) {
-		//ctx.fillStyle = "Black";
-		//ctx.fillRect(0,0,1024,576);
-		//ctx.drawImage(g_sprites.background,0,0);
 		g_sprites.background[this._level-1].drawFullscreen(ctx);		
 	}
 }
