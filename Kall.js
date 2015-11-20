@@ -233,9 +233,8 @@ Kall.prototype.takeBulletHit = function() {
     this.health -= 20;
     if(this.health <= 0) {
         this.life--;
-        if(this.life < 0){
+        if(this.life <= 0){
             this.isDead = true;
-            this.life = 0;
             this.health = 0;
             entityManager.gameover();
         }
