@@ -26,7 +26,7 @@ var levelManager = {
 	},
 
 	clear : function (){
-		this._level = 1;
+		//this._level = 1;
 		this._levels = [];
 		entityManager.clear();
 		spatialManager.clear();
