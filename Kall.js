@@ -29,7 +29,7 @@ Kall.prototype.isRunning = false;
 Kall.prototype.knockbakcNominals = 0;
 Kall.prototype.pistolNominals = 0;
 Kall.prototype.shotgunNominals = 0;
-Kall.prototype.life = 5;
+Kall.prototype.life = 1;
 
 Kall.prototype.isDead = false;
 Kall.prototype.isShot = false;
@@ -227,7 +227,10 @@ Kall.prototype.won = function(){
     if (this.playerID === 1) Menu.generateGameOver1();
     else Menu.generateGameOver2();
     g_menu = true;
-    g_sounds.winsong.playSound();
+    g_muteThemeSong = true;
+    g_sounds.themesong[levelManager.getLevel()-1].pauseThemeSong();
+    g_muteThemeSong = false;
+    g_sounds.winsong.playThemeSong();
 };
 
 Kall.prototype.takeBulletHit = function() {

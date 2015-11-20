@@ -1027,7 +1027,7 @@ var maps =
         	shotgunSound    :  "sounds/shotgunSound.ogg",
         	shotgunSound2   :  "sounds/shotgunSound.ogg",
         	backgroundSong  : "sounds/HansZimmerTheKraken.ogg",
-        	backgroundsong2 : "sounds/indianajonesthemesong.ogg",
+        	backgroundSong2 : "sounds/indianajonesthemesong.ogg",
         	winsong			: "sounds/50centWinSong.ogg"
 		},
 

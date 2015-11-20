@@ -19,14 +19,8 @@ Sound.prototype.playSound = function() {
 	}
 };
 
-Sound.prototype.setThemeSong = function(song) {
-	var level = levelManager.getLevel()-1;
-	//this.themeSong = maps.levels[level].sounds.backgroundSong;
-	this.themeSong = song;
-};
-
-Sound.prototype.playThemeSong = function(thesong) {
-	this.setThemeSong(thesong);
+Sound.prototype.playThemeSong = function() {
+	this.themeSong = this.audio;
 	if(!g_muteThemeSong) {
 		var playThis = this.themeSong
 		playThis.play();
