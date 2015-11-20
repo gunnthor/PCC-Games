@@ -354,7 +354,7 @@ var maps =
 				 	width : 32,
 				 	height : 18,
 				 	type : "shotgun",
-				 	cooldown : 2,
+				 	cooldown : 10,
 				 	visible : true
 				 	//shotgun				 	
 				},
@@ -367,7 +367,22 @@ var maps =
 				 	width : 32,
 				 	height : 18,
 				 	type : "healthpack",
-				 	cooldown : 2,
+				 	cooldown : 5,
+				 	visible : true,
+				 	health : 50
+				 	//healthpack				 	
+				},
+
+
+				{
+					x : 5,
+				 	y : 13,
+				 	endx : 6,
+				 	endy : 14,
+				 	width : 32,
+				 	height : 18,
+				 	type : "healthpack",
+				 	cooldown : 5,
 				 	visible : true,
 				 	health : 50
 				 	//healthpack				 	
@@ -774,55 +789,7 @@ var maps =
 
 			],
 
-			respawns : 
-			[
-				
-
-				{
-					x : 50,
-					y : 360
-				},
-				{
-					x : g_canvas.width -60,
-					y : 360 
-				},{
-					x : 50,
-					y : 200 
-				},
-				{
-					x : 50,
-					y : 520 
-				},
-				{
-					x : g_canvas.width/2 - 110,
-					y : 130 
-				},
-				{
-					x : g_canvas.width/2 + 110,
-					y : 130
-				},
-				{
-					x : g_canvas.width -60,
-					y : 200 
-				},
-				
-				{
-					x : g_canvas.width -60,
-					y : 520 
-				},
-				{
-					x : g_canvas.width/2 - 110,
-					y : 450 
-				},
-				{
-					x : g_canvas.width/2 + 110,
-					y : 450
-				}
-			],
-
 			
-
-
 			drops : 
 			[
 				{
@@ -912,53 +879,7 @@ var maps =
 				 	//floor right 
 				},
 
-			],
-
-			respawns : 
-			[
-				
-
-				{
-					x : 50,
-					y : 360
-				},
-				{
-					x : g_canvas.width -60,
-					y : 360 
-				},{
-					x : 50,
-					y : 200 
-				},
-				{
-					x : 50,
-					y : 520 
-				},
-				{
-					x : g_canvas.width/2 - 110,
-					y : 130 
-				},
-				{
-					x : g_canvas.width/2 + 110,
-					y : 130
-				},
-				{
-					x : g_canvas.width -60,
-					y : 200 
-				},
-				
-				{
-					x : g_canvas.width -60,
-					y : 520 
-				},
-				{
-					x : g_canvas.width/2 - 110,
-					y : 450 
-				},
-				{
-					x : g_canvas.width/2 + 110,
-					y : 450
-				}
-			],
+			],			
 
 			sounds : 
 			{
@@ -980,7 +901,7 @@ var maps =
 				 	width : 32,
 				 	height : 18,
 				 	type : "shotgun",
-				 	cooldown : 2,
+				 	cooldown : 15,
 				 	visible : true
 				 	//shotgun				 	
 				},
@@ -993,11 +914,11 @@ var maps =
 				 	width : 32,
 				 	height : 18,
 				 	type : "healthpack",
-				 	cooldown : 1,
+				 	cooldown : 5,
 				 	visible : true,
 				 	health : 50
 				 	//healthpack				 	
-				}
+				}				
 
 			]
 

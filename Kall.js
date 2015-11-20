@@ -49,7 +49,6 @@ Kall.prototype.numSubSteps = 1;
 Kall.prototype.width = 33;
 Kall.prototype.height = 48;
 
-//Kall.prototype.gunType = this.weaponList[0];
 
 Kall.prototype.maybeFireBullet = function () {
 
@@ -170,6 +169,7 @@ Kall.prototype.jump = function () {
     this.IN_AIR = true;  
 };
 
+//Changes the players gunType and gunsound depending on the gun currently wielded
 Kall.prototype.switchGuns = function () {
     this.gunSlot++;
     if(this.gunSlot >= this.weaponList.length) {
@@ -190,6 +190,7 @@ Kall.prototype.switchGuns = function () {
     }
     return this.gunType = this.weaponList[this.gunSlot];
 };
+
 Kall.prototype.pickupDrop = function(drop) {
 
     if(drop.type === "shotgun") this.weaponList.push(drop.type);
@@ -244,15 +245,30 @@ Kall.prototype.takeBulletHit = function() {
     }
 
 };
+
+//Reset player info and then determine the best spawn location
 Kall.prototype.respawn = function(){
     this.weaponList = ["pistol"];
     this.gunSlot = 0;
     this.switchGuns();
-    var level = levelManager.getLevel();
-    var respawns = maps.levels[level-1].respawns;
-    var i = Math.floor(Math.random() * respawns.length);
-    this.cx = respawns[i].x;
-    this.cy = respawns[i].y;
+    var spawnLocations = entityManager.getSpawnZones();
+    var survivingPlayer = entityManager.getSurvivingPlayer();
+    var bestSpawnPoint = spawnLocations[0];
+    var currDistance;
+    var greatestDistance = Math.sqrt(util.wrappedDistSq(spawnLocations[0].cx,spawnLocations[0].cy,survivingPlayer.cx,survivingPlayer.cy,g_canvas.width,g_canvas.height));
+    
+    for(var i = 1; i<spawnLocations.length; i++)
+    {
+        currDistance = Math.sqrt(util.wrappedDistSq(spawnLocations[i].cx,spawnLocations[i].cy,survivingPlayer.cx,survivingPlayer.cy,g_canvas.width,g_canvas.height));
+        if(currDistance > greatestDistance)
+        {
+            greatestDistance = currDistance;
+            bestSpawnPoint = spawnLocations[i];
+        } 
+    } 
+
+    this.cx = bestSpawnPoint.cx;
+    this.cy = bestSpawnPoint.cy-bestSpawnPoint.height*2;   
 };
 
 
@@ -267,12 +283,9 @@ Kall.prototype.update = function(du) {
     this.pistolNominals -= du;
     this.shotgunNominals -=du;
     
-    // Ef kallinn snertir eitthvað, þá verður hitEntity objecið sem að kallinn snerti
+    
     var hitEntity = this.findHitEntity();
-    //console.log(hitEntity.length);
-
-    // Ef að hann snerti eitthvað, framkvæmum þá rétta aðgerð miðað við hvaða hlut hann snerti
-    //if(hitEntity) 
+           
     if(keys[this.KEY_JUMP])
 
     {
@@ -283,11 +296,11 @@ Kall.prototype.update = function(du) {
     if(!this.IN_AIR) 
     {
 
+        //pick up drop if hitentity is a drop
         for(var i = 0; i<hitEntity.length; i++)
         {
             if(typeof hitEntity[i].cooldown != "undefined")
             {
-                    //console.log("Touching a shotgun");
                     hitEntity[i].pickedUp();
                     this.pickupDrop(hitEntity[i]);
             }
@@ -299,7 +312,7 @@ Kall.prototype.update = function(du) {
 
             var mostFriction = 1;
 
-            //Skoða alla hluti sem ég er að snerta, og vel hlutinn sem er með mestann núning til að ákvarða næsta hraða
+           //look at all the objects I'm colliding with and pick the one that has the most friction
            for(var i = 0; i<hitEntity.length; i++)
            {
                 
@@ -312,8 +325,6 @@ Kall.prototype.update = function(du) {
             
             this.velX *= mostFriction;
         }
-            
-
     }
     
 
@@ -343,11 +354,7 @@ Kall.prototype.update = function(du) {
     this.maybeFireBullet();
     
     this.velLimit();
-
-    // Update'a spatialPos
-    //this.spatialPos = this.updateSpatialPos(this.cx, this.cy, this.width, this.height);
-
-
+    
     // Register
     spatialManager.register(this);
 };
@@ -355,21 +362,7 @@ Kall.prototype.update = function(du) {
 Kall.prototype.render = function(ctx) {
     this.sprite.drawWrappedAnimationdAt(ctx,this.cx,this.cy,this.direction);
 	var oldStyle = ctx.fillStyle;
-    //ctx.fillText("Health: " + this.health + "%",this.scorePosX,this.scorePosY+25);
-    ctx.fillStyle = "black";
-    //ctx.fillRect(this.scorePosX-1,this.scorePosY-18, 142,22);
-    // fyrir neðan eru commentuð út möguleg spawn locations
-    /*
-    ctx.fillRect(50,200,10,10);
-    ctx.fillRect(50,360,10,10);
-    ctx.fillRect(50,520,10,10);
-    ctx.fillRect(g_canvas.width/2 - 110, 130,10,10);
-    ctx.fillRect(g_canvas.width/2 + 100, 130,10,10);
-    ctx.fillRect(g_canvas.width -60,200,10,10);
-    ctx.fillRect(g_canvas.width -60,360,10,10);
-    ctx.fillRect(g_canvas.width -60,520,10,10);
-    ctx.fillRect(g_canvas.width/2 - 110, 450,10,10);
-    ctx.fillRect(g_canvas.width/2 + 100, 450,10,10);*/
+    ctx.fillStyle = "black";   
     ctx.fillRect(this.scorePosX-1,this.scorePosY-16, 102,22);
     ctx.fillStyle = "#b90000";
     ctx.fillRect(this.scorePosX,this.scorePosY-15, 100,20);

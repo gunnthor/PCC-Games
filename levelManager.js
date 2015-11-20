@@ -132,10 +132,7 @@ var levelManager = {
 		    }
 
 		    this._levels[this._level].push(currDrop);
-
 	    }
-
-
 	},
 
 	generateLevel : function() {
@@ -149,14 +146,13 @@ var levelManager = {
 
 	    this.generateBlocks();
 	    this.generateDrops();
-	    
-
-	    //console.log(this._levels[this._level][0].x);
 
 	    for(var i = 0; i<this._levels[this._level].length; i++)
 	    {
 	        entityManager.generateObjects(this._levels[this._level][i]);
 	    }
+
+	    entityManager.generateSpawnZones();
 
 	},
 

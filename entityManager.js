@@ -29,7 +29,7 @@ var entityManager = {
 // "PRIVATE" DATA
 _kallar : [],
 _blocks : [],
-_lateralBlocks : [],
+_spawnZones : [],
 _drops : [],
 _bullets : [],
 _levels : [],
@@ -190,11 +190,8 @@ generateObjects: function(cluster) {
     }
 },
 
-getSpawnZones : function() {
-    
+generateSpawnZones : function() {
     var respawns = this._blocks.slice();
-    var spawnZones = [];
-    //console.log("respawn length before loops : " + respawns.length);
     var checkCx;
     var checkCy;
     var leftEdge;
@@ -239,17 +236,28 @@ getSpawnZones : function() {
         }
     }
 
-    //take all the spawnzones from respawn and place them into the
+    //take all the spawnzones from respawn and place them into the spawnZones array    
     for(var t = 0; t<respawns.length; t++)
-    {
-        
+    {        
         if(respawns[t].type != "notSpawnZone")
         {            
-            spawnZones.push(respawns[t]);
+            this._spawnZones.push(respawns[t]);
         } 
+    }  
+
+},
+
+getSpawnZones : function() {    
+
+    return this._spawnZones;    
+},
+
+getSurvivingPlayer : function() {
+    for(var i = 0; i<this._kallar.length; i++)
+    {
+        if(this._kallar[i].health > 0) return this._kallar[i];
     }
 
-    return spawnZones;    
 },
 
 
@@ -272,8 +280,7 @@ update: function(du) {
         if(this._blocks[i].moving) {
             this._blocks[i].spatialPos = this._blocks[i].updateSpatialPos();
         }
-    }
-    
+    }    
 
     for (var c = 0; c < this._categories.length; ++c) {
 
