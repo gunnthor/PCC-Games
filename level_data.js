@@ -899,7 +899,28 @@ var maps =
 			// =================
 			blocks :
 			[
-				//floor left
+				{
+					x : 1,
+				 	y : 0,
+				 	endx : 2,
+				 	endy : 33,
+				 	width : 32,
+				 	height : 18,
+				 	friction: 0.7,
+				 	type : "brick_blue"
+				 	//left wall 
+				},
+				{
+					x : 32,
+				 	y : 0,
+				 	endx : 33,
+				 	endy : 33,
+				 	width : 32,
+				 	height : 18,
+				 	friction: 0.7,
+				 	type : "brick_blue"
+				 	//right wall 
+				},
 				{
 					x : 1,
 				 	y : 32,
@@ -934,9 +955,86 @@ var maps =
 				 	height : 18,
 				 	friction: 0.7,
 				 	type : "brick_blue"
-				 	//floor right 
+				 	//1floor right 
 				},
 
+				{
+					x : 5,
+				 	y : 28,
+				 	endx : 16,
+				 	endy : 29,
+				 	width : 32,
+				 	height : 18,
+				 	friction: 0.7,
+				 	type : "brick_blue"
+				 	//2floor middleLEFT 
+				},
+				{
+					x : 18,
+				 	y : 28,
+				 	endx : 29,
+				 	endy : 29,
+				 	width : 32,
+				 	height : 18,
+				 	friction: 0.7,
+				 	type : "brick_blue"
+				 	//2floor middleRIGHT
+				},
+				{
+					x : 8,
+				 	y : 24,
+				 	endx : 16,
+				 	endy : 25,
+				 	width : 32,
+				 	height : 18,
+				 	friction: 0.7,
+				 	type : "brick_blue"
+				 	//3floor middle LEFT
+				},
+				{
+					x : 18,
+				 	y : 24,
+				 	endx : 26,
+				 	endy : 25,
+				 	width : 32,
+				 	height : 18,
+				 	friction: 0.7,
+				 	type : "brick_blue"
+				 	//3floor middle RIGHT
+				},
+				{
+					x : 18,
+				 	y : 20,
+				 	endx : 16,
+				 	endy : 21,
+				 	width : 32,
+				 	height : 18,
+				 	friction: 0.7,
+				 	type : "brick_blue"
+				 	//4floor middle LEFT
+				 },
+				 {
+					x : 11,
+				 	y : 20,
+				 	endx : 23,
+				 	endy : 21,
+				 	width : 32,
+				 	height : 18,
+				 	friction: 0.7,
+				 	type : "brick_blue"
+				 	//4floor middle RIGHT
+				 },
+				 {
+					x : 14,
+				 	y : 16,
+				 	endx : 20,
+				 	endy : 17,
+				 	width : 32,
+				 	height : 18,
+				 	friction: 0.7,
+				 	type : "brick_blue"
+				 	//5floor middle2 
+				},
 			],
 
 			respawns : 
@@ -998,10 +1096,10 @@ var maps =
 			drops : 
 			[
 				{
-					x : 16,
-				 	y : 17,
-				 	endx : 17,
-				 	endy : 18,
+					x : 14,
+				 	y : 15,
+				 	endx : 15,
+				 	endy : 16,
 				 	width : 32,
 				 	height : 18,
 				 	type : "shotgun",
@@ -1009,12 +1107,36 @@ var maps =
 				 	visible : true
 				 	//shotgun				 	
 				},
-
 				{
-					x : 28,
-				 	y : 13,
-				 	endx : 29,
-				 	endy : 14,
+					x : 19,
+				 	y : 15,
+				 	endx : 20,
+				 	endy : 16,
+				 	width : 32,
+				 	height : 18,
+				 	type : "shotgun",
+				 	cooldown : 2,
+				 	visible : true
+				 	//shotgun				 	
+				},
+				{
+					x : 17,
+				 	y : 19,
+				 	endx : 18,
+				 	endy : 20,
+				 	width : 32,
+				 	height : 18,
+				 	type : "healthpack",
+				 	cooldown : 1,
+				 	visible : true,
+				 	health : 50
+				 	//healthpack				 	
+				},
+				{
+					x : 16,
+				 	y : 19,
+				 	endx : 17,
+				 	endy : 20,
 				 	width : 32,
 				 	height : 18,
 				 	type : "healthpack",
@@ -1023,6 +1145,8 @@ var maps =
 				 	health : 50
 				 	//healthpack				 	
 				}
+
+
 
 			]
 

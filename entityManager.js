@@ -274,6 +274,7 @@ update: function(du) {
         }
     }
     
+    
 
     for (var c = 0; c < this._categories.length; ++c) {
 
