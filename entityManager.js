@@ -29,9 +29,11 @@ var entityManager = {
 // "PRIVATE" DATA
 _kallar : [],
 _blocks : [],
+_lateralBlocks : [],
 _drops : [],
 _bullets : [],
 _levels : [],
+
 
 
 // "PRIVATE" METHODS
@@ -64,7 +66,7 @@ gameover : function(){
 //
 deferredSetup : function () {
     
-    this._categories = [this._blocks,this._kallar, this._bullets, this._drops];
+    this._categories = [this._blocks, this._kallar, this._bullets, this._drops];
 },
 
 generateKall : function(descr) {
@@ -150,16 +152,10 @@ generateObjects: function(cluster) {
 
     for(var i = cluster.x; i < cluster.endx; i++) {
         for(var n = cluster.y; n < cluster.endy; n++) {
-            //console.log(cluster.type);
-
-            //console.log(i*block.width);
-                
-            //console.log(cluster.moving);
-
-
+         
             if(typeof cluster.friction != "undefined")
-            {
-                    this.generateBlock({
+            {                
+                this.generateBlock({
                     cx : i * cluster.width - cluster.width/2,
                     cy : n * cluster.height - cluster.height/2,
                     width : cluster.width,
@@ -168,7 +164,6 @@ generateObjects: function(cluster) {
                     moving : cluster.moving,
                     moveDistance : cluster.moveDistance,
                     type : cluster.type
-
                 });
             }
 
@@ -187,6 +182,68 @@ generateObjects: function(cluster) {
             }
         }
     }
+},
+
+getSpawnZones : function() {
+    
+    var respawns = this._blocks.slice();
+    var spawnZones = [];
+    //console.log("respawn length before loops : " + respawns.length);
+    var checkCx;
+    var checkCy;
+    var leftEdge;
+    var rightEdge;
+    var topEdge;
+    var bottomEdge;
+    var cxInBlock;
+    var cyInBlock;
+    var edgeOfMap;
+    
+    
+    
+    for(var i = 0; i<respawns.length; i++)
+    {
+                
+        //I get the coords of a block above the current block(regardless if one exists or not)
+        checkCx = respawns[i].cx;
+        checkCy = respawns[i].cy-respawns[i].height;
+        
+        //I check if such a block exists, and also check if the current block is at the top of the map
+        //And if the block is moving, if I find a block that meet's any of these conditions, it is not a spawnzone
+        for(var k = 0; k<respawns.length; k++)
+        {
+
+            leftEdge = respawns[k].cx - respawns[k].width/2;
+            rightEdge = respawns[k].cx + respawns[k].width/2;
+            topEdge = respawns[k].cy - respawns[k].height/2;
+            bottomEdge = respawns[k].cy + respawns[k].height/2;
+
+            cxInBlock = checkCx > leftEdge && checkCx < rightEdge;
+            edgeOfMap = checkCy < 0;
+            cyInBlock = (checkCy > topEdge && checkCy < bottomEdge) || edgeOfMap;
+
+            var hasBlockAbove = cyInBlock && cxInBlock;
+            
+            var isMobile = (respawns[i].moving === undefined);
+            if(hasBlockAbove || !isMobile === true) 
+            {                
+                respawns[i].type = "notSpawnZone";
+                break;
+            }
+        }
+    }
+
+    //take all the spawnzones from respawn and place them into the
+    for(var t = 0; t<respawns.length; t++)
+    {
+        
+        if(respawns[t].type != "notSpawnZone")
+        {            
+            spawnZones.push(respawns[t]);
+        } 
+    }
+
+    return spawnZones;    
 },
 
 

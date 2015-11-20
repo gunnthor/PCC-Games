@@ -77,9 +77,6 @@ var maps =
 				},
 
 
-
-
-
 				{
 					x : 20,
 				 	y : 32,
@@ -368,7 +365,7 @@ var maps =
 				 	width : 32,
 				 	height : 18,
 				 	type : "healthpack",
-				 	cooldown : 2,
+				 	cooldown : 1,
 				 	visible : true,
 				 	health : 50
 				 	//healthpack				 	

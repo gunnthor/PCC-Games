@@ -107,7 +107,7 @@ var levelManager = {
 		for(var i = 0; i<maps.levels[this._level-1].drops.length; i++)
 	    {
 
-	    	console.log(maps.levels[this._level-1].drops.length);
+	    	//console.log(maps.levels[this._level-1].drops.length);
 
 	    	var currDrop = {
 		        x : maps.levels[this._level-1].drops[i].x,

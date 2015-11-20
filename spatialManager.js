@@ -334,17 +334,7 @@ findEntityInRange: function(colEntity) {
 
     return _hitentities;
 
-    // ÞARF AÐ BREYTA ÞESSU FYRST VIÐ VERÐUM MEÐ KASSA HIT BOX
-    /*for (var ID in this._entities) {
-        var e = this._entities[ID];
-        if( e.isUndefined) continue;
-        var distsq = util.wrappedDistSq(posX,posY,e.posX,e.posY,g_canvas.width,g_canvas.height);
-        var radiussq = (radius + e.radius) * (radius + e.radius);
-        if ( distsq < radiussq){
-            return e.entity;
-        }
-    }*/
-
+  
 },
 
 render: function(ctx) {

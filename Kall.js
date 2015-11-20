@@ -198,7 +198,7 @@ Kall.prototype.pickupDrop = function(drop) {
 };
 
 Kall.prototype.applyHealthPack = function(drop) {
-    //console.log("made it to application");
+    
     if(this.health < 100)
     {
         var totalHealth = this.health += drop.health;
