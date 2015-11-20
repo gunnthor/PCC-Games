@@ -44,8 +44,7 @@ Kall.prototype.health = 100;
 
 Kall.prototype.numSubSteps = 1;
 
-Kall.prototype.weaponList = ["pistol"];
-Kall.prototype.gunSlot = 0;
+
 
 Kall.prototype.width = 33;
 Kall.prototype.height = 48;

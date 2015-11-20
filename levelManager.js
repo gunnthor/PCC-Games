@@ -60,7 +60,9 @@ var levelManager = {
 	        KEY_WEPS:   'E'.charCodeAt(0),
 	        gunType:    "pistol",
 	        sprite : g_sprites.player1,
-	        audio  : g_sounds.pistolSound
+	        audio  : g_sounds.pistolSound,
+	        weaponList : ["pistol"],
+	        gunSlot : 0
     	});
 
 		//PLAYER 2 GENERATED
@@ -79,7 +81,9 @@ var levelManager = {
 	        KEY_WEPS:   'O'.charCodeAt(0),
 	        gunType:    "pistol", 
 	        sprite : g_sprites.player2,
-	        audio  : g_sounds.pistolSound2
+	        audio  : g_sounds.pistolSound2,
+	        weaponList : ["pistol"],
+	        gunSlot : 0
     	});
 	},
 
