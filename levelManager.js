@@ -17,11 +17,19 @@ var levelManager = {
 
 	_level : 1,
 	_levels : [],
+	_numOfLevels : maps.levels.length,
 
 
 	nextLevel : function() {
-		this._level++
+		this._level++;
+		if (this._level > this._numOfLevels) this._level = 1;
+	},
 
+	clear : function (){
+		//this._level = 1;
+		this._levels = [];
+		entityManager.clear();
+		spatialManager.clear();
 	},
 
 	getLevel : function() {
@@ -52,7 +60,9 @@ var levelManager = {
 	        KEY_WEPS:   'E'.charCodeAt(0),
 	        gunType:    "pistol",
 	        sprite : g_sprites.player1,
-	        audio  : g_sounds.pistolSound
+	        audio  : g_sounds.pistolSound,
+	        weaponList : ["pistol"],
+	        gunSlot : 0
     	});
 
 		//PLAYER 2 GENERATED
@@ -71,7 +81,9 @@ var levelManager = {
 	        KEY_WEPS:   'O'.charCodeAt(0),
 	        gunType:    "pistol", 
 	        sprite : g_sprites.player2,
-	        audio  : g_sounds.pistolSound2
+	        audio  : g_sounds.pistolSound2,
+	        weaponList : ["pistol"],
+	        gunSlot : 0
     	});
 	},
 
@@ -106,9 +118,6 @@ var levelManager = {
 		//place all drops from level_data(maps) and place them into this._levels
 		for(var i = 0; i<maps.levels[this._level-1].drops.length; i++)
 	    {
-
-	    	//console.log(maps.levels[this._level-1].drops.length);
-
 	    	var currDrop = {
 		        x : maps.levels[this._level-1].drops[i].x,
 	        	y : maps.levels[this._level-1].drops[i].y,
@@ -162,6 +171,6 @@ var levelManager = {
 		//ctx.fillStyle = "Black";
 		//ctx.fillRect(0,0,1024,576);
 		//ctx.drawImage(g_sprites.background,0,0);
-		g_sprites.background.drawFullscreen(ctx);		
+		g_sprites.background[this._level-1].drawFullscreen(ctx);		
 	}
 }

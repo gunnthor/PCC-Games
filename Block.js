@@ -32,7 +32,12 @@ Block.prototype.velY = 0.5;
 
 
 Block.prototype.update = function(du) {
-	// Ekkert að gera hér
+
+	// This commented out segment of code will make some of the blocks in the map move,
+	// but it was still buggy so we commented it out.
+
+
+	/*
 	if(!this.moving) return;
 
 	spatialManager.unregister(this);
@@ -58,21 +63,18 @@ Block.prototype.update = function(du) {
 
 	spatialManager.register(this);
 
-	if(this._isDeadNow) return entityManager.KILL_ME_NOW;
+	if(this._isDeadNow) return entityManager.KILL_ME_NOW;*/
 };
 
 Block.prototype.determineSprite = function(){
-	//if(this.friction === 0) return;
-	//console.log(this.type);
+
 	if(this.type === "shotgun") return g_sprites.shotgun;
 	if(this.type === "brick_blue") return g_sprites.brick_blue;
+	if(this.type === "brick_sand") return g_sprites.brick_sand;
 
 };
 
 Block.prototype.render = function(ctx) {	
 
-	//if(this.type === "shotgun") this.sprite.drawCustomSize(ctx, this.cx, this.cy, this.width, this.height)
-	this.sprite.drawCustomSize(ctx, this.cx-this.width/2, this.cy-this.height/2, this.width, this.height);
-	//console.log(this.type);
-	
+	this.sprite.drawCustomSize(ctx, this.cx-this.width/2, this.cy-this.height/2, this.width, this.height);	
 };
