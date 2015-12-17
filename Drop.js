@@ -10,6 +10,7 @@ function Drop(descr) {
     this.startingCy = this.cy;
     this.dropZones = this.getDropZones();
 
+
     //this.rememberResets();
 };
 
@@ -22,9 +23,11 @@ Drop.prototype.cy;
 Drop.prototype.width;
 Drop.prototype.height;
 Drop.prototype.type;
+Drop.prototype.currentZone;
 Drop.prototype.cooldown;
 Drop.prototype.visible;
 Drop.prototype.timer;
+
 
 
 
@@ -54,9 +57,18 @@ Drop.prototype.determineSprite = function(){
 
 Drop.prototype.determineSpawnZone = function(){
 
+
 	var i = Math.floor(Math.random() * this.dropZones.length);
+
+	while(this.dropZones[i].type === "taken") i = Math.floor(Math.random() * this.dropZones.length);
+	
+	if(!(typeof this.currentZone === "undefined")) this.dropZones[this.currentZone].type = "empty";//Læt núverandi spawnZone vera empty áður en ég færi drop
+
 	this.cx = this.dropZones[i].cx;
 	this.cy = this.dropZones[i].cy-this.dropZones[i].height;
+	this.dropZones[i].type = "taken";
+	this.currentZone = i;
+
 };
 
 Drop.prototype.getDropZones = function(){
@@ -84,6 +96,6 @@ Drop.prototype.render = function(ctx) {
 	
 	if(this.visible) this.sprite.drawCustomSize(ctx, this.cx-this.width/2, this.cy-this.height/2, this.width, this.height);
 
-	//this.drawDropZones(ctx);	
+	this.drawDropZones(ctx);	
 
 };

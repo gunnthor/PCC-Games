@@ -354,7 +354,7 @@ var maps =
 				 	width : 32,
 				 	height : 18,
 				 	type : "shotgun",
-				 	cooldown : 10,
+				 	cooldown : 15,
 				 	visible : true
 				 	//shotgun				 	
 				},
@@ -1036,7 +1036,7 @@ var maps =
 				 	width : 32,
 				 	height : 18,
 				 	type : "shotgun",
-				 	cooldown : 2,
+				 	cooldown : 15,
 				 	visible : true
 				 	//shotgun				 	
 				},
@@ -1048,7 +1048,7 @@ var maps =
 				 	width : 32,
 				 	height : 18,
 				 	type : "healthpack",
-				 	cooldown : 1,
+				 	cooldown : 5,
 				 	visible : true,
 				 	health : 50
 				 	//healthpack				 	
